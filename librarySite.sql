@@ -25,4 +25,5 @@ CREATE TABLE `items` (`Item_Name` varchar(50),
 -- Dumping data for table 'items'
 INSERT INTO `items` (`Item_Name`, `ISBN`, `Author`, `Item_Type`) VALUES
 ('The Art of Being a Ninja', 13212124, 'Brian Perel', 'Book'),
-('Aikido', 34534534, 'John Smith', 'Movie');
+('Aikido', 34534534, 'John Smith', 'Movie'),
+('Calisthenics Beasts', 567565543, 'Jason Armstrong', 'Movie');

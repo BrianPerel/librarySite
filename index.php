@@ -29,8 +29,8 @@
 		</center>
 		
 		<div class="class3">
-			<center><form class="example" action="searchItem.php" style="margin:auto;max-width:350px">
-				<input type="text" placeholder="Search the library's catalog..." name="search2">
+			<center><form class="example" action="searchItem.php" method = "post" style="margin:auto;max-width:350px">
+				<input type="text" placeholder="Search the library's catalog..." name="search"></input>
 				<button type="submit"><i class="fa fa-search"></i></button></center>
 			</form>
 		
