@@ -28,7 +28,13 @@ div.class2 * {
 #BodyText {
 	float: left; 
 	margin-left: 12%; 
-	margin-top: 5%;
+	margin-top: 7%;
+}
+
+#contact {
+	float: left; 
+	margin-left: 12%; 
+	margin-top: 7%;
 }
 
 ul:hover {
@@ -117,6 +123,7 @@ div.footer {
   background: #125688;
   color: white;
 }
+
 
 
 form.example input[type=text] {

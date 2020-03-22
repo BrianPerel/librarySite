@@ -22,17 +22,17 @@
 			<a href="index.php">Home</a>
 			<a href="signIn.php">Sign-in</a>
 			<a href="signUp.php">Sign-up</a>
-			<a href="search.php">Search</a>
-			<a href="#about">About</a>
+			<a href="advSearch.php">Search</a>
+			<a href="#BodyText">About</a>
+			<a href="#contact">Contact Us</a>
 			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
 		</div>
 		
 		<?php 
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
-			$sql = $con -> query("INSERT * INTO useraccounts (username, email, ");
+			$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number) 
+			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]')");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
-			
-			
 		?>
 		
 		<div class="footer">

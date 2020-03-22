@@ -20,8 +20,9 @@
 			<a href="index.php">Home</a>
 			<a href="signIn.php">Sign-in</a>
 			<a href="signUp.php">Sign-up</a>
-			<a href="search.php">Search</a>
-			<a href="#about">About</a>
+			<a href="advSearch.php">Search</a>
+			<a href="#BodyText">About</a>
+			<a href="#contact">Contact Us</a>
 			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
 		</div>
 		</center>
