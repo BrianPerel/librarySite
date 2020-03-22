@@ -38,7 +38,10 @@
 			}
 			
 			else {
-				echo '<br><center>Sorry, the information you submitted was invalid. Please try again</center>';
+				# re-direct back to sign in page 
+				$Message = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
+				header("location: signIn.php?Message=".$Message);
+				die; 
 			}
 		?>
 		<div style='margin-bottom: 35%'></div>

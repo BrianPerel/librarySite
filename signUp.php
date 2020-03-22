@@ -31,19 +31,19 @@
 		<h3>Create your account</h3>
 		<p>Join the network</p>
 		
-		<form style="border: solid 0.1px; margin: 1% 12% 1% 12%; padding: 2% 0% 2% 0%">
+		<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="" method="POST">
 		
 			<label>Username:</label><br>
-			<input type="text" name="username" placeholder="Username" size="30" autocomplete='off' required></input><br>
+			<input type="text" name="username" placeholder="Username" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Email:</label><br>
-			<input type="text" name="email_address" placeholder="Email" size="30" autocomplete='off' required></input><br>
+			<input type="text" name="email_address" placeholder="Email" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Password:</label><br>
-			<input type="text" name="password" placeholder="Password" size="30" autocomplete='off' required></input><br>
+			<input type="text" name="password" placeholder="Password" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Full Name:</label><br>
-			<input type="text" name="fname" placeholder="Full Name" size="30" autocomplete='off' required></input><br>
+			<input type="text" name="fname" placeholder="Full Name" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Phone Number</label><br>
 			<input type="text" name="dob" placeholder="Phone Number" size="30" autocomplete='off' required></input><br>

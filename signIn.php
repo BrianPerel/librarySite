@@ -29,7 +29,7 @@
 		
 		<h3>My Account Login:</h3><br>
 		
-		<form action='Login.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%'>
+		<form action='myAccount.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%'>
 			<label>Username:</label><br>
 			<input type="text" name="username" placeholder="Username" size="30" autocomplete='off' required></input><br><br>
 			
@@ -37,9 +37,14 @@
 			<input name="password" placeholder="Password" size="30"  autocomplete='off' required></input><br>
 			
 			<br><input type="submit">
-		</form>
+		</form>		
 		
-		
+		<?php 
+			# print invalid login message upon failed login 
+			if(isset($_GET['Message'])){
+				echo $_GET['Message'];
+			}
+		?> 
 		
 		<div style="margin-top: 18%"></div>
 		

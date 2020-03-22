@@ -26,12 +26,13 @@
 		</div>
 		</center>
 	
-		<h2 align=center>Search results for: '<?php echo $_POST['item_name'];?>'</h2>
 
 		<?php
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+			
+			echo '<h2 align=center>Search results ' . sizeof($results) . ' of ' . sizeof($results) . '  for: \'' . $_POST['item_name'] . '\' </h2>' /*. ' ' . echo  . */;
 			
 			if(sizeof($results) == 0) {
 				echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
@@ -40,37 +41,14 @@
 			else {
 				echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
 				for($i = 0; $i < sizeof($results); $i++) {
-					echo'<tr>';
-						echo'<td>' . 'Book Name: ' . $results[$i]['Item_Name'] . '</td>';
-					echo'</tr>';
-					
-					echo'<tr>';
-						echo'<td>' . 'ISBN: ' . $results[$i]['Author'] . '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo'<td>' . 'Author: ' . $results[$i]['ISBN'] . '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo'<td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo'<td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo'<td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo'<td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td>';
-					echo '</tr>';
-					
-					echo '<tr>';
-						echo'<td>' . 'Summary: ' . $results[$i]['Summary'] . '</td>';
-					echo '</tr>';
+					echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
+					echo'<tr><td>' . 'ISBN: ' . $results[$i]['Author'] . '</td></tr>';
+					echo'<tr><td>' . 'Author: ' . $results[$i]['ISBN'] . '</td></tr>';
+					echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
+					echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
+					echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
+					echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
+					echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
 					}
 				echo"</table><br><div style='margin-bottom: 15%'></div>";
 			}
