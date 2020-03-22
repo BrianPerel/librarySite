@@ -19,22 +19,22 @@
 		</div>
 
 		<div class="class2">
-			<a href="index.htm">Home</a>
-			<a href="signIn.htm">Sign-in</a>
-			<a href="signUp.htm">Sign-up</a>
-			<a href="search.htm">Search</a>
+			<a href="index.php">Home</a>
+			<a href="signIn.php">Sign-in</a>
+			<a href="signUp.php">Sign-up</a>
+			<a href="search.php">Search</a>
 			<a href="#about">About</a>
 			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
 		</div>
 		</center>
 		
 		<div class="class3">		
-			<center><form class="example" action="searchItem.php" method = "post" style="margin:auto;max-width:350px">
-				<input type="text" placeholder="Search the library's catalog..." name="item_name"></input>
-				<button type="submit"><i class="fa fa-search"></i></button></center>
-			</form>
+			<center><form class="example" action="searchItem.php" method = "post" style="margin:auto;max-width:400px">
+				<input type="text" placeholder="Search the library's catalog..." name="item_name" required></input>
+				<button type="submit" class="fa fa-search"></button>
+			</form></center>
 		
-			<p id="BodyText">Welcome to FSU's library portal. Sign up to create an account or sign in<br> to get to your existing account. Search the library's inventory to
+			<br><p id="BodyText">Welcome to FSU's library portal. Sign up to create an account or sign in<br> to get to your existing account. Search the library's inventory to
 			<br>find what your looking for. Our inventory contains books, movies, <br> ebooks, and video games. Once the item is found, you can check <br>it out.
 			If returning the item, check it back into the system.</p>
 			
@@ -57,7 +57,7 @@
 		</div>
 				
 		<div class="footer">
-			<p>&copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script> - By: Brian Perel</p>
+			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>
 		</div>
 		
 	</body>

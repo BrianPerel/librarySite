@@ -3,27 +3,34 @@
 -- database name: 'librarySite'
 
 -- Table structure for table 'userAccount' 
-CREATE TABLE `userAccount` (`username` varchar(50),
-`email` varchar(50),
-`password` varchar(50),
-`full_Name` varchar(50),
-`phone_Number` varchar(50));
+CREATE TABLE `useraccounts` (`username` varchar(255),
+`email` varchar(255),
+`password` varchar(255),
+`full_Name` varchar(255),
+`phone_Number` varchar(255));
+
+INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`) VALUES
+('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296');
 
 -- Table structure for table 'admin'
-CREATE TABLE `admin` (`username` varchar(50),
-`email` varchar(50),
-`password` varchar(50),
-`fullName` varchar(50),
-`phoneNumber` varchar(50));
+CREATE TABLE `admin` (`username` varchar(255),
+`email` varchar(255),
+`password` varchar(255),
+`fullName` varchar(255),
+`phoneNumber` varchar(255));
 
 -- Table structure for table 'items'
-CREATE TABLE `items` (`Item_Name` varchar(50),
-`ISBN` int(11),
-`Author` varchar(50),
-`Item_Type` varchar(50));
+CREATE TABLE `items` (`Item_Name` varchar(255),
+`Author` varchar(255),
+`ISBN` int(15),
+`Publication_Info` varchar(255),
+`Year_of_Release` varchar(255),
+`General_Audience` varchar(255), 
+`Summary` varchar(255), 
+`Item_Type` varchar(255));
 
 -- Dumping data for table 'items'
-INSERT INTO `items` (`Item_Name`, `ISBN`, `Author`, `Item_Type`) VALUES
-('The Art of Being a Ninja', 13212124, 'Brian Perel', 'Book'),
-('Aikido', 34534534, 'John Smith', 'Movie'),
-('Calisthenics Beasts', 567565543, 'Jason Armstrong', 'Movie');
+INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of_Release`, `General_Audience`, `Summary`, `Item_Type`) VALUES
+('The Art of Being a Ninja', 'Brian Perel', 13212124, 'Hollywood, California : Paramount Home Entertainment', '2020', 'adult', 'The Art of Being a Ninja is a documentary film about how to become a ninja', 'Blu-ray'),
+('Aikido', 'John Smith', 34534534, 'Hollywood, California : Universal Studios Entertainment', '2010', 'adult', 'Aikido is a book about the way of aikido practitioners and there lives', 'Movie'),
+('Calisthenics Beasts', 'Jason Armstrong', 567565543, '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Calisthenics Beasts is an ebook broken up into multiple sections by muscle groups', 'ebook');
