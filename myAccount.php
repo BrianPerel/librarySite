@@ -34,9 +34,14 @@
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 			
 			if($results[0]['username'] == $_POST['username'] && $results[0]['password'] == $_POST['password']) {
-				echo '<br><center>Login successful</center>';
+				echo '<div style="text-align: center">';
+					echo '<br>Login successful. Welcome back, ' . $results[0]['full_Name'] . '<br>';
+					echo 'Email: brianperel@comcast.net<br>';
+					echo 'Checkouts: (0)<br>';
+					echo 'Requests: (0)<br>';
+					echo 'Messages: (0)<br>';
+				print '</div>';
 			}
-			
 			else {
 				# re-direct back to sign in page 
 				$Message = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');

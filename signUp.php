@@ -31,7 +31,7 @@
 		<h3>Create your account</h3>
 		<p>Join the network</p>
 		
-		<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="" method="POST">
+		<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="signedUp.php" method="POST">
 		
 			<label>Username:</label><br>
 			<input type="text" name="username" placeholder="Username" size="30" autocomplete='off' required></input><br><br>

@@ -49,6 +49,8 @@
 					echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
 					echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
 					echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
+					echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
+					echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
 					}
 				echo"</table><br><div style='margin-bottom: 15%'></div>";
 			}
