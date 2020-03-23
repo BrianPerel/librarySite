@@ -13,6 +13,11 @@ div.class1 * {
 	padding-right: 1%;
 }
 
+div.letterSearch * {
+	margin-top: 2%;
+	text-decoration: none;
+}
+
 div.class2 {
 	background-color: #C0C0C0;
 	padding: 1% 2% 1% 2%;

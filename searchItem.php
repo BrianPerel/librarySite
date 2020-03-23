@@ -33,7 +33,7 @@
 			$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 			
-			echo '<h2 align=center>Search results ' . sizeof($results) . ' of ' . sizeof($results) . '  for: \'' . $_POST['item_name'] . '\' </h2>' /*. ' ' . echo  . */;
+			echo '<h2 align=center>Search results ' . sizeof($results) . ' of ' . sizeof($results) . '  for: \'' . $_POST['item_name'] . '\' </h2>';
 			
 			if(sizeof($results) == 0) {
 				echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';

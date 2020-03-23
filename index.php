@@ -48,6 +48,8 @@
 				<input type="text" placeholder="Search the library's catalog..." name="item_name" required></input>
 				<button type="submit" class="fa fa-search"></button>
 			</form></center>
+			
+			<br><center>Search by letter: <a href='letterFind.php?by=A'>A</a> | B | <a href='letterFind.php?by=C'>C</a> | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | <a href='letterFind.php?by=T'>T</a> | U | V | W | X | Y | Z</center>
 		
 			<p id="BodyText"><br>Welcome to FSU's library portal. Sign up to create an account or sign in<br> to get to your existing account. Search the library's inventory to
 			<br>find what your looking for. Our inventory contains books, movies, <br> ebooks, and video games. Once the item is found, you can check <br>it out.
