@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Home | HWL</title>
+		<title>Advanced Search | HWL</title>
 		<meta name="author" content="Brian Perel">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
@@ -29,10 +29,10 @@
 		</div>
 		</center>
 		
-		<h3>Advanced Search</h3>
+		<center><h3>Advanced Search</h3>
 		
 		<div class="class3">
-			<center><form class="example" action="/action_page.php" style="margin:auto;max-width:350px">
+			<form class="example" action="/action_page.php" style="margin:auto;max-width:350px">
 				<input type="text" name="Title" placeholder="Enter Title..." size="30" autocomplete='off' required></input><br><br><br>
 				<input type="text" name="ISBN" placeholder="Enter ISBN Number..." size="30" autocomplete='off' required></input><br><br><br>
 				<input type="text" name="Author" placeholder="Enter Author's Name..." size="30" autocomplete='off' required></input><br><br><br>

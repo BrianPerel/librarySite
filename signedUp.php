@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Signed up | HWL</title>
+		<title>Registration Completed | HWL</title>
 		<meta name="author" content="Brian Perel">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
@@ -34,6 +34,9 @@
 			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]')");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 		?>
+		
+		<center><h4 style='margin-bottom: 31%'>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>
+		<a href='signIn.php' >Sign in here</a></h4></center>
 		
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

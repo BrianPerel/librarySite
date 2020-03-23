@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Sign in | HWL</title>
+		<title>Admin Login | HWL</title>
 		<meta name="author" content="Brian Perel">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
