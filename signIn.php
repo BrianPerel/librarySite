@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="icons/favicon.css">
 	</head>
 	
-	<body>
+	<body onload='myFunction()'>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
 			<a href="index.htm"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
@@ -42,12 +42,13 @@
 		
 		<?php 
 			# print invalid login message upon failed login 
-			if(isset($_GET['InvalidCredentials'])){
-				echo $_GET['InvalidCredentials'];
+			if(isset($_GET['invalidLogin'])){
+				echo $_GET['invalidLogin'];
 			}			
 			
-			if(isset($_GET['LoggedOut'])){
-				echo $_GET['Message'];
+			if(isset($_GET['out'])){
+				echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
+				echo '<div id="logout">' . $_GET['out']. ' </div>';
 			}
 		?> 
 		

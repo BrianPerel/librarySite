@@ -41,13 +41,13 @@
 					echo '<br>Checkouts: (0)<br>';
 					echo 'Requests: (0)<br>';
 					echo 'Messages: (0)<br>';
-					echo '<a href="message2.php">(log out)</a>';
+					echo '<a href="logout.php">(log out)</a>';
 				print '</div>';
 			}
 			else {
 				# re-direct back to sign in page 
 				$Message = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
-				header("location: signIn.php?InvalidCredentials=".$Message);
+				header("location: signIn.php?invalidLogin=".$Message);
 				die; 
 			}
 		?>

@@ -39,17 +39,17 @@
 					echo '<br>Login successful. Welcome back, ' . $results[0]['fullName'] . '<br>';
 					echo 'Email: ' . $results[0]['email'];
 					echo '<br>Messages: (0)<br>';
-					echo '<a href="message.php">(log out)</a><br><br>';
+					echo '<a href="adminLogout.php">(log out)</a><br><br>';
 					echo '<button style="margin: 1%">Delete Item</button>';
 					echo '<button style="margin: 1%">Update Item</button>';
 					echo '<button style="margin: 1%">Add Item</button>';
 
-				print '</div>';
+				echo '</div>';
 			}
 			else {
 				# re-direct back to sign in page 
-				$Message = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
-				header("location: adminLogin.php?Message=" . $Message);
+				$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
+				header("location: adminLogin.php?invalid=" . $invalidLogin);
 				die; 
 			}
 		?>
