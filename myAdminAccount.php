@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Sign in | HWL</title>
+		<title>Login | HWL</title>
 		<meta name="author" content="Brian Perel">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
@@ -27,35 +27,36 @@
 			<a href="#contact">Contact Us</a>
 			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
 		</div>
-		
-		<h3>My Account Login:</h3><br>
-		
-		<form action='myAccount.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%' autocomplete="off">
-			<label>Username:</label><br>
-			<input type="text" name="username" placeholder="Username" size="30" autocomplete="false" required></input><br><br>
-			
-			<label>Password:</label><br>
-			<input name="password" placeholder="Password" type="text" size="30" autocomplete="false" required></input><br>
-			
-			<br><input type="submit">
-		</form>		
-		
+		</center>
+	
 		<?php 
-			# print invalid login message upon failed login 
-			if(isset($_GET['InvalidCredentials'])){
-				echo $_GET['InvalidCredentials'];
-			}			
+			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+			$sql = $con -> query("SELECT * FROM admin WHERE username = '$_POST[username]'");
+			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 			
-			if(isset($_GET['LoggedOut'])){
-				echo $_GET['Message'];
+			if($results[0]['username'] == $_POST['username'] && $results[0]['password'] == $_POST['password']) {
+				echo '<div style="text-align: center">';
+					echo '<br>Login successful. Welcome back, ' . $results[0]['fullName'] . '<br>';
+					echo 'Email: ' . $results[0]['email'];
+					echo '<br>Messages: (0)<br>';
+					echo '<a href="message.php">(log out)</a><br><br>';
+					echo '<button style="margin: 1%">Delete Item</button>';
+					echo '<button style="margin: 1%">Update Item</button>';
+					echo '<button style="margin: 1%">Add Item</button>';
+
+				print '</div>';
 			}
-		?> 
-		
-		<div style="margin-top: 18%"></div>
+			else {
+				# re-direct back to sign in page 
+				$Message = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
+				header("location: adminLogin.php?Message=" . $Message);
+				die; 
+			}
+		?>
+		<div style='margin-bottom: 24%'></div>
 		
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>
 		</div>
-	
 	</body>
 </html>

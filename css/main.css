@@ -31,6 +31,11 @@ div.class2 * {
 	margin-top: 7%;
 }
 
+#admin {
+	color: black;
+	text-decoration: none;
+}
+
 #contact {
 	float: left; 
 	margin-left: 12%; 
@@ -81,7 +86,7 @@ div.create {
 }
 
 div.footer {
-	margin-top: 5%;
+	margin-top: 3%;
 	background-color: #e7a56a ;
 	text-align: center;
 	vertical-align: baseline;

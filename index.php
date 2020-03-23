@@ -59,15 +59,15 @@
 			<center><img src='icons/fsu.jpg' id='switch' height='60%' width='60%' style='margin-top: 8%; border: solid black'></img></center>
 			
 			<center><p id="contact"><br>Location: 100 State Street Framingham, MA 01701. We are located just off of Route 9 and about 1.5 miles from Mass Pike exit 12.
-			<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone: (111) - 222 - 3344<br>
-			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hours: Sunday 1PM - 1AM
-			<br>&nbsp;&nbsp;Monday 7:30AM - 1AM
-			<br>&nbsp;&nbsp;Tuesday 7:30AM - 1AM
-			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wednesday 7:30AM - 1AM
-			<br>&nbsp;&nbsp;&nbsp;&nbsp;Thursday 7:30AM - 1AM
-			<br>Friday 7:30AM - 5PM
-			<br>Saturday 9AM - 5PM
-			</p>
+			<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone: (111) - 222 - 3344<br>
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hours: Sunday 1PM - 1AM
+			<br>&nbsp;&nbsp;&nbsp;Monday 7:30AM - 1AM
+			<br>&nbsp;&nbsp;&nbsp;Tuesday 7:30AM - 1AM
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wednesday 7:30AM - 1AM
+			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thursday 7:30AM - 1AM
+			<br>&nbsp;Friday 7:30AM - 5PM
+			<br>Saturday 9AM - 5PM</p>
+			
 			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2951.0640653227806!2d-71.4352319!3d42.2984984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e389a9351c81eb%3A0xe6ea3c8be37e9068!2sHenry%20Whittemore%20Library!5e0!3m2!1sen!2sus!4v1583264360102!5m2!1sen!2sus" frameborder="0" style="border:0;" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 			<img src="icons/5.jpg" height="300" width="400"></img></center>
 		</div>
@@ -81,6 +81,8 @@
 		<div class="backTop">
 			<center><a href="#top">Back to top</a> &#x2191;</center>
 		</div>
+		
+		<button style='float: right; width: 7%; height: 30px'><a href='adminLogin.php' id='admin'>admin login</a></button>
 				
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

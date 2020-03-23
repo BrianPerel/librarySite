@@ -28,9 +28,9 @@
 			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
 		</div>
 		
-		<h3>My Account Login:</h3><br>
+		<h3>Admin Account Login:</h3><br>
 		
-		<form action='myAccount.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%' autocomplete="off">
+		<form action='myAdminAccount.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%' autocomplete="off">
 			<label>Username:</label><br>
 			<input type="text" name="username" placeholder="Username" size="30" autocomplete="false" required></input><br><br>
 			
@@ -42,16 +42,16 @@
 		
 		<?php 
 			# print invalid login message upon failed login 
-			if(isset($_GET['InvalidCredentials'])){
-				echo $_GET['InvalidCredentials'];
-			}			
+			if(isset($_GET['Message'])){
+				echo $_GET['Message'];
+			}
 			
 			if(isset($_GET['LoggedOut'])){
 				echo $_GET['Message'];
 			}
 		?> 
 		
-		<div style="margin-top: 18%"></div>
+		<div style="margin-top: 14%"></div>
 		
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

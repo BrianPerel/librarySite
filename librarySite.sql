@@ -24,6 +24,11 @@ CREATE TABLE `admin` (`username` varchar(255),
 `phoneNumber` varchar(255));
 
 
+-- Dumping data for table 'admin'
+INSERT INTO `admin` (`username`, `email`, `password`, `fullName`, `phoneNumber`) VALUES 
+('Mr. X', 'mrx@yahoo.com', 'Boss11', 'Tony Rastafar', '456-234-7686');
+
+
 -- Table structure for table 'items'
 CREATE TABLE `items` (`Item_Name` varchar(255),
 `Author` varchar(255),

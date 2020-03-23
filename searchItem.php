@@ -52,11 +52,18 @@
 					echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
 					echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
 					echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
-					}
-				echo"</table><br><div style='margin-bottom: 15%'></div>";
+					}		
+				echo '</table><br>';
 			}
 		?>
 		
+		<!-- <form action='' method='post'> -->
+			<center><button style='margin-right: 1%' name='checkout'>Checkout item</button>
+			<button name='request'>Request item</button></center>
+		<!-- </form> -->
+		
+		<div style='margin-bottom: 10%'></div>
+
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>
 		</div>
