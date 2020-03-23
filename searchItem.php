@@ -29,6 +29,11 @@
 	
 
 		<?php
+			if(isset($_GET['send'])){
+				$post = $_GET['send'];
+				$_POST['item_name'] = $post;
+			}		
+		
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
@@ -57,10 +62,10 @@
 			}
 		?>
 		
-		<!-- <form action='' method='post'> -->
-			<center><button style='margin-right: 1%' name='checkout'>Checkout item</button>
-			<button name='request'>Request item</button></center>
-		<!-- </form> -->
+			<form action='checkout.php' method='post'>
+				<center><button style='margin-right: 1%' name='Aikido'>Checkout item</button>
+				<button name='request'>Request item</button></center>
+			</form> 
 		
 		<div style='margin-bottom: 10%'></div>
 
