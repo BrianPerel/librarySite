@@ -38,9 +38,9 @@
 				echo '<div style="text-align: center">';
 					echo '<br>Login successful. Welcome back, ' . $results[0]['full_Name'] . '<br>';
 					echo 'Email: ' . $results[0]['email'];
-					echo '<br>Checkouts: (0)<br>';
-					echo 'Requests: (0)<br>';
-					echo 'Messages: (0)<br>';
+					echo '<br>Checkouts: <a href="#a">(' . $results[0]['items_Out'] . ')</a><br>';
+					echo 'Requests: <a href="#a">(' . $results[0]['items_Requested'] . ')</a><br>';
+					echo 'Messages: <a href="#a">(' . $results[0]['items_Requested'] . ')</a><br>';
 					echo '<a href="logout.php">(log out)</a>';
 				print '</div>';
 			}
@@ -51,7 +51,10 @@
 				die; 
 			}
 		?>
-		<div style='margin-bottom: 35%'></div>
+		
+		<div style='margin-bottom: 22%'></div>
+		<button style='float: right; height: 35px'>Edit Personal Information</button><br>
+
 		
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

@@ -47,18 +47,23 @@
 			<input type="text" name="fname" placeholder="Full Name" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Phone Number</label><br>
-			<input type="text" name="pNum" placeholder="Phone Number" size="30" autocomplete='off' required></input><br>
+			<input type="text" name="pNum" placeholder="Phone Number" size="30" autocomplete='off' required></input>
 			
-			<br><p>By creating an account, you agree to the <a href>Terms of Service<a></p>
+			<br><p>By creating an account, you agree to the <a href='#a'>Terms of Service<a></p>
 			
 			<label for="terms">Agree to terms: </label>
-			<input type="checkbox" name="terms" value="terms" required><br>
+			<input type="checkbox" name="terms" value="terms" required><br><br>
 			
-			<br><div align=center class="g-recaptcha" data-type:"image" data-sitekey="6Le9NsgUAAAAAFvjCyl8yJ_npsTDpIEoumWFe5Zn"></div>
-
 			<input type="submit">
 
 		</form>
+		
+		<?php 
+			# print invalid login message upon failed login 
+			if(isset($_GET['signUpError'])){
+				echo $_GET['signUpError'];
+			}			
+		?> 
 		</div>
 		
 		<div class="footer">

@@ -32,25 +32,28 @@
 		<center><h3>Advanced Search</h3>
 		
 		<div class="class3">
-			<form class="example" action="/action_page.php" style="margin:auto;max-width:350px">
+			<form class="example" action="" method="post" style="margin:auto;max-width:350px; border: solid black 0.5px">
 				<input type="text" name="Title" placeholder="Enter Title..." size="30" autocomplete='off' required></input><br><br><br>
 				<input type="text" name="ISBN" placeholder="Enter ISBN Number..." size="30" autocomplete='off' required></input><br><br><br>
 				<input type="text" name="Author" placeholder="Enter Author's Name..." size="30" autocomplete='off' required></input><br><br><br>
 				
-				<label for="cars">Format:</label>
+				<label for="cars" required>Format:</label>
 				  <select name="format">
-					<option value="volvo">Any</option>
-					<option value="saab">Saab</option>
-					<option value="fiat">Fiat</option>
-					<option value="audi">Audi</option>
+					<option value="any">Any</option>
+					<option value="book">book</option>
+					<option value="ebook">ebook</option>
+					<option value="cd">dvd</option>
+					<option value="cd">blu-ray</option>
+					<option value="cd">cd</option>
 				</select><br><br>
 				  
-				<label for="cars">Location:</label>
+				<label for="cars" required>Location:</label>
 				<select name="location">
-				   <option value="volvo">Any</option>
-				   <option value="saab">Saab</option>
-				   <option value="fiat">Fiat</option>
-				   <option value="audi">Audi</option>
+				   <option value="any">All</option>
+				   <option value="f">Framingham</option>
+				   <option value="n">Natick</option>
+				   <option value="n2">Newton</option>
+				   <option value="a">Ashland</option>
 				</select><br><br>
 				<input type="submit">
 			</form></center>

@@ -58,6 +58,11 @@
 				echo '</table><br>';
 			}
 			?>
+			
+			<form action='checkout.php' method='post'>
+				<center><button style='margin-right: 1%' name='Aikido'>Checkout item</button>
+				<button name='request'>Request item</button></center>
+			</form> 
 		</body>
 	</head>
 </html>

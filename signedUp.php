@@ -30,9 +30,19 @@
 		
 		<?php 
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
-			$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number) 
-			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]')");
-			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+			$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
+			OR password = '$_POST[password]' OR full_Name = '$_POST[fname]' OR phone_Number = '$_POST[pNum]'");
+
+			if($insert_check -> rowcount() > 0) {
+				$err = urlencode('<br><p style="color: red">Error Creating the Account! An account with certain information you entered already exists</p>');
+				header("Location: signUp.php?signUpError=" . $err);
+				die;
+			}
+			
+			else {
+				$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages) 
+				VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]', '0', '0', '0')");
+			}
 		?>
 		
 		<center><h4 style='margin-bottom: 31%'>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>

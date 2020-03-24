@@ -8,12 +8,16 @@ CREATE TABLE `useraccounts` (`username` varchar(255),
 `email` varchar(255),
 `password` varchar(255),
 `full_Name` varchar(255),
-`phone_Number` varchar(255));
+`phone_Number` varchar(255),
+`items_Out` int(11),
+`items_Requested` int(11),
+`messages` int(11));
+
 
 
 -- Dumping data for table 'useraccounts'
-INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`) VALUES
-('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296');
+INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`) VALUES
+('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '3', '1', '1');
 
 
 -- Table structure for table 'admin'

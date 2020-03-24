@@ -1,5 +1,5 @@
 <?php 
-	$LoggedOut = urlencode('<br><p>Logged out successfully</p>');
+	$LoggedOut = urlencode('<br><p style="color: green">Logged out successfully</p>');
 	header("Location: adminLogin.php?out=" . $LoggedOut);
 	die;
 ?>

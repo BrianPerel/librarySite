@@ -22,7 +22,11 @@
 			var images = [], x = -1;
             images[0] = "icons/inside.jpg";
             images[1] = "icons/4.jpg";
+			images[2] = "icons/fsu.jpg";
 		</script>
+		
+		<STYLE>A {text-decoration: none; color: black}</STYLE> <!-- needed to remove link underlines --> 
+
 	</head>
 	
 	<body onload="startTimer()">
@@ -45,12 +49,11 @@
 		
 		<div class="class3">		
 			<center><form class="example" action="searchItem.php" method = "post" style="margin:auto;max-width:400px">
-				<input type="text" placeholder="Search the library's catalog..." name="item_name" required></input>
+				<input type="text" placeholder="Search the library's catalog..." name="item_name" required style='height: 39px'></input>
 				<button type="submit" class="fa fa-search"></button>
 			</form></center>
 			
-			<br><center>Search by letter: <a href='letterFind.php?by=A'>A</a> | B | <a href='letterFind.php?by=C'>C</a> | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | <a href='letterFind.php?by=T'>T</a> | U | V | W | X | Y | Z</center>
-		
+			<br><br><center>Search by letter: <a href='letterFind.php?by=A'>A</a> | B | <a href='letterFind.php?by=C'>C</a> | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | <a href='letterFind.php?by=T'>T</a> | U | V | W | X | Y | Z</center>		
 			<p id="BodyText"><br>Welcome to FSU's library portal. Sign up to create an account or sign in<br> to get to your existing account. Search the library's inventory to
 			<br>find what your looking for. Our inventory contains books, movies, <br> ebooks, and video games. Once the item is found, you can check <br>it out.
 			If returning the item, check it back into the system. The Henry <br>Whitemore Library is FSU's library built in 1969. It's a 7 story building<br> containing a print shop, copy center,
@@ -60,7 +63,7 @@
 			<img src="icons/3.jpg" id="pic1" width="150px" height="150px"></img>
 
 			
-			<center><img src='icons/fsu.jpg' id='switch' height='60%' width='60%' style='margin-top: 8%; border: solid black'></img></center>
+			<center><img src='icons/fsu.jpg' id='switch' height='600px' width='900px' style='margin-top: 8%; border: solid black'></img></center>
 			
 			<center><p id="contact"><br>Location: 100 State Street Framingham, MA 01701. We are located just off of Route 9 and about 1.5 miles from Mass Pike exit 12.
 			<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Phone: (111) - 222 - 3344<br>
