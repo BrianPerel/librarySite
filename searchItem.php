@@ -64,8 +64,9 @@
 		
 		<form action='checkout.php' method='post'>
 			<center><button style='margin-right: 1%' name='Aikido'>Checkout item</button>
-			<button name='request'>Request item</button></center>
 		</form> 
+		
+		<button name='request'>Request item</button></center>
 		
 		<div style='margin-bottom: 10%'></div>
 

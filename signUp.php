@@ -38,7 +38,7 @@
 			<input type="text" name="username" placeholder="Username" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Email:</label><br>
-			<input type="text" name="email" placeholder="Email" size="30" autocomplete='off' required></input><br><br>
+			<input type="email" name="email" placeholder="Email" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Password:</label><br>
 			<input type="text" name="password" placeholder="Password" size="30" autocomplete='off' required></input><br><br>

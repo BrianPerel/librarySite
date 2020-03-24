@@ -35,7 +35,7 @@
 			<input type="text" name="username" placeholder="Username" size="30" autocomplete="false" required></input><br><br>
 			
 			<label>Password:</label><br>
-			<input name="password" placeholder="Password" type="text" size="30" autocomplete="false" required></input><br>
+			<input class='key' name="password" placeholder="Password" type="text" size="30" autocomplete="false" required></input><br>
 			
 			<br><input type="submit">
 		</form>		

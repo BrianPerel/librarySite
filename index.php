@@ -89,7 +89,7 @@
 			<center><a href="#top">Back to top</a> &#x2191;</center>
 		</div>
 		
-		<button style='float: right; width: 7%; height: 30px'><a href='adminLogin.php' id='admin'>admin login</a></button>
+		<button style='float: right; width: 7%; height: 30px'><a href='adminLogin.php' id='admin'>Admin Login</a></button>
 				
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>
