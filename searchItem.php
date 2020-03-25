@@ -50,8 +50,8 @@
 				echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
 				for($i = 0; $i < sizeof($results); $i++) {
 					echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
-					echo'<tr><td>' . 'ISBN: ' . $results[$i]['Author'] . '</td></tr>';
-					echo'<tr><td>' . 'Author: ' . $results[$i]['ISBN'] . '</td></tr>';
+					echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
+					echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
 					echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
 					echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
 					echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
