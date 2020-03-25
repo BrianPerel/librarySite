@@ -32,14 +32,12 @@
 			<?php 
 				session_start(); # need session to save item_name to session in order to pass it into another file
 
-
 				$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 
 				if(isset($_GET['send2'])) {
 					$post = $_GET['send2'];
 					$SearchLetter = $post;
 				}						
-			
 				
 				else {
 					$SearchLetter = $_GET['by'];
@@ -69,15 +67,15 @@
 						}		
 					echo '</table><br>';
 
-					$_SESSION['name'] = $results[0]['Item_Name'];
+					$_SESSION['checkout2'] = $results[0]['Item_Name'];
 				}
 			?>
 			
-<!--		<form action='checkoutLetter.php' method='post'>
-			<center><button style='margin-right: 1%' name='name'>Checkout item</button>
-			</form> -->
+			<form action='checkoutLetter.php' method='post'>
+			<center><button style='margin-right: 1%' name='checkout2' <?php if($results[0]['Status'] == 'Out') {echo 'disabled';} ?>>Checkout item</button>
+			</form> 
 			
-			<button name='request'>Request item</button></center>
+			<button name='request' type="button">Request item</button></center>
 		</body>
 	</head>
 </html>

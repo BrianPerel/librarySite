@@ -63,16 +63,15 @@
 					}		
 				echo '</table><br>';
 				
-				$_SESSION['name'] = $_POST['item_name'];
+				$_SESSION['checkout'] = $_POST['item_name'];
 			}
 		?>
 	
 		<form action='checkout.php' method='post'>
-		<center><button style='margin-right: 1%' name='name'>Checkout item</button>
+		<center><button style='margin-right: 1%' name='checkout' <?php if($results[0]['Status'] == 'Out') {echo 'disabled';} ?> >Checkout item</button>
 		</form>
 	
-		
-		<button name='request'>Request item</button></center>
+		<button name='request' type="button">Request item</button></center>
 		
 		<div style='margin-bottom: 10%'></div>
 

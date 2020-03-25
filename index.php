@@ -53,7 +53,15 @@
 				<button type="submit" class="fa fa-search"></button>
 			</form></center>
 			
-			<br><br><center>Search by letter: <a href='letterFind.php?by=A'>A</a> | B | <a href='letterFind.php?by=C'>C</a> | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | <a href='letterFind.php?by=T'>T</a> | U | V | W | X | Y | Z</center>		
+			<br><br><center>Search by letter: <a href='letterFind.php?by=A'>A</a> | B | <a href='letterFind.php?by=C'>C</a> | <a href='letterFind.php?by=D'>D</a>
+			| <a href='letterFind.php?by=E'>E</a> | <a href='letterFind.php?by=F'>F</a> | <a href='letterFind.php?by=G'>G</a>
+			| <a href='letterFind.php?by=H'>H</a> | <a href='letterFind.php?by=I'>I</a> | <a href='letterFind.php?by=J'>J</a> 
+			| <a href='letterFind.php?by=K'>K</a> | <a href='letterFind.php?by=L'>L</a> | <a href='letterFind.php?by=C=M'>M</a> 
+			| <a href='letterFind.php?by=N'>N</a> | <a href='letterFind.php?by=O'>O</a> | <a href='letterFind.php?by=P'>P</a> 
+			| <a href='letterFind.php?by=Q'>Q</a> | <a href='letterFind.php?by=R'>R</a> | <a href='letterFind.php?by=C'>S</a>
+			| <a href='letterFind.php?by=T'>T</a> | <a href='letterFind.php?by=U'>U</a> | <a href='letterFind.php?by=C'>V</a>
+			| <a href='letterFind.php?by=W'>W</a> | <a href='letterFind.php?by=X'>X</a> | <a href='letterFind.php?by=C'>Y</a>
+			| <a href='letterFind.php?by=C'>Z</a></center>		
 			<p id="BodyText"><br>Welcome to FSU's library portal. Sign up to create an account or sign in<br> to get to your existing account. Search the library's inventory to
 			<br>find what your looking for. Our inventory contains books, movies, <br> ebooks, and video games. Once the item is found, you can check <br>it out.
 			If returning the item, check it back into the system. The Henry <br>Whitemore Library is FSU's library built in 1969. It's a 7 story building<br> containing a print shop, copy center,
