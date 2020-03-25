@@ -33,12 +33,12 @@
 			$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
 			OR password = '$_POST[password]' OR full_Name = '$_POST[fname]' OR phone_Number = '$_POST[pNum]'");
 			
-			if(!(preg_match("/@/", $_POST['email']))) {
+			if(!(preg_match('/[^0-9]/', $_POST['pNum']))) {
 				echo 'error';
 			}
 
 			if($insert_check -> rowcount() > 0) {
-				$err = urlencode('<br><p style="color: red">Error Creating the Account! An account with certain information you entered already exists</p>');
+				$err = urlencode('<br><p style="color: red">Error Creating the Account! An account with that information already exists</p>');
 				header("Location: signUp.php?signUpError=" . $err);
 				die;
 			}

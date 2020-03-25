@@ -29,6 +29,8 @@
 	
 
 		<?php
+			session_start(); # need session to save item_name to session in order to pass it into another file 
+			
 			if(isset($_GET['send'])){
 				$post = $_GET['send'];
 				$_POST['item_name'] = $post;
@@ -60,12 +62,15 @@
 					echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
 					}		
 				echo '</table><br>';
+				
+				$_SESSION['name'] = $_POST['item_name'];
 			}
 		?>
-		
+	
 		<form action='checkout.php' method='post'>
-			<center><button style='margin-right: 1%' name='Aikido'>Checkout item</button>
-		</form> 
+		<center><button style='margin-right: 1%' name='name'>Checkout item</button>
+		</form>
+	
 		
 		<button name='request'>Request item</button></center>
 		

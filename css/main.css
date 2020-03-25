@@ -16,6 +16,10 @@ input.key {
   width: 96%; height: 100%;  
 }
 
+div.move input {
+	margin-left: 10%;
+}
+
 
 div.class1 {
 	background-color: #808080;

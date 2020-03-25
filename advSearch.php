@@ -32,10 +32,12 @@
 		<center><h3>Advanced Search</h3>
 		
 		<div class="class3">
-			<form class="example" action="" method="post" style="margin:auto;max-width:350px; border: solid black 0.5px">
-				<input type="text" name="Title" placeholder="Enter Title..." size="30" autocomplete='off' required></input><br><br><br>
-				<input type="text" name="ISBN" placeholder="Enter ISBN Number..." size="30" autocomplete='off' required></input><br><br><br>
-				<input type="text" name="Author" placeholder="Enter Author's Name..." size="30" autocomplete='off' required></input><br><br><br>
+			<form class="example" action="" method="post" style="max-width:350px; border: solid black 0.5px">
+				<div class='move'>
+					<br><input type="text" name="Title" placeholder="Enter Title..." size="30" autocomplete='off' required></input><br><br><br>
+					<input type="text" name="ISBN" placeholder="Enter ISBN Number..." size="30" autocomplete='off' required></input><br><br><br>
+					<input type="text" name="Author" placeholder="Enter Author's Name..." size="30" autocomplete='off' required></input><br><br><br>
+				</div>
 				
 				<label for="cars" required>Format:</label>
 				  <select name="format">
@@ -55,13 +57,11 @@
 				   <option value="n2">Newton</option>
 				   <option value="a">Ashland</option>
 				</select><br><br>
-				<input type="submit">
-			</form></center>
-
-			
-		</div>
+				<input type="submit"><br><br>
+			</form>
+		</div></center>
 		
-		<div style="margin-top: 20%"></div>
+		<div style="margin-top: 5%"></div>
 				
 		<div class="footer">
 			<p>&copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script> - By: Brian Perel</p>

@@ -30,8 +30,20 @@
 			</div>
 			
 			<?php 
+				session_start(); # need session to save item_name to session in order to pass it into another file
+
+
 				$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
-				$SearchLetter = $_GET['by'];
+
+				if(isset($_GET['send2'])) {
+					$post = $_GET['send2'];
+					$SearchLetter = $post;
+				}						
+			
+				
+				else {
+					$SearchLetter = $_GET['by'];
+				}
 				$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
 			    $results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 				
@@ -42,26 +54,28 @@
 				}
 				
 				else {
-				echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
-				for($i = 0; $i < sizeof($results); $i++) {
-					echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
-					echo'<tr><td>' . 'ISBN: ' . $results[$i]['Author'] . '</td></tr>';
-					echo'<tr><td>' . 'Author: ' . $results[$i]['ISBN'] . '</td></tr>';
-					echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
-					echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
-					echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
-					echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
-					echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
-					echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
-					echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
-					}		
-				echo '</table><br>';
-			}
+					echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
+					for($i = 0; $i < sizeof($results); $i++) {
+						echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
+						echo'<tr><td>' . 'ISBN: ' . $results[$i]['Author'] . '</td></tr>';
+						echo'<tr><td>' . 'Author: ' . $results[$i]['ISBN'] . '</td></tr>';
+						echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
+						echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
+						echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
+						echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
+						echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
+						echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
+						echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
+						}		
+					echo '</table><br>';
+
+					$_SESSION['name'] = $results[0]['Item_Name'];
+				}
 			?>
 			
-			<form action='checkout.php' method='post'>
-				<center><button style='margin-right: 1%' name='Aikido'>Checkout item</button>
-			</form> 
+<!--		<form action='checkoutLetter.php' method='post'>
+			<center><button style='margin-right: 1%' name='name'>Checkout item</button>
+			</form> -->
 			
 			<button name='request'>Request item</button></center>
 		</body>

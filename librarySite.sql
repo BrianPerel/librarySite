@@ -41,13 +41,13 @@ INSERT INTO `admin` (`username`, `email`, `password`, `fullName`, `phoneNumber`)
 
 -- Table structure for table 'items'
 CREATE TABLE `items` (
-`Item_Name` varchar(255) NOT NULL,
-`Author` varchar(255),
+`Item_Name` varchar(30) NOT NULL,
+`Author` varchar(30),
 `ISBN` int(18),
-`Publication_Info` varchar(30),
+`Publication_Info` varchar(120),
 `Year_of_Release` int(4),
 `General_Audience` varchar(30), 
-`Summary` varchar(255), 
+`Summary` varchar(120), 
 `Item_Type` varchar(30),
 `Col_No` varchar(30),
 `Status` varchar(30),
