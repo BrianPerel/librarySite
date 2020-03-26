@@ -27,7 +27,6 @@
 		</div>
 		</center>
 	
-
 		<?php
 			session_start(); # need session to save item_name to session in order to pass it into another file 
 			
@@ -73,7 +72,7 @@
 	
 		<button name='request' type="button">Request item</button></center>
 		
-		<div style='margin-bottom: 10%'></div>
+		<div style='margin-bottom: 7%'></div>
 
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Sign in | HWL</title>
+		<title>Admin Account | HWL</title>
 		<meta name="author" content="Brian Perel">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="icons/favicon.css">
 	</head>
 	
-	<body onload='myFunction()'>
+	<body>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
 			<a href="index.htm"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
@@ -27,39 +27,30 @@
 			<a href="#contact">Contact Us</a>
 			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
 		</div>
-		
-		<h3>My Account Login:</h3><br>
-		
-		<form action='myAccount.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%' autocomplete="off">
-			<label>Username:</label><br>
-			<input type="text" name="username" placeholder="Username" size="30" required></input><br><br>
-			
-			<label>Password:</label><br>
-			<input class='key' type="text" name="password" placeholder="Password"  size="30" required></input><br>
-			
-			<br><input type="submit">
-		</form>		
-		
+		</center>
+
 		<?php 
-			# print invalid login message upon failed login 
-			if(isset($_GET['invalidLogin'])){
-				echo $_GET['invalidLogin'];
-			}			
-			
-			if(isset($_GET['out'])){
-				echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
-				echo '<div id="logout">' . $_GET['out']. ' </div>';
-				echo '<div style="margin-top: -4%"></div>';
+			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+			if(isset($_POST['deleteItem'])) {
+				echo '<center><h3>Delete item from library database</h3>';
+				
+				echo "<form action='completeDeletion.php' action='POST'>";
+				echo '<br>Name of item to be deleted: <input name="item_name" type="text" required></input>'; 
+				echo '&nbsp;&nbsp;<button type="submit">Submit</button></center>';
+				echo "</form>";
 			}
-			
-			echo '<div style="margin-top: 18%"></div>';
-		?> 
-		
-		<div style="margin-top: 18%"></div>
+			if(isset($_POST['updateItem'])) {
+				
+			}
+			if(isset($_POST['addItem'])) {
+				
+			}
+		?>				
+
+		<div style='margin-bottom: 28%'></div>
 		
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>
 		</div>
-	
 	</body>
 </html>

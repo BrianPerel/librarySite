@@ -118,6 +118,8 @@ div.footer {
 	width: 100%;
 	font-weight: bold;
 	padding-top: 0.2%;
+	 position: absolute;
+  bottom: 0;
 }
 
 .fa {

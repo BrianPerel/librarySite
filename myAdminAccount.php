@@ -40,9 +40,11 @@
 					echo 'Email: ' . $results[0]['email'];
 					echo '<br>Messages: (0)<br>';
 					echo '<a href="adminLogout.php">(log out)</a><br><br>';
-					echo '<button style="margin: 1%">Delete Item</button>';
-					echo '<button style="margin: 1%">Update Item</button>';
-					echo '<button style="margin: 1%">Add Item</button>';
+					echo '<form action="adminOperations.php" method="post">';
+					echo '<button style="margin: 1%" name="deleteItem">Delete Item</button>';
+					echo '<button style="margin: 1%" name="updateItem">Update Item</button>';
+					echo '<button style="margin: 1%" name="addItem">Add Item</button>';
+					echo '</form>';
 
 				echo '</div>';
 			}

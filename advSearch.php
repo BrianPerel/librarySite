@@ -20,8 +20,8 @@
 
 		<div class="class2">
 			<a href="index.php">Home</a>
-			<a href="#about">Sign-in</a>
-			<a href="SignUp.php">Sign-up</a>
+			<a href="signIn.php">Sign-in</a>
+			<a href="signUp.php">Sign-up</a>
 			<a href="advSearch.php">Search</a>
 			<a href="#BodyText">About</a>
 			<a href="#contact">Contact Us</a>

@@ -49,10 +49,13 @@
 			if(isset($_GET['out'])){
 				echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
 				echo '<div id="logout">' . $_GET['out']. ' </div>';
+				echo '<div style="margin-top: 0%"></div>';
 			}
+			
+			echo '<div style="margin-top: 14.5%"></div>';
 		?> 
 		
-		<div style="margin-top: 18%"></div>
+		
 		
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

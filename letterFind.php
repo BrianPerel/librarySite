@@ -55,8 +55,8 @@
 					echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
 					for($i = 0; $i < sizeof($results); $i++) {
 						echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
-						echo'<tr><td>' . 'ISBN: ' . $results[$i]['Author'] . '</td></tr>';
-						echo'<tr><td>' . 'Author: ' . $results[$i]['ISBN'] . '</td></tr>';
+						echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
+						echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
 						echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
 						echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
 						echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
@@ -68,14 +68,21 @@
 					echo '</table><br>';
 
 					$_SESSION['checkout2'] = $results[0]['Item_Name'];
+					$_SESSION['searchLetter'] = substr($results[0]['Item_Name'], 0, 1);
 				}
 			?>
 			
 			<form action='checkoutLetter.php' method='post'>
-			<center><button style='margin-right: 1%' name='checkout2' <?php if($results[0]['Status'] == 'Out') {echo 'disabled';} ?>>Checkout item</button>
+			<center><button style='margin-right: 1%' name='checkout2' <?php if(sizeof($results) == 0) {echo 'disabled';} else { if($results[0]['Status'] == 'Out') {echo 'disabled';}} ?>
+			>Checkout item</button>
 			</form> 
 			
-			<button name='request' type="button">Request item</button></center>
+			<button name='request' type="button" <?php if(sizeof($results) == 0) {echo 'disabled';} ?> style='margin-bottom: 5%'>Request item</button></center>
+			
+			<div class="footer">
+				<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>
+			</div>
+	
 		</body>
 	</head>
 </html>
