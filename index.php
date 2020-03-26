@@ -32,7 +32,7 @@
 	<body onload="startTimer()">
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.htm"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -65,7 +65,7 @@
 			<p id="BodyText"><br>Welcome to FSU's library portal. Sign up to create an account or sign in<br> to get to your existing account. Search the library's inventory to
 			<br>find what your looking for. Our inventory contains books, movies, <br> ebooks, and video games. Once the item is found, you can check <br>it out.
 			If returning the item, check it back into the system. The Henry <br>Whitemore Library is FSU's library built in 1969. It's a 7 story building<br> containing a print shop, copy center,
-			classrooms, and the IT center.</p>
+			classrooms, and the IT center.<br> Come and enjoy a quite place to study or work with friends.</p>
 			
 			<br><br><img src="icons/2.png" id="pic1" width="150px" height="150px" style='margin-left: 10%'></img>
 			<img src="icons/3.jpg" id="pic1" width="150px" height="150px"></img>

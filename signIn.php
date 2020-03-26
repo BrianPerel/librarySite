@@ -14,7 +14,7 @@
 	<body onload='myFunction()'>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.htm"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -49,14 +49,11 @@
 			if(isset($_GET['out'])){
 				echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
 				echo '<div id="logout">' . $_GET['out']. ' </div>';
-				echo '<div style="margin-top: -4%"></div>';
 			}
 			
 			echo '<div style="margin-top: 18%"></div>';
 		?> 
-		
-		<div style="margin-top: 18%"></div>
-		
+				
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>
 		</div>

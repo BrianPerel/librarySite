@@ -14,7 +14,7 @@
 	<body>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.htm"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -38,7 +38,7 @@
 			<input type="text" name="username" placeholder="Username" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Email:</label><br>
-			<input type="email" name="email" placeholder="Email" size="30" autocomplete='off' required></input><br><br>
+			<input type="email" name="email" placeholder="Email@email.com" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Password:</label><br>
 			<input type="text" name="password" placeholder="Password" size="30" autocomplete='off' required></input><br><br>
@@ -47,9 +47,9 @@
 			<input type="text" name="fname" placeholder="Full Name" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Phone Number</label><br>
-			<input type="text" name="pNum" placeholder="Phone Number" size="30" autocomplete='off' required></input>
+			<input type="tel" name="pNum" placeholder="111-222-3333" size="30" autocomplete='off' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></input>
 			
-			<br><p>By creating an account, you agree to the <a href='#a'>Terms of Service<a></p>
+			<br><p>By creating an account, you agree to the <a href='termsOfService.htm' target='_blank'>Terms of Service<a></p>
 			
 			<label for="terms">Agree to terms: </label>
 			<input type="checkbox" name="terms" value="terms" required><br><br>

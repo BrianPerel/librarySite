@@ -12,7 +12,7 @@
 	<body>	
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.htm"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.hphp"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 

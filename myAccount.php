@@ -14,7 +14,7 @@
 	<body>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.htm"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -40,7 +40,7 @@
 					echo 'Email: ' . $results[0]['email'];
 					echo '<br>Checkouts: <a href="#a">(' . $results[0]['items_Out'] . ')</a><br>';
 					echo 'Requests: <a href="#a">(' . $results[0]['items_Requested'] . ')</a><br>';
-					echo 'Messages: <a href="#a">(' . $results[0]['items_Requested'] . ')</a><br>';
+					echo 'Messages: <a href="#a">(' . $results[0]['messages'] . ')</a><br>';
 					echo '<a href="logout.php">(log out)</a>';
 				print '</div>';
 			}
