@@ -47,13 +47,16 @@
 				
 				echo '<h2 align=center>Search results ' . sizeof($results) . ' of ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
 				
-				if(sizeof($results) == 0) {
+				if(sizeof($results) < 0) {
 					echo '<center>No items match your search</center><div style="margin-bottom: 20%"></div>';
 				}
 				
-				else {
-					echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
+				else if(sizeof($results) > 0) {
 					for($i = 0; $i < sizeof($results); $i++) {
+						$num = $i + 1;
+						echo '<p style="margin-right: 45%">Item #' . $num . '</p>';
+						
+						echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
 						echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
 						echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
 						echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
@@ -63,9 +66,10 @@
 						echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
 						echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
 						echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
-						echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
-						}		
-					echo '</table><br>';
+						echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
+						echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '<br>' . '</td></tr>';
+						echo '</table><br>';
+					}		
 
 					$_SESSION['checkout2'] = $results[0]['Item_Name'];
 					$_SESSION['searchLetter'] = substr($results[0]['Item_Name'], 0, 1);
@@ -77,7 +81,7 @@
 			>Checkout item</button>
 			</form> 
 			
-			<button name='request' type="button" <?php if(sizeof($results) == 0) {echo 'disabled';} ?> style='margin-bottom: 5%'>Request item</button></center>
+			<button name='request' type="button" <?php if(sizeof($results) == 0) {echo 'disabled';} ?> style='margin-bottom: 27%'>Request item</button></center>
 			
 			<div class="footer">
 				<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

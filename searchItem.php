@@ -41,13 +41,16 @@
 			
 			echo '<h2 align=center>Search results ' . sizeof($results) . ' of ' . sizeof($results) . '  for: \'' . $_POST['item_name'] . '\' </h2>';
 			
-			if(sizeof($results) == 0) {
+			if(sizeof($results) < 0) {
 				echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
 			}
 			
 			else {
-				echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
 				for($i = 0; $i < sizeof($results); $i++) {
+					$num = $i + 1;
+					echo '<p style="margin-right: 45%">Item #' . $num . '</p>';
+					
+					echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
 					echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
 					echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
 					echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
@@ -59,8 +62,8 @@
 					echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
 					echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
 					echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
-					}		
-				echo '</table><br>';
+					echo '</table><br>';
+				}		
 				
 				$_SESSION['checkout'] = $_POST['item_name'];
 			}
@@ -72,7 +75,7 @@
 	
 		<button name='request' type="button">Request item</button></center>
 		
-		<div style='margin-bottom: 7%'></div>
+		<div style='margin-bottom: 5%'></div>
 
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>
