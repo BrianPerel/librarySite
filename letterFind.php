@@ -45,7 +45,7 @@
 				$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
 			    $results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 				
-				echo '<h2 align=center>Search results ' . sizeof($results) . ' of ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
+				echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
 				
 				if(sizeof($results) < 0) {
 					echo '<center>No items match your search</center><div style="margin-bottom: 20%"></div>';
@@ -67,6 +67,7 @@
 						echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
 						echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
 						echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
+						echo'<tr><td>' . 'Location: ' . $results[$i]['Location'] . '</td></tr>';
 						echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '<br>' . '</td></tr>';
 						echo '</table><br>';
 					}		

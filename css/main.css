@@ -50,7 +50,7 @@ div.class2 * {
 
 #BodyText {
 	float: left; 
-	margin-left: 12%; 
+	margin-left: 10%; 
 	margin-top: 7%;
 }
 
@@ -71,10 +71,6 @@ ul:hover {
 
 * {
   box-sizing: border-box;
-}
-
-div.backTop a {
-	color: black;
 }
 
 #pic1 {

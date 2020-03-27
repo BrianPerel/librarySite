@@ -32,35 +32,34 @@
 		<center><h3>Advanced Search</h3>
 		
 		<div class="class3">
-			<form class="example" action="" method="post" style="max-width:350px; border: solid black 0.5px">
+			<form class="example" action="advSearchItem.php" method="post" style="max-width:350px; border: solid black 0.5px">
 				<div class='move'>
-					<form action='' method='POST'>
 					<br><input type="text" name="Title" placeholder="Enter Title..." size="30" autocomplete='off' required></input><br><br><br>
 					<input type="text" name="ISBN" placeholder="Enter ISBN Number..." size="30" autocomplete='off' required></input><br><br><br>
 					<input type="text" name="Author" placeholder="Enter Author's Name..." size="30" autocomplete='off' required></input><br><br><br><br>
-					Year from:<input type="number" name="trip-start" value='1900' min="1900" max="2020"><br><br>	
-					Year to:<input type="number" name="trip-start" value='2020' min="1900" max="2020">
+					Year from:<input type="number" name="yearFrom" value='1900' min="1900" max="2020" style="margin-right: 3%"></input><br><br>	
+					Year to:<input type="number" name="yearTo" value='2020' min="1900" max="2020" style="margin-right: 3%"></input>
 				</div>
 				
-						<br><br><label for="cars" required>Format:</label>
-						  <select name="format">
-							<option value="any">Any</option>
-							<option value="book">book</option>
-							<option value="ebook">ebook</option>
-							<option value="cd">dvd</option>
-							<option value="cd">blu-ray</option>
-							<option value="cd">cd</option>
-						</select><br><br>
-						  
-						<label for="cars" required>Location:</label>
-						<select name="location">
-						   <option value="any">All</option>
-						   <option value="f">Framingham</option>
-						   <option value="n">Natick</option>
-						   <option value="n2">Newton</option>
-						   <option value="a">Ashland</option>
-						</select><br><br>
-						<input type="submit"><br><br>
+					<br><br><label for="cars" required>Format:</label>
+					  <select name="format">
+						<option value="any">Any</option>
+						<option value="book">book</option>
+						<option value="ebook">ebook</option>
+						<option value="cd">dvd</option>
+						<option value="cd">blu-ray</option>
+						<option value="cd">cd</option>
+					</select><br><br>
+					  
+					<label for="cars" required>Location:</label>
+					<select name="location">
+					   <option value="any">All</option>
+					   <option value="f">Framingham</option>
+					   <option value="n">Natick</option>
+					   <option value="n2">Newton</option>
+					   <option value="a">Ashland</option>
+					</select><br><br>
+					<input type="submit"><br><br>
 					</form>
 		</div></center>
 		

@@ -62,10 +62,11 @@
 			| <a href='letterFind.php?by=T'>T</a> | <a href='letterFind.php?by=U'>U</a> | <a href='letterFind.php?by=V'>V</a>
 			| <a href='letterFind.php?by=W'>W</a> | <a href='letterFind.php?by=X'>X</a> | <a href='letterFind.php?by=Y'>Y</a>
 			| <a href='letterFind.php?by=Z'>Z</a></center>		
-			<p id="BodyText"><br>Welcome to FSU's library portal. Sign up to create an account or sign in<br> to get to your existing account. Search the library's inventory to
-			<br>find what your looking for. Our inventory contains books, movies, <br> ebooks, and video games. Once the item is found, you can check <br>it out.
-			If returning the item, check it back into the system. The Henry <br>Whitemore Library is FSU's library built in 1969. It's a 7 story building<br> containing a print shop, copy center,
-			classrooms, and the IT center.<br> Come and enjoy a quite place to study or work with friends.</p>
+			<p id="BodyText"><br>Welcome to FSU's library portal. Sign up to create an account or sign in to get to<br> your existing account. Search the library's inventory to
+			find what your looking for.<br> Our inventory contains books, movies,  ebooks, and video games. Once the item <br>is found, you can check it out.
+			If returning the item, check it back into the system.<br><br> The Henry Whitemore Library is FSU's library built in 1969. It's a 7 story building<br> containing a print shop, copy center,
+			classrooms, communication arts<br> and music departments, study rooms, public use computers, and the<br> IT center. Come and enjoy a quite place to study or work with friends.<br>
+			At the library enjoy art history of the library, college, and McAuliffe center.</p>
 			
 			<br><br><img src="icons/2.png" id="pic1" width="150px" height="150px" style='margin-left: 10%'></img>
 			<img src="icons/3.jpg" id="pic1" width="150px" height="150px"></img>
