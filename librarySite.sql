@@ -13,14 +13,15 @@ CREATE TABLE `useraccounts` (
 `items_Out` int(10) NOT NULL,
 `items_Requested` int(10) NOT NULL,
 `messages` int(10) NOT NULL,
+`profile_Photo` text,
 PRIMARY KEY (username)
 );
 
 
 
 -- Dumping data for table 'useraccounts'
-INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`) VALUES
-('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '3', '1', '1');
+INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `profile_Photo`) VALUES
+('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '3', '1', '1', '');
 
 
 -- Table structure for table 'admin'
