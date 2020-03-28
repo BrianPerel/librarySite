@@ -21,7 +21,11 @@ PHP
 To include in the future:
 -AJAX
 -XML
--JSON 
+-JSON
+
+ platform typically means a website(usually), application, or some other piece of software
+-any language can use API's (API's allow you to extend your platform's capabilities with a provider company's software)
+example: (Dropbox: Lets users get a access token allowing them to store files on their file storage platform and download them as well. (You make it part of your platform by extracting a shared link from a json sent from the api and posting the link to a db))
 
 Purpose of project: to learn and exercise client and server side programming 
  

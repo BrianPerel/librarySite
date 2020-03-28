@@ -30,19 +30,34 @@
 		
 		<?php 
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+			# search check: if any existing records match info recieved from signUp form, assign response to variable 
 			$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
 			OR password = '$_POST[password]' OR full_Name = '$_POST[fname]' OR phone_Number = '$_POST[pNum]'");
 			
+			/* split username taken from received form, scan through username and make sure every letter is alphabetic. 
+			This is checked by ctype_alpha(). if not jump back to sign up page with error message */
+			$username = str_split($_POST['username']);
+			for($i = 0; $i < sizeof($username); $i++) {
+				if(ctype_alpha($username[$i]) == false) {
+					$err1 = urlencode('<br><p style="color: red">Error Creating the Account! Answers provided are incorrect.</p>');
+					header("Location: signUp.php?signUpError2=" . $err1);
+					die;
+				}
+			}
+			
+			# regular expressions to check that phone number contains all numbers 
 			if(!(preg_match('/[^0-9]/', $_POST['pNum']))) {
 				echo 'error';
 			}
 
+			# if no accounts in db match info entered in sign up form 
 			if($insert_check -> rowcount() > 0) {
-				$err = urlencode('<br><p style="color: red">Error Creating the Account! An account with that information already exists</p>');
-				header("Location: signUp.php?signUpError=" . $err);
+				$err2 = urlencode('<br><p style="color: red">Error Creating the Account! An account with that information already exists</p>');
+				header("Location: signUp.php?signUpError=" . $err2);
 				die;
 			}
 			
+			# insert data into table if no errors found and info doens't already exist in db 
 			else {
 				$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages) 
 				VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]', '0', '0', '0')");

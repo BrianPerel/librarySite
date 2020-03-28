@@ -37,7 +37,7 @@
 				if(isset($_GET['send2'])) {
 					$post = $_GET['send2'];
 					$SearchLetter = $post;
-				}						
+				}
 				
 				else {
 					$SearchLetter = $_GET['by'];

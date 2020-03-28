@@ -9,6 +9,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="icons/favicon.css">	
+		 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	</head>
 	
 	<body>
@@ -54,6 +55,8 @@
 			<label for="terms">Agree to terms: </label>
 			<input type="checkbox" name="terms" value="terms" required><br><br>
 			
+			<div class="g-recaptcha" data-sitekey="6LflseQUAAAAAPX0WpXXBIO-rZ_zPwkvrXenB4gr"></div><br>
+			
 			<input type="submit">
 
 		</form>
@@ -63,6 +66,10 @@
 			if(isset($_GET['signUpError'])){
 				echo $_GET['signUpError'];
 			}			
+			
+			if(isset($_GET['signUpError2'])){
+				echo $_GET['signUpError2'];
+			}		
 		?> 
 		</div>
 		
