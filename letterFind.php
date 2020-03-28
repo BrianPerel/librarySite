@@ -34,46 +34,84 @@
 
 				$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 
+				# when user check an item out, checkoutLetter.php calls the file again and places item with appropriate letter into $SearchLetter 
 				if(isset($_GET['send2'])) {
 					$post = $_GET['send2'];
-					$SearchLetter = $post;
+					$SearchLetter = $post; 
+					$_GET['by'] = $post; 
 				}
 				
-				else {
+				# search by letter (A-Z option)
+				if($_GET['by'] == 'A-Z') {	 			
+					$SearchLetter = 'A-Z';
+					$sql = $con -> query("SELECT * FROM items");				
+					$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+					echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
+					
+					if(sizeof($results) < 0) {
+						echo '<center>No items match your search</center><div style="margin-bottom: 20%"></div>';
+					}
+					
+					else if(sizeof($results) > 0) {
+						for($i = 0; $i < sizeof($results); $i++) {
+							$num = $i + 1;
+							echo '<p style="margin-right: 45%">Item #' . $num . '</p>';
+							
+							echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
+							echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
+							echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
+							echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
+							echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
+							echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
+							echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
+							echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
+							echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
+							echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
+							echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
+							echo'<tr><td>' . 'Location: ' . $results[$i]['Location'] . '</td></tr>';
+							echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '<br>' . '</td></tr>';
+							echo '</table><br>';
+						}	
+					}						
+				}
+				
+				# search by letter (not A-Z option)
+				else { 
 					$SearchLetter = $_GET['by'];
-				}
-				$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
-			    $results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 				
-				echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
+					$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
+					$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 				
-				if(sizeof($results) < 0) {
-					echo '<center>No items match your search</center><div style="margin-bottom: 20%"></div>';
-				}
-				
-				else if(sizeof($results) > 0) {
-					for($i = 0; $i < sizeof($results); $i++) {
-						$num = $i + 1;
-						echo '<p style="margin-right: 45%">Item #' . $num . '</p>';
-						
-						echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
-						echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
-						echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
-						echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
-						echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
-						echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
-						echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
-						echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
-						echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
-						echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
-						echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
-						echo'<tr><td>' . 'Location: ' . $results[$i]['Location'] . '</td></tr>';
-						echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '<br>' . '</td></tr>';
-						echo '</table><br>';
-					}		
+					echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
+					
+					if(sizeof($results) < 0) {
+						echo '<center>No items match your search</center><div style="margin-bottom: 20%"></div>';
+					}
+					
+					else if(sizeof($results) > 0) {
+						for($i = 0; $i < sizeof($results); $i++) {
+							$num = $i + 1;
+							echo '<p style="margin-right: 45%">Item #' . $num . '</p>';
+							
+							echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
+							echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
+							echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
+							echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
+							echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
+							echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
+							echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
+							echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
+							echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
+							echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
+							echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
+							echo'<tr><td>' . 'Location: ' . $results[$i]['Location'] . '</td></tr>';
+							echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '<br>' . '</td></tr>';
+							echo '</table><br>';
+						}		
 
-					$_SESSION['checkout2'] = $results[0]['Item_Name'];
-					$_SESSION['searchLetter'] = substr($results[0]['Item_Name'], 0, 1);
+						$_SESSION['checkout2'] = $results[0]['Item_Name'];
+						$_SESSION['searchLetter'] = substr($results[0]['Item_Name'], 0, 1);
+					}
 				}
 			?>
 			
