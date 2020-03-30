@@ -28,12 +28,18 @@
 			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
 		</div>
 		</center>
-	
-		<?php 
+		
+
+		<?php
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
-			
+			$_SESSION['InternPhoto'] = $results[0]['profile_Photo'];
+		?>
+		
+		<br><center><img src="<?php echo $_SESSION['InternPhoto'];?>" width='250' height='200' alt='profile picture'/></center>
+
+		<?php 
 			if($results[0]['username'] == $_POST['username'] && $results[0]['password'] == $_POST['password']) {
 				echo '<div style="text-align: center">';
 					echo '<br>Login successful. Welcome back, ' . $results[0]['full_Name'] . '<br>';
@@ -42,7 +48,7 @@
 					echo 'Requests: <a href="#a">(' . $results[0]['items_Requested'] . ')</a><br>';
 					echo 'Messages: <a href="#a">(' . $results[0]['messages'] . ')</a><br>';
 					echo '<a href="logout.php">(log out)</a>';
-				print '</div>';
+				echo '</div>';	
 			}
 			else {
 				# re-direct back to sign in page 
@@ -52,9 +58,12 @@
 			}
 		?>
 		
-		<div style='margin-bottom: 22%'></div>
-		<button style='float: right; height: 35px'>Edit Personal Information</button><br>
 
+		<div style='margin-bottom: 22%'></div>
+		
+		<form action='editPersonalInfo.php' method='post'>
+			<button style='float: right; height: 35px'>Edit Personal Information</button><br>
+		</form> 
 		
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

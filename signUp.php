@@ -33,7 +33,7 @@
 		<h3>Create your account</h3>
 		<p>Join the network</p>
 		
-		<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="signedUp.php" method="POST">
+		<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="signedUp.php" method="POST" enctype="multipart/form-data">
 		
 			<label>Username:</label><br>
 			<input type="text" name="username" placeholder="Username" size="30" autocomplete='off' required></input><br><br>
@@ -51,9 +51,9 @@
 			<input type="tel" name="pNum" placeholder="111-222-3333" size="30" autocomplete='off' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></input><br><br><br>
 			
 			<label style='margin-left: 15%'>Profile Picture:&nbsp;</label>
-			<input type = "file" name = "InternPhoto" placeholder="Image For Your Account" autocomplete='off'><br>	
+			<input type = "file" name = "InternPhoto" autocomplete='off'><br>	
 			
-			<br><p>By creating an account, you agree to the <a href='termsOfService.htm' target='_blank'>Terms of Service<a></p>
+			<br><p>By creating an account, you agree to the terms of service</p>
 			
 			<label for="terms">Agree to terms: </label>
 			<input type="checkbox" name="terms" value="terms" required><br><br>

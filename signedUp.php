@@ -49,7 +49,7 @@
 			if(!(preg_match('/[^0-9]/', $_POST['pNum']))) {
 				echo 'error';
 			}
-
+			
 			# if no accounts in db match info entered in sign up form 
 			if($insert_check -> rowcount() > 0) {
 				$err2 = urlencode('<br><p style="color: red">Error Creating the Account! An account with that information already exists</p>');
@@ -59,8 +59,32 @@
 			
 			# insert data into table if no errors found and info doens't already exist in db 
 			else {
-				$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages) 
-				VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]', '0', '0', '0')");
+				try {
+					$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
+					$filename = $img['tmp_name'];
+					$openimg = fopen($filename, "r"); # open file in read mode 
+					$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
+					$pvars = array("image" => base64_encode($data));
+					$icurl = curl_init(); # begin curl cmd 
+
+					# using imagebb API key 
+					curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site 
+				
+					curl_setopt($icurl, CURLOPT_HEADER, false);
+					curl_setopt($icurl, CURLOPT_POST, true);
+					curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
+					curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
+					$upload = curl_exec($icurl);
+					curl_close($icurl); # close curl cmd 
+					$imgJSON = json_decode($upload);
+					$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 			
+				}
+				catch(Exception $e) {
+					echo $e -> getMessage();		
+				}
+				
+				$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
+				VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 			}
 		?>
 		

@@ -40,10 +40,20 @@
 				echo "</form>";
 			}
 			if(isset($_POST['updateItem'])) {
+				echo '<center><h3>Update item in library database</h3>';
 				
+				echo "<form action='updateCompletion.php' action='POST'>";
+				echo '<br>Name of item to be updated: <input name="item_name" type="text" required></input>'; 
+				echo '&nbsp;&nbsp;<button type="submit">Submit</button></center>';
+				echo "</form>";
 			}
 			if(isset($_POST['addItem'])) {
+				echo '<center><h3>Add item to library database</h3>';
 				
+				echo "<form action='completeDeletion.php' action='POST'>";
+				echo '<br>Name of item to be Added: <input name="item_name" type="text" required></input>'; 
+				echo '&nbsp;&nbsp;<button type="submit">Submit</button></center>';
+				echo "</form>";
 			}
 		?>				
 

@@ -23,6 +23,17 @@ INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone
 ('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '3', '1', '1', '');
 
 
+-- Table structure for 'itemsout'
+CREATE TABLE `itemsout` (
+`item_Name` varchar(50),
+`item_Account_Holder` varchar(30),
+`days_Out` int(14),
+`can_Be_Out` int(7), 
+`renewed` boolean,
+PRIMARY KEY (item_Name)
+);
+
+
 -- Table structure for table 'admin'
 CREATE TABLE `admin` (
 `username` varchar(30) NOT NULL,

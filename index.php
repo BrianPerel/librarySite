@@ -49,12 +49,10 @@
 		
 		<div class="class3">		
 			<center><form class="example" action="searchItem.php" method = "post" style="margin:auto;max-width:400px">
-				<input type="text" placeholder="Search the library's catalog..." name="item_name" required style='height: 39px'></input>
+				<input type="text" placeholder="Search the library's catalog..." name="item_name" required style='height: 38.2px'></input>
 				<button type="submit" class="fa fa-search"></button>
 			</form></center>
-			
-			<?php session_start(); $set = range('A', 'Z'); $_SESSION['set'] = '' ?> 
-			
+						
 			<br><br><center>Search by letter: <a href='letterFind.php?by=A'>A</a> | <a href='letterFind.php?by=B'>B</a> | <a href='letterFind.php?by=C'>C</a> | <a href='letterFind.php?by=D'>D</a>
 			| <a href='letterFind.php?by=E'>E</a> | <a href='letterFind.php?by=F'>F</a> | <a href='letterFind.php?by=G'>G</a>
 			| <a href='letterFind.php?by=H'>H</a> | <a href='letterFind.php?by=I'>I</a> | <a href='letterFind.php?by=J'>J</a> 
