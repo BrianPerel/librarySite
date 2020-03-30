@@ -41,13 +41,13 @@ CREATE TABLE `admin` (
 `password` varchar(30) NOT NULL,
 `fullName` varchar(30) NOT NULL,
 `phoneNumber` varchar(12) NOT NULL,
-`admin_Profile_Pic` text, 
+`admin_Profile_Photo` text, 
 PRIMARY KEY (username)
 );
 
 
 -- Dumping data for table 'admin'
-INSERT INTO `admin` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `admin_Profile_Pic`) VALUES 
+INSERT INTO `admin` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `admin_Profile_Photo`) VALUES 
 ('Mr. X', 'mrx@yahoo.com', 'Boss11', 'Tony Rastafar', '456-234-7686', '');
 
 
@@ -65,13 +65,13 @@ CREATE TABLE `items` (
 `Status` varchar(30),
 `Location` varchar(30), 
 `Price` decimal(10, 2),
-`profile_Picture` text,
+`photo` text,
 PRIMARY KEY(Item_Name)
 );
 
 
 -- Dumping data for table 'items'
-INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of_Release`, `General_Audience`, `Summary`, `Item_Type`, `Col_No`, `Status`, `Location`, `Price`, `profile_Picture`) VALUES
+INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of_Release`, `General_Audience`, `Summary`, `Item_Type`, `Col_No`, `Status`, `Location`, `Price`, `photo`) VALUES
 ('The Art of Being a Ninja', 'Brian Perel', 13212124, 'Hollywood, California : Paramount Home Entertainment', '2020', 'adult', 'The Art of Being a Ninja is a documentary film about how to become a ninja', 'Blu-ray', 'J796.815 B', 'Available', 'Framingham State University', '34.50', ''),
 ('Aikido', 'John Smith', 34534534, 'Hollywood, California : Universal Studios Entertainment', '2010', 'adult', 'Aikido is a movie about the way of aikido practitioners and there lives', 'Movie', 'Z271.154 A', 'Available', 'Framingham State University', '12.80', ''),
 ('Calisthenics Beasts', 'Jason Armstrong', 567565543, '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Calisthenics Beasts is an ebook broken up into multiple sections by muscle groups', 'ebook', 'D938.121 C', 'Available', 'Framingham State University', '3.12', ''),

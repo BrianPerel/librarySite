@@ -50,16 +50,16 @@
 			<label>Phone Number:</label><br>
 			<input type="tel" name="pNum" placeholder="111-222-3333" size="30" autocomplete='off' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></input><br><br><br>
 			
-			<label style='margin-left: 15%'>Profile Picture:&nbsp;</label>
-			<input type = "file" name = "InternPhoto" autocomplete='off'><br>	
+			<label style='margin-left: 15%'>Profile Picture (Optional):&nbsp;</label>
+			<input type = "file" name="InternPhoto" autocomplete='off'><br>	
 			
 			<br><p>By creating an account, you agree to the terms of service</p>
 			
 			<label for="terms">Agree to terms: </label>
 			<input type="checkbox" name="terms" value="terms" required><br><br>
 			
-			<div class="g-recaptcha" data-sitekey="6LflseQUAAAAAPX0WpXXBIO-rZ_zPwkvrXenB4gr"></div><br>
-			
+			<div class="g-recaptcha" data-sitekey="6LflseQUAAAAAPX0WpXXBIO-rZ_zPwkvrXenB4gr" id='g-recaptcha-response'></div><br>
+						
 			<input type="submit">
 
 		</form>

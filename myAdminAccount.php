@@ -33,10 +33,16 @@
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM admin WHERE username = '$_POST[username]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+			$adminPhoto = $results[0]['admin_Profile_Photo'];
+		?>
+				
+		<br><center><img src="<?php echo $adminPhoto; ?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/></center>
 			
+		<?php 
 			if($results[0]['username'] == $_POST['username'] && $results[0]['password'] == $_POST['password']) {
 				echo '<div style="text-align: center">';
 					echo '<br>Login successful. Welcome back, ' . $results[0]['fullName'] . '<br>';
+					echo 'Administrator<br>';
 					echo 'Email: ' . $results[0]['email'];
 					echo '<br>Messages: (0)<br>';
 					echo '<a href="adminLogout.php">(log out)</a><br><br>';

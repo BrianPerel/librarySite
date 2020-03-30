@@ -38,9 +38,12 @@
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+			$photo = $results[0]['photo'];
+		?>
 			
-			echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $_POST['item_name'] . '\' </h2>';
+		<br><center><img src="<?php echo $photo; ?>" <?php if($photo == '') { echo 'style="display: none"'; }?> width='230' height='220' alt='profile picture'/></center>
 			
+		<?php 
 			if(sizeof($results) < 0) {
 				echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
 			}

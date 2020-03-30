@@ -45,9 +45,14 @@
 				}
 			}
 			
-			# regular expressions to check that phone number contains all numbers 
-			if(!(preg_match('/[^0-9]/', $_POST['pNum']))) {
-				echo 'error';
+			# perform same above check on name input tag 
+			$fname = str_split($_POST['fname']);
+			for($i = 0; $i < sizeof($fname); $i++) {
+				if(ctype_alpha($username[$i]) == false) {
+					$err1 = urlencode('<br><p style="color: red">Error Creating the Account! Answers provided are incorrect.</p>');
+					header("Location: signUp.php?signUpError2=" . $err1);
+					die;
+				}
 			}
 			
 			# if no accounts in db match info entered in sign up form 
@@ -56,35 +61,44 @@
 				header("Location: signUp.php?signUpError=" . $err2);
 				die;
 			}
-			
 			# insert data into table if no errors found and info doens't already exist in db 
 			else {
-				try {
-					$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
-					$filename = $img['tmp_name'];
-					$openimg = fopen($filename, "r"); # open file in read mode 
-					$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
-					$pvars = array("image" => base64_encode($data));
-					$icurl = curl_init(); # begin curl cmd 
 
-					# using imagebb API key 
-					curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site 
+				$img = $_FILES['InternPhoto'];
+				$filename = $img['tmp_name'];
 				
-					curl_setopt($icurl, CURLOPT_HEADER, false);
-					curl_setopt($icurl, CURLOPT_POST, true);
-					curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
-					$upload = curl_exec($icurl);
-					curl_close($icurl); # close curl cmd 
-					$imgJSON = json_decode($upload);
-					$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 			
+				if($filename == '') {
+					$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
+					VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]', '0', '0', '0', '')");
+				} else {
+					# upload photo to db user account 
+					try {
+						$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
+						$filename = $img['tmp_name'];
+						$openimg = fopen($filename, "r"); # open file in read mode 
+						$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
+						$pvars = array("image" => base64_encode($data));
+						$icurl = curl_init(); # begin curl cmd 
+
+						# using imagebb API key 
+						curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site 
+					
+						curl_setopt($icurl, CURLOPT_HEADER, false);
+						curl_setopt($icurl, CURLOPT_POST, true);
+						curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
+						curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
+						$upload = curl_exec($icurl);
+						curl_close($icurl); # close curl cmd 
+						$imgJSON = json_decode($upload);
+						$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 			
+					}
+					catch(Exception $e) {
+						echo $e -> getMessage();		
+					}
+					
+					$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
+					VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 				}
-				catch(Exception $e) {
-					echo $e -> getMessage();		
-				}
-				
-				$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
-				VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 			}
 		?>
 		

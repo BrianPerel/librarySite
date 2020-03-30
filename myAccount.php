@@ -29,15 +29,14 @@
 		</div>
 		</center>
 		
-
 		<?php
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
-			$_SESSION['InternPhoto'] = $results[0]['profile_Photo'];
+			$profilePhoto = $results[0]['profile_Photo'];
 		?>
-		
-		<br><center><img src="<?php echo $_SESSION['InternPhoto'];?>" width='250' height='200' alt='profile picture'/></center>
+
+		<br><center><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == '') { echo 'style="display: none"'; }?> width='200' height='200' alt='profile picture'/></center>
 
 		<?php 
 			if($results[0]['username'] == $_POST['username'] && $results[0]['password'] == $_POST['password']) {
