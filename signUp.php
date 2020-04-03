@@ -7,15 +7,24 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="icons/favicon.css">	
-		 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon/">	
+		
+		<!-- MAIN CSS --> 
+		<link rel="stylesheet" href="css/a.css">
+		
+		<!-- MAIN JS --> 
+		<script src="js/main.js"></script>
+		<!-- GOOGLE RECAPTCHA TOOL JS --> 
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		
+		<!-- SEARCH ICON --> 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	
 	<body>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="images/1.jpg" alt="Smiley face" width="100px" height="90px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -50,7 +59,7 @@
 			<label>Phone Number:</label><br>
 			<input type="tel" name="pNum" placeholder="111-222-3333" size="30" autocomplete='off' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></input><br><br><br>
 			
-			<label style='margin-left: 15%'>Profile Picture (Optional):&nbsp;</label>
+			<label style='margin-left: 10%'>Profile Picture (Optional):&nbsp;</label>
 			<input type = "file" name="InternPhoto" autocomplete='off'><br>	
 			
 			<br><p>By creating an account, you agree to the terms of service</p>

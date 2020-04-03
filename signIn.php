@@ -7,14 +7,14 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="icons/favicon.css">
+		<link rel="stylesheet" href="css/a.css">
+		<link rel="stylesheet" href="images/favimages/.css">
 	</head>
 	
 	<body onload='myFunction()'>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="images/1.jpg" alt="Smiley face" width="100px" height="90px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -41,6 +41,10 @@
 		</form>		
 		
 		<?php 
+			session_start();
+			
+			$_SESSION['loggedin'] = '';
+			
 			# print invalid login message upon failed login 
 			if(isset($_GET['invalidLogin'])){
 				echo $_GET['invalidLogin'];
@@ -49,9 +53,9 @@
 			if(isset($_GET['out'])){
 				echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
 				echo '<div id="logout">' . $_GET['out']. ' </div>';
-			}
+			} 
 			
-			echo '<div style="margin-top: 18%"></div>';
+			echo '<div style="margin-top: 14%"></div>';
 		?> 
 				
 		<div class="footer">

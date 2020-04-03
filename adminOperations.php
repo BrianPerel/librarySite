@@ -7,14 +7,14 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="icons/favicon.css">
+		<link rel="stylesheet" href="css/a.css">
+		<link rel="stylesheet" href="images/favicon.css">
 	</head>
 	
 	<body>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="images/1.jpg" alt="Smiley face" width="100px" height="90px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -36,8 +36,11 @@
 				
 				echo "<form action='completeDeletion.php' action='POST'>";
 				echo '<br>Name of item to be deleted: <input name="item_name" type="text" required></input>'; 
-				echo '&nbsp;&nbsp;<button type="submit">Submit</button></center>';
-				echo "</form>";
+				echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
+				echo "</form></center>";
+				
+			#   return to admin page 	
+			#	echo '<div style="margin-top: 22%"></div><br><a href="myAdminAccount.php"><u>Return To Admin Page</u></a></center>';
 			}
 			if(isset($_POST['updateItem'])) {
 				echo '<center><h3>Update item in library database</h3>';
@@ -50,10 +53,21 @@
 			if(isset($_POST['addItem'])) {
 				echo '<center><h3>Add item to library database</h3>';
 				
-				echo "<form action='completeDeletion.php' action='POST'>";
+				echo "<form action='addCompletion.php' action='POST'>";
 				echo '<br>Name of item to be Added: <input name="item_name" type="text" required></input>'; 
 				echo '&nbsp;&nbsp;<button type="submit">Submit</button></center>';
 				echo "</form>";
+			}
+			
+			if(isset($_GET['delMessage'])) {
+				echo '<center><h3>Delete item from library database</h3>';
+				
+				echo "<form action='completeDeletion.php' action='POST'>";
+				echo '<br>Name of item to be deleted: <input name="item_name" type="text" required></input>'; 
+				echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
+				echo "</form>";
+				
+				echo $_GET['delMessage'] . '</center>';
 			}
 		?>				
 

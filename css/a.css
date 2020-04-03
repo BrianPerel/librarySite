@@ -1,14 +1,18 @@
-body {
-  font-family: Arial;
-  font-size: 18px;
-}
-
 @font-face {
   font-family: 'password';
   font-style: normal;
   font-weight: 400;
   src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
 }
+
+a {text-decoration: none; color: black;}
+
+body {
+  background-color: #FFFACD;
+  font-family: Arial;
+  font-size: 18px;
+}
+
 
 input.key {
   font-family: 'password';
@@ -146,7 +150,6 @@ div.footer {
   background: #125688;
   color: white;
 }
-
 
 
 form.example input[type=text] {

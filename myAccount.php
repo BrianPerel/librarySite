@@ -7,14 +7,14 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="icons/favicon.css">
+		<link rel="stylesheet" href="css/a.css">
+		<link rel="stylesheet" href="images/favicon.css">
 	</head>
 	
 	<body>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="images/1.jpg" alt="Smiley face" width="100px" height="90px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -30,16 +30,22 @@
 		</center>
 		
 		<?php
+			session_start();
+			
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 			$profilePhoto = $results[0]['profile_Photo'];
+			
 		?>
 
 		<br><center><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == '') { echo 'style="display: none"'; }?> width='200' height='200' alt='profile picture'/></center>
 
 		<?php 
 			if($results[0]['username'] == $_POST['username'] && $results[0]['password'] == $_POST['password']) {
+				$_SESSION['loggedin'] = true;
+				$_SESSION['username'] = $_POST['username'];
+				
 				echo '<div style="text-align: center">';
 					echo '<br>Login successful. Welcome back, ' . $results[0]['full_Name'] . '<br>';
 					echo 'Email: ' . $results[0]['email'];
@@ -58,7 +64,7 @@
 		?>
 		
 
-		<div style='margin-bottom: 22%'></div>
+		<div style='margin-bottom: 2%'></div>
 		
 		<form action='editPersonalInfo.php' method='post'>
 			<button style='float: right; height: 35px'>Edit Personal Information</button><br>

@@ -6,13 +6,14 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/a.css">
+		
 	</head>
 
 	<body>	
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.hphp"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="images/1.jpg" alt="Smiley face" width="100px" height="90px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -30,21 +31,45 @@
 		<?php
 			session_start(); # need session to save item_name to session in order to pass it into another file 
 			
-			if(isset($_GET['send'])){
-				$post = $_GET['send'];
+			if(isset($_GET['send1'])){
+				$post = $_GET['send1'];
 				$_POST['item_name'] = $post;
-			}		
-		
+				echo '<br><center><p style="color: green">' . $_SESSION['username'] . ' has checked out this item</p></center>';
+			}	
+			
+			if(isset($_GET['send2'])){
+				$post = $_GET['send2'];
+				$_POST['item_name'] = $post;
+				echo '<br><center><p style="color: green">' . $_SESSION['username'] . ' has requested this item</p></center>';
+			}	
+
+			if(isset($_GET['send3'])) {
+				$err = $_GET['send3'];
+				echo '<center>' . $err . '</center>';
+				
+				$_POST['item_name'] = $_SESSION['checkout2']; 
+			}			
+			
+
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
-			$photo = $results[0]['photo'];
+			
+			if(sizeof($results) == 0) {
+				$photo = '';
+			}
+			
+			else {
+				$photo = $results[0]['photo'];
+			}
+			
+			echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $_POST['item_name'] . '\' </h2>';
 		?>
 			
-		<br><center><img src="<?php echo $photo; ?>" <?php if($photo == '') { echo 'style="display: none"'; }?> width='230' height='220' alt='profile picture'/></center>
+		<br><center><img src="<?php echo $photo; ?>" <?php if($photo == '') { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
 			
 		<?php 
-			if(sizeof($results) < 0) {
+			if(sizeof($results)== 0) {
 				echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
 			}
 			
@@ -69,17 +94,23 @@
 					echo '</table><br>';
 				}		
 				
-				$_SESSION['checkout'] = $_POST['item_name'];
+				$_SESSION['checkout2'] = $results[0]['Item_Name'];
+			}
+			
+			if(sizeof($results) == 0) {
+				echo '<div style="margin-bottom: 21%"></div>';
 			}
 		?>
 	
 		<form action='checkout.php' method='post'>
-		<center><button style='margin-right: 1%' name='checkout' <?php if($results[0]['Status'] == 'Out') {echo 'disabled';} ?> >Checkout item</button>
+			<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0) {echo 'disabled';} else { if($results[0]['Status'] == 'Out') {echo 'disabled';}} ?>></input>
 		</form>
 	
-		<button name='request' type="button">Request item</button></center>
+		<form action='checkout.php' method='post' style='display: inline'>
+			<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0) {echo 'disabled';}?>></input></center>
+		</form>
 		
-		<div style='margin-bottom: 5%'></div>
+		<div style='margin-bottom: 4%'></div>
 
 		<div class="footer">
 			<p>By: Brian Perel &copy; <script type="text/javascript">var current_year = new Date(); document.write(current_year.getFullYear());</script></p>

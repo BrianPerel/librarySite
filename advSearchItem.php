@@ -7,14 +7,14 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	    <meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/a.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	
 	<body>
 		<center><div class="class1">
 			<h2>Henry Whittemore Library</h2>
-			<a href="index.php"><img src="icons/1.jpg" alt="Smiley face" width="100px" height="70px" style="padding-top: 1%"></img></a>
+			<a href="index.php"><img src="images/1.jpg" alt="Smiley face" width="100px" height="90px" style="padding-top: 1%"></img></a>
 			<h2>Inventory Management System</h2><br><br>
 		</div>
 
@@ -36,7 +36,7 @@
 			OR Location = '$_POST[location]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 			
-			echo '<h2 align=center>Search results ' . sizeof($results) . ':</h2>';
+			echo '<h2 align=center>Search results ' . sizeof($results) . '</h2>';
 			
 			if(sizeof($results) < 0) {
 				echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';

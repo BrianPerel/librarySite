@@ -1,5 +1,6 @@
 # librarySite
-A simulation of a public library website 
+# A simulation of a public library website 
+# A dynamic database-driven web site to maintain persistent information on the Web
 
 -Sign up / sign in, Search for an item (book, dvd, blue-ray, ebook, video game, cd), Request it, if not available, Check out or return item, 
 Option to check item return dates and extend it, edit personal account information
@@ -28,6 +29,8 @@ To include in the future:
 example: (Dropbox: Lets users get a access token allowing them to store files on their file storage platform and download them as well. (You make it part of your platform by extracting a shared link from a json sent from the api and posting the link to a db))
 
 Purpose of project: to learn and exercise client and server side programming 
+
+If starting fresh (no db): 1. create db in phpmyadmin, import sql file into phpmyadmin, run 'runImageLoader' file 
  
 
 

@@ -1,6 +1,16 @@
 <?php
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
-	echo $_POST['item_name'];
-//	$sql = $con -> query("DELETE FROM items WHERE Item_Name = '$_POST[iteName]'");
-	echo 'Dropped';
+	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_REQUEST[item_name]'");
+	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+	$item = $_REQUEST['item_name'];
+	
+	if(sizeof($results) == 0) {
+		$message = '<p>Item \'' . $item . '\' Not Found In Database, Could Not Drop</p>';
+	}
+	
+	else {
+		$sql = $con -> query("DELETE FROM items WHERE Item_Name = '$_REQUEST[item_name]'");
+		$message = '<p>Item \'' . $item . '\' Dropped Successfully</p>';
+	}
+	header('Location: adminOperations.php?delMessage=' . $message);
 ?>

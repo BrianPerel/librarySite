@@ -20,7 +20,7 @@ PRIMARY KEY (username)
 
 -- Dumping data for table 'useraccounts'
 INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `profile_Photo`) VALUES
-('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '3', '1', '1', '');
+('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '0', '0', '0', '');
 
 
 -- Table structure for 'itemsout'
@@ -41,14 +41,15 @@ CREATE TABLE `admin` (
 `password` varchar(30) NOT NULL,
 `fullName` varchar(30) NOT NULL,
 `phoneNumber` varchar(12) NOT NULL,
+`messages` int(30),
 `admin_Profile_Photo` text, 
 PRIMARY KEY (username)
 );
 
 
 -- Dumping data for table 'admin'
-INSERT INTO `admin` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `admin_Profile_Photo`) VALUES 
-('Mr. X', 'mrx@yahoo.com', 'Boss11', 'Tony Rastafar', '456-234-7686', '');
+INSERT INTO `admin` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `messages`, `admin_Profile_Photo`) VALUES 
+('Mr. X', 'mrx@yahoo.com', 'Boss11', 'Brian Perel', '456-234-7686', '0', '');
 
 
 -- Table structure for table 'items'
@@ -59,7 +60,7 @@ CREATE TABLE `items` (
 `Publication_Info` varchar(120),
 `Year_of_Release` int(4),
 `General_Audience` varchar(30), 
-`Summary` varchar(120), 
+`Summary` varchar(255), 
 `Item_Type` varchar(30),
 `Col_No` varchar(30),
 `Status` varchar(30),
@@ -76,7 +77,7 @@ INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of
 ('Aikido', 'John Smith', 34534534, 'Hollywood, California : Universal Studios Entertainment', '2010', 'adult', 'Aikido is a movie about the way of aikido practitioners and there lives', 'Movie', 'Z271.154 A', 'Available', 'Framingham State University', '12.80', ''),
 ('Calisthenics Beasts', 'Jason Armstrong', 567565543, '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Calisthenics Beasts is an ebook broken up into multiple sections by muscle groups', 'ebook', 'D938.121 C', 'Available', 'Framingham State University', '3.12', ''),
 ('Wild Hunt', 'Jeff Taylor', 234234231, 'The Illustrated Publishers : Stonehill', '2004', 'adult', 'Hear the time-honored stories of a man on the hunt', 'Audio-book', 'R459.232 U', 'Available', 'Framingham State University', '14.50', ''),
-('Learn Russian - Русский язык', 'Dmitri Raslov', 678567453, 'The Russian Printing House : Hammerhead', '2017', 'adult', 'Learn to speak and read the Russian language like a pro', 'book', 'Q456.234 R', 'Available', 'Framingham State University', '20.50', ''),
+('Learn Russian - Русский язык', 'Dmitri Raslov', 678567453, 'The Russian Printing House : Hammerhead', '2017', 'adult', 'Learn to speak and read the Russian language like a pro. Как быстро выучить русский язык: Выучить русский не трудно, если у вас будет новый подход, и не «потеряетесь» в сложной грамматике. Используйте естественное и интуитивное обучения, чтобы быстро овладеть основами языка!', 'book', 'Q456.234 R', 'Available', 'Framingham State University', '20.50', ''),
 ('No Excuses - The Power of self discipline', 'Brian Perel', 789849567, 'Classic Publishers : Ace', '2018', 'young-adult', 'Learn how to be self disciplined in life', 'book', 'A789.567 C', 'Available', 'Framingham State University', '18.75', ''),
 ('Business Data Networks & Security', 'Julia Smith', 234456454, 'Prentice Hall', '2016', 'adult', 'Book on networking security covering packets, sockets, ip, protocols, network classes, and ftp', 'ebook', 'E657.435 T', 'Available', 'Framingham State University', '120.00', ''),
 ('Rock Climbing', 'William Backster', 657657342, 'Prentice Hall', '2014', 'young-adult', 'A book about how to rock climb like a pro', 'Audio-book', 'W234.564 P', 'Available', 'Framingham State University', '23.50', ''),
