@@ -32,26 +32,31 @@
 		<?php
 			session_start();
 			
+	/*		if(isset($_SESSION['loggedin'])) {
+				$_POST['username'] = $_SESSION['username']; 
+			}*/
+			
+			
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'");
-			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
-			$profilePhoto = $results[0]['profile_Photo'];
+			$results = $sql -> fetch(PDO::FETCH_ASSOC);
+			$profilePhoto = $results['profile_Photo'];
 			
 		?>
 
 		<br><center><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == '') { echo 'style="display: none"'; }?> width='200' height='200' alt='profile picture'/></center>
 
-		<?php 
-			if($results[0]['username'] == $_POST['username'] && $results[0]['password'] == $_POST['password']) {
+		<?php 			
+			if($results['username'] == $_POST['username'] && $results['password'] == $_POST['password']) {
 				$_SESSION['loggedin'] = true;
 				$_SESSION['username'] = $_POST['username'];
 				
 				echo '<div style="text-align: center">';
-					echo '<br>Login successful. Welcome back, ' . $results[0]['full_Name'] . '<br>';
-					echo 'Email: ' . $results[0]['email'];
-					echo '<br>Checkouts: <a href="#a">(' . $results[0]['items_Out'] . ')</a><br>';
-					echo 'Requests: <a href="#a">(' . $results[0]['items_Requested'] . ')</a><br>';
-					echo 'Messages: <a href="#a">(' . $results[0]['messages'] . ')</a><br>';
+					echo '<br>Login successful. Welcome back, ' . $results['full_Name'] . '<br>';
+					echo 'Email: ' . $results['email'];
+					echo '<br>Checkouts: <a href="#a">(' . $results['items_Out'] . ')</a><br>';
+					echo 'Requests: <a href="#a">(' . $results['items_Requested'] . ')</a><br>';
+					echo 'Messages: <a href="#a">(' . $results['messages'] . ')</a><br>';
 					echo '<a href="logout.php">(log out)</a>';
 				echo '</div>';	
 			}

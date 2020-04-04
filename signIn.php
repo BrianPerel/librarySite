@@ -35,15 +35,22 @@
 			<input type="text" name="username" placeholder="Username" size="30" required></input><br><br>
 			
 			<label>Password:</label><br>
-			<input class='key' type="text" name="password" placeholder="Password"  size="30" required></input><br>
+			<input class='key' type="text" name="password" placeholder="Password" size="30" required></input><br>
 			
 			<br><input type="submit">
 		</form>		
 		
 		<?php 
 			session_start();
-			
-			$_SESSION['loggedin'] = '';
+
+		/*	if(isset($_SESSION['loggedin'])) {
+				if($_SESSION['loggedin'] == true) {
+					header('Location: myAccount.php');
+					die;
+				}
+			} */
+
+			# $_SESSION['loggedin'] = '';
 			
 			# print invalid login message upon failed login 
 			if(isset($_GET['invalidLogin'])){

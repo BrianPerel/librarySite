@@ -5,7 +5,7 @@
 	$item = $_REQUEST['item_name'];
 	
 	if(sizeof($results) == 0) {
-		$message = '<p>Item \'' . $item . '\' Not Found In Database, Could Not Drop</p>';
+		$message = '<p style="color: red">Item \'' . $item . '\' Not Found In Database, Could Not Drop</p>';
 	}
 	
 	else {

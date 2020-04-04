@@ -42,21 +42,39 @@
 			#   return to admin page 	
 			#	echo '<div style="margin-top: 22%"></div><br><a href="myAdminAccount.php"><u>Return To Admin Page</u></a></center>';
 			}
-			if(isset($_POST['updateItem'])) {
-				echo '<center><h3>Update item in library database</h3>';
-				
-				echo "<form action='updateCompletion.php' action='POST'>";
-				echo '<br>Name of item to be updated: <input name="item_name" type="text" required></input>'; 
-				echo '&nbsp;&nbsp;<button type="submit">Submit</button></center>';
-				echo "</form>";
-			}
 			if(isset($_POST['addItem'])) {
 				echo '<center><h3>Add item to library database</h3>';
 				
-				echo "<form action='addCompletion.php' action='POST'>";
-				echo '<br>Name of item to be Added: <input name="item_name" type="text" required></input>'; 
-				echo '&nbsp;&nbsp;<button type="submit">Submit</button></center>';
-				echo "</form>";
+				echo "<form action='addCompletion.php' action='POST' style='border solid'>";
+				echo '<label>Item Name: </label><br>';
+				echo '<input name="item_name" type="text" required></input><br><br>';
+				
+				echo '<label>Author: </label><br>';
+				echo '<input name="author" type="text" required></input><br><br>'; 
+				
+				echo '<label>Publication Information: </label><br>';
+				echo '<input name="pub_info" type="text" required></input><br><br>'; 
+				
+				echo '<label>Year Released: </label><br>';
+				echo '<input name="year_released" type="text" required></input><br><br>'; 
+				
+				echo '<label>General Audience: </label><br>';
+				echo '<input name="gen_aud" type="text" required></input><br><br>'; 
+							
+				echo '<label>Summary: </label><br>';
+				echo '<input name="summary" type="text" required></input><br><br>'; 
+				
+				echo '<label>Type of Item: </label><br>';
+				echo '<input name="item_type" type="text" required></input><br><br>'; 
+				
+				echo '<label>Col. Number: </label><br>';
+				echo '<input name="col_no" type="text" required></input><br><br>'; 
+				
+				echo '<label>Price: </label><br>';
+				echo '<input name="price" type="text" required></input><br><br>'; 
+
+				echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
+				echo "</form></center>";
 			}
 			
 			if(isset($_GET['delMessage'])) {
@@ -68,6 +86,27 @@
 				echo "</form>";
 				
 				echo $_GET['delMessage'] . '</center>';
+			}
+			
+			if(isset($_GET['addMessage'])) {
+				echo '<center><h3>Add item to library database</h3>';
+				
+				echo "<form action='addCompletion.php' action='POST'>";
+				echo '<br>Item Name: <input name="item_name" type="text" required></input>';
+				echo '<br>Author: <input name="author" type="text" required></input>'; 
+				echo '<br>ISBN: <input name="ISBN" type="text" required></input>'; 
+				echo '<br>Publication Information: <input name="pub_info" type="text" required></input>'; 
+				echo '<br>Year Released: <input name="year_released" type="text" required></input>'; 
+				echo '<br>General Audience: <input name="gen_aud" type="text" required></input>'; 
+				echo '<br>Summary: <input name="summary" type="text" required></input>'; 
+				echo '<br>Type of Item: <input name="item_type" type="text" required></input>'; 
+				echo '<br>Col. Number: <input name="col_no" type="text" required></input>'; 
+				echo '<br>Price: <input name="price" type="text" required></input>'; 
+
+				echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
+				echo "</form>";
+				
+				echo $_GET['addMessage'] . '</center>';
 			}
 		?>				
 

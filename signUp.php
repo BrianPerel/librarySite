@@ -14,8 +14,9 @@
 		
 		<!-- MAIN JS --> 
 		<script src="js/main.js"></script>
+		
 		<!-- GOOGLE RECAPTCHA TOOL JS --> 
-		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<script src="https://www.google.com/recaptcha/api.js"></script>
 		
 		<!-- SEARCH ICON --> 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -42,6 +43,7 @@
 		<h3>Create your account</h3>
 		<p>Join the network</p>
 		
+		<!-- name attribute of form tag contains user input value from the post -->
 		<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="signedUp.php" method="POST" enctype="multipart/form-data">
 		
 			<label>Username:</label><br>
@@ -67,14 +69,14 @@
 			<label for="terms">Agree to terms: </label>
 			<input type="checkbox" name="terms" value="terms" required><br><br>
 			
-			<div class="g-recaptcha" data-sitekey="6LflseQUAAAAAPX0WpXXBIO-rZ_zPwkvrXenB4gr" id='g-recaptcha-response'></div><br>
-						
+			<div class="g-recaptcha" data-sitekey="6LflseQUAAAAAPX0WpXXBIO-rZ_zPwkvrXenB4gr"></div><br>
+			
 			<input type="submit">
 
 		</form>
 		
 		<?php 
-			# print invalid login message upon failed login 
+			# print invalid login message upon failed login, isset() checks if a certain variable exists (get or session) 
 			if(isset($_GET['signUpError'])){
 				echo $_GET['signUpError'];
 			}			
@@ -82,6 +84,11 @@
 			if(isset($_GET['signUpError2'])){
 				echo $_GET['signUpError2'];
 			}		
+			
+			# unchecked recaptcha tool error message
+			if(isset($_GET['err2'])) {
+				echo $_GET['err2'];
+			}
 		?> 
 		</div>
 		

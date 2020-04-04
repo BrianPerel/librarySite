@@ -100,6 +100,7 @@
 				
 					$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
 					$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+					# in $results '[0]' accesses the first result of fetchAll() 
 					
 					if(sizeof($results) == 0) {
 						$photo = '';

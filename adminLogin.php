@@ -32,9 +32,9 @@
 		
 		<form action='myAdminAccount.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%' autocomplete="off">
 			<label>Username:</label><br>
-			<input type="text" name="username" placeholder="Username" size="30" autocomplete="false" required></input><br><br>
+			<input type="text" name="username" placeholder="Username" size="30" autocomplete="false"required></input><br><br>
 			
-			<label>Password:</label><br>
+			<label>Password:</label><br> 
 			<input class='key' name="password" placeholder="Password" type="text" size="30" autocomplete="false" required></input><br>
 			
 			<br><input type="submit">
@@ -53,6 +53,8 @@
 			}
 			
 			echo '<div style="margin-top: 14.5%"></div>';
+			
+			# use cookie delete statement to erase cookies, so that site won't autofill input info 
 		?> 
 		
 		

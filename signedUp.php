@@ -29,29 +29,31 @@
 		</div>
 		
 		<?php 
+			# below we create a PHP Data Object, $con gets the object values 
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			# search check: if any existing records match info recieved from signUp form, assign response to variable 
+			# '->' is an object feature 
 			$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
 			OR password = '$_POST[password]' OR full_Name = '$_POST[fname]' OR phone_Number = '$_POST[pNum]'");
 			
 			/* split username taken from received form, scan through username and make sure every letter is alphabetic. 
 			This is checked by ctype_alpha(). if not jump back to sign up page with error message */
-			$username = str_split($_POST['username']);
+			$username = str_split($_POST['username']); # use str_split() to split the post variable into char array
 			for($i = 0; $i < sizeof($username); $i++) {
 				if(ctype_alpha($username[$i]) == false) {
 					$err1 = urlencode('<br><p style="color: red">Error Creating the Account! Answers provided are incorrect.</p>');
 					header("Location: signUp.php?signUpError2=" . $err1);
-					die;
+					die; # terminate code (stop)
 				}
 			}
 			
 			# perform same above check on name input tag 
-			$fname = str_split($_POST['fname']);
+			$fname = str_split($_POST['fname']); # store size of fname in variable 
 			for($i = 0; $i < sizeof($fname); $i++) {
 				if(ctype_alpha($username[$i]) == false) {
 					$err1 = urlencode('<br><p style="color: red">Error Creating the Account! Answers provided are incorrect.</p>');
 					header("Location: signUp.php?signUpError2=" . $err1);
-					die;
+					exit;
 				}
 			}
 			
@@ -63,21 +65,31 @@
 			}
 			# insert data into table if no errors found and info doens't already exist in db 
 			else {
-
+				/* $_FILES can be thought of as a special type of $_POST (can only exist with enctype="multipart/formdata attribute").
+				When you upload a file with enctype set, it is stored as a tmp file on the server
+				until we go to another page*/
 				$img = $_FILES['InternPhoto'];
 				$filename = $img['tmp_name'];
 				
 				if($filename == '') {
+					if(isset($_POST['g-recaptcha-response'])) $captcha=$_POST['g-recaptcha-response'];
+
+					if(!$captcha){
+						$err2 = '<p style="color: red">Please check the the captcha form.</p>';
+						header('Location: signUp.php?err2=' . $err2);
+						die;
+					}
+					
 					$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
 					VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$_POST[fname]', '$_POST[pNum]', '0', '0', '0', '')");
 				} else {
-					# upload photo to db user account 
+					# upload photo to db user account. Curl allows us to send requests to a server 
 					try {
 						$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
 						$filename = $img['tmp_name'];
 						$openimg = fopen($filename, "r"); # open file in read mode 
 						$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
-						$pvars = array("image" => base64_encode($data));
+						$pvars = array("image" => base64_encode($data)); #this array is the POST data for the curl / base64 encoding lets you read data like image pixels correctly across the server without corruption of data
 						$icurl = curl_init(); # begin curl cmd 
 
 						# using imagebb API key 
