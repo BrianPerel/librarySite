@@ -30,10 +30,19 @@
 		</center>
 	
 		<?php 
+			session_start();
+		#	$_SESSION['username'] = $_REQUEST['username'];
+			
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+
+	/*		if(isset($_SESSION['pressed'])) {
+				$_POST['username'] = $_SESSION['username'];
+			}*/
+		
 			$sql = $con -> query("SELECT * FROM admin WHERE username = '$_POST[username]'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
 			$adminPhoto = $results['admin_Profile_Photo'];
+			
 		?>
 				
 		<br><center><img src="<?php echo $adminPhoto; ?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/></center>

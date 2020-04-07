@@ -64,9 +64,9 @@
 			
 			<center><img src='images/fsu.jpg' id='switch' height='600px' width='900px' style='margin-top: 8%; border: solid black'></img></center>
 			
-			<center><p id="contact"><br>Location: 100 State Street Framingham, MA 01701. We are located just off of Route 9 and about 1.5 miles from Mass Pike exit 12.
-			<br><br>Phone: (111) - 222 - 3344<br>
-			<br><u>Hours:</u><br>
+			<center><p id="contact"><br><b>Location:</b> 100 State Street Framingham, MA 01701. We are located just off of Route 9 and about 1.5 miles from Mass Pike exit 12.
+			<br><br><b>Phone:</b> (111) - 222 - 3344<br>
+			<br><b>Hours:</b><br>
 			<br>Sunday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1PM - 1AM
 			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Monday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7:30AM - 1AM
 			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tuesday&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7:30AM - 1AM

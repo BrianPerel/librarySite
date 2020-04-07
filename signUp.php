@@ -59,7 +59,7 @@
 			<input type="text" name="fname" placeholder="Full Name" size="30" autocomplete='off' required></input><br><br>
 			
 			<label>Phone Number:</label><br>
-			<input type="tel" name="pNum" placeholder="111-222-3333" size="30" autocomplete='off' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></input><br><br><br>
+			<input type="tel" name="pNum" placeholder="111-222-3333" size="30" autocomplete='off' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength='12' required></input><br><br><br>
 			
 			<label style='margin-left: 10%'>Profile Picture (Optional):&nbsp;</label>
 			<input type = "file" name="InternPhoto" autocomplete='off'><br>	
@@ -76,11 +76,15 @@
 		</form>
 		
 		<?php 
+			session_start();
 			# print invalid login message upon failed login, isset() checks if a certain variable exists (get or session) 
+			
+			# if empty field found 
 			if(isset($_GET['signUpError'])){
 				echo $_GET['signUpError'];
 			}			
 			
+			# if format of field entered incorrectly 
 			if(isset($_GET['signUpError2'])){
 				echo $_GET['signUpError2'];
 			}		

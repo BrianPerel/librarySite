@@ -28,17 +28,26 @@
 			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
 		</div>
 		
-		<center><h3>Edit My Personal Information:</h3>
+		<center><h3>Edit My Personal Information: <br> (leave field blank if you don't want to change it)</h3>
 
-				<form class="example" action="advSearchItem.php" method="post" style="max-width:350px; border: solid black 0.5px">
+				<form class="example" action="editAccount.php" method="post" style="max-width:350px; border: solid black 0.5px">
 					<div class='move'>
-						<br><input type="text" name="username" placeholder="New Username..." size="30" autocomplete='off' required></input><br><br><br>
-						<input type="text" name="password" placeholder="New Password..." size="30" autocomplete='off' required></input><br><br><br>
-						<input type="text" name="email" placeholder="New Email..." size="30" autocomplete='off' required></input><br><br><br>
-						<input type="text" name="phone_number" placeholder="Phone Number..." size="30" autocomplete='off' required></input><br><br><br><br>
+						<br><input type="text" name="password" placeholder="New Password..." size="30" autocomplete='off'></input><br><br><br>
+						<input type="text" name="email" placeholder="New Email..." size="30" autocomplete='off'></input><br><br><br>
+						<input type="text" name="phone_number" placeholder="Phone Number..." size="30" autocomplete='off' maxlength='12'></input><br><br><br>
+						
+						<br><label>Upload Profile Picture&nbsp;</label><br><br>
+						<input style='margin-left: 25%' type = "file" name="photo" autocomplete='off'></input><br><br><br>
 					</div>
-					<input type="submit"><br><br>
+					<input type="submit" value="change"><br><br>
 				</form>
+				
+				<?php 
+					if(isset($_GET['changed'])) {
+						echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
+						echo '<div id="logout">' . $_GET['changed'] . ' </div>';
+					}
+				?>
 		</center>
 				
 		<div class="footer">

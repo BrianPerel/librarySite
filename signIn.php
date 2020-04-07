@@ -59,7 +59,7 @@
 			
 			if(isset($_GET['out'])){
 				echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
-				echo '<div id="logout">' . $_GET['out']. ' </div>';
+				echo '<div id="logout">' . $_GET['out'] . ' </div>';
 			} 
 			
 			echo '<div style="margin-top: 14%"></div>';

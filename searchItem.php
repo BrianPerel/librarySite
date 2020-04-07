@@ -30,7 +30,7 @@
 	
 		<?php
 			session_start(); # need session to save item_name to session in order to pass it into another file 
-			
+						
 			# isset() sees if get variable exists, can be used only on get and session variables  
 			if(isset($_GET['send1'])){
 				$post = $_GET['send1'];
@@ -52,15 +52,6 @@
 			}		
 			
 			/*
-			you trying to search by name? i can make that
-             how do you plan on searching?
-			 the input for the search?
-			 first, lets link the search form to the right page
-			 if this is the right page
-			 I will have this page for strickly word searching
-			 and leave the other to letter finding
-			 two completely different searches / lest you want to use a GET var as conditional to set the algorithm used on ome page
-			 well then, just keep them seperate
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM items");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);

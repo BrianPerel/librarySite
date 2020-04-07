@@ -32,10 +32,10 @@
 			# below we create a PHP Data Object, $con gets the object values 
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			# search check: if any existing records match info recieved from signUp form, assign response to variable 
-			# '->' is an object feature 
+			# '->' is an object feature, $con is object data type  
 			$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
 			OR password = '$_POST[password]' OR full_Name = '$_POST[fname]' OR phone_Number = '$_POST[pNum]'");
-			
+	
 			/* split username taken from received form, scan through username and make sure every letter is alphabetic. 
 			This is checked by ctype_alpha(). if not jump back to sign up page with error message */
 			$username = str_split($_POST['username']); # use str_split() to split the post variable into char array
@@ -50,13 +50,29 @@
 			# perform same above check on name input tag 
 			$fname = str_split($_POST['fname']); # store size of fname in variable 
 			for($i = 0; $i < sizeof($fname); $i++) {
-				if(ctype_alpha($username[$i]) == false) {
+				if(ctype_alpha($fname[$i]) == false) {
 					$err1 = urlencode('<br><p style="color: red">Error Creating the Account! Answers provided are incorrect.</p>');
 					header("Location: signUp.php?signUpError2=" . $err1);
-					exit;
+					die;
+				}
+			}
+	
+			# full name requires 1 space (between first and last name), break at first occurence of space since we only need to find 1 space 
+			$space = 0;
+			for($i = 0; $i < sizeof($fname); $i++) {
+				if(ctype_space($fname[$i]) == true) { # ctype_space() checks for whitespace 
+					$space++;
+					break;
 				}
 			}
 			
+			$_SESSION['space'] = $space;
+			if($space == 0) {
+				$err1 = urlencode('<br><p style="color: red">Error Creating the Account! Answers provided are incorrect.</p>');
+				header("Location: signUp.php?signUpError2=" . $err1);
+				die;
+			}
+		
 			# if no accounts in db match info entered in sign up form 
 			if($insert_check -> rowcount() > 0) {
 				$err2 = urlencode('<br><p style="color: red">Error Creating the Account! An account with that information already exists</p>');

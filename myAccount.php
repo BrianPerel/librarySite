@@ -36,12 +36,10 @@
 				$_POST['username'] = $_SESSION['username']; 
 			}*/
 			
-			
 			$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 			$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
 			$profilePhoto = $results['profile_Photo'];
-			
 		?>
 
 		<br><center><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == '') { echo 'style="display: none"'; }?> width='200' height='200' alt='profile picture'/></center>
