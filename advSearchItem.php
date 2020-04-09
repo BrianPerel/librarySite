@@ -36,13 +36,31 @@
 			OR Location = '$_POST[location]'");
 			$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 			
-			echo '<h2 align=center>Search results ' . sizeof($results) . '</h2>';
+			if(sizeof($results) == 0) {
+				$photo = '';
+			}
 			
-			if(sizeof($results) < 0) {
-				echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
+			if(sizeof($results) > 1) {
+				$photo = 2;
 			}
 			
 			else {
+				$photo = $results[0]['photo'];
+			}
+			
+			echo '<h2 align=center>Search results ' . sizeof($results) . '</h2>';
+			
+			if(sizeof($results) == 0) {
+				echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
+			}
+			
+			?>
+			
+			<br><center><img src="<?php echo $photo; ?>" <?php if($photo == '' || $photo == 2) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
+					
+			<?php
+			
+			if(sizeof($results) > 0) {				
 				for($i = 0; $i < sizeof($results); $i++) {
 					$num = $i + 1;
 					echo '<p style="margin-left: 25%">Item #' . $num . '</p>';

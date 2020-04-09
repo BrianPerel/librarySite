@@ -36,7 +36,7 @@
 
 				$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 
-				# when user check an item out, checkoutLetter.php calls the file again and places item with appropriate letter into $SearchLetter 
+				# when user check an item out, letterCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
 				if(isset($_GET['send1'])) {
 					$post = $_GET['send1'];
 					$SearchLetter = $post; 
@@ -149,11 +149,11 @@
 				}
 			?>
 			
-			<form action='checkoutLetter.php' method='post'>
+			<form action='letterCheckout.php' method='post'>
 				<center><input style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(sizeof($results) == 0 || $results[0]['Status'] == 'Out' && $_GET['by'] != 'A-Z') {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
 			</form> 
 			
-			<form action='checkoutLetter.php' method='post' style='display: inline'>
+			<form action='letterCheckout.php' method='post' style='display: inline'>
 				<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z') {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 			</form> 
 			

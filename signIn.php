@@ -32,7 +32,7 @@
 		
 		<form action='myAccount.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%' autocomplete="off">
 			<label>Username:</label><br>
-			<input type="text" name="username" placeholder="Username" size="30" required></input><br><br>
+			<input autofocus type="text" name="username" placeholder="Username" size="30" required></input><br><br>
 			
 			<label>Password:</label><br>
 			<input class='key' type="text" name="password" placeholder="Password" size="30" required></input><br>

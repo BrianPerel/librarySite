@@ -44,22 +44,22 @@
 		<p>Join the network</p>
 		
 		<!-- name attribute of form tag contains user input value from the post -->
-		<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="signedUp.php" method="POST" enctype="multipart/form-data">
+		<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="signedUp.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 		
 			<label>Username:</label><br>
-			<input type="text" name="username" placeholder="Username" size="30" autocomplete='off' required></input><br><br>
+			<input autofocus type="text" name="username" placeholder="Username" size="30" required></input><br><br>
 			
 			<label>Email:</label><br>
-			<input type="email" name="email" placeholder="Email@email.com" size="30" autocomplete='off' required></input><br><br>
+			<input type="email" name="email" placeholder="Email@email.com" size="30" required></input><br><br>
 			
 			<label>Password:</label><br>
-			<input type="text" name="password" placeholder="Password" size="30" autocomplete='off' required></input><br><br>
+			<input type="text" name="password" placeholder="Password" size="30" pattern=".{8,}" required></input><br><br>
 			
 			<label>Full Name:</label><br>
-			<input type="text" name="fname" placeholder="Full Name" size="30" autocomplete='off' required></input><br><br>
+			<input type="text" name="fname" placeholder="Full Name" size="30" pattern="^(\w\w+)\s(\w+)$" required></input><br><br>
 			
 			<label>Phone Number:</label><br>
-			<input type="tel" name="pNum" placeholder="111-222-3333" size="30" autocomplete='off' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength='12' required></input><br><br><br>
+			<input type="tel" name="pNum" placeholder="111-222-3333" size="30" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength='12' required></input><br><br><br>
 			
 			<label style='margin-left: 10%'>Profile Picture (Optional):&nbsp;</label>
 			<input type = "file" name="InternPhoto" autocomplete='off'><br>	

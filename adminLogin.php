@@ -32,10 +32,10 @@
 		
 		<form action='myAdminAccount.php' method='post' style='border: solid black 1px; width: 20%; padding: 1%' autocomplete="off">
 			<label>Username:</label><br>
-			<input type="text" name="username" placeholder="Username" size="30" autocomplete="false"required></input><br><br>
+			<input type="text" name="username" placeholder="Username" size="30" required></input><br><br>
 			
 			<label>Password:</label><br> 
-			<input class='key' name="password" placeholder="Password" type="text" size="30" autocomplete="false" required></input><br>
+			<input class='key' name="password" placeholder="Password" type="text" size="30" required></input><br>
 			
 			<br><input type="submit">
 		</form>		

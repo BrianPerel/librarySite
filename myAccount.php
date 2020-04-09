@@ -52,7 +52,7 @@
 				echo '<div style="text-align: center">';
 					echo '<br>Login successful. Welcome back, ' . $results['full_Name'] . '<br>';
 					echo 'Email: ' . $results['email'];
-					echo '<br>Checkouts: <a href="#a">(' . $results['items_Out'] . ')</a><br>';
+					echo '<br>Checkouts: <a href="#">(' . $results['items_Out'] . ')</a><br>';
 					echo 'Requests: <a href="#a">(' . $results['items_Requested'] . ')</a><br>';
 					echo 'Messages: <a href="#a">(' . $results['messages'] . ')</a><br>';
 					echo '<a href="logout.php">(log out)</a>';

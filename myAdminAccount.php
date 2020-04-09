@@ -54,7 +54,7 @@
 					echo 'Administrator<br>';
 					echo 'Email: ' . $results['email'];
 					echo '<br>Messages: (0)<br>';
-					echo '<a href="adminLogout.php">(log out)</a><br><br>';
+					echo '<a href="logoutAdmin.php">(log out)</a><br><br>';
 					echo '<form action="adminOperations.php" method="post">';
 					echo '<button style="margin: 1%" name="deleteItem">Delete Item</button>';
 					echo '<button style="margin: 1%" name="addItem">Add Item</button>';

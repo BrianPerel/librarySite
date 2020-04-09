@@ -38,8 +38,8 @@
 		</center>
 				
 		<div class="class3">		
-			<center><form class="example" action="searchItem.php" method = "post" style="margin:auto;max-width:400px">
-				<input type="text" placeholder="Search the library's catalog..." name="item_name" required style='height: 38.1px'></input>
+			<center><form class="example" action="searchItem.php" method = "post" style="margin:auto;max-width:375px">
+				<input type="text" placeholder="Search the library's catalog..." name="item_name" autocomplete='off' required style='width: 300px; height: 38.2px'></input>
 				<button type="submit" class="fa fa-search"></button>
 			</form></center>
 						
