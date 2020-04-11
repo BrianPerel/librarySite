@@ -15,5 +15,17 @@
 		$message = '<p>Item \'' . $item . '\' Added Successfully</p>';
 	}
 	
+	/*
+	$Item = json_encode(array(
+	"Item_Name" => $_REQUEST['item_name'],
+	"Author" => $_REQUEST['author']
+	));
+	
+	$sql = $con -> query("INSERT INTO special (field2) VALUES ('$Item')");
+	$sql = $con -> query("SELECT * FROM special WHERE field2 = '$Item'");
+	$json = $sql -> fetch(PDO::FETCH_ASSOC);
+	echo json_encode($json['field2']);
+	echo json_encode($json['field2']) -> Item_Name;
+	*/
 	header('Location: adminOperations.php?addMessage=' . $message);
 ?>

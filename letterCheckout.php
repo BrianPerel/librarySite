@@ -3,7 +3,7 @@
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
 	if($_SESSION['loggedin'] == true && $_POST['checkout2']) {
-			# update status of item we're checking out 
+		# update status of item we're checking out 
 		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
 		# PDO query statement 
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");

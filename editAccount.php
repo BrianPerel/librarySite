@@ -40,9 +40,8 @@
 		}
 		
 		$sql = $con -> query("UPDATE useraccounts SET profile_Photo = '$imgLink' WHERE username = '$_SESSION[username]'");
-		}
+	}
 	
 	$message = urlencode("<p>Your account information has been updated</p>");
 	header("Location: editPersonalInfo.php?changed=" . $message);
-	die;
 ?>

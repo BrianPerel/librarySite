@@ -12,5 +12,6 @@
 		$sql = $con -> query("DELETE FROM items WHERE Item_Name = '$_REQUEST[item_name]'");
 		$message = '<p>Item \'' . $item . '\' Dropped Successfully</p>';
 	}
+	
 	header('Location: adminOperations.php?delMessage=' . $message);
 ?>
