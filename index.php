@@ -1,15 +1,8 @@
-
-	
-
-
-		
-				
 <?php 
 	include("body.htm");
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
 ?>
-
 <div class="class3">		
 	<center><form class="example" action="itemSearch.php" method = "post" style="margin:auto;max-width:375px">
 		<input autofocus type="text" placeholder="Search the library's catalog..." name="item_name" autocomplete='off' required style='width: 300px; height: 38.2px'></input>
@@ -59,6 +52,7 @@
 <a style="margin-left: 0.5%" href="https://www.pinterest.com/pin/243616661067870491/" class="fa fa-pinterest" target="_blank"></a></center><br><br>
 
 <div class="backTop"><center><a href="#top">Back to top</a> &#x2191;</center></div>
+<a href='adminLogin.php'></a>
 		
 <?php
 	include("footer.htm");

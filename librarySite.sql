@@ -56,10 +56,13 @@ INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of
 CREATE TABLE `itemsout` (
 `item_Name` varchar(50) NOT NULL,
 `item_Holder` varchar(30),
+`checkout_Date` varchar(10), 
 `days_Out` int(14),
-`renewed` boolean,
+`due_Date` varchar(10), 
+`renewed` varchar(10),
 PRIMARY KEY (item_Name)
 );
+
 
 -- Table structure for table 'userAccount' 
 CREATE TABLE `useraccounts` (
@@ -70,11 +73,12 @@ CREATE TABLE `useraccounts` (
 `phone_Number` varchar(12) NOT NULL,
 `items_Out` int(10) NOT NULL,
 `items_Requested` int(10) NOT NULL,
+`requested_itemName` varchar(50), 
 `messages` int(10) NOT NULL,
 `profile_Photo` text,
 PRIMARY KEY (username)
 );
 
 -- Dumping data for table 'useraccounts'
-INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `profile_Photo`) VALUES
-('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '0', '0', '0', NULL);
+INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `requested_itemName`, `messages`, `profile_Photo`) VALUES
+('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '0', '0', NULL, '0', NULL);

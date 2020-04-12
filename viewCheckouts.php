@@ -5,6 +5,6 @@
 	}
 	
 	else {
-		header("Location: itemSearch.php?check_items_out=" . $_SESSION['checkout2']);
+		header("Location: itemSearch.php?check_items_out=");
 	}
 ?>
