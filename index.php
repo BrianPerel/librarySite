@@ -52,7 +52,7 @@
 <a style="margin-left: 0.5%" href="https://www.pinterest.com/pin/243616661067870491/" class="fa fa-pinterest" target="_blank"></a></center><br><br>
 
 <div class="backTop"><center><a href="#top">Back to top</a> &#x2191;</center></div>
-<a href='adminLogin.php'></a>
+<button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px'><a href='AdminLogin.php'>Admin Login</a></button>
 		
 <?php
 	include("footer.htm");

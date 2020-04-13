@@ -48,6 +48,7 @@
 			$sql = $con -> query("UPDATE itemsout SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]'");
 		}
 
+		#   echo 'fines/fees: ';
 		#	echo 'Messages: <a href="#a">(' . $results['messages'] . ')</a><br>';
 	}
 	

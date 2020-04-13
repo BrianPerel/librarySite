@@ -14,7 +14,7 @@
 		$out++;
 		$sql = $con -> query("UPDATE useraccounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
 		$date = date("m/d/Y"); 
-		$due_Date = Date("m/d/Y", strtotime('+7 days'));
+		$due_Date = date("m/d/Y", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO itemsout (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
 		header('Location: letterFind.php?send1=' . $_SESSION['searchLetter']);
 	}
