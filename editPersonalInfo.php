@@ -14,7 +14,7 @@
 		<br><label>Upload Profile Picture&nbsp;</label><br><br>
 		<input style='margin-left: 25%' type = "file" name="photo" autocomplete='off'></input><br><br><br>
 	</div>
-	<input type="submit" value="change"><br><br>
+	<input type="submit" value="Change"><br><br>
 </form>
 
 <?php 

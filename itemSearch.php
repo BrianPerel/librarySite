@@ -138,8 +138,14 @@
 
 	if(isset($_GET['check_items_out'])) {
 		echo "<form action='check-in.php' method='post'>";
-			echo "<center><input name='request' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
-			echo "<input name='renew' type='submit' value='Renew Item' style='display: inline'></input><center>";
+			echo "<center><input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
+			
+			$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Name = '$_SESSION[checkout2]'");
+			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
+			$renewed = $item['renewed'];
+			if($renewed == "No") {
+				echo "<input name='renew' type='submit' value='Renew Item' style='display: inline'></input><center>";
+			}
 		echo "</form>";
 	}
 ?>

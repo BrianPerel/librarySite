@@ -16,7 +16,7 @@
 		$date = date("m/d/Y"); 
 		$due_Date = date("m/d/Y", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO itemsout (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
-		die; 
+
 		if($_SESSION['flag'] == true) {
 			$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
 			$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC);
@@ -81,6 +81,6 @@
 	
 	else {
 		$error = '<p style="color: red">Please sign into your account to check out and request items</p>';
-		header('Location: searchItem.php?send3=' . $error);
+		header('Location: itemSearch.php?send3=' . $error);
 	}
 ?>
