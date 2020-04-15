@@ -27,14 +27,18 @@ Prompt user to sign into there account
 	
 	$_SESSION['loggedin'] = false;
 	
-	if(isset($_GET['invalidLogin'])){
+	if(isset($_GET['invalidLogin'])) {
 		echo $_GET['invalidLogin'];
 	}			
 	
-	if(isset($_GET['out'])){
+	if(isset($_GET['out'])) {
 		echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
 		echo '<div id="logout">' . $_GET['out'] . ' </div></center>';
 	} 
+	
+	if(isset($_GET['expire'])) {
+		echo $_GET['expire'];
+	}
 	
 	echo '<div style="margin-top: 14%"></div>';
 	include("footer.htm");

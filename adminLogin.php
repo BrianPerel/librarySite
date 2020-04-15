@@ -32,6 +32,10 @@
 		echo '<center><div id="logout">' . $_GET['out']. ' </div></center>';
 	}
 	
+	if(isset($_GET['expire'])) {
+		echo $_GET['expire'];
+	}
+	
 	echo '<div style="margin-top: 14.5%"></div>';
 	include("footer.htm");
 ?> 
