@@ -27,7 +27,7 @@
 <?php 
 	if($_SESSION['adminloggedin'] == true) {
 		echo '<div style="text-align: center">';
-			echo '<br>Login successful. Welcome back, ' . $results['fullName'] . '<br>';
+			echo '<br>Login successful<br> Welcome back, ' . $results['fullName'] . '<br>';
 			echo 'Administrator<br>';
 			echo 'Email: ' . $results['email'];
 			echo '<br>Messages: (0)<br>';

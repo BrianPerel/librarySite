@@ -75,10 +75,11 @@ CREATE TABLE `useraccounts` (
 `items_Requested` int(10) NOT NULL,
 `requested_itemName` varchar(50), 
 `messages` int(10) NOT NULL,
+`fines_fees` decimal(10, 2) NOT NULL, 
 `profile_Photo` text,
 PRIMARY KEY (username)
 );
 
 -- Dumping data for table 'useraccounts'
-INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `requested_itemName`, `messages`, `profile_Photo`) VALUES
-('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '0', '0', NULL, '0', NULL);
+INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `requested_itemName`, `messages`, `fines_fees`, `profile_Photo`) VALUES
+('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '0', '0', NULL, '0', '0.00', NULL);

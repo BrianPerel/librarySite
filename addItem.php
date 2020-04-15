@@ -16,6 +16,8 @@
 	}
 	
 	/*
+	#JSON Example: 
+	
 	$Item = json_encode(array(
 	"Item_Name" => $_REQUEST['item_name'],
 	"Author" => $_REQUEST['author']
@@ -27,5 +29,6 @@
 	echo json_encode($json['field2']);
 	echo json_encode($json['field2']) -> Item_Name;
 	*/
+	
 	header('Location: adminOperations.php?addMessage=' . $message);
 ?>

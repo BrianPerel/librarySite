@@ -1,17 +1,14 @@
 <?php 
 	include("body.htm");
 	echo '<title>Registration Completed | HWL</title>';
-
-	# below we create a PHP Data Object, $con gets the object values 
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	# search check: if any existing records match info recieved from signUp form, assign response to variable 
-	# '->' is an object feature, $con is object data type  
 	
 	$fname = $_POST['fname'];
-	$nameCapitalized = ucwords($fname);
+	$nameCapitalized = ucwords($fname); # capitalize the first letter of every word from fname form input field
 		
-	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
-	OR password = '$_POST[password]' OR full_Name = '$nameCapitalized' OR phone_Number = '$_POST[pNum]'");
+	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = 'trim($_POST[username])' OR email = 'trim($_POST[email])' 
+	OR password = 'trim($_POST[password])' OR full_Name = '$nameCapitalized' OR phone_Number = '$_POST[pNum]'");
 
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
@@ -27,7 +24,7 @@
 		$img = $_FILES['InternPhoto'];
 		$filename = $img['tmp_name'];
 		
-		if($filename == '') {
+		if($filename == NULL) {
 			if(isset($_POST['g-recaptcha-response'])) $captcha=$_POST['g-recaptcha-response'];
 
 			if(!$captcha){
@@ -42,7 +39,7 @@
 			# upload photo to db user account. Curl allows us to send requests to a server 
 			try {
 				$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
-				$filename = $img['tmp_name'];
+				$filename = $img['tmp_name']; # access $img object attribute need variable name used 
 				$openimg = fopen($filename, "r"); # open file in read mode 
 				$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
 				$pvars = array("image" => base64_encode($data)); #this array is the POST data for the curl / base64 encoding lets you read data like image pixels correctly across the server without corruption of data
@@ -55,7 +52,7 @@
 				curl_setopt($icurl, CURLOPT_POST, true);
 				curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
-				$upload = curl_exec($icurl);
+				$upload = curl_exec($icurl); 
 				curl_close($icurl); # close curl cmd 
 				$imgJSON = json_decode($upload);
 				$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 			

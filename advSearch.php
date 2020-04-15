@@ -4,7 +4,7 @@ echo '<title>Advanced Search | HWL</title>';
 ?>
 
 <center><h3>Advanced Search</h3>
-	<form class="example" action="advSearchItem.php" method="post" style="max-width:350px; border: solid black 0.5px" autocomplete='off'>
+	<form class="example" action="advSearchResults.php" method="post" style="max-width:350px; border: solid black 0.5px" autocomplete='off'>
 		<div class='move'>
 			<br><input autofocus type="text" name="Title" placeholder="Enter Title..." size="30" required></input><br><br><br>
 			<input type="text" name="ISBN" placeholder="Enter ISBN Number..." size="30" required></input><br><br><br>

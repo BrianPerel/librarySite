@@ -34,7 +34,6 @@
 	echo '<h2 align=center>Advanced search results: ' . sizeof($results) . '</h2>';
 
 	if(sizeof($results) == 0) {
-		$photo = '';
 		echo '<center>No items match your search</center>';
 		echo '<div style="margin-bottom: 20%"></div>';
 	}
@@ -42,14 +41,9 @@
 	else if(sizeof($results) == 1) {
 		$photo = $results[0]['photo']; 
 	}
-	
-	else if(sizeof($results) > 1) {
-		$photo = '';
-	}
-	
 ?>
 	
-<br><center><img src="<?php echo $photo; ?>" <?php if($photo == '') { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/></center>
+<br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) > 1 || sizeof($results) == 0) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/></center>
 			
 <?php
 	if(sizeof($results) > 0) {				
@@ -72,6 +66,7 @@
 			echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
 			echo '</table><br>';
 		}
+		
 		$_SESSION['checkout2'] = $results[0]['Item_Name'];	
 		$_SESSION['pageSentFrom'] = 'advSearch';		
 	}

@@ -10,8 +10,11 @@
 			echo 'Name of item to be deleted: <input name="item_name" type="text" size="40" placeholder="Item Name" autofocus required></input>'; 
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
 		echo "</form>";
+		
+		echo "<div style='margin-bottom: 18%'></div>";
+		
+		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
 
-		echo "<div style='margin-bottom: 24%'></div>";
 	}
 	if(isset($_POST['addItem'])) {
 		echo '<center><h3>Add item to library database</h3>';
@@ -48,7 +51,9 @@
 			echo '<input name="price" type="text" placeholder="Price ($)" required></input><br><br>'; 
 
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
-		echo "</form></center>";
+		echo "</form>";
+		
+		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
 	}
 	
 	if(isset($_GET['delMessage'])) {
@@ -59,9 +64,11 @@
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
 		echo "</form>";
 		
-		echo $_GET['delMessage'] . '</center>';
+		echo $_GET['delMessage'];
 		
-		echo "<div style='margin-bottom: 25.5%'></div>";
+		echo "<div style='margin-bottom: 16%'></div>";
+		
+		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
 	}
 	
 	if(isset($_GET['addMessage'])) {
@@ -101,7 +108,10 @@
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
 		echo "</form>";
 		
-		echo $_GET['addMessage'] . '</center>';
+		echo $_GET['addMessage'];
+		
+		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
+		
 	}
 	
 	include("footer.htm");

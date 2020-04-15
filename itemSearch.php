@@ -43,18 +43,14 @@
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 	
-	if(sizeof($results) == 0) {
-		$photo = '';
-	}
-	
-	else {
+	if(sizeof($results) > 0) {
 		$photo = $results[0]['photo'];
 	}
 	
 	echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $_POST['item_name'] . '\' </h2>';
 ?>
 	
-<br><center><img src="<?php echo $photo; ?>" <?php if($photo == '') { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
+<br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
 	
 <?php 
 	if(sizeof($results)== 0) {
@@ -140,7 +136,7 @@
 		echo "<form action='check-in.php' method='post'>";
 			echo "<center><input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
 			
-			$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Name = '$_SESSION[checkout2]'");
+			$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 			$renewed = $item['renewed'];
 			if($renewed == "No") {
