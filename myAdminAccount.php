@@ -27,12 +27,14 @@
 	
 <?php 
 	if($_SESSION['adminloggedin'] == true) {
+		
+		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+		
 		echo '<div style="text-align: center">';
 			echo '<br>Login successful<br> Welcome back, ' . $results['fullName'] . '<br>';
 			echo 'Administrator<br>';
 			echo 'Email: ' . $results['email'];
-			echo '<br>Messages: (0)<br>';
-			echo '<a href="logoutAdmin.php">(log out)</a><br><br>';
+			echo '<br><a href="logoutAdmin.php">(log out)</a><br><br>';
 			echo '<form action="adminOperations.php" method="post">';
 			echo '<button style="margin: 1%" name="deleteItem">Delete Item</button>';
 			echo '<button style="margin: 1%" name="addItem">Add Item</button>';
@@ -41,25 +43,9 @@
 	}
 	
 	else if($_SESSION['adminloggedin'] == false) {
-		if($results['username'] == $_POST['username'] && $results['password'] == $_POST['password']) {
-			echo '<div style="text-align: center">';
-				echo '<br>Login successful. Welcome back, ' . $results['fullName'] . '<br>';
-				echo 'Administrator<br>';
-				echo 'Email: ' . $results['email'];
-				echo '<br>Messages: (0)<br>';
-				echo '<a href="logoutAdmin.php">(log out)</a><br><br>';
-				echo '<form action="adminOperations.php" method="post">';
-				echo '<button style="margin: 1%" name="deleteItem">Delete Item</button>';
-				echo '<button style="margin: 1%" name="addItem">Add Item</button>';
-				echo '</form>';
-			echo '</div>';
-		}
-		
-		else {
-			# re-direct back to sign in page 
-			$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
-			header("location: adminLogin.php?invalid=" . $invalidLogin);
-		}
+		# re-direct back to sign in page 
+		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
+		header("location: adminLogin.php?message1=" . $invalidLogin);
 	}
 	
 	echo "<div style='margin-bottom: 6.5%'></div>";

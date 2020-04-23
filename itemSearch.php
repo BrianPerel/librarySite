@@ -3,6 +3,10 @@
 	include("body.htm");
 	echo '<title>Search | HWL</title>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		echo '<script>window.addEventListener(onload, switchNav())</script>';
+	}
 
 	# isset() sees if get variable exists, can be used only on get and session variables  
 	if(isset($_GET['send1'])){
@@ -36,10 +40,6 @@
 		$_SESSION['flag'] = true;
 	}
 	
-	/*	if($_SESSION['A_Zitem_name'] != '') {
-		$_POST['item_name'] = $_SESSION['A_Zitem_name'];
-	}*/
-	
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 	
@@ -53,7 +53,7 @@
 <br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
 	
 <?php 
-	if(sizeof($results)== 0) {
+	if(sizeof($results) == 0) {
 		echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
 	}
 	

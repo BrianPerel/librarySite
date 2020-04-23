@@ -2,19 +2,23 @@
 	session_start();
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
-	if($_POST['password'] != '') {
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		echo '<script>window.addEventListener(switchNav())</script>';
+	}
+	
+	if($_POST['password'] != null) {
 		$sql = $con -> query("UPDATE useraccounts SET password='$_POST[password]' WHERE username = '$_SESSION[username]'");
 	}
 	
-	if($_POST['email'] != '') {
+	if($_POST['email'] != null) {
 		$sql = $con -> query("UPDATE useraccounts SET email='$_POST[email]' WHERE username = '$_SESSION[username]'");
 	}
 	
-	if($_POST['phone_number'] != '') {
+	if($_POST['phone_number'] != null) {
 		$sql = $con -> query("UPDATE useraccounts SET phone_Number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
 	}
 	
-	if($_POST['photo'] != '') {
+	if($_POST['photo'] != null) {
 		try {
 			$image = 'images/' . $_POST['photo'];
 			
@@ -42,6 +46,13 @@
 		$sql = $con -> query("UPDATE useraccounts SET profile_Photo = '$imgLink' WHERE username = '$_SESSION[username]'");
 	}
 	
-	$message = urlencode("<p>Your account information has been updated</p>");
+	if($_POST['password'] == null && $_POST['email'] == null && $_POST['phone_number'] == null && $_POST['photo'] == null) {
+		$message = urlencode("<p style='color: red'>No information was given to change, please enter new information</p>");
 	header("Location: editPersonalInfo.php?changed=" . $message);
+	}
+	
+	else {
+		$message = urlencode("<p>Your account information has been updated</p>");
+		header("Location: editPersonalInfo.php?changed=" . $message);
+	}
 ?>

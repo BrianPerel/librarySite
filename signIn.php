@@ -7,9 +7,8 @@ Prompt user to sign into there account
 	session_start();
 	include("body.htm");
 	echo '<title>Sign in | HWL</title>';
-	echo '<body onload="myFunction()">';
 	echo '<center><h3>My Account Login:</h3><br>';
-
+	
 	echo '<form action="myAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%" autocomplete="off">';
 		echo '<label>Username:</label><br>';
 		echo '<input autofocus type="text" name="username" placeholder="Username" size="30" required></input><br><br>';
@@ -24,20 +23,16 @@ Prompt user to sign into there account
 			die;
 		}
 	}	
-	
+
 	$_SESSION['loggedin'] = false;
-	
-	if(isset($_GET['invalidLogin'])) {
-		echo $_GET['invalidLogin'];
-	}			
 	
 	if(isset($_GET['out'])) {
 		echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
 		echo '<div id="logout">' . $_GET['out'] . ' </div></center>';
 	} 
 	
-	if(isset($_GET['expire'])) {
-		echo $_GET['expire'];
+	if(isset($_GET['message'])) {
+		echo $_GET['message'];
 	}
 	
 	echo '<div style="margin-top: 14%"></div>';

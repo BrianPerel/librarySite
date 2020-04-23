@@ -3,7 +3,6 @@
 	include("body.htm");
 	echo '<title>Admin Login | HWL</title>';
 	echo '<center><h3>Admin Account Login:</h3><br>';
-	echo '<body onload="myFunction()">';
 
 	echo '<form action="myAdminAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%" autocomplete="off">';
 		echo '<label>Username:</label><br>';
@@ -21,19 +20,14 @@
 	}	
 	
 	$_SESSION['adminloggedin'] = false;
-
-	# print invalid login message upon failed login 
-	if(isset($_GET['invalid'])){
-		echo '<center>' . $_GET['invalid'] . '</center>';
-	}
 	
 	if(isset($_GET['out'])){
-		echo '<script>function myFunction() { setTimeout(function(){ document.getElementById("logout").style.display = "none"; }, 1000); } </script>';
+		echo '<script>window.addEventListener(onload, myFunction())</script>';
 		echo '<center><div id="logout">' . $_GET['out']. ' </div></center>';
 	}
 	
-	if(isset($_GET['expire'])) {
-		echo $_GET['expire'];
+	if(isset($_GET['message1'])) {
+		echo '<center>' . $_GET["message1"] . '</center>';
 	}
 	
 	echo '<div style="margin-top: 14.5%"></div>';

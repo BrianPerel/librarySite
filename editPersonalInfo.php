@@ -1,6 +1,27 @@
 <?php
 	include("body.htm");
 	echo '<title>Sign in | HWL</title>';
+	session_start();
+	echo '<meta http-equiv="refresh" content="120; url=expireSession.php">';
+	
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		echo '<script>';
+		
+		echo 'var parent = document.getElementById("parent");'; 
+		echo 'var child1 = document.getElementById("child1");'; 
+		echo 'var child2 = document.getElementById("child2");'; 
+		echo 'parent.removeChild(child2);'; 
+		echo 'parent.removeChild(child1);';
+		
+		echo "var a = document.createElement('a');";
+		echo "a.href = 'signIn.php';";
+		echo 'a.title = "My Account";';
+		echo 'a.appendChild(document.createTextNode("My Account"));';	
+		
+		echo 'parent.insertBefore(a, child3);';
+
+		echo '</script>';
+	}
 ?>
 
 <center><h3>Edit My Personal Information: <br> (leave field blank if you don't want to change it)</h3>

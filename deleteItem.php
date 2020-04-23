@@ -4,6 +4,8 @@
 	$results = $sql -> fetchall(PDO::FETCH_ASSOC);
 	$item = $_REQUEST['item_name'];
 	
+	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+
 	if(sizeof($results) == 0) {
 		$message = '<p style="color: red">Item \'' . $item . '\' Not Found In Database, Could Not Drop</p>';
 	}

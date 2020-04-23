@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 	if($_SESSION['items_requested'] == 0) {
-			header("Location: myAccount.php");
+		header("Location: myAccount.php");
 	}
 	
 	else {

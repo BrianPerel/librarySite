@@ -18,7 +18,7 @@ to addUser.php so that it can be added to the library database.
 		echo '<input autofocus type="text" name="username" placeholder="Username" size="32" required></input><br><br>';
 		
 		echo '<label>Email:</label><br>';
-		echo '<input type="email" name="email" placeholder="name@domain.com" size="32" required></input><br><br>';
+		echo '<input type="email" name="email" placeholder="name@domain.com" size="32" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></input><br><br>';
 		
 		echo '<label>Password: (8 Characters)</label><br>';
 		echo '<input type="text" name="password" placeholder="Password" size="32" pattern=".{8,}" required></input><br><br>';

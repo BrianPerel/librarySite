@@ -4,6 +4,10 @@
 	echo '<title>Advanced Search | HWL</title>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		echo '<script>window.addEventListener(switchNav())</script>';
+	}
+	
 	if(isset($_GET['send1'])){
 		$post = $_GET['send1'];
 		$_POST['item_name'] = $post;
@@ -21,7 +25,7 @@
 		echo '<center>' . $err . '</center>';
 		$_POST['Title'] = $_SESSION['checkout2']; 
 		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[Title]'");
-		$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	}		
 	
 	if(!(isset($_GET['send3']))) {
@@ -83,9 +87,7 @@
 <?php
 	echo '<div style="margin-top: 5%"></div>';
 	if(sizeof($results) > 1) {
-		echo '<div class="backTop">';
-			echo '<center><a href="#top">Back to top</a> &#x2191;</center>';
-		echo '</div>';
+		echo '<div class="backTop"><center><a href="#top">Back to top</a> &#x2191;</center></div>';
 	}
 	include("footer.htm");
 ?>	

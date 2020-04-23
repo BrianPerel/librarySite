@@ -2,7 +2,13 @@
 	include("body.htm");
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
+
+	session_start();
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		echo '<script>window.addEventListener(onload, switchNav())</script>';
+	}
 ?>
+
 <div class="class3">		
 	<center><form class="example" action="itemSearch.php" method = "post" style="margin:auto;max-width:375px">
 		<input autofocus type="text" placeholder="Search the library's catalog..." name="item_name" autocomplete='off' required style='width: 300px; height: 38.2px'></input>
@@ -17,7 +23,7 @@
 	| <a href='letterFind.php?by=Q'>Q</a> | <a href='letterFind.php?by=R'>R</a> | <a href='letterFind.php?by=S'>S</a>
 	| <a href='letterFind.php?by=T'>T</a> | <a href='letterFind.php?by=U'>U</a> | <a href='letterFind.php?by=V'>V</a>
 	| <a href='letterFind.php?by=W'>W</a> | <a href='letterFind.php?by=X'>X</a> | <a href='letterFind.php?by=Y'>Y</a>
-	| <a href='letterFind.php?by=Z'>Z</a> | <a href='letterFind.php?by=A-Z'>A-Z</a></center>		
+	| <a href='letterFind.php?by=Z'>Z</a></center>		
 	
 	<p id="BodyText"><br>Welcome to FSU's library portal. Sign up to create an account or sign in to get to<br> your existing account. Search the library's inventory to
 	find what your looking for.<br> Our inventory contains books, movies,  ebooks, and video games. Once the item <br>is found, you can check it out.
@@ -53,7 +59,7 @@
 
 <div class="backTop"><center><a href="#top">Back to top</a> &#x2191;</center></div>
 <button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px'><a href='AdminLogin.php'>Admin Login</a></button>
-		
+	
 <?php
 	include("footer.htm");
 ?>

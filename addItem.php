@@ -3,6 +3,7 @@
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_REQUEST[item_name]'");
 	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 	$item = $_REQUEST['item_name'];
+	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 	
 	if(sizeof($results) != 0) {
 		$message = '<p style="color: red">Item \'' . $item . '\' With The Same Name Already Exists In Database, Could Not Add</p>';
