@@ -7,8 +7,9 @@
 	$fname = ucwords($_POST['fname']);
 		
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
-	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = 'trim($_POST[username])' OR email = 'trim($_POST[email])' 
-	OR password = 'trim($_POST[password])' OR full_Name = '$fname' OR phone_Number = '$_POST[pNum]'");
+	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
+	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[pNum]'");
+	
 
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
@@ -22,7 +23,7 @@
 
 		if(!$captcha){
 			$err2 = '<p style="color: red">Please check the the captcha form.</p>';
-			header('Location: signUp.php?err2=' . $err2);
+			header('Location: signUp.php?signUpError=' . $err2);
 			die;
 		}
 		
@@ -52,7 +53,9 @@
 					echo $e -> getMessage();		
 				}					
 			
-			
+			$_POST['username'] = trim($_POST['username']);
+			$_POST['email'] = trim($_POST['email']);
+			$_POST['password'] = trim($_POST['password']);
 			
 			$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
 			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");

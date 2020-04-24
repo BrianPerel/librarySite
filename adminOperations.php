@@ -2,7 +2,6 @@
 	session_start();
 	include("body.htm");
 	echo '<title>Admin Account | HWL</title>';
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 
 	if(isset($_POST['deleteItem'])) {
@@ -16,7 +15,6 @@
 		echo "<div style='margin-bottom: 18%'></div>";
 		
 		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
-
 	}
 	if(isset($_POST['addItem'])) {
 		echo '<center><h3>Add item to library database</h3>';
@@ -112,8 +110,7 @@
 		
 		echo $_GET['addMessage'];
 		
-		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
-		
+		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';	
 	}
 	
 	include("footer.htm");

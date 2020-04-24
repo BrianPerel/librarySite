@@ -57,13 +57,17 @@ INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of
 -- Table structure for 'itemsout'
 CREATE TABLE `itemsout` (
 `itemID` int(10) NOT NULL AUTO_INCREMENT,
-`item_Name` varchar(50) NOT NULL,
+`item_Name` varchar(50),
 `item_Holder` varchar(30),
 `checkout_Date` varchar(10), 
 `days_Out` int(14),
 `due_Date` varchar(10), 
 `renewed` varchar(10),
 PRIMARY KEY (itemID)
+);
+
+INSERT INTO `itemsout` (`item_Name`, `item_Holder`, `checkout_Date`, `days_Out`, `due_Date`, `renewed`) VALUES 
+('Calisthenics Beasts', 'bperel', '04/10/20', '14', '04/17/20', 'No'
 );
 
 
@@ -77,7 +81,7 @@ CREATE TABLE `useraccounts` (
 `phone_Number` varchar(12) NOT NULL,
 `items_Out` int(10) NOT NULL,
 `items_Requested` int(10) NOT NULL,
-`requested_itemName` varchar(50) DEFAULT NULL, 
+`requested_itemName` varchar(50), 
 `messages` int(10) NOT NULL,
 `fines_fees` decimal(10, 2) NOT NULL, 
 `profile_Photo` text DEFAULT NULL,
@@ -85,5 +89,5 @@ PRIMARY KEY (userID)
 );
 
 -- Dumping data for table 'useraccounts'
-INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `fines_fees`) VALUES
-('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '0', '0', '0', '0.00');
+INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `requested_itemName`, `messages`, `fines_fees`) VALUES
+('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '1', '0', '0', '0', '0.00');

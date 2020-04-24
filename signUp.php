@@ -7,7 +7,6 @@ to addUser.php so that it can be added to the library database.
 <?php 
 	include("body.htm");
 	echo '<title>Sign up | HWL</title>';
-	
 	echo '<div class="create"><center>';
 	echo '<h3>Create your account</h3>';
 	echo '<p>Join the network</p>';
@@ -44,23 +43,10 @@ to addUser.php so that it can be added to the library database.
 	echo '</form></center>';
 	echo '</div>';
 	
-	# print invalid login message upon failed login, isset() checks if a certain variable exists (get or session) 
-	echo '<center>';
-	# if empty field found 
-	if(isset($_GET['signUpError'])){
-		echo $_GET['signUpError'];
-	}			
-	
-	# if format of field entered incorrectly 
-	if(isset($_GET['signUpError2'])){
-		echo $_GET['signUpError2'];
-	}		
-	
-	# unchecked recaptcha tool error message
-	if(isset($_GET['err2'])) {
-		echo $_GET['err2'];
-		
+	# print invalid login message upon failed login
+	if(isset($_GET['signUpError'])) {
+		echo '<center>' . $_GET['signUpError'] . '</center>';
 	}
-	echo '</center>';
+
 	include("footer.htm");
 ?> 

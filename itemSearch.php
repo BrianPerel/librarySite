@@ -85,6 +85,8 @@
 			echo '<tr><td>Due date: ' . $results2[$i]['due_Date'] . '</td></tr>';
 			echo '<tr><td>Renewed: ' . $results2[$i]['renewed'] . '</td></tr>';
 			echo '</table><br>';
+			
+			$_SESSION['checkout2'] = $results[$i]['Item_Name'];
 		}		
 	}
 	
