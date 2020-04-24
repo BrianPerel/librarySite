@@ -37,7 +37,7 @@
 		
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
-		if(isset($_SESSION['outCheck']) && $_SESSION['outCheck'] > 0) {
+		if($_SESSION['outCheck'] > 0) {
 			# update days out on every login 
 			$sql = $con -> query("SELECT checkout_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 			$date = $sql -> fetch(PDO::FETCH_ASSOC); 
@@ -55,7 +55,7 @@
 			$Due = $sql -> fetch(PDO::FETCH_ASSOC);
 			$date_due = $Due['due_Date'];
 			
-			$currentDate = date('m/d/Y', strtotime('+8 days')); 
+			$currentDate = date('m/d/Y'); 
 		
 			if($currentDate > $date_due) {				
 					$sql = $con -> query("SELECT fines_fees FROM useraccounts WHERE username = '$_SESSION[username]'");

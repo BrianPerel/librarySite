@@ -3,6 +3,8 @@
 	include("body.htm");
 	echo '<title>Admin Account | HWL</title>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+
 	if(isset($_POST['deleteItem'])) {
 		echo '<center><h3>Delete item from library database</h3>';
 		
