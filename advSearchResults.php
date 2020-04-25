@@ -5,7 +5,10 @@
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-		echo '<script>window.addEventListener(switchNav())</script>';
+		echo '<script>window.addEventListener(onload, switchNav())</script>';
+		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$_SESSION['num'] = $results['items_Out'];
 	}
 	
 	if(isset($_GET['send1'])){
@@ -77,7 +80,7 @@
 ?>
 	
 <form action='checkout.php' method='post'>
-<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || $results[0]['Status'] == 'Out') {echo 'disabled';} else if(sizeof($results) > 1) {echo 'hidden';} ?>></input>
+<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || $results[0]['Status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(sizeof($results) > 1) {echo 'hidden';} ?>></input>
 </form>
 
 <form action='checkout.php' method='post' style='display: inline'>

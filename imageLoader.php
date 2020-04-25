@@ -4,7 +4,7 @@
 
 	# Upload image for pre-set user account 'bperel'
 	try {
-		$image = 'images/bperel.jpg';
+		$image = 'images/Pitt.jpg';
 		
 		$openimg = fopen($image, "r"); # open file in read mode 
 		$data = fread($openimg, filesize($image)); # read content of file and its size to variable data 
@@ -27,7 +27,7 @@
 		echo $e -> getMessage();		
 	}
 	
-	$sql = $con -> query("UPDATE useraccounts SET profile_Photo = '$imgLink' WHERE username = 'bperel'");
+	$sql = $con -> query("UPDATE useraccounts SET profile_Photo = '$imgLink' WHERE username = 'user1'");
 	
 	
 	

@@ -3,7 +3,7 @@
 	include("body.htm");
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
-	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	if($_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 	

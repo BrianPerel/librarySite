@@ -6,39 +6,36 @@
 	
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
+		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$_SESSION['num'] = $results['items_Out'];
 	}
 
 	# when user check an item out, letterCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
 	if(isset($_GET['send1'])) {
 		$post = $_GET['send1'];
-		$SearchLetter = $post; 
-		$_GET['by'] = $post; 
+		$_GET['by'] = $SearchLetter = $post; 
 		echo '<br><center><p style="color: green">' . $_SESSION['username'] . ' has checked out this item</p></center>';
 	}
 	
 	if(isset($_GET['send2'])) {
 		$post = $_GET['send2'];
-		$SearchLetter = $post; 
-		$_GET['by'] = $post; 
+		$_GET['by'] = $SearchLetter = $post; 
 		echo '<br><center><p style="color: green">' . $_SESSION['username'] . ' has requested this item</p></center>';
 	}
 	
 	if(isset($_GET['send3'])) {
-		$err = $_GET['send3'];
-		echo '<center>' . $err . '</center>';
-		
-		$SearchLetter = $_SESSION['searchLetter']; 
-		$_GET['by'] = $SearchLetter; 
+		echo '<center>' . $_GET['send3'] . '</center>';
+		$_GET['by'] = $SearchLetter = $_SESSION['searchLetter']; 
 	}
 	
 	$SearchLetter = $_GET['by'];
 
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
-	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
-	# in $results '[0]' accesses the first result of fetchAll() 
+	$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	
 	if(sizeof($results) > 0) {
-		$photo = $results[0]['photo'];
+		$photo = $results['photo'];
 	}
 
 	echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
@@ -52,34 +49,30 @@
 	}
 	
 	else if(sizeof($results) > 0) {
-		for($i = 0; $i < sizeof($results); $i++) {
-			$num = $i + 1;
-			echo '<center><p style="margin-right: 45%">Item #' . $num . '</p></center>';
+			echo '<center><p style="margin-right: 45%">Item #1</p></center>';
 			
-			echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
-			echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
-			echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
-			echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
-			echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
-			echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
-			echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
-			echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
-			echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
-			echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
-			echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
-			echo'<tr><td>' . 'Location: ' . $results[$i]['Location'] . '</td></tr>';
-			echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '<br>' . '</td></tr>';
+			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+			echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
+			echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
+			echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
+			echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
+			echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
+			echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
+			echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
+			echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
+			echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
+			echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
+			echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
+			echo'<tr><td>' . 'Status: ' . $results['Status'] . '<br></td></tr>';
 			echo '</table><br>';
 		}		
 
-		$_SESSION['checkout2'] = $results[0]['Item_Name'];
-		$_SESSION['searchLetter'] = substr($results[0]['Item_Name'], 0, 1);
-	}
-	
+		$_SESSION['checkout2'] = $results['Item_Name'];
+		$_SESSION['searchLetter'] = substr($results['Item_Name'], 0, 1);
 ?>
 
 <form action='letterCheckout.php' method='post'>
-	<center><input style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(sizeof($results) == 0 || $results[0]['Status'] == 'Out' && $_GET['by'] != 'A-Z') {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
+	<center><input style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
 </form> 
 
 <form action='letterCheckout.php' method='post' style='display: inline'>
@@ -87,9 +80,5 @@
 </form> 
 
 <?php 
-	if(sizeof($results) > 1) {
-		echo '<br><br><div class="backTop"><center><a href="#top">Back to top</a> &#x2191;</center></div>';
-	} 
-	
 	include("footer.htm");
 ?>

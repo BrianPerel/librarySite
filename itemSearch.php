@@ -6,6 +6,9 @@
 	
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
+		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$_SESSION['num'] = $results['items_Out'];
 	}
 
 	# isset() sees if get variable exists, can be used only on get and session variables  
@@ -41,10 +44,10 @@
 	}
 	
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
-	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
+	$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	
 	if(sizeof($results) > 0) {
-		$photo = $results[0]['photo'];
+		$photo = $results['photo'];
 	}
 	
 	echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $_POST['item_name'] . '\' </h2>';
@@ -58,61 +61,55 @@
 	}
 	
 	if(isset($_GET['check_items_out'])) {
-		for($i = 0; $i < sizeof($results); $i++) {
-			$num = $i + 1;
-			echo '<p style="margin-left: 25%">Item #' . $num . '</p>';
-			
-			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-			echo '<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
-			echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
-			echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
-			echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
-			echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
-			echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
-			echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
-			echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
-			echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
-			echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
-			echo'<tr><td>' . 'Location: ' . $results[$i]['Location'] . '</td></tr>';
-			echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
-			echo '</table><br><br>';
-			
-			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
-			$results2 = $sql -> fetchAll(PDO::FETCH_ASSOC);
-			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-			echo '<tr><td>Date checked-out: ' . $results2[$i]['checkout_Date'] . '</td></tr>';
-			echo '<tr><td>Days item has been out: ' . $results2[$i]['days_Out'] . '</td></tr>';
-			echo '<tr><td>Due date: ' . $results2[$i]['due_Date'] . '</td></tr>';
-			echo '<tr><td>Renewed: ' . $results2[$i]['renewed'] . '</td></tr>';
-			echo '</table><br>';
-			
-			$_SESSION['checkout2'] = $results[$i]['Item_Name'];
-		}		
-	}
+		echo '<p style="margin-left: 25%">Item #1</p>';
+		
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
+		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
+		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
+		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
+		echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
+		echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
+		echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
+		echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
+		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
+		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
+		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
+		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
+		echo '</table><br><br>';
+		
+		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>';
+		echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
+		echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';
+		echo '<tr><td>Renewed: ' . $results2['renewed'] . '</td></tr>';
+		echo '</table><br>';
+		
+		$_SESSION['checkout2'] = $results['Item_Name'];
+	}		
 	
 	else if(sizeof($results) > 0) {
-		for($i = 0; $i < sizeof($results); $i++) {
-			$num = $i + 1;
-			echo '<p style="margin-left: 25%">Item #' . $num . '</p>';
-			
-			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-			echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
-			echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';
-			echo'<tr><td>' . 'ISBN: ' . $results[$i]['ISBN'] . '</td></tr>';
-			echo'<tr><td>' . 'Item: ' . $results[$i]['Item_Type'] . '</td></tr>';
-			echo'<tr><td>' . 'Publication info: ' . $results[$i]['Publication_Info'] . '</td></tr>';
-			echo'<tr><td>' . 'Year released: ' . $results[$i]['Year_of_Release'] . '</td></tr>';
-			echo'<tr><td>' . 'General Audience: ' . $results[$i]['General_Audience'] . '</td></tr>';
-			echo'<tr><td>' . 'Summary: ' . $results[$i]['Summary'] . '</td></tr>';
-			echo'<tr><td>' . 'Col No: ' . $results[$i]['Col_No'] . '</td></tr>';
-			echo'<tr><td>' . 'Price: $' . $results[$i]['Price'] . '</td></tr>';
-			echo'<tr><td>' . 'Location: ' . $results[$i]['Location'] . '</td></tr>';
-			echo'<tr><td>' . 'Status: ' . $results[$i]['Status'] . '</td></tr>';
-			echo '</table><br>';
-		}		
+		echo '<p style="margin-left: 25%">Item #1</p>';
+		
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
+		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
+		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
+		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
+		echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
+		echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
+		echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
+		echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
+		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
+		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
+		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
+		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
+		echo '</table><br>';
+	}		
 
-		$_SESSION['checkout2'] = $results[0]['Item_Name'];
-	}
+	$_SESSION['checkout2'] = $results['Item_Name'];
 	
 	if(sizeof($results) == 0) {
 		echo '<div style="margin-bottom: 21%"></div>';
@@ -120,7 +117,7 @@
 ?>
 
 <form action='checkout.php' method='post'>
-	<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results[0]['Status'] == 'Out') {echo 'disabled';} ?>></input>
+	<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= 3) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['Status'] == 'Out') {echo 'disabled';} ?>></input>
 </form>
 
 <form action='checkout.php' method='post' style='display: inline'>

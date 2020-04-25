@@ -26,7 +26,7 @@ to addUser.php so that it can be added to the library database.
 		echo '<input type="text" name="fname" placeholder="Full Name" size="32" pattern="^(\w\w+)\s(\w+)$" required></input><br><br>';
 		
 		echo '<label>Phone Number:</label><br>';
-		echo "<input type='tel' name='pNum' placeholder='111-222-3333' size='32' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' maxlength='12' required></input><br><br><br>";
+		echo '<input type="tel" name="pNum" placeholder="111-222-3333" size="32" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="12" required></input><br><br><br>';
 		
 		echo '<label style="margin-left: 10%">Profile Picture (Optional):&nbsp;</label>';
 		echo '<input type = "file" name="InternPhoto" autocomplete="off"><br>';

@@ -1,10 +1,10 @@
 <?php 
-include("body.htm");
-echo '<title>Advanced Search | HWL</title>';
-session_start();
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-	echo '<script>window.addEventListener(onload, switchNav())</script>';
-}
+	include("body.htm");
+	echo '<title>Advanced Search | HWL</title>';
+	session_start();
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		echo '<script>window.addEventListener(onload, switchNav())</script>';
+	}
 ?>
 
 <center><h3>Advanced Search</h3>

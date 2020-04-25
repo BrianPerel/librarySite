@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include("body.htm");
+	include('body.htm');
 	echo '<title>My Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="90; url=expireSession.php">';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');	
@@ -30,7 +30,7 @@
 	}
 ?>
 
-<br><center><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='200' alt='profile picture'/></center>
+<br><center><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/></center>
 
 <?php 
 	if($_SESSION['loggedin'] == true) { 
@@ -58,15 +58,15 @@
 			$currentDate = date('m/d/Y'); 
 		
 			if($currentDate > $date_due) {				
-					$sql = $con -> query("SELECT fines_fees FROM useraccounts WHERE username = '$_SESSION[username]'");
-					$fees = $sql -> fetch(PDO::FETCH_ASSOC);
-					$fee = $fees['fines_fees'];
-					if($fee == 4.50) {
-						$fee += 0;
-					} else {
+				$sql = $con -> query("SELECT fines_fees FROM useraccounts WHERE username = '$_SESSION[username]'");
+				$fees = $sql -> fetch(PDO::FETCH_ASSOC);
+				$fee = $fees['fines_fees'];
+				if($fee == 4.50) {
+					$fee += 0;
+				} else {
 					$fee += 4.50;
-					}
-					$sql = $con -> query("UPDATE useraccounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
+				}
+				$sql = $con -> query("UPDATE useraccounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
 			}
 		}
 					

@@ -67,7 +67,7 @@ PRIMARY KEY (itemID)
 );
 
 INSERT INTO `itemsout` (`item_Name`, `item_Holder`, `checkout_Date`, `days_Out`, `due_Date`, `renewed`) VALUES 
-('Calisthenics Beasts', 'bperel', '04/10/20', '14', '04/17/20', 'No'
+('Calisthenics Beasts', 'user1', '04/10/20', '14', '04/17/20', 'No'
 );
 
 
@@ -90,4 +90,4 @@ PRIMARY KEY (userID)
 
 -- Dumping data for table 'useraccounts'
 INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `requested_itemName`, `messages`, `fines_fees`) VALUES
-('bperel', 'brianperel@comcast.net', 'Toyota1999', 'Brian Perel', '508-215-7296', '1', '0', '0', '0', '0.00');
+('user1', 'user1@yahoo.com', 'user1', 'Brad Pitt', '768-324-4564', '1', '0', '0', '0', '0.00');

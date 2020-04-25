@@ -5,11 +5,8 @@
 	if($_SESSION['loggedin'] == true && $_POST['checkout2']) {
 		# update status of item we're checking out 
 		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
-		# PDO query statement 
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");
-		# PDO fetch statement ($items_Requested is an object)
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC);
-		# Access $items_Out object 'items_Out' attribute and assign to a regular variable 
 		$out = $items_Out1['items_Out'];
 		$out++;
 		$sql = $con -> query("UPDATE useraccounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
@@ -34,11 +31,8 @@
 	else if($_SESSION['loggedin'] == true && $_POST['checkout2'] && $_SESSION['pageSentFrom'] == 'advSearch') {
 		# update status of item we're checking out 
 		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
-		# PDO query statement 
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");
-		# PDO fetch statement ($items_Requested is an object)
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC);
-		# Access $items_Out object 'items_Out' attribute and assign to a regular variable 
 		$out = $items_Out1['items_Out'];
 		$out++;
 		$sql = $con -> query("UPDATE useraccounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
@@ -49,11 +43,8 @@
 	}
 	
 	else if($_SESSION['loggedin'] == true && $_POST['request']) {
-		# PDO query statement 
 		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
-		# PDO fetch statement ($items_Requested is an object)
 		$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
-		# Access $items_Requested object 'items_Requested' attribute and assign to a regular variable 
 		$requests = $items_Requested['items_Requested'];
 		$requests++;
 		$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
@@ -62,11 +53,8 @@
 	}
 	
 	else if($_SESSION['loggedin'] == true && $_POST['request'] && $_SESSION['pageSentFrom'] == 'advSearch') {
-		# PDO query statement 
 		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
-		# PDO fetch statement ($items_Requested is an object)
 		$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
-		# Access $items_Requested object 'items_Requested' attribute and assign to a regular variable 
 		$requests = $items_Requested['items_Requested'];
 		$requests++;
 		$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
