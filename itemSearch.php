@@ -61,7 +61,7 @@
 	if(sizeof($results) > 0) {
 		$photo = $results['photo'];
 	}
-	
+
 	echo '<h2 align=center>Search results 1 for: \'' . $_POST['item_name'] . '\' </h2>';
 ?>
 	
@@ -156,9 +156,9 @@
 				echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 			}
 			
-			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
-			$item = $sql -> fetchAll(PDO::FETCH_ASSOC); 
-			if($item > 1) {
+			$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");
+			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
+			if($item['items_Out'] > 1) {
 				echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";
 			}
 		echo "</form>";

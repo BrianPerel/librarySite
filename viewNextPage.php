@@ -58,7 +58,6 @@
 	
 	echo "<form action='check-in.php' method='post'>";
 		echo "<center><input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
-		
 		$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 		$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 		$renewed = $item['renewed'];

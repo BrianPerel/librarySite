@@ -34,10 +34,12 @@
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
 	$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	
+
+	
 	if(sizeof($results) > 0) {
 		$photo = $results['photo'];
 	}
-
+	
 	echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
 ?>
 		
@@ -65,10 +67,10 @@
 			echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
 			echo'<tr><td>' . 'Status: ' . $results['Status'] . '<br></td></tr>';
 			echo '</table><br>';
-		}		
-
+			
 		$_SESSION['checkout2'] = $results['Item_Name'];
 		$_SESSION['searchLetter'] = substr($results['Item_Name'], 0, 1);
+	}
 ?>
 
 <form action='letterCheckout.php' method='post'>

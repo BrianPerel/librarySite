@@ -7,9 +7,10 @@
 
 	$_SESSION['var']--;
 	$sth = $con->prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
-	$sth->execute();
-	$smallest = $sth->fetchColumn();
+	$sth -> execute();
+	$smallest = $sth -> fetchColumn();
 	$smallest += $_SESSION['var'];
+	$_SESSION['smallest'] = $smallest;
 	
 	$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 	$results = $sql -> fetch(PDO::FETCH_ASSOC);
