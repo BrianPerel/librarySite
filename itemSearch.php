@@ -4,6 +4,14 @@
 	echo '<title>Search | HWL</title>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
+	if(isset($_SESSION['requestViewNext'])) {
+		$_SESSION['requestViewNext'] = '';
+	}
+	
+	if(isset($_SESSION['requestViewPrevious'])) {
+		$_SESSION['requestViewPrevious'] = '';
+	}
+	
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
@@ -32,15 +40,15 @@
 	
 	if(isset($_GET['check_items_out'])) {
 		$sth = $con->prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
-		$sth->execute();
-		$smallest = $sth->fetchColumn();
+		$sth -> execute();
+		$smallest = $sth -> fetchColumn();
 		$_SESSION['smallest'] = $smallest; 
 		$_SESSION['smallestNum'] = $smallest; 
 		$_SESSION['var'] = 0;
 		
-		$sth = $con->prepare("SELECT max(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
-		$sth->execute();
-		$largest = $sth->fetchColumn();
+		$sth = $con -> prepare("SELECT max(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+		$sth -> execute();
+		$largest = $sth -> fetchColumn();
 		$_SESSION['largestNum'] = $largest; 
 		
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
@@ -49,10 +57,21 @@
 	}
 	
 	if(isset($_GET['check_items_requested'])) {
-		$sql = $con -> query("SELECT requested_itemName FROM useraccounts WHERE username = '$_SESSION[username]'");
+		$sth = $con -> prepare("SELECT min(itemID) FROM itemsreq WHERE requester = '$_SESSION[username]'");
+		$sth -> execute();
+		$smallest = $sth -> fetchColumn();
+		$_SESSION['smallestReq'] = $smallest; 
+		$_SESSION['smallestNumReq'] = $smallest; 
+		$_SESSION['varR'] = 0;
+		
+		$sth = $con -> prepare("SELECT max(itemID) FROM itemsreq WHERE requester = '$_SESSION[username]'");
+		$sth -> execute();
+		$largest = $sth -> fetchColumn();
+		$_SESSION['largestNumReq'] = $largest; 
+		
+		$sql = $con -> query("SELECT item_Name FROM itemsreq WHERE requester = '$_SESSION[username]' AND itemID = '$_SESSION[smallestReq]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_POST['item_name'] = $results['requested_itemName']; 
-		$_SESSION['flag'] = true;
+		$_POST['item_name'] = $results['item_Name']; 
 	}
 	
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
@@ -68,6 +87,8 @@
 <br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
 	
 <?php 
+	$_SESSION['res'] = 'No';
+
 	if(sizeof($results) == 0) {
 		echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
 	}
@@ -75,7 +96,6 @@
 	if(isset($_GET['check_items_out'])) {
 		$_SESSION['itemN'] = 1;
 		echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
-		$_SESSION['itemN']++;
 		
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
 		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
@@ -102,9 +122,13 @@
 		echo '</table><br>';
 		
 		$_SESSION['checkout2'] = $results['Item_Name'];
+		$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
+		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
+		$_SESSION['res'] = $results3['Requested'];
 	}		
 	
-	else if(sizeof($results) > 0) {
+	else if(isset($_GET['check_items_requested'])) {
+		$_SESSION['itemN'] = 1;
 		echo '<p style="margin-left: 25%">Item #1</p>';
 		
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
@@ -121,9 +145,33 @@
 		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
 		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
 		echo '</table><br>';
+		
+		$_SESSION['checkout2'] = $results['Item_Name'];
+		$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
+		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
+		$_SESSION['res'] = $results3['Requested'];
 	}		
-
-	$_SESSION['checkout2'] = $results['Item_Name'];
+	
+	else {
+		echo '<p style="margin-left: 25%">Item #1</p>';
+		
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
+		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
+		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
+		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
+		echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
+		echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
+		echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
+		echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
+		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
+		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
+		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
+		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
+		echo '</table><br>';
+		
+		$_SESSION['checkout2'] = $results['Item_Name'];
+	}
 	
 	if(sizeof($results) == 0) {
 		echo '<div style="margin-bottom: 21%"></div>';
@@ -135,19 +183,25 @@
 </form>
 
 <form action='checkout.php' method='post' style='display: inline'>
-	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0) {echo 'disabled';} else if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';}?>></input>	
+	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes') {echo 'disabled';} else if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';}?>></input>	
 </form>
 
 <?php
 	if(isset($_GET['check_items_requested'])) {
 		echo '<form action="cancelRequest.php" method="post" style="display: inline">';
-			echo "<input name='cancel' type='submit' value='Cancel Request'></input></center>";
+			echo "<input name='cancel' type='submit' value='Cancel Request' style='display: inline; margin-left: 1%; margin-right: 1.5%'></input>";
+			
+			$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
+			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
+			if($item['items_Requested'] > 1) {
+				echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input>";
+			}
 		echo '</form>';
 	}
 
 	if(isset($_GET['check_items_out'])) {
 		echo "<form action='check-in.php' method='post'>";
-			echo "<center><input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
+			echo "<input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
 			
 			$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
@@ -159,10 +213,11 @@
 			$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 			if($item['items_Out'] > 1) {
-				echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";
+				echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input>";
 			}
 		echo "</form>";
 	}
+	echo '</center>';
 	echo '<div style="margin-bottom: 4%"></div>';
 	include("footer.htm");
 ?>

@@ -34,13 +34,20 @@
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
 	$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	
-
+	$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 	
-	if(sizeof($results) > 0) {
+		
+	if($results2 == 0) {
+		$photo = '';
+		echo '<h2 align=center>Search results 0 for: \'' . $SearchLetter . '\' </h2>';
+		$results = array();
+	}
+		
+	else if(sizeof($results) > 0) {
 		$photo = $results['photo'];
+		echo '<h2 align=center>Search results 1 for: \'' . $SearchLetter . '\' </h2>';
 	}
 	
-	echo '<h2 align=center>Search results ' . sizeof($results) . '  for: \'' . $SearchLetter . '\' </h2>';
 ?>
 		
 <center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
@@ -65,12 +72,16 @@
 			echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
 			echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
 			echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
+			echo'<tr><td>' . 'Requested: ' . $results['Requested'] . '</td></tr>';
 			echo'<tr><td>' . 'Status: ' . $results['Status'] . '<br></td></tr>';
 			echo '</table><br>';
 			
 		$_SESSION['checkout2'] = $results['Item_Name'];
 		$_SESSION['searchLetter'] = substr($results['Item_Name'], 0, 1);
 	}
+	
+	$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
+	$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
 ?>
 
 <form action='letterCheckout.php' method='post'>
@@ -78,7 +89,7 @@
 </form> 
 
 <form action='letterCheckout.php' method='post' style='display: inline'>
-	<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z') {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
+	<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes') {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 
 
 <?php 
