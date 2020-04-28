@@ -7,7 +7,7 @@ CREATE DATABASE librarysite;
 USE librarysite;
 
 -- Table structure for table 'admin'
-CREATE TABLE `admin` (
+CREATE TABLE `adminaccount` (
 `userID` int(10) NOT NULL AUTO_INCREMENT COMMENT 'User ID #', 
 `username` varchar(30) NOT NULL,
 `email` varchar(30) NOT NULL,
@@ -20,7 +20,7 @@ PRIMARY KEY (userID)
 );
 
 -- Dumping data for table 'admin'
-INSERT INTO `admin` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `messages`) VALUES 
+INSERT INTO `adminaccount` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `messages`) VALUES 
 ('Mr. X', 'mrx@yahoo.com', 'Boss11', 'Brian Perel', '456-234-7686', '0');
 
 -- Table structure for table 'items'
