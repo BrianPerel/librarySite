@@ -57,7 +57,7 @@
 		echo $e -> getMessage();		
 	}
 	
-	$sql = $con -> query("UPDATE admin SET admin_Profile_Photo = '$imgLink' WHERE username = 'Mr. X'");
+	$sql = $con -> query("UPDATE adminaccount SET admin_Profile_Photo = '$imgLink' WHERE username = 'Mr. X'");
 
 	
 	# Upload image for item 

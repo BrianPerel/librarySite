@@ -96,4 +96,4 @@ PRIMARY KEY (userID)
 
 -- Dumping data for table 'useraccounts'
 INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `fines_fees`) VALUES
-('user1', 'user1@yahoo.com', 'user1', 'Brad Pitt', '768-324-4564', '0', '0', '0', '0.00');
+('user1', 'user1@yahoo.com', 'user1', 'Brad Pitt', '768-324-4564', '1', '0', '0', '0.00');

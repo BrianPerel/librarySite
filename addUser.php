@@ -27,38 +27,18 @@
 			die;
 		}
 		
-			if(($_FILES['InternPhoto']['name']) == '') {
-				try {
-					echo 'smile';
-					$img = 'images/default-profile.png';
-					$filename = $img['tmp_name']; # access tmp file from server 
-					$openimg = fopen($filename, "r"); # open file in read mode 
-					$data = fread($openimg, filesize($filename2)); # read content of file and its size to variable data 
-					$pvars = array("image" => base64_encode($data)); #this array is the POST data for the curl / base64 encoding lets you read data like image pixels correctly across the server without corruption of data
-					$icurl = curl_init(); # begin curl cmd 
-
-					# using imagebb API key 
-					curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site 
+		//	if(($_FILES['InternPhoto']['tmp_name']) == '') {
+			if($_FILES['InternPhoto']['size'] == 0) {	
+			
+				$_POST['username'] = trim($_POST['username']);
+				$_POST['email'] = trim($_POST['email']);
+				$_POST['password'] = trim($_POST['password']);
 				
-					curl_setopt($icurl, CURLOPT_HEADER, false);
-					curl_setopt($icurl, CURLOPT_POST, true);
-					curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
-					$upload = curl_exec($icurl); 
-					curl_close($icurl); # close curl cmd 
-					$imgJSON = json_decode($upload);
-					$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 	
-				}	
-				catch(Exception $e) {
-					echo $e -> getMessage();		
-				}					
-			
-			$_POST['username'] = trim($_POST['username']);
-			$_POST['email'] = trim($_POST['email']);
-			$_POST['password'] = trim($_POST['password']);
-			
-			$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
-			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
+				$imgLink = "images/default-picture.png";
+				
+				$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
+				VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
+				
 		} else {
 			# upload photo to db user account. Curl allows us to send requests to a server 
 			try {

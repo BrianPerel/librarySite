@@ -6,13 +6,13 @@
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 
 	if($_SESSION['adminloggedin'] == true) {
-		$sql = $con -> query("SELECT * FROM admin WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$adminPhoto = $results['admin_Profile_Photo'];
 	}
 	
 	else if($_SESSION['adminloggedin'] == false) {
-		$sql = $con -> query("SELECT * FROM admin WHERE username = '$_POST[username]'");
+		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_POST[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$adminPhoto = $results['admin_Profile_Photo'];
 		

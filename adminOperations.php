@@ -3,7 +3,32 @@
 	include("body.htm");
 	echo '<title>Admin Account | HWL</title>';
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+	/*
+	?>
+	
+<p id="demo"></p>
 
+<script>
+var obj, dbParam, xmlhttp, myObj, x, txt = "blah";
+obj = { "table":"items", "Item_Name":"blah"};
+dbParam = JSON.stringify(obj);
+xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    myObj = JSON.parse(this.responseText);
+    for (x in myObj) {
+      txt += myObj[x].name + "<br>";
+    }
+    document.getElementById("demo").innerHTML = txt;
+  }
+};
+xmlhttp.open("POST", "deleteItem.php", true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("x=" + dbParam);
+</script>
+	
+	<?php
+*/
 	if(isset($_POST['deleteItem'])) {
 		echo '<center><h3>Delete item from library database</h3>';
 		

@@ -9,6 +9,7 @@
 	}
 ?>
 
+
 <div class="class3">		
 	<center><form class="example" action="itemSearch.php" method = "post" style="margin:auto;max-width:375px">
 		<input autofocus type="text" placeholder="Search the library's catalog..." name="item_name" autocomplete='off' required style='width: 300px; height: 38.2px'></input>
