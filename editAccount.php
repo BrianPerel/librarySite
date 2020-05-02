@@ -1,7 +1,6 @@
 <?php 
 	session_start();
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
-	
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	if($_POST['password'] != null) {
@@ -19,7 +18,6 @@
 	if($_POST['photo'] != null) {
 		try {
 			$image = 'images/' . $_POST['photo'];
-			
 			$openimg = fopen($image, "r"); # open file in read mode 
 			$data = fread($openimg, filesize($image)); # read content of file and its size to variable data 
 			$pvars = array("image" => base64_encode($data));
@@ -47,9 +45,7 @@
 	if($_POST['password'] == null && $_POST['email'] == null && $_POST['phone_number'] == null && $_POST['photo'] == null) {
 		$message = urlencode("<p style='color: red'>No information was given to change, please enter new information</p>");
 		header("Location: editPersonalInfo.php?changed=" . $message);
-	}
-	
-	else {
+	} else {
 		$message = urlencode("<p>Your account information has been updated</p>");
 		header("Location: editPersonalInfo.php?changed=" . $message);
 	}

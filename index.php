@@ -2,13 +2,11 @@
 	include("body.htm");
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
-
 	session_start();
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 ?>
-
 
 <div class="class3">		
 	<center><form class="example" action="itemSearch.php" method = "post" style="margin:auto;max-width:375px">

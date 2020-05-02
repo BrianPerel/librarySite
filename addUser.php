@@ -8,8 +8,7 @@
 		
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
 	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
-	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[pNum]'");
-	
+	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[pNum]'");	
 
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
@@ -27,22 +26,38 @@
 			die;
 		}
 		
-		//	if(($_FILES['InternPhoto']['tmp_name']) == '') {
-			if($_FILES['InternPhoto']['size'] == 0) {	
+		if($_FILES['InternPhoto']['size'] == 0) {	echo 'a';
+		
+			$_POST['username'] = trim($_POST['username']);
+			$_POST['email'] = trim($_POST['email']);
+			$_POST['password'] = trim($_POST['password']);
 			
-				$_POST['username'] = trim($_POST['username']);
-				$_POST['email'] = trim($_POST['email']);
-				$_POST['password'] = trim($_POST['password']);
+			$imgLink = "images/default-picture.png";
+			
+			$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
+			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
+	/*	
+		// taking php data and encoding into json data as we store data into json object. Create the json object 
+		$json = json_encode(array('username' => $_POST['username'], 
+									  'email' => $_POST['email'],
+									  'password' => $_POST['password'],
+									  'full_Name' => $fname,
+									  'phone_Number' => $_POST['pNum'],
+									  'item_Out' => '0',
+									  'items_Requested' => '0',
+									  'messages' => '0',
+									  'profile_Photo' => '$imgLink')); 
+									  
+//		$dec_json = json_decode($json); // decode 
+	//	echo $dec_json -> email; 	
+
+		$sql = $con -> query("INSERT INTO useraccounts $json");
+
+		*/
 				
-				$imgLink = "images/default-picture.png";
-				
-				$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
-				VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
-				
-		} else {
+		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
 			try {
-				echo 'sadf';
 				$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
 				$filename = $img['tmp_name']; # access $img object attribute need variable name used 
 				$openimg = fopen($filename, "r"); # open file in read mode 
@@ -65,13 +80,30 @@
 			catch(Exception $e) {
 				echo $e -> getMessage();		
 			}
-			
 			$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
 			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
+		/*	
+			// using JSON object to insert data into new record in useraccounts table 
+			$json = json_encode(array('username' => $_POST['username'], 
+									  'email' => $_POST['email'],
+									  'password' => $_POST['password'],
+									  'full_Name' => $fname,
+									  'phone_Number' => $_POST['pNum'],
+									  'item_Out' => '0',
+									  'items_Requested' => '0',
+									  'messages' => '0',
+									  'profile_Photo' => '$imgLink'));
+									  
+//	$dec_json = json_decode($json); // decode 
+//	echo $dec_json -> email; 
+
+*/
 		}
 	}
 	
 	echo "<center><h4 style='margin-bottom: 31%'>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
 	echo "<a href='signIn.php' ><u>Sign in here</u></a></h4></center>";
+	
+
 	include("footer.htm");
 ?>

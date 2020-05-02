@@ -20,9 +20,7 @@
 			
 			$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		}
-		
-		else {
+		} else {
 			$_SESSION['var']++;
 			$sth = $con -> prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 			$sth -> execute();
@@ -56,7 +54,6 @@
 	}
 	
 	$photo = $results['photo'];
-		
 	echo '<h2 align=center>Search results 1 for: \'' . $_POST['item_name'] . '\' </h2>';
 ?>
 
@@ -67,7 +64,6 @@
 		if($_SESSION['requestViewNext'] == 'req') {
 			$_SESSION['itemN']++;
 			echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
-				
 			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
 			echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 			echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
@@ -94,25 +90,21 @@
 				$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
 				$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 				if($item['items_Requested'] > 1) {
-				//	if(isset($_SESSION['smallestReq']) && isset($_SESSION['smallestNumReq'])) {
 						if($_SESSION['smallestReq'] != $_SESSION['smallestNumReq']) {
 							echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
 						}
-				//	}
 					
-			//		if(isset($_SESSION['smallestReq']) && isset($_SESSION['largestNumReq'])) {
 						if($_SESSION['smallestReq'] != $_SESSION['largestNumReq']) {
 							echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";			
 						}
-			//		}
 				}
+				
 			echo '</form>';
 		}
 		
 		else {
 			$_SESSION['itemN']++;
 			echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
-				
 			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
 			echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 			echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
@@ -166,7 +158,6 @@
 	else {
 		$_SESSION['itemN']++;
 		echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
-			
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
 		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';

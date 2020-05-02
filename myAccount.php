@@ -2,7 +2,7 @@
 	session_start();
 	include('body.htm');
 	echo '<title>My Account | HWL</title>';
-	echo '<meta http-equiv="refresh" content="90; url=expireSession.php">';
+	echo '<meta http-equiv="refresh" content="10; url=logout.php?expire">';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');	
 			
 	if($_SESSION['loggedin'] == true) {
@@ -17,6 +17,7 @@
 		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'");
 		$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 		
+		# need loop to check sign in info sent compared to every useraccount row until match is found 
 		for($i = 0; $i < sizeof($results); $i++) {
 			if($results[$i]['username'] == $_POST['username'] && $results[$i]['password'] == $_POST['password']) {
 				$_SESSION['loggedin'] = true;
@@ -34,7 +35,6 @@
 
 <?php 
 	if($_SESSION['loggedin'] == true) { 
-		
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 		if($_SESSION['outCheck'] > 0) {
@@ -54,7 +54,6 @@
 			$sql = $con -> query("SELECT due_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 			$Due = $sql -> fetch(PDO::FETCH_ASSOC);
 			$date_due = $Due['due_Date'];
-			
 			$currentDate = date('m/d/Y'); 
 		
 			if($currentDate > $date_due) {				
@@ -70,7 +69,6 @@
 			}
 		}
 					
-	
 		$_SESSION['items_out'] = $_SESSION['outCheck'];
 		$_SESSION['items_requested'] = $_SESSION['requested'];
 		
@@ -87,12 +85,12 @@
 			
 		echo "<div style='margin-bottom: 6%'></div>
 		<form action='editPersonalInfo.php' method='post'>
-		<button style='float: right; height: 35px'>Edit Personal Information</button><br>
+			<button style='float: right; height: 35px'>Edit Personal Information</button><br>
 		</form>"; 
 	}
 	
+	# re-direct back to sign in page 
 	else if($_SESSION['loggedin'] == false) {
-		# re-direct back to sign in page 
 		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
 		header("location: signIn.php?message=" . $invalidLogin);
 	}

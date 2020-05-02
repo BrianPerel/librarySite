@@ -2,8 +2,6 @@
 	include("body.htm");
 	echo '<title>Sign in | HWL</title>';
 	echo '<meta http-equiv="refresh" content="120; url=expireSession.php">';
-	session_start();
-	
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 ?>
 

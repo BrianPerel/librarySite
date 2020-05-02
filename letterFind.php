@@ -33,9 +33,7 @@
 
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
 	$results = $sql -> fetch(PDO::FETCH_ASSOC);
-	
 	$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
-	
 		
 	if($results2 == 0) {
 		$photo = '';
@@ -58,23 +56,23 @@
 	}
 	
 	else if(sizeof($results) > 0) {
-			echo '<center><p style="margin-right: 45%">Item #1</p></center>';
-			
-			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-			echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
-			echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
-			echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
-			echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
-			echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
-			echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
-			echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
-			echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
-			echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
-			echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
-			echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
-			echo'<tr><td>' . 'Requested: ' . $results['Requested'] . '</td></tr>';
-			echo'<tr><td>' . 'Status: ' . $results['Status'] . '<br></td></tr>';
-			echo '</table><br>';
+		echo '<center><p style="margin-right: 45%">Item #1</p></center>';
+		
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
+		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
+		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
+		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
+		echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
+		echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
+		echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
+		echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
+		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
+		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
+		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
+		echo'<tr><td>' . 'Requested: ' . $results['Requested'] . '</td></tr>';
+		echo'<tr><td>' . 'Status: ' . $results['Status'] . '<br></td></tr>';
+		echo '</table><br>';
 			
 		$_SESSION['checkout2'] = $results['Item_Name'];
 		$_SESSION['searchLetter'] = substr($results['Item_Name'], 0, 1);

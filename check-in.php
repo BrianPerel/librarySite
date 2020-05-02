@@ -2,10 +2,7 @@
 	session_start();
 	include("body.htm");
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
-	
-	if($_SESSION['loggedin'] == true) {
-		echo '<script>window.addEventListener(onload, switchNav())</script>';
-	}
+	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	# check in action 
 	if(isset($_POST['checkIn'])) {
@@ -13,7 +10,6 @@
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC); 
 		$out = $items_Out1['items_Out'];
 		$out--;
-		
 		$sql = $con -> query("UPDATE useraccounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("SELECT item_Name FROM itemsout WHERE item_Holder = '$_SESSION[username]'"); # retrieve current number of items out 
 		$items = $sql -> fetch(PDO::FETCH_ASSOC);

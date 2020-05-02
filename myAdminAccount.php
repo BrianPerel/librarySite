@@ -2,7 +2,7 @@
 	session_start();
 	include("body.htm");
 	echo '<title>Admin Account | HWL</title>';
-	echo '<meta http-equiv="refresh" content="60; url=adminExpireSession.php">';
+	echo '<meta http-equiv="refresh" content="60; url=logoutAdmin.php?expire">';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 
 	if($_SESSION['adminloggedin'] == true) {
@@ -27,9 +27,7 @@
 	
 <?php 
 	if($_SESSION['adminloggedin'] == true) {
-		
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
-		
 		echo '<div style="text-align: center">';
 			echo '<br>Login successful<br> Welcome back, ' . $results['fullName'] . '<br>';
 			echo 'Administrator<br>';
@@ -42,8 +40,8 @@
 		echo '</div>';
 	}
 	
+	# re-direct back to sign in page 
 	else if($_SESSION['adminloggedin'] == false) {
-		# re-direct back to sign in page 
 		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
 		header("location: adminLogin.php?message1=" . $invalidLogin);
 	}
