@@ -7,9 +7,7 @@
 	
 	if(sizeof($results) != 0) {
 		$message = '<p style="color: red">Item \'' . $item . '\' With The Same Name Already Exists In Database, Could Not Add</p>';
-	}
-	
-	else {
+	} else {
 		$sql = $con -> query("INSERT INTO items (Item_Name, Author, ISBN, Publication_Info, Year_of_Release, General_Audience, Summary, Item_Type, Col_No, Status, Location, Price, photo) 
 		VALUES ('$_REQUEST[item_name]', '$_REQUEST[author]', '$_REQUEST[ISBN]', '$_REQUEST[pub_info]', '$_REQUEST[year_released]', '$_REQUEST[gen_aud]', '$_REQUEST[summary]', '$_REQUEST[item_type]', '$_REQUEST[col_no]', 'Available', 'Framingham State University', '$_REQUEST[price]', '')");
 

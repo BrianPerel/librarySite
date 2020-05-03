@@ -10,7 +10,7 @@
 			$requests--;
 			$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
 			$sql = $con -> query("UPDATE items SET Requested = 'No' WHERE Item_Name = '$_SESSION[checkout2]'");
-			$sql = $con -> query("DELETE FROM itemsreq WHERE requester = '$_SESSION[username]' AND itemID = '$_SESSION[smallestReq]'");
+			$sql = $con -> query("DELETE FROM itemsreq WHERE requester = '$_SESSION[username]' AND Item_Name = '$_SESSION[checkout2]'");
 			header('Location: myAccount.php');
 		}
 	}

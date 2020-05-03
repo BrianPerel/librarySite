@@ -2,7 +2,7 @@
 	session_start();
 	include('body.htm');
 	echo '<title>My Account | HWL</title>';
-	echo '<meta http-equiv="refresh" content="10; url=logout.php?expire">';
+	echo '<meta http-equiv="refresh" content="60; url=logout.php?expire">';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');	
 			
 	if($_SESSION['loggedin'] == true) {
@@ -37,8 +37,10 @@
 	if($_SESSION['loggedin'] == true) { 
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
+		# enter condition if user has more than 1 item out 
 		if($_SESSION['outCheck'] > 0) {
 			# update days out on every login 
+			date_default_timezone_set('America/New_York');
 			$sql = $con -> query("SELECT checkout_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 			$date = $sql -> fetch(PDO::FETCH_ASSOC); 
 			$date_out = $date['checkout_Date']; 
@@ -46,7 +48,7 @@
 			$current_date = date("d");				
 			$day_out = intval($day_out);
 			$current_date = intval($current_date);
-			$days_out = $current_date - $day_out;
+			$days_out = $current_date - $day_out; 
 			$days_Out = strval($days_out);
 			$sql = $con -> query("UPDATE itemsout SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]'");
 			

@@ -57,7 +57,6 @@
 		for($i = 0; $i < sizeof($results); $i++) {
 			$num = $i + 1;
 			echo '<p style="margin-left: 25%">Item #' . $num . '</p>';
-			
 			echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
 			echo'<tr><td>' . 'Title: ' . $results[$i]['Item_Name'] . '</td></tr>';
 			echo'<tr><td>' . 'Author: ' . $results[$i]['Author'] . '</td></tr>';

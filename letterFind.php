@@ -76,10 +76,12 @@
 			
 		$_SESSION['checkout2'] = $results['Item_Name'];
 		$_SESSION['searchLetter'] = substr($results['Item_Name'], 0, 1);
+		
+		$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
+		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
 	}
 	
-	$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
-	$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
+	
 ?>
 
 <form action='letterCheckout.php' method='post'>
