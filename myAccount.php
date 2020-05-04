@@ -29,7 +29,7 @@
 			}
 		}
 	}
-?>
+?> 
 
 <br><center><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/></center>
 
@@ -39,35 +39,48 @@
 	
 		# enter condition if user has more than 1 item out 
 		if($_SESSION['outCheck'] > 0) {
-			# update days out on every login 
-			date_default_timezone_set('America/New_York');
-			$sql = $con -> query("SELECT checkout_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
-			$date = $sql -> fetch(PDO::FETCH_ASSOC); 
-			$date_out = $date['checkout_Date']; 
-			$day_out = $date_out[3] . $date_out[4]; 
-			$current_date = date("d");				
-			$day_out = intval($day_out);
-			$current_date = intval($current_date);
-			$days_out = $current_date - $day_out; 
-			$days_Out = strval($days_out);
-			$sql = $con -> query("UPDATE itemsout SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]'");
+			// get the number of items out 
+			$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");
+			$res = $sql -> fetch(PDO::FETCH_ASSOC); 
+
+			// get the smallest ID num 
+			$sth = $con -> prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+			$sth -> execute();
+			$smallest = $sth -> fetchColumn();
 			
-			# get full due and current dates 
-			$sql = $con -> query("SELECT due_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
-			$Due = $sql -> fetch(PDO::FETCH_ASSOC);
-			$date_due = $Due['due_Date'];
-			$currentDate = date('m/d/Y'); 
-		
-			if($currentDate > $date_due) {				
-				$sql = $con -> query("SELECT fines_fees FROM useraccounts WHERE username = '$_SESSION[username]'");
-				$fees = $sql -> fetch(PDO::FETCH_ASSOC);
-				$fee = $fees['fines_fees'];
-				if($fee == 4.50) {
-					$fee += 0;
-				} else {
-					$fee += 4.50;
+			for($i = 0; $i < $res['items_Out']; $i++) {			
+				# update days out on every login 
+				date_default_timezone_set('America/New_York'); 
+				$sql = $con -> query("SELECT checkout_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
+				$date = $sql -> fetch(PDO::FETCH_ASSOC); 
+				$date_out = $date['checkout_Date']; 
+				$day_out = $date_out[3] . $date_out[4]; 
+				$current_date = date("d");				
+				$day_out = intval($day_out);
+				$current_date = intval($current_date);
+				$days_out = $current_date - $day_out;  
+				$days_Out = strval($days_out);
+				$sql = $con -> query("UPDATE itemsout SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
+				
+				# get full due and current dates 
+				$sql = $con -> query("SELECT due_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+				$Due = $sql -> fetch(PDO::FETCH_ASSOC);
+				$date_due = $Due['due_Date'];
+				$currentDate = date('m/d/Y'); 
+			
+				if($currentDate > $date_due) {				
+					$sql = $con -> query("SELECT fines_fees FROM useraccounts WHERE username = '$_SESSION[username]'");
+					$fees = $sql -> fetch(PDO::FETCH_ASSOC);
+					$fee = $fees['fines_fees'];
+					if($fee == 4.50) {
+						$fee += 0;
+					} else {
+						$fee += 4.50;
+					}
+					$sql = $con -> query("UPDATE useraccounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
 				}
-				$sql = $con -> query("UPDATE useraccounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
+				
+				$smallest++;
 			}
 		}
 					
