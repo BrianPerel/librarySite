@@ -13,12 +13,12 @@ images[0] = "images/inside.jpg";
 images[1] = "images/4.jpg";
 images[2] = "images/fsu.jpg";
 
-/* ---------------------------------------------- */
+/* -- Function for hiding successful logout after a few seconds -- */
 
 function myFunction() { 
 	setTimeout(function(){
 		document.getElementById("logout").style.display = "none"; 
-	}, 1000);
+	}, 1500);
 }
 
 /* -- Function for switching regular user navbar links -- */
@@ -37,6 +37,8 @@ function switchNav() {
 			
 	parent.insertBefore(a, child3);
 }
+
+/* -- Function for switching admin user navbar links -- */ 
 
 function switchNavAdmin() {
 	var parent = document.getElementById("parent"); 

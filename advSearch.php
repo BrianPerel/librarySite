@@ -5,6 +5,10 @@
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
+	
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+	}
 ?>
 
 <center><h3>Advanced Search</h3>
@@ -41,6 +45,4 @@
 
 <div style="margin-top: 5%"></div>
 
-<?php
-	include("footer.htm");
-?>
+<?php include("footer.htm");?>

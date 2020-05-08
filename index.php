@@ -6,6 +6,10 @@
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
+	
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+	}
 ?>
 <div class="class3">		
 	<center><form class="example" action="itemSearch.php" method = "post" style="margin:auto;max-width:375px">
@@ -58,6 +62,4 @@
 <div class="backTop"><center><a href="#top">Back to top</a> &#x2191;</center></div>
 <button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px'><a href='AdminLogin.php'>Admin Login</a></button>
 	
-<?php
-	include("footer.htm");
-?>
+<?php include("footer.htm"); ?>

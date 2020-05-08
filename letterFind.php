@@ -10,6 +10,10 @@
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['num'] = $results['items_Out'];
 	}
+	
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+	}
 
 	# when user check an item out, letterCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
 	if(isset($_GET['send1'])) {
@@ -36,7 +40,7 @@
 	$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		
 	if($results2 == 0) {
-		$photo = '';
+		$photo = null;
 		echo '<h2 align=center>Search results 0 for: \'' . $SearchLetter . '\' </h2>';
 		$results = array();
 	}
@@ -45,7 +49,6 @@
 		$photo = $results['photo'];
 		echo '<h2 align=center>Search results 1 for: \'' . $SearchLetter . '\' </h2>';
 	}
-	
 ?>
 		
 <center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
@@ -80,8 +83,6 @@
 		$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
 		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
 	}
-	
-	
 ?>
 
 <form action='letterCheckout.php' method='post'>
@@ -92,6 +93,4 @@
 	<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes') {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 
 
-<?php 
-	include("footer.htm");
-?>
+<?php include("footer.htm");?>

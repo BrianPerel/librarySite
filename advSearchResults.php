@@ -11,6 +11,10 @@
 		$_SESSION['num'] = $results['items_Out'];
 	}
 	
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+	}
+	
 	if(isset($_GET['send1'])){
 		$post = $_GET['send1'];
 		$_POST['item_name'] = $post;
@@ -32,10 +36,9 @@
 	}		
 	
 	if(!(isset($_GET['send3']))) { 
-	//	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[Title]' OR ISBN = '$_POST[ISBN]' OR Author ='$_POST[Author]'
-	//	AND (Year_of_Release >= '$_POST[yearFrom]' AND Year_of_Release <= '$_POST[yearTo]') AND Item_Type = '$_POST[format]' 
-	//	AND Location = '$_POST[location]'");
-		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[Title]'");
+		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[Title]' OR ISBN = '$_POST[ISBN]' OR Author ='$_POST[Author]'
+		AND (Year_of_Release >= '$_POST[yearFrom]' AND Year_of_Release <= '$_POST[yearTo]') AND Item_Type = '$_POST[format]' 
+		AND Location = '$_POST[location]' LIMIT 1");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	}
 	
@@ -86,8 +89,5 @@
 <input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0) {echo 'disabled';} else if(sizeof($results) > 1) {echo 'hidden';}?>></input></center>
 </form>
 	
-<?php
-	echo '<div style="margin-top: 5%"></div>';
-
-	include("footer.htm");
-?>	
+<?php echo '<div style="margin-top: 5%"></div>'; 
+include("footer.htm");?>	

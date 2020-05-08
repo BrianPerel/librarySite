@@ -54,31 +54,40 @@
 	}
 	
 	$photo = $results['photo'];
-	echo '<h2 align=center>Search results 1 for: \'' . $_POST['item_name'] . '\' </h2>';
-?>
+	
+	echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
+	
+	?>
 
 <br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
 
 <?php 
+	function displayTable() {
+		global $results; 
+		
+		echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
+		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
+		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
+		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
+		echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
+		echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
+		echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
+		echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
+		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
+		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
+		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
+		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
+		echo '</table><br><br>';
+	}
+
 	if(isset($_SESSION['requestViewNext'])) {
 		if($_SESSION['requestViewNext'] == 'req') {
 			$_SESSION['itemN']++;
-			echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
-			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-			echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
-			echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
-			echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
-			echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
-			echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
-			echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
-			echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
-			echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
-			echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
-			echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
-			echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
-			echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
-			echo '</table><br><br>';
-
+						
+			displayTable();
+			
 			echo '<form action="cancelRequest.php" method="post" style="display: inline"><center>';
 			
 				if($results['Status'] == 'Available' && !(isset($_GET['check_items_out'])) && (isset($_SESSION['num']) && $_SESSION['num'] < 3)) {
@@ -90,13 +99,13 @@
 				$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
 				$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 				if($item['items_Requested'] > 1) {
-						if($_SESSION['smallestReq'] != $_SESSION['smallestNumReq']) {
-							echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
-						}
-					
-						if($_SESSION['smallestReq'] != $_SESSION['largestNumReq']) {
-							echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";			
-						}
+					if($_SESSION['smallestReq'] != $_SESSION['smallestNumReq']) {
+						echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
+					}
+				
+					if($_SESSION['smallestReq'] != $_SESSION['largestNumReq']) {
+						echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";			
+					}
 				}
 				
 			echo '</form>';
@@ -104,21 +113,8 @@
 		
 		else {
 			$_SESSION['itemN']++;
-			echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
-			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-			echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
-			echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
-			echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
-			echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
-			echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
-			echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
-			echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
-			echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
-			echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
-			echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
-			echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
-			echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
-			echo '</table><br><br>';
+		
+			displayTable();
 			
 			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 			$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
@@ -157,21 +153,8 @@
 
 	else {
 		$_SESSION['itemN']++;
-		echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
-		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
-		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
-		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
-		echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
-		echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
-		echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
-		echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
-		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
-		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
-		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
-		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
-		echo '</table><br><br>';
+		
+		displayTable();
 		
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);

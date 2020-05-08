@@ -66,7 +66,7 @@
 	
 	else if($_SESSION['loggedin'] == false && $_SESSION['pageSentFrom'] == 'advSearch') {
 		$error = '<p style="color: red">Please sign into your account to check out and request items</p>';
-		header('Location: advSearchItem.php?send3=' . $error);
+		header('Location: itemSearch.php?send3=' . $error);
 	}
 	
 	else {

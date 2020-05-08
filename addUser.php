@@ -16,6 +16,7 @@
 		header("Location: signUp.php?signUpError=" . $err2);
 		die;
 	}
+	
 	# insert data into table if no errors found and info doens't already exist in db 
 	else {
 		if(isset($_POST['g-recaptcha-response'])) $captcha=$_POST['g-recaptcha-response'];
@@ -26,84 +27,41 @@
 			die;
 		}
 		
-		if($_FILES['InternPhoto']['size'] == 0) {	echo 'a';
+		if($_FILES['InternPhoto']['size'] == 0) {	
 		
 			$_POST['username'] = trim($_POST['username']);
 			$_POST['email'] = trim($_POST['email']);
 			$_POST['password'] = trim($_POST['password']);
 			
 			$imgLink = "images/default-picture.png";
-			
-			$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
-			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
-	/*	
-		// taking php data and encoding into json data as we store data into json object. Create the json object 
-		$json = json_encode(array('username' => $_POST['username'], 
-									  'email' => $_POST['email'],
-									  'password' => $_POST['password'],
-									  'full_Name' => $fname,
-									  'phone_Number' => $_POST['pNum'],
-									  'item_Out' => '0',
-									  'items_Requested' => '0',
-									  'messages' => '0',
-									  'profile_Photo' => '$imgLink')); 
-									  
-//		$dec_json = json_decode($json); // decode 
-	//	echo $dec_json -> email; 	
-
-		$sql = $con -> query("INSERT INTO useraccounts $json");
-
-		*/
-				
+	
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
-			try {
-				$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
-				$filename = $img['tmp_name']; # access $img object attribute need variable name used 
-				$openimg = fopen($filename, "r"); # open file in read mode 
-				$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
-				$pvars = array("image" => base64_encode($data)); #this array is the POST data for the curl / base64 encoding lets you read data like image pixels correctly across the server without corruption of data
-				$icurl = curl_init(); # begin curl cmd 
+			$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
+			$filename = $img['tmp_name']; # access $img object attribute need variable name used 
+			$openimg = fopen($filename, "r"); # open file in read mode 
+			$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
+			$pvars = array("image" => base64_encode($data)); #this array is the POST data for the curl / base64 encoding lets you read data like image pixels correctly across the server without corruption of data
+			$icurl = curl_init(); # begin curl cmd 
 
-				# using imagebb API key 
-				curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site 
-			
-				curl_setopt($icurl, CURLOPT_HEADER, false);
-				curl_setopt($icurl, CURLOPT_POST, true);
-				curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
-				$upload = curl_exec($icurl); 
-				curl_close($icurl); # close curl cmd 
-				$imgJSON = json_decode($upload);
-				$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 			
-			}
-			catch(Exception $e) {
-				echo $e -> getMessage();		
-			}
-			$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
-			VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
-		/*	
-			// using JSON object to insert data into new record in useraccounts table 
-			$json = json_encode(array('username' => $_POST['username'], 
-									  'email' => $_POST['email'],
-									  'password' => $_POST['password'],
-									  'full_Name' => $fname,
-									  'phone_Number' => $_POST['pNum'],
-									  'item_Out' => '0',
-									  'items_Requested' => '0',
-									  'messages' => '0',
-									  'profile_Photo' => '$imgLink'));
-									  
-//	$dec_json = json_decode($json); // decode 
-//	echo $dec_json -> email; 
-
-*/
+			# using imagebb API key 
+			curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site 
+		
+			curl_setopt($icurl, CURLOPT_HEADER, false);
+			curl_setopt($icurl, CURLOPT_POST, true);
+			curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
+			$upload = curl_exec($icurl); 
+			curl_close($icurl); # close curl cmd 
+			$imgJSON = json_decode($upload);
+			$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 			
 		}
+		
+		$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
+		VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 	}
 	
 	echo "<center><h4 style='margin-bottom: 31%'>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
 	echo "<a href='signIn.php' ><u>Sign in here</u></a></h4></center>";
-	
-
 	include("footer.htm");
 ?>

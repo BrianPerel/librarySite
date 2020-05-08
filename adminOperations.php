@@ -1,34 +1,8 @@
 <?php 
-	session_start();
 	include("body.htm");
 	echo '<title>Admin Account | HWL</title>';
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
-	/*
-	?>
-	
-<p id="demo"></p>
 
-<script>
-var obj, dbParam, xmlhttp, myObj, x, txt = "blah";
-obj = { "table":"items", "Item_Name":"blah"};
-dbParam = JSON.stringify(obj);
-xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-  if (this.readyState == 4 && this.status == 200) {
-    myObj = JSON.parse(this.responseText);
-    for (x in myObj) {
-      txt += myObj[x].name + "<br>";
-    }
-    document.getElementById("demo").innerHTML = txt;
-  }
-};
-xmlhttp.open("POST", "deleteItem.php", true);
-xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-xmlhttp.send("x=" + dbParam);
-</script>
-	
-	<?php
-*/
 	if(isset($_POST['deleteItem'])) {
 		echo '<center><h3>Delete item from library database</h3>';
 		
@@ -38,7 +12,6 @@ xmlhttp.send("x=" + dbParam);
 		echo "</form>";
 		
 		echo "<div style='margin-bottom: 18%'></div>";
-		
 		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
 	}
 	if(isset($_POST['addItem'])) {
@@ -64,7 +37,7 @@ xmlhttp.send("x=" + dbParam);
 			echo '<input name="gen_aud" type="text" placeholder="Gen. Audience" required></input><br><br>'; 
 						
 			echo '<label>Summary: </label><br>';
-			echo '<input name="summary" type="text" placeholder="Summary" required></input><br><br>'; 
+			echo '<textarea name="summary" type="text" placeholder="Summary" rows="3" cols="30" required></textarea><br><br>'; 
 			
 			echo '<label>Item Type: </label><br>';
 			echo '<input name="item_type" type="text" placeholder="Item Type" required></input><br><br>'; 
@@ -74,6 +47,9 @@ xmlhttp.send("x=" + dbParam);
 			
 			echo '<label>Price: </label><br>';
 			echo '<input name="price" type="text" placeholder="Price ($)" required></input><br><br>'; 
+			
+			echo '<br><label style="margin-left: 5%">Profile Picture (Optional):&nbsp;</label>';
+			echo '<input type = "file" name="bookPhoto" autocomplete="off" style="margin-left: 25%"><br><br><br>';
 
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
 		echo "</form>";
@@ -119,7 +95,7 @@ xmlhttp.send("x=" + dbParam);
 			echo '<input name="gen_aud" type="text" placeholder="Gen. Audience" required></input><br><br>'; 
 						
 			echo '<label>Summary: </label><br>';
-			echo '<input name="summary" type="text" placeholder="Summary" required></input><br><br>'; 
+			echo '<textarea name="summary" type="text" placeholder="Summary" rows="3" cols="30" required></textarea><br><br>'; 
 			
 			echo '<label>Item Type: </label><br>';
 			echo '<input name="item_type" type="text" placeholder="Item Type" required></input><br><br>'; 
@@ -129,6 +105,9 @@ xmlhttp.send("x=" + dbParam);
 			
 			echo '<label>Price: </label><br>';
 			echo '<input name="price" type="text" placeholder="Price ($)" required></input><br><br>'; 
+			
+			echo '<br><label style="margin-left: 5%">Profile Picture (Optional):&nbsp;</label>';
+			echo '<input type = "file" name="bookPhoto" autocomplete="off" style="margin-left: 25%"><br><br><br>';
 
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
 		echo "</form>";
