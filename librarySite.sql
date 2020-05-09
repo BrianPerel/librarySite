@@ -15,7 +15,7 @@ CREATE TABLE `adminaccount` (
 `fullName` varchar(30) NOT NULL,
 `phoneNumber` varchar(12) NOT NULL,
 `messages` int(30),
-`admin_Profile_Photo` text, 
+`admin_Profile_Photo` text DEFAULT 'images/default-admin-pic.png',
 PRIMARY KEY (userID)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE `items` (
 `Location` varchar(30), 
 `Price` decimal(10, 2),
 `Requested` varchar(20), 
-`photo` text DEFAULT NULL,
+`photo` text DEFAULT 'images/default-book-picture.png',
 PRIMARY KEY(itemID)
 );
 
@@ -68,8 +68,7 @@ PRIMARY KEY (itemID)
 );
 
 INSERT INTO `itemsout` (`item_Name`, `item_Holder`, `checkout_Date`, `days_Out`, `due_Date`, `renewed`) VALUES 
-('Calisthenics Beasts', 'user1', '04/10/20', '14', '04/17/20', 'No'
-);
+('Calisthenics Beasts', 'user1', '05/01/20', NULL, '05/08/20', 'No');
 
 CREATE TABLE `itemsreq` (
 `itemID` int(10) NOT NULL AUTO_INCREMENT,

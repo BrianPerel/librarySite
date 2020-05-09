@@ -130,7 +130,7 @@
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-		echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>';
+		echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>'; 
 		echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
 		echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';
 		echo '<tr><td>Renewed: ' . $results2['renewed'] . '</td></tr>';

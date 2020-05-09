@@ -2,7 +2,7 @@
 	session_start();
 	include("body.htm");
 	echo '<title>Admin Account | HWL</title>';
-	echo '<meta http-equiv="refresh" content="60; url=logoutAdmin.php?expire">';
+	echo '<meta http-equiv="refresh" content="90; url=logoutAdmin.php?expire">';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 
 	if($_SESSION['adminloggedin'] == true) {

@@ -2,7 +2,7 @@
 	session_start();
 	include('body.htm');
 	echo '<title>My Account | HWL</title>';
-	echo '<meta http-equiv="refresh" content="60; url=logout.php?expire">';
+	echo '<meta http-equiv="refresh" content="90; url=logout.php?expire">';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');	
 			
 	if($_SESSION['loggedin'] == true) {
@@ -48,7 +48,7 @@
 			$sth -> execute();
 			$smallest = $sth -> fetchColumn();
 			
-			for($i = 0; $i < $res['items_Out']; $i++) {			
+			for($i = 0; $i < $res['items_Out']; $i++) {		
 				# update days out on every login 
 				date_default_timezone_set('America/New_York'); 
 				$sql = $con -> query("SELECT checkout_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
@@ -57,11 +57,10 @@
 				$day_out = $date_out[3] . $date_out[4]; 
 				$current_date = date("d");				
 				$day_out = intval($day_out);
-				$current_date = intval($current_date);
+				$current_date = intval($current_date); 
 				$days_out = $current_date - $day_out;  
-				$days_Out = strval($days_out);
+				$days_Out = strval($days_out); 
 				$sql = $con -> query("UPDATE itemsout SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
-				
 				# get full due and current dates 
 				$sql = $con -> query("SELECT due_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 				$Due = $sql -> fetch(PDO::FETCH_ASSOC);
