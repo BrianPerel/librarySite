@@ -1,18 +1,52 @@
 <?php 
 	include("body.htm");
-	echo '<title>Admin Account | HWL</title>';
+	echo '<title>Admin Operation | HWL</title>';
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+?>
 
-	if(isset($_POST['deleteItem'])) {
-		echo '<center><h3>Delete item from library database</h3>';
+<!-- Ajax Script = used to drop items from db without reloading page dynamically --> 
+<script>
+function post() {
+	var request = new XMLHttpRequest(); 
+	request.open("POST", "deleteItem.php", true); 
+	request.onreadystatechange = function() {
+		if(this.readyState === 4 && this.status === 200) {
+			document.write(this.responseText);
+		}
+	};
+
+	var myForm = document.getElementById("myForm");
+	var formData = new FormData(myForm); 
+	
+	request.send(formData);document.write();
+}
+
+// check if enter key is hit 
+function memSort(e) {
+	var key=e.keyCode || e.which;
+	if(key==13) {
+		post();
+	}
+}
+</script>
+
+<?php
+	# use Ajax to post form data to php file deleteItem, to delete an item from database 
+	if(isset($_POST['deleteItem']) || isset($_GET['delMessage'])) {
+		?>
+		<center><h3>Delete item from library database</h3>
+		<form id="myForm" style="border: solid 0.1px; margin: 1% 25% 1% 25%; padding: 2% 0% 2% 0%" autocomplete="off">
+		Name of item to be deleted: <input autofocus required name="name" type="text" size="40" placeholder="Item Name" id="name" onkeypress='memSort(event)'></input>
+		&nbsp;&nbsp;<button type="button" onclick="post()">Submit</button>		<!-- NEED TO CLICK ENTER BUTTON WITH MOUSE --> 
+		</form>
+
+		<?php 
 		
-		echo "<form action='deleteItem.php' action='POST' style='border: solid 0.1px; margin: 1% 25% 1% 25%; padding: 2% 0% 2% 0%' autocomplete='off'>";
-			echo 'Name of item to be deleted: <input name="item_name" type="text" size="40" placeholder="Item Name" autofocus required></input>'; 
-			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
-		echo "</form>";
-		
-		echo "<div style='margin-bottom: 18%'></div>";
-		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
+		if(isset($_GET['delMessage'])) {
+			echo $_GET['delMessage'];
+		}
+
+		echo "<div style='margin-bottom: 22%'></div>";
 	}
 	if(isset($_POST['addItem'])) {
 		echo '<center><h3>Add item to library database</h3>';
@@ -52,25 +86,24 @@
 			echo '<input type = "file" name="bookPhoto" autocomplete="off" style="margin-left: 25%"><br><br><br>';
 
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
-		echo "</form>";
-		
-		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
+		echo "</form>";		
 	}
-	
+	/*
 	if(isset($_GET['delMessage'])) {
 		echo '<center><h3>Delete item from library database</h3>';
 		
-		echo "<form action='deleteItem.php' action='POST' style='border: solid 0.1px; margin: 1% 25% 1% 25%; padding: 2% 0% 2% 0%' autocomplete='off'>";
-			echo 'Name of item to be deleted: <input name="item_name" type="text" size="40" placeholder="Item Name" autofocus required></input>'; 
-			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
-		echo "</form>";
+		?>
+
+		<form id="myForm" style="border: solid 0.1px; margin: 1% 25% 1% 25%; padding: 2% 0% 2% 0%" autocomplete="off">
+		Name of item to be deleted: <input name="name" type="text" size="40" placeholder="Item Name" id="name" autofocus required></input>
+		&nbsp;&nbsp;<button type="button" onclick="postComment()">Submit</button>		<!-- NEED TO CLICK ENTER BUTTON WITH MOUSE --> 
+		</form>
 		
-		echo $_GET['delMessage'];
+		<?php 
 		
-		echo "<div style='margin-bottom: 16%'></div>";
 		
-		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';
-	}
+		echo "<div style='margin-bottom: 20%'></div>";		
+	}*/
 	
 	if(isset($_GET['addMessage'])) {
 		echo '<center><h3>Add item to library database</h3>';
@@ -113,8 +146,6 @@
 		echo "</form>";
 		
 		echo $_GET['addMessage'];
-		
-		echo '<br><button type="button" style="padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px"><a href="myAdminAccount.php">Return to Account Page</a></button></center>';	
 	}
 	
 	include("footer.htm");

@@ -1,7 +1,7 @@
 <?php 
 	session_start(); # need session to save item_name to session in order to pass it into another file
 	include("body.htm");
-	echo '<title>Home | HWL</title>';
+	echo '<title>Letter Search | HWL</title>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {

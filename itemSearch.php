@@ -80,12 +80,19 @@
 	
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 	$results = $sql -> fetch(PDO::FETCH_ASSOC);
+	$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 	
-	if(sizeof($results) > 0) {
+	if($results2 == 0) {
+		$photo = null;
+		echo '<h2 align=center>Search results 0 for: \'' . $_POST['item_name'] . '\' </h2>';
+		$results = array();
+	}
+	
+	else if(sizeof($results) > 0) {
 		$photo = $results['photo'];
 	}
 
-	if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {
+	else if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {
 		echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
 	}
 
@@ -152,7 +159,7 @@
 		$_SESSION['res'] = $results3['Requested'];
 	}		
 	
-	else {
+	else if(sizeof($results) > 0) { 
 		echo '<p style="margin-left: 25%">Item #1</p>';
 		displayTable();
 		$_SESSION['checkout2'] = $results['Item_Name'];
@@ -203,6 +210,5 @@
 		echo "</form>";
 	}
 	echo '</center>';
-	echo '<div style="margin-bottom: 4%"></div>';
 	include("footer.htm");
 ?>

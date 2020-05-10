@@ -3,6 +3,12 @@
 	include("body.htm");
 	echo '<title>Admin Login | HWL</title>';
 	echo '<center><h3>Admin Account Login:</h3><br>';
+	
+	# if regular user goes to log in as an admin, logout the regular user so that they can login as an admin 
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		session_destroy();
+		session_start();
+	}
 
 	echo '<form action="myAdminAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%" autocomplete="off">';
 		echo '<label>Username:</label><br>';

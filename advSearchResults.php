@@ -35,28 +35,29 @@
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	}		
 	
-	if(!(isset($_GET['send3']))) { 
+	else { 
 		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[Title]' OR ISBN = '$_POST[ISBN]' OR Author ='$_POST[Author]'
 		AND (Year_of_Release >= '$_POST[yearFrom]' AND Year_of_Release <= '$_POST[yearTo]') AND Item_Type = '$_POST[format]' 
-		AND Location = '$_POST[location]' LIMIT 1");
+		AND Location = '$_POST[location]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 	}
 	
-	echo '<h2 align=center>Advanced search results: 1</h2>';
-	
-	echo sizeof($results);
-
-	if(sizeof($results) == 0) {
+	if($results2 == 0) {
+		echo '<h2 align=center>Advanced search results: 0</h2>';
 		echo '<center>No items match your search</center>';
 		echo '<div style="margin-bottom: 20%"></div>';
+		$photo = null; 
+		$results = array();
 	}
 	
-	else if(sizeof($results) == 1) {
+	else if($results2 == 1) {
+		echo '<h2 align=center>Advanced search results: 1</h2>';
 		$photo = $results['photo']; 
 	}
 ?>
 	
-<br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) > 1 || sizeof($results) == 0) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/></center>
+<br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/></center>
 			
 <?php
 	if(sizeof($results) > 0) {				
@@ -82,11 +83,11 @@
 ?>
 	
 <form action='checkout.php' method='post'>
-<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(sizeof($results) > 1) {echo 'hidden';} ?>></input>
+<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';} ?>></input>
 </form>
 
 <form action='checkout.php' method='post' style='display: inline'>
-<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0) {echo 'disabled';} else if(sizeof($results) > 1) {echo 'hidden';}?>></input></center>
+<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input></center>
 </form>
 	
 <?php echo '<div style="margin-top: 5%"></div>'; 

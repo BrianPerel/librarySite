@@ -1,15 +1,20 @@
-<?php
+<?php	
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		$name = htmlspecialchars(trim($_POST["name"]));    
+	} 
+	
+	echo $name; /* DO NOT REMOVE THIS */ 
+
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
-	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_REQUEST[item_name]'");
+	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$name'");
 	$results = $sql -> fetchall(PDO::FETCH_ASSOC);
-	$item = $_REQUEST['item_name'];
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 
 	if(sizeof($results) == 0) {
-		$message = '<p style="color: red">Item \'' . $item . '\' Not Found In Database, Could Not Drop</p>';
+		$message = '<p style="color: red">Item \'' . $name . '\' Not Found In Database, Could Not Drop</p>';
 	} else {
-		$sql = $con -> query("DELETE FROM items WHERE Item_Name = '$_REQUEST[item_name]'");
-		$message = '<p>Item \'' . $item . '\' Dropped Successfully</p>';
+		$sql = $con -> query("DELETE FROM items WHERE Item_Name = '$name'");
+		$message = '<p>Item \'' . $name . '\' Dropped Successfully</p>';
 	}
 	
 	header('Location: adminOperations.php?delMessage=' . $message);

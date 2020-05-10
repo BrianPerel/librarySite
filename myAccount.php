@@ -97,7 +97,7 @@
 			<br><a href="logout.php">(log out)</a>
 		</div>';	
 			
-		echo "<div style='margin-bottom: 6%'></div>
+		echo "<div style='margin-bottom: 2%'></div>
 		<form action='editPersonalInfo.php' method='post'>
 			<button style='float: right; height: 35px'>Edit Personal Information</button><br>
 		</form>"; 

@@ -10,6 +10,21 @@
 	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 	}
+	
+# we want to logout the user after they have closed the website, so we track inactivity on the website 
+$timeInactive = 1200;
+if(!isset($_SESSION['timeout'])) {
+	$_SESSION['timeout'] = time() + $timeInactive; 
+} else {
+	$session_life = time() - $_SESSION['timeout'];
+}
+
+if(isset($session_life) && $session_life > $timeInactive) { 
+	session_destroy(); session_start();     
+}
+
+$_SESSION['timeout'] = time();
+
 ?>
 <div class="class3">		
 	<center><form class="example" action="itemSearch.php" method = "post" style="margin:auto;max-width:375px">
@@ -34,7 +49,7 @@
 	At the library enjoy art history of the library, college, and McAuliffe center.</p>
 	
 	<br><br><img src="images/2.png" id="pic1" width="150px" height="150px" style='margin-left: 10%'></img>
-	<img src="images/3.jpg" id="pic1" width="150px" height="150px"></img>
+	<img src="images/6.jpg" id="pic1" width="150px" height="150px"></img>
 	
 	<center><img src='images/fsu.jpg' id='switch' height='600px' width='900px' style='margin-top: 8%; border: solid black'></img></center>
 	
@@ -59,7 +74,7 @@
 <a style="margin-left: 0.5%" href="https://twitter.com/whittemorelib?lang=en" class="fa fa-twitter" target="_blank"></a>
 <a style="margin-left: 0.5%" href="https://www.pinterest.com/pin/243616661067870491/" class="fa fa-pinterest" target="_blank"></a></center><br><br>
 
-<div class="backTop"><center><a href="#top">Back to top</a> &#x2191;</center></div>
+<center><a href="#top">Back to top</a> &#x2191;</center>
 <button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px'><a href='AdminLogin.php'>Admin Login</a></button>
 	
 <?php include("footer.htm"); ?>
