@@ -12,6 +12,11 @@ body {
   background-color: #FFFACD;
   font-family: Arial;
   font-size: 18px;
+  text-align: center; 
+}
+
+.div1 tr, td {
+	float: left; 
 }
 
 input.key {
@@ -23,15 +28,20 @@ div.move input {
 	margin-left: 10%;
 }
 
-
 div.class1 {
 	background-color: #808080;
+	padding-bottom: 2%;
 }
 
 div.class1 * {
+	text-align: center;
 	display: inline;
 	padding-left: 1%;
 	padding-right: 1%;
+}
+
+div.class1 {
+	text-align: center;
 }
 
 div.letterSearch * {
@@ -51,8 +61,12 @@ div.class2 * {
 	text-decoration: none;
 }
 
-#BodyText {
+div.BodyText1 p {
 	float: left; 
+	display: inline-block; 
+}
+
+#BodyText {
 	margin-left: 10%; 
 	margin-top: 7%;
 }
@@ -66,6 +80,12 @@ div.class2 * {
 	float: left; 
 	margin-left: 12%; 
 	margin-top: 7%;
+}
+
+#myForm {
+	border: solid 0.1px;
+	margin: 1% 25% 1% 25%;
+	padding: 2% 0% 2% 0%;
 }
 
 ul:hover {
@@ -100,6 +120,11 @@ div.class2 a.active {
 
 div.class3 {
 	margin-top: 5%;
+}
+
+div.class3 input {
+	width: 300px; 
+	height: 38.2px;
 }
 
 div.create {

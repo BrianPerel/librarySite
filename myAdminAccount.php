@@ -23,7 +23,7 @@
 	}
 ?>
 		
-<br><center><img src="<?php echo $adminPhoto; ?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/></center>
+<br><img src="<?php echo $adminPhoto; ?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/>
 	
 <?php 
 	if($_SESSION['adminloggedin'] == true) {

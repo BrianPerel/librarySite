@@ -57,12 +57,13 @@
 	}
 ?>
 	
-<br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/></center>
+<img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/>
 			
 <?php
 	if(sizeof($results) > 0) {				
 		echo '<p style="margin-left: 25%">Item #1</p>';
 		echo "<table align='center' width='50%' height='120%' border=solid black 1px>";
+
 		echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
 		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';

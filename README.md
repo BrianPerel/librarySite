@@ -9,14 +9,13 @@ Option to check item return dates and extend it, edit personal account informati
 Using xampp web server solution stack package<br> 
 -with Apache HTTP server and mysql dbms service, site hooked into a db
 
-Languages used:<br>
+Languages/tools used:<br>
 (-- client side --)<br>
-HTML5, CSS3, Javascript 
+HTML5, CSS3, Javascript, Ajax  
 
 (-- server side --) 
 MySQL database (sql), PHP 
 
-To include in the future: AJAX, JSON
 
 platform typically means a website(usually), application, or some other piece of software
 -any language can use API's (API's allow you to extend your platform's capabilities with a provider company's software)

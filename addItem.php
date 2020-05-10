@@ -11,7 +11,6 @@
 
 		if($_FILES['bookPhoto']['size'] == 0) {	
 			$imgLink = "images/default-book-picture.png";
-			
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
 			$img = $_FILES['bookPhoto']; # access file uploaded to submitted form 
@@ -28,14 +27,15 @@
 			curl_setopt($icurl, CURLOPT_POST, true);
 			curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
-			$upload = curl_exec($icurl); 
+			$upload = curl_exec($icurl); # execute curl cmd 
 			curl_close($icurl); # close curl cmd 
 			$imgJSON = json_decode($upload);
 			$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 			
 		}
 			
 		$sql = $con -> query("INSERT INTO items (Item_Name, Author, ISBN, Publication_Info, Year_of_Release, General_Audience, Summary, Item_Type, Col_No, Status, Location, Price, Requested, photo) 
-		VALUES ('$_REQUEST[item_name]', '$_REQUEST[author]', '$_REQUEST[ISBN]', '$_REQUEST[pub_info]', '$_REQUEST[year_released]', '$_REQUEST[gen_aud]', '$_REQUEST[summary]', '$_REQUEST[item_type]', '$_REQUEST[col_no]', 'Available', 'Framingham State University', '$_REQUEST[price]', 'No', '$imgLink')");
+		VALUES ('$_REQUEST[item_name]', '$_REQUEST[author]', '$_REQUEST[ISBN]', '$_REQUEST[pub_info]', '$_REQUEST[year_released]', '$_REQUEST[gen_aud]', '$_REQUEST[summary]', '$_REQUEST[item_type]',
+		'$_REQUEST[col_no]', 'Available', 'Framingham State University', '$_REQUEST[price]', 'No', '$imgLink')");
 
 		$message = '<p>Item \'' . $item . '\' Added Successfully</p>';
 	}

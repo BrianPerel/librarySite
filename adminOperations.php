@@ -6,36 +6,38 @@
 
 <!-- Ajax Script = used to drop items from db without reloading page dynamically --> 
 <script>
-function post() {
-	var request = new XMLHttpRequest(); 
-	request.open("POST", "deleteItem.php", true); 
-	request.onreadystatechange = function() {
-		if(this.readyState === 4 && this.status === 200) {
-			document.write(this.responseText);
-		}
-	};
+	function post() {
+		var request = new XMLHttpRequest(); 
+		request.open("POST", "deleteItem.php", true); 
+		request.onreadystatechange = function() {
+			if(this.readyState === 4 && this.status === 200) {
+				document.write(this.responseText);
+			}
+		};
 
-	var myForm = document.getElementById("myForm");
-	var formData = new FormData(myForm); 
-	
-	request.send(formData);document.write();
-}
-
-// check if enter key is hit 
-function memSort(e) {
-	var key=e.keyCode || e.which;
-	if(key==13) {
-		post();
+		var myForm = document.getElementById("myForm");
+		var formData = new FormData(myForm); 
+		
+		request.send(formData);document.write();
 	}
-}
+
+	// check if enter key is hit 
+	function memSort(e) {
+		var key=e.keyCode || e.which;
+		if(key==13) {
+			post();
+		}
+	}
 </script>
 
 <?php
 	# use Ajax to post form data to php file deleteItem, to delete an item from database 
 	if(isset($_POST['deleteItem']) || isset($_GET['delMessage'])) {
+		
 		?>
-		<center><h3>Delete item from library database</h3>
-		<form id="myForm" style="border: solid 0.1px; margin: 1% 25% 1% 25%; padding: 2% 0% 2% 0%" autocomplete="off">
+		
+		<h3>Delete item from library database</h3>
+		<form id="myForm" autocomplete="off">
 		Name of item to be deleted: <input autofocus required name="name" type="text" size="40" placeholder="Item Name" id="name" onkeypress='memSort(event)'></input>
 		&nbsp;&nbsp;<button type="button" onclick="post()">Submit</button>		<!-- NEED TO CLICK ENTER BUTTON WITH MOUSE --> 
 		</form>
@@ -87,24 +89,7 @@ function memSort(e) {
 
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
 		echo "</form>";		
-	}
-	/*
-	if(isset($_GET['delMessage'])) {
-		echo '<center><h3>Delete item from library database</h3>';
-		
-		?>
-
-		<form id="myForm" style="border: solid 0.1px; margin: 1% 25% 1% 25%; padding: 2% 0% 2% 0%" autocomplete="off">
-		Name of item to be deleted: <input name="name" type="text" size="40" placeholder="Item Name" id="name" autofocus required></input>
-		&nbsp;&nbsp;<button type="button" onclick="postComment()">Submit</button>		<!-- NEED TO CLICK ENTER BUTTON WITH MOUSE --> 
-		</form>
-		
-		<?php 
-		
-		
-		echo "<div style='margin-bottom: 20%'></div>";		
-	}*/
-	
+	}	
 	if(isset($_GET['addMessage'])) {
 		echo '<center><h3>Add item to library database</h3>';
 		

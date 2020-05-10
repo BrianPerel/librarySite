@@ -31,7 +31,7 @@
 	}
 ?> 
 
-<br><center><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/></center>
+<br><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/>
 
 <?php 
 	if($_SESSION['loggedin'] == true) { 

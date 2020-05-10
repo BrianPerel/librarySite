@@ -101,7 +101,7 @@
 	}
 ?>
 	
-<br><center><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/></center>
+<br><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
 	
 <?php 
 	$_SESSION['res'] = 'No';
