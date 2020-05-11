@@ -65,7 +65,7 @@
 	function displayTable() {
 		global $results; 
 		
-		echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
+		echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
 		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';

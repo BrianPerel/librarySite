@@ -1,55 +1,51 @@
+<!--
+Purpose of webpage: display and perform administrative operations which are adding and deleting items from db 
+-->
+
 <?php 
 	include("body.htm");
 	echo '<title>Admin Operation | HWL</title>';
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 ?>
 
-<!-- Ajax Script = used to drop items from db without reloading page dynamically --> 
+<!-- Ajax Script = used to drop items from db without reloading page, dynamically --> 
 <script>
-	function post() {
-		var request = new XMLHttpRequest(); 
-		request.open("POST", "deleteItem.php", true); 
-		request.onreadystatechange = function() {
-			if(this.readyState === 4 && this.status === 200) {
-				document.write(this.responseText);
-			}
-		};
-
-		var myForm = document.getElementById("myForm");
-		var formData = new FormData(myForm); 
-		
-		request.send(formData);document.write();
-	}
-
-	// check if enter key is hit 
-	function memSort(e) {
-		var key=e.keyCode || e.which;
-		if(key==13) {
-			post();
+function post() {
+	var request = new XMLHttpRequest(); // create XMLHttpRequest object 
+	request.open("POST", "deleteItem.php", true); // open deleteItem.php with post action and asynchronous request mode 
+	request.onreadystatechange = function() { // function to print response if readyState (4 = request finished and response is ready), status (200 = OK)
+		if(this.readyState === 4 && this.status === 200) {
+			document.write(this.responseText);
 		}
+	};
+	var myForm = document.getElementById("myForm"); // create form variable which holds form data, gotten by id 
+	var formData = new FormData(myForm);  // create form data object 
+	request.send(formData); // send ajax request  
+}
+
+// check if enter key is hit call post() above. This allows user to either hit enter or click submit   
+function memSort(e) {
+	var key=e.keyCode || e.which;
+	if(key==13) {
+		post();
 	}
+}
 </script>
 
 <?php
-	# use Ajax to post form data to php file deleteItem, to delete an item from database 
-	if(isset($_POST['deleteItem']) || isset($_GET['delMessage'])) {
-		
-		?>
-		
+	# use Ajax to post form data to php file deleteItem, to delete an item from database. If delete option is clicked from myAdminAccount.php go here 
+	if(isset($_POST['deleteItem']) || isset($_GET['delMessage'])) { ?>
 		<h3>Delete item from library database</h3>
 		<form id="myForm" autocomplete="off">
 		Name of item to be deleted: <input autofocus required name="name" type="text" size="40" placeholder="Item Name" id="name" onkeypress='memSort(event)'></input>
 		&nbsp;&nbsp;<button type="button" onclick="post()">Submit</button>		<!-- NEED TO CLICK ENTER BUTTON WITH MOUSE --> 
 		</form>
 
-		<?php 
-		
-		if(isset($_GET['delMessage'])) {
-			echo $_GET['delMessage'];
-		}
-
+		<?php if(isset($_GET['delMessage'])) { echo $_GET['delMessage']; }
 		echo "<div style='margin-bottom: 22%'></div>";
 	}
+	
+	# if add item option is chosen from myAdminAccount.php go here 
 	if(isset($_POST['addItem'])) {
 		echo '<center><h3>Add item to library database</h3>';
 		
@@ -90,6 +86,8 @@
 			echo '&nbsp;&nbsp;<button type="submit">Submit</button>';
 		echo "</form>";		
 	}	
+	
+	# if add message recieved from addItem.php go here 
 	if(isset($_GET['addMessage'])) {
 		echo '<center><h3>Add item to library database</h3>';
 		

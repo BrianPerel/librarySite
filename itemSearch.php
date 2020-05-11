@@ -132,7 +132,7 @@
 	
 	if(isset($_GET['check_items_out'])) {
 		$_SESSION['itemN'] = 1;
-		echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
+		echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 		displayTable();
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
@@ -151,7 +151,7 @@
 	
 	else if(isset($_GET['check_items_requested'])) {
 		$_SESSION['itemN'] = 1;
-		echo '<p style="margin-left: 25%">Item #1</p>';
+		echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 		displayTable();
 		$_SESSION['checkout2'] = $results['Item_Name'];
 		$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
@@ -160,7 +160,7 @@
 	}		
 	
 	else if(sizeof($results) > 0) { 
-		echo '<p style="margin-left: 25%">Item #1</p>';
+		echo '<p style="margin-right: 45%">Item #1</p>';
 		displayTable();
 		$_SESSION['checkout2'] = $results['Item_Name'];
 	}
@@ -172,9 +172,6 @@
 
 <form action='checkout.php' method='post'>
 	<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= 3) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['Status'] == 'Out') {echo 'disabled';} ?>></input>
-</form>
-
-<form action='checkout.php' method='post' style='display: inline'>
 	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes') {echo 'disabled';} else if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';}?>></input>	
 </form>
 

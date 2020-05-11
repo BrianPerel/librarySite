@@ -1,21 +1,28 @@
+<!--
+Purpose of webpage: recieve letter request, display result of letter chosen 
+-->
+
 <?php 
 	session_start(); # need session to save item_name to session in order to pass it into another file
 	include("body.htm");
 	echo '<title>Letter Search | HWL</title>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
+	# if regular user is logged in switch nav links 
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
+		# get and store number of items checked out 
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['num'] = $results['items_Out'];
 	}
 	
+	# if admin user is logged in switch nav links 
 	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 	}
 
-	# when user check an item out, letterCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
+	# when user checks an item out, letterCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
 	if(isset($_GET['send1'])) {
 		$post = $_GET['send1'];
 		$_GET['by'] = $SearchLetter = $post; 
@@ -33,18 +40,22 @@
 		$_GET['by'] = $SearchLetter = $_SESSION['searchLetter']; 
 	}
 	
+	# save sent letter into variable 
 	$SearchLetter = $_GET['by'];
 
+	# select item from db that matches letter chosen 
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
 	$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		
+	# if no items match search 
 	if($results2 == 0) {
 		$photo = null;
 		echo '<h2 align=center>Search results 0 for: \'' . $SearchLetter . '\' </h2>';
 		$results = array();
 	}
 		
+	# if search item found in db 
 	else if(sizeof($results) > 0) {
 		$photo = $results['photo'];
 		echo '<h2 align=center>Search results 1 for: \'' . $SearchLetter . '\' </h2>';
@@ -77,19 +88,21 @@
 		echo'<tr><td>' . 'Status: ' . $results['Status'] . '<br></td></tr>';
 		echo '</table><br>';
 			
+		# save current item being looked up into variable 
 		$_SESSION['checkout2'] = $results['Item_Name'];
+		
+		# save first letter of current item being looked up into variable 
 		$_SESSION['searchLetter'] = substr($results['Item_Name'], 0, 1);
 		
+		# get requested yes or no status from current item being looked up 
 		$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
 		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
 	}
 ?>
 
+<!-- checkout and request buttons --> 
 <form action='letterCheckout.php' method='post'>
 	<center><input style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
-</form> 
-
-<form action='letterCheckout.php' method='post' style='display: inline'>
 	<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes') {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 
 

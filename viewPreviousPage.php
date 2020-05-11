@@ -56,7 +56,6 @@
 	}
 	
 	$photo = $results['photo'];
-	
 	echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
 	
 ?>
@@ -86,7 +85,7 @@
 	if(isset($_SESSION['requestViewPrevious'])) {
 		if($_SESSION['requestViewPrevious'] == 'req1') {
 			$_SESSION['itemN']--;
-			echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
+			echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 				
 			displayTable();
 			
@@ -114,7 +113,7 @@
 
 		else {
 			$_SESSION['itemN']--;
-			echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
+			echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 				
 			displayTable(); 
 			
@@ -152,7 +151,7 @@
 		}
 	} else {
 		$_SESSION['itemN']--;
-		echo '<p style="margin-left: 25%">Item #' . $_SESSION['itemN'] . '</p>';
+		echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 			
 		displayTable();
 		

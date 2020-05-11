@@ -17,7 +17,7 @@ HTML5, CSS3, Javascript, Ajax, Curl, JSON
 (-- server side --) 
 MySQL database (sql), PHP 
 
-Services: imagebb (for external image storage), Google Maps API, Google recaptcha checkbox  
+Services: imagebb (for external image storage), Google Maps API, Google recaptcha API 
 
 
 Purpose of project: to learn and exercise client and server side programming 

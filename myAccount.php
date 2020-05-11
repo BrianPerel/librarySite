@@ -78,7 +78,6 @@
 					}
 					$sql = $con -> query("UPDATE useraccounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
 				}
-				
 				$smallest++;
 			}
 		}
@@ -91,16 +90,16 @@
 		echo '<div style="text-align: center">
 			<br>Login successful<br> Welcome back, ' . $results['full_Name'] . '<br><br>
 			Email: ' . $results['email'] . 
-			'<br>Checkouts: <a href="viewCheckouts.php">(' . $results['items_Out'] . ')</a><br>
-			Requests: <a href="viewRequests.php">(' . $results['items_Requested'] . ')</a><br>
-			Fines/Fees: $' . $results['fines_fees']. '
+			'<br><a href="viewCheckouts.php">Checkouts: (' . $results['items_Out'] . ')</a><br>
+			 <a href="viewRequests.php">Requests: (' . $results['items_Requested'] . ')</a><br>
+			 <a href="#" onclick="alert1()">Fines/Fees: $' . $results['fines_fees'] . '</a>
 			<br><a href="logout.php">(log out)</a>
 		</div>';	
 			
 		echo "<div style='margin-bottom: 2%'></div>
 		<form action='editPersonalInfo.php' method='post'>
 			<button style='float: right; height: 35px'>Edit Personal Information</button><br>
-		</form>"; 
+		</form><div style='margin-bottom: 1%'></div>"; 
 	}
 	
 	# re-direct back to sign in page 

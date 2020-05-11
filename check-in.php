@@ -1,3 +1,7 @@
+<!--
+Purpose of webpage: perform button action 
+-->
+
 <?php 
 	session_start();
 	include("body.htm");
@@ -30,10 +34,12 @@
 		$sql = $con -> query("UPDATE itemsout SET due_Date = '$due_day' WHERE item_Name = '$_SESSION[checkout2]'"); 
 	}
 	
+	# view next page action 
 	else if(isset($_POST['next'])) {
 		header("Location: viewNextPage.php");
 	}
 	
+	# view previous page action 
 	else if(isset($_POST['previous'])) {
 		header("Location: viewPreviousPage.php");
 	}

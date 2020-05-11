@@ -35,6 +35,6 @@ Prompt user to sign into there account
 		echo $_GET['message'];
 	}
 	
-	echo '<div style="margin-top: 14%"></div>';
+	echo '<div style="margin-top: 13%"></div>';
 	include("footer.htm");
 ?> 

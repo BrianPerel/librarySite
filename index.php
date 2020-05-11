@@ -41,16 +41,16 @@
 	| <a href='letterFind.php?by=W'>W</a> | <a href='letterFind.php?by=X'>X</a> | <a href='letterFind.php?by=Y'>Y</a>
 	| <a href='letterFind.php?by=Z'>Z</a>		
 	
-	<div class='BodyText1'><p id="BodyText"><br>Welcome to FSU's library portal. Sign up to create an account or sign in to get to<br> your existing account. Search the library's inventory to
+	<p id="BodyText"><img src="images/2.png" id="pic1" width="150px" height="150px" style='float: right; margin-right: 10%'>
+	<img src="images/6.jpg" id="pic1" width="150px" height="150px" style='display: inline; float: right'>
+	<br>Welcome to FSU's library portal. Sign up to create an account or sign in to get to<br> your existing account. Search the library's inventory to
 	find what your looking for.<br> Our inventory contains books, movies,  ebooks, and video games. Once the item <br>is found, you can check it out.
 	If returning the item, check it back into the system.<br><br> The Henry Whitemore Library is FSU's library built in 1969. It's a 7 story building<br> containing a print shop, copy center,
 	classrooms, communication arts<br> and music departments, study rooms, public use computers, and the<br> IT center. Come and enjoy a quite place to study or work with friends.<br>
-	At the library enjoy art history of the library, college, and McAuliffe center.</p></div>
+	At the library enjoy art history of the library, college, and McAuliffe center.
+	</p>
 	
-	<br><br><img src="images/2.png" id="pic1" width="150px" height="150px" style='margin-left: 10%'></img>
-	<img src="images/6.jpg" id="pic1" width="150px" height="150px"></img>
-	
-	<img src='images/fsu.jpg' id='switch' height='600px' width='900px' style='margin-top: 8%; border: solid black'></img>
+	<center><img src='images/fsu.jpg' id='switch' height='600px' width='900px' style='margin-top: 8%; border: solid black; display: block'></center>
 	
 	<center><p id="contact"><br><b>Location:</b> 100 State Street Framingham, MA 01701. We are located just off of Route 9 and about 1.5 miles from Mass Pike exit 12.
 	<br><br><b>Phone:</b> (111) - 222 - 3344<br>
@@ -74,6 +74,6 @@
 <a style="margin-left: 0.5%" href="https://www.pinterest.com/pin/243616661067870491/" class="fa fa-pinterest" target="_blank"></a><br><br>
 
 <div><a href="#top">Back to top</a> &#x2191;</div>
-<button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px'><a href='AdminLogin.php'>Admin Login</a></button>
+<button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px'><a href='AdminLogin.php'>Admin Login</a></button><br><br><br>
 	
 <?php include("footer.htm"); ?>

@@ -16,12 +16,16 @@ body {
 }
 
 .div1 tr, td {
-	float: left; 
+	text-align: left; 
 }
 
 input.key {
   font-family: 'password';
   width: 96%; height: 100%;  
+}
+
+div.move {
+	margin-bottom: 10%;
 }
 
 div.move input {
@@ -61,12 +65,8 @@ div.class2 * {
 	text-decoration: none;
 }
 
-div.BodyText1 p {
-	float: left; 
-	display: inline-block; 
-}
-
 #BodyText {
+	text-align: left;
 	margin-left: 10%; 
 	margin-top: 7%;
 }
@@ -133,15 +133,16 @@ div.create {
 }
 
 div.footer {
-	margin-top: 3%;
+	width: 100%;
 	background-color: #e7a56a ;
 	text-align: center;
-	vertical-align: baseline;
-	height: 4%;
-	padding-bottom: 0.2%;
-	width: 100%;
-	font-weight: bold;
-	padding-top: 0.2%;
+    flex-shrink: 0;
+	margin-top: 3%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
 }
 
 .fa {

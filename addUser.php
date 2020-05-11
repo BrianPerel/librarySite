@@ -1,3 +1,8 @@
+<!--
+Purpose of webpage: recieve user form from signup.php and process it; capitalize first letters of first and last name. Perform duplicate query check, 
+	make sure recaptcha tool was checked, trim whitespace from username, email, and password. Attach default or custom image. Finally insert all data into db and display message with link  
+-->
+
 <?php 
 	include("body.htm");
 	echo '<title>Registration Completed | HWL</title>';
@@ -27,14 +32,9 @@
 			die;
 		}
 		
+		# if file size of file field is 0, then user didn't upload image so upload default 
 		if($_FILES['InternPhoto']['size'] == 0) {	
-		
-			$_POST['username'] = trim($_POST['username']);
-			$_POST['email'] = trim($_POST['email']);
-			$_POST['password'] = trim($_POST['password']);
-			
 			$imgLink = "images/default-picture.png";
-	
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
 			$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
@@ -51,17 +51,23 @@
 			curl_setopt($icurl, CURLOPT_POST, true);
 			curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($icurl, CURLOPT_POSTFIELDS, $pvars);
-			$upload = curl_exec($icurl); 
+			$upload = curl_exec($icurl); # execute curl cmd 
 			curl_close($icurl); # close curl cmd 
 			$imgJSON = json_decode($upload);
 			$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 			
 		}
 		
+		# trim whitespace from post data fields 
+		$_POST['username'] = trim($_POST['username']);
+		$_POST['email'] = trim($_POST['email']);
+		$_POST['password'] = trim($_POST['password']);
+		
+		# insert record into table 
 		$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
 		VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 	}
 	
 	echo "<center><h4 style='margin-bottom: 31%'>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
-	echo "<a href='signIn.php' ><u>Sign in here</u></a></h4></center>";
+	echo "<a href='signIn.php'><u>Login here</u></a></h4></center>";
 	include("footer.htm");
 ?>

@@ -1,3 +1,7 @@
+<!--
+Purpose of webpage: login page for administrator. 
+-->
+
 <?php 
 	session_start();
 	include("body.htm");
@@ -10,6 +14,7 @@
 		session_start();
 	}
 
+	# display username/password form 
 	echo '<form action="myAdminAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%" autocomplete="off">';
 		echo '<label>Username:</label><br>';
 		echo '<input autofocus type="text" name="username" placeholder="Username" size="30" required></input><br><br>';
@@ -18,6 +23,7 @@
 		echo '<br><input type="submit">';
 	echo '</form></center>';	
 
+	# if admin is logged-in, jump to admin account page 
 	if(isset($_SESSION['adminloggedin'])) {
 		if($_SESSION['adminloggedin'] == true) {
 			header('Location: myAdminAccount.php');
@@ -25,13 +31,16 @@
 		}
 	}	
 	
+	# if this point is reached, then adminloggedin session variable hasn't been created so create it here 
 	$_SESSION['adminloggedin'] = false;
 	
+	# successful logout message 
 	if(isset($_GET['out'])){
 		echo '<script>window.addEventListener(onload, myFunction())</script>';
 		echo '<center><div id="logout">' . $_GET['out']. ' </div></center>';
 	}
 	
+	# incorrect account credentials given 
 	if(isset($_GET['message1'])) {
 		echo '<center>' . $_GET["message1"] . '</center>';
 	}

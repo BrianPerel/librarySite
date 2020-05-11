@@ -54,3 +54,9 @@ function switchNavAdmin() {
 			
 	parent.insertBefore(a, child3);
 }
+
+/* -- alert box for fines message on my account page -- */ 
+
+function alert1() {
+	alert("Please pay all fines at the library.");
+}
