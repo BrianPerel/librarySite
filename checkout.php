@@ -1,8 +1,24 @@
+<!--
+Purpose of webpage: receive checkout request and perform checkout operation. Service checkout requests from adv page, letter search page, and item search page 
+-->
+
 <?php 
 	session_start();
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
-	if($_SESSION['loggedin'] == true && $_POST['checkout2']) {
+	if($_SESSION['loggedin'] == true && $_POST['checkout2']) { 
+		if(isset($_SESSION['bool'])) {
+			# decrement number of requests 
+			$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'"); # select number of request in useraccount 
+			$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
+			$requests = $items_Requested['items_Requested'];
+			$requests--;
+			$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'"); # update number of items requested in useraccount
+			
+			$sql = $con -> query("UPDATE items SET Requested = 'No' WHERE Item_Name = '$_SESSION[checkout2]'"); # update status to available of item of which request was cancelled 
+			$sql = $con -> query("DELETE FROM itemsreq WHERE requester = '$_SESSION[username]' AND Item_Name = '$_SESSION[checkout2]'"); # delete item from item request table 
+		}
+		
 		# update status of item we're checking out 
 		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");

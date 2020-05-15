@@ -15,6 +15,7 @@ Purpose of webpage: perform button action
 		$out = $items_Out1['items_Out'];
 		$out--;
 		$sql = $con -> query("UPDATE useraccounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
+		
 		$sql = $con -> query("SELECT item_Name FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND item_Name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
 		$items = $sql -> fetch(PDO::FETCH_ASSOC);
 		$item_name = $items['item_Name'];

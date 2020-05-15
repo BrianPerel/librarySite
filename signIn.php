@@ -9,7 +9,7 @@ Prompt user to sign into there account
 	echo '<title>Sign in | HWL</title>';
 	echo '<center><h3>My Account Login:</h3><br>';
 	
-	echo '<form action="myAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%" autocomplete="off">';
+	echo '<form action="myAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%; background-color: #DCDCDC" autocomplete="off">';
 		echo '<label>Username:</label><br>';
 		echo '<input autofocus type="text" name="username" placeholder="Username" size="30" required></input><br><br>';
 		echo '<label>Password:</label><br>';

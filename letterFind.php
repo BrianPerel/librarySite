@@ -72,7 +72,7 @@ Purpose of webpage: recieve letter request, display result of letter chosen
 	else if(sizeof($results) > 0) {
 		echo '<center><p style="margin-right: 45%">Item #1</p></center>';
 		
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 		echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
 		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';

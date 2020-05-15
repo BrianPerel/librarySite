@@ -66,7 +66,7 @@
 	function displayTable() {
 		global $results;
 		
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
 		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
@@ -119,7 +119,7 @@
 			
 			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 			$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
-			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+			echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 			echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>';
 			echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
 			echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';
@@ -157,7 +157,7 @@
 		
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 		echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>';
 		echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
 		echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';

@@ -28,7 +28,7 @@ CREATE TABLE `items` (
 `itemID` int(10) NOT NULL AUTO_INCREMENT,
 `Item_Name` varchar(50) NOT NULL,
 `Author` varchar(30),
-`ISBN` int(18),
+`ISBN` varchar(20),
 `Publication_Info` varchar(120),
 `Year_of_Release` int(4),
 `General_Audience` varchar(30), 
@@ -45,14 +45,18 @@ PRIMARY KEY(itemID)
 
 -- Dumping data for table 'items'
 INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of_Release`, `General_Audience`, `Summary`, `Item_Type`, `Col_No`, `Status`, `Location`, `Price`, `Requested`, `photo`) VALUES
-('The Art of Being a Ninja', 'Brian Perel', 13212124, 'Hollywood, California : Paramount Home Entertainment', '2020', 'adult', 'The Art of Being a Ninja is a documentary film about how to become a ninja', 'Blu-ray', 'J796.815 B', 'Available', 'Framingham State University', '34.50', 'No', 'images/Ninja.jpg'),
-('Aikido', 'John Smith', 34534534, 'Hollywood, California : Universal Studios Entertainment', '2010', 'adult', 'Aikido is a movie about the way of aikido practitioners and there lives', 'Movie', 'Z271.154 A', 'Available', 'Framingham State University', '12.80', 'No', 'images/Aikido.jpg'),
-('Calisthenics Beasts', 'Jason Armstrong', 567565543, '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Calisthenics Beasts is an ebook broken up into multiple sections by muscle groups', 'ebook', 'D938.121 C', 'Available', 'Framingham State University', '3.12', 'No', 'images/Calisthenics.jpg'),
-('Wild Hunt', 'Jeff Taylor', 234234231, 'The Illustrated Publishers : Stonehill', '2004', 'adult', 'Hear the time-honored stories of a man on the hunt', 'Audio-book', 'R459.232 U', 'Available', 'Framingham State University', '14.50', 'No', 'images/Wild_Hunt.jpg'),
-('Learn Russian - Русский язык', 'Dmitri Raslov', 678567453, 'The Russian Printing House : Hammerhead', '2017', 'adult', 'Learn to speak and read the Russian language like a pro. Как быстро выучить русский язык: Выучить русский не трудно, если у вас будет новый подход, и не «потеряетесь» в сложной грамматике. Используйте естественное и интуитивное обучения, чтобы быстро овладеть основами языка!', 'book', 'Q456.234 R', 'Available', 'Framingham State University', '20.50', 'No', 'images/learnRussian.jpg'),
-('No Excuses - The Power of self discipline', 'Brian Perel', 789849567, 'Classic Publishers : Ace', '2018', 'young-adult', 'Learn how to be self disciplined in life', 'book', 'A789.567 C', 'Available', 'Framingham State University', '18.75', 'No', 'images/No_Excuses.jpg'),
-('Business Data Networks & Security', 'Julia Smith', 234456454, 'Prentice Hall', '2016', 'adult', 'Book on networking security covering packets, sockets, ip, protocols, network classes, and ftp', 'ebook', 'E657.435 T', 'Available', 'Framingham State University', '120.00', 'No', 'images/Business.jpg'),
-('Rock Climber Pro 2', 'Abraham Grocer', 636845653, 'The Publishing Company', '2017', 'kids', 'A movie about rock climbing for kids', 'Movie', 'Q456.345 S', 'Available', 'Framingham State University', '8.50', 'No', 'images/Rock_Climbing1.jpg'
+('The Art of Being a Ninja', 'Brian Perel', '132-12-12478-32-5', 'Hollywood, California : Paramount Home Entertainment', '2020', 'adult', 'The Art of Being a Ninja is a documentary film about how to become a ninja', 'Blu-ray', 'J796.815 B', 'Available', 'Framingham State University', '34.50', 'No', 'images/Ninja.jpg'),
+('Aikido', 'John Smith', '345-34-5346-56-8', 'Hollywood, California : Universal Studios Entertainment', '2010', 'adult', 'Aikido is a movie about the way of aikido practitioners and there lives', 'Movie', 'Z271.154 A', 'Available', 'Framingham State University', '12.80', 'No', 'images/Aikido.jpg'),
+('Calisthenics Beasts', 'Jason Armstrong', '567-56-55431-23-1', '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Calisthenics Beasts is an ebook broken up into multiple sections by muscle groups', 'ebook', 'D938.121 C', 'Available', 'Framingham State University', '3.12', 'No', 'images/Calisthenics.jpg'),
+('Wild Hunt', 'Jeff Taylor', '234-23-42310-02-4', 'The Illustrated Publishers : Stonehill', '2004', 'adult', 'Hear the time-honored stories of a man on the hunt', 'Audio-book', 'R459.232 U', 'Available', 'Framingham State University', '14.50', 'No', 'images/Wild_Hunt.jpg'),
+('Learn Russian - Русский язык', 'Dmitri Raslov', '678567453', 'The Russian Printing House : Hammerhead', '2017', 'adult', 'Learn to speak and read the Russian language like a pro. Как быстро выучить русский язык: Выучить русский не трудно, если у вас будет новый подход, и не «потеряетесь» в сложной грамматике. Используйте естественное и интуитивное обучения, чтобы быстро овладеть основами языка!', 'book', 'Q456.234 R', 'Available', 'Framingham State University', '20.50', 'No', 'images/learnRussian.jpg'),
+('No Excuses - The Power of self discipline', 'Brian Perel', '789-84-95671-23-6', 'Classic Publishers : Ace', '2018', 'young-adult', 'Learn how to be self disciplined in life', 'book', 'A789.567 C', 'Available', 'Framingham State University', '18.75', 'No', 'images/No_Excuses.jpg'),
+('Business Data Networks & Security', 'Julia Smith', '234-45-64544-77-3', 'Prentice Hall', '2016', 'adult', 'Book on networking security covering packets, sockets, ip, protocols, network classes, and ftp', 'ebook', 'E657.435 T', 'Available', 'Framingham State University', '120.00', 'No', 'images/Business.jpg'),
+('Rock Climber Pro 2', 'Abraham Grocer', '636-84-56531-23-1', 'The Publishing Company', '2017', 'kids', 'A movie about rock climbing for kids', 'Movie', 'Q456.345 S', 'Available', 'Framingham State University', '8.50', 'No', 'images/Rock_Climbing1.jpg'),
+('Quiet Mind', 'Susan Piver', '978-92-95055-02-5', 'Shambhala Publications Inc.', '2008', 'adult', 'This book bringts together some of the country\'s most beloved meditation teachers. Each contributer presents a short written teaching along with an audio recording of a guided practice.', 'ebook', 'A231.234 B', 'Available', 'Framingham State University', '14.00', 'No', 'images/QuietMind.jpg'),
+('Internet & World Wide Web', 'Paul Deitel', '435-23-43534-45-9', 'Prentice Hall/Deitel publications', '2008', 'adult', 'Learn all there is to web development', 'textbook', 'E768.5 L', 'Available', 'Framingham State University', '97.00', 'No', 'images/WWW.jpg'),
+('Operating System Concepts', 'Abraham Silberschatz', '123-67-56755-45-2', 'John Wiley & Sons, Inc.', '2013', 'adult', 'Learn all there is to know about operating systems', 'textbook', 'R123.1 R', 'Available', 'Framingham State University', '120.00', 'No', 'images/OSI.jpg'),
+('Draw 50 Animals', 'Lee J. Ames', '654-33-67876-56-9', 'Bantam Doubleday Dell Publishing Group Inc.', '1974', 'kids', 'Step by step guides on how to draw 50 different animals', 'ebbok', 'M436.0 E', 'Available', 'Framingham State University', '12.50', 'No', 'images/animals.jpg'
 );
 
 -- Table structure for 'itemsout'

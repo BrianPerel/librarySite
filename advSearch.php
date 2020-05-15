@@ -19,7 +19,7 @@ Purpose of webpage: perform an advanced search of library database
 ?>
 
 <center><h3>Advanced Search</h3>
-	<form class="example" action="advSearchResults.php" method="post" style="max-width:350px; border: solid black 0.5px" autocomplete='off'>
+	<form class="example" action="advSearchResults.php" method="post" style="max-width:350px; border: solid black 0.5px; background-color: #DCDCDC" autocomplete='off'>
 		<div class='move'>
 			<br><input autofocus type="text" name="Title" placeholder="Enter Title..." size="30" required></input><br><br><br>
 			<input type="text" name="ISBN" placeholder="Enter ISBN Number..." size="30" required></input><br><br><br>
@@ -28,7 +28,7 @@ Purpose of webpage: perform an advanced search of library database
 			Year to:<input type="number" name="yearTo" value='2020' min="1900" max="2020" style="margin-left: 2%"></input>
 		</div>
 		
-		<br><br><label for="cars" required>Format:</label>
+		<label required>Format:</label>
 		  <select name="format">
 			<option value="any">Any</option>
 			<option value="book">book</option>
@@ -38,14 +38,14 @@ Purpose of webpage: perform an advanced search of library database
 			<option value="cd">cd</option>
 		</select><br><br>
 		  
-		<label for="cars" required>Location:</label>
+		<label required>Location:</label>
 		<select name="location">
 		   <option value="any">All</option>
 		   <option value="f">Framingham</option>
 		   <option value="n">Natick</option>
 		   <option value="n2">Newton</option>
 		   <option value="a">Ashland</option>
-		</select><br><br>
+		</select><br><br><br>
 		<input type="submit"><br><br>
 	</form>
 </center>

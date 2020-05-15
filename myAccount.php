@@ -31,6 +31,8 @@
 	}
 ?> 
 
+<h2>My Account</h2>
+
 <br><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/>
 
 <?php 
@@ -98,8 +100,8 @@
 			
 		echo "<div style='margin-bottom: 2%'></div>
 		<form action='editPersonalInfo.php' method='post'>
-			<button style='float: right; height: 35px'>Edit Personal Information</button><br>
-		</form><div style='margin-bottom: 1%'></div>"; 
+			<button style='float: right; height: 35px'>Edit Personal Information</button><br><br>
+		</form>"; 
 	}
 	
 	# re-direct back to sign in page 

@@ -21,6 +21,8 @@
 			$_SESSION['username'] = $_POST['username'];
 		}
 	}
+	
+	echo '<h3>Administrator</h3>';
 ?>
 		
 <br><img src="<?php echo $adminPhoto; ?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/>
@@ -30,7 +32,6 @@
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 		echo '<div style="text-align: center">';
 			echo '<br>Login successful<br> Welcome back, ' . $results['fullName'] . '<br>';
-			echo 'Administrator<br>';
 			echo 'Email: ' . $results['email'];
 			echo '<br><a href="logoutAdmin.php">(log out)</a><br><br>';
 			echo '<form action="adminOperations.php" method="post">';

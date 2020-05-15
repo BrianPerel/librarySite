@@ -36,7 +36,7 @@ function memSort(e) {
 	# use Ajax to post form data to php file deleteItem, to delete an item from database. If delete option is clicked from myAdminAccount.php go here 
 	if(isset($_POST['deleteItem']) || isset($_GET['delMessage'])) { ?>
 		<h3>Delete item from library database</h3>
-		<form id="myForm" autocomplete="off">
+		<form id="myForm" autocomplete="off" style='background-color: #DCDCDC'>
 		Name of item to be deleted: <input autofocus required name="name" type="text" size="40" placeholder="Item Name" id="name" onkeypress='memSort(event)'></input>
 		&nbsp;&nbsp;<button type="button" onclick="post()">Submit</button>		<!-- NEED TO CLICK ENTER BUTTON WITH MOUSE --> 
 		</form>
@@ -49,7 +49,7 @@ function memSort(e) {
 	if(isset($_POST['addItem'])) {
 		echo '<center><h3>Add item to library database</h3>';
 		
-		echo "<form action='addItem.php' action='POST' style='border: solid 0.1px; margin: 1% 35% 1% 35%; padding: 2% 0% 2% 0%' autocomplete='off'>";
+		echo "<form action='addItem.php' action='POST' style='border: solid 0.1px; margin: 1% 35% 1% 35%; padding: 2% 0% 2% 0%; background-color: #DCDCDC' autocomplete='off'>";
 			echo '<label>Item Name: </label><br>';
 			echo '<input name="item_name" type="text" placeholder="Item Name" autofocus required></input><br><br>';
 			
@@ -91,7 +91,7 @@ function memSort(e) {
 	if(isset($_GET['addMessage'])) {
 		echo '<center><h3>Add item to library database</h3>';
 		
-		echo "<form action='addItem.php' action='POST' style='border: solid 0.1px; margin: 1% 35% 1% 35%; padding: 2% 0% 2% 0%' autocomplete='off'>";
+		echo "<form action='addItem.php' action='POST' style='border: solid 0.1px; margin: 1% 35% 1% 35%; padding: 2% 0% 2% 0%; background-color: #DCDCDC' autocomplete='off'>";
 			echo '<label>Item Name: </label><br>';
 			echo '<input name="item_name" type="text" placeholder="Item Name" autofocus required></input><br><br>';
 			

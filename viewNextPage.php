@@ -20,6 +20,7 @@
 			
 			$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
+			$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		} else {
 			$_SESSION['var']++;
 			$sth = $con -> prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
@@ -34,6 +35,7 @@
 				
 			$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
+			$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		}
 	}
 	
@@ -44,29 +46,29 @@
 		$smallest = $sth -> fetchColumn();
 		$smallest += $_SESSION['var'];
 		$_SESSION['smallest'] = $smallest; 
-		
+
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_POST['item_name'] = $results['item_Name']; 
-			
-		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'");
+
+		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[item_name]'"); 
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 	}
 	
 	$photo = $results['photo'];
-	
 	echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
 	
 	?>
 
-<br><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+<br><img src="<?php echo $photo; ?>" <?php if($results2 == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
 
 <?php 
 	function displayTable() {
 		global $results; 
 		
 		echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
 		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
@@ -80,6 +82,8 @@
 		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
 		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
 		echo '</table><br><br>';
+		
+		$_SESSION['checkout2'] = $results['Item_Name'];
 	}
 
 	if(isset($_SESSION['requestViewNext'])) {
@@ -116,7 +120,7 @@
 			
 			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 			$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
-			echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+			echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 			echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>';
 			echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
 			echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';
@@ -125,7 +129,7 @@
 			
 			$_SESSION['checkout2'] = $results['Item_Name'];
 			
-			echo "<form action='check-in.php' method='post'>";
+			echo "<form action='check-in.php' method='post'>"; 
 				echo "<center><input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
 				$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]' && item_Name = '$_SESSION[checkout2]'");
 				$item = $sql -> fetch(PDO::FETCH_ASSOC); 
@@ -154,7 +158,7 @@
 		
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 		echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>';
 		echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
 		echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';

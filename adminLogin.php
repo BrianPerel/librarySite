@@ -15,7 +15,7 @@ Purpose of webpage: login page for administrator.
 	}
 
 	# display username/password form 
-	echo '<form action="myAdminAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%" autocomplete="off">';
+	echo '<form action="myAdminAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%" style="background-color: #DCDCDC" autocomplete="off">';
 		echo '<label>Username:</label><br>';
 		echo '<input autofocus type="text" name="username" placeholder="Username" size="30" required></input><br><br>';
 		echo '<label>Password:</label><br>';

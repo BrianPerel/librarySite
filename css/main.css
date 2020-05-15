@@ -6,10 +6,16 @@
   src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
 }
 
+* {font-family: myFirstFont;}
+
 a {text-decoration: none; color: black;}
 
 body {
   background-color: #FFFACD;
+  background-image: url("../images/b.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; /* Resize the background image to cover the entire container */
+  background-position: center; /* Center the image */
   font-family: Arial;
   font-size: 18px;
   text-align: center; 
@@ -34,7 +40,7 @@ div.move input {
 
 div.class1 {
 	background-color: #808080;
-	padding-bottom: 2%;
+	padding-bottom: 1%;
 }
 
 div.class1 * {
@@ -78,7 +84,7 @@ div.class2 * {
 
 #contact {
 	float: left; 
-	margin-left: 12%; 
+	margin-left: 16%; 
 	margin-top: 7%;
 }
 

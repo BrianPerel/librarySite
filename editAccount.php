@@ -1,3 +1,7 @@
+<!-- 
+Purpose of webpage: edit user's account info received from form page 
+-->
+
 <?php 
 	session_start();
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
@@ -14,18 +18,22 @@
 		die;
 	}
 	
+	# if password field is not empty do this 
 	if($_POST['password'] != null) {
 		$sql = $con -> query("UPDATE useraccounts SET password='$_POST[password]' WHERE username = '$_SESSION[username]'");
 	}
 	
+	# if email field is not empty do this 
 	if($_POST['email'] != null) {
 		$sql = $con -> query("UPDATE useraccounts SET email='$_POST[email]' WHERE username = '$_SESSION[username]'");
 	}
 	
+	# if phone number field is not empty do this 
 	if($_POST['phone_number'] != null) {
 		$sql = $con -> query("UPDATE useraccounts SET phone_Number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
 	}
 	
+	# if photo field is not empty do this 
 	if($_POST['photo'] != null) {
 		$image = 'images/' . $_POST['photo'];
 		$openimg = fopen($image, "r"); # open file in read mode 
@@ -48,10 +56,12 @@
 		$sql = $con -> query("UPDATE useraccounts SET profile_Photo = '$imgLink' WHERE username = '$_SESSION[username]'");
 	}
 	
+	# if all fields were empty send message back that no info was given 
 	if($_POST['password'] == null && $_POST['email'] == null && $_POST['phone_number'] == null && $_POST['photo'] == null) {
 		$message = urlencode("<p style='color: red'>No information was given to change, please enter new information</p>");
 		header("Location: editPersonalInfo.php?changed=" . $message);
 	} else {
+		# success message return 
 		$message = urlencode("<p>Your account information has been updated</p>");
 		header("Location: editPersonalInfo.php?changed=" . $message);
 	}

@@ -84,8 +84,13 @@
 	
 	if($results2 == 0) {
 		$photo = null;
-		echo '<h2 align=center>Search results 0 for: \'' . $_POST['item_name'] . '\' </h2>';
+		echo '<h2 align=center>Search results 0 for: \'' . $_POST['item_name'] . '\' </h2>'; 
 		$results = array();
+	}
+	
+	if(!(isset($_GET['check_items_out'])) && !(isset($_GET['check_items_requested'])) && $results2 != 0) {
+		echo '<h2 align=center>Search results 1 for: \'' . $_POST['item_name'] . '\' </h2>';
+		$photo = $results['photo'];
 	}
 	
 	else if(sizeof($results) > 0) {
@@ -95,10 +100,7 @@
 	else if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {
 		echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
 	}
-
-	else {
-		echo '<h2 align=center>Search results 1 for: \'' . $_POST['item_name'] . '\' </h2>';
-	}
+	
 ?>
 	
 <br><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
@@ -113,7 +115,7 @@
 	function displayTable() {
 		global $results;
 		
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
 		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
@@ -136,7 +138,7 @@
 		displayTable();
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 		echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>'; 
 		echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
 		echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';
@@ -149,7 +151,7 @@
 		$_SESSION['res'] = $results3['Requested'];
 	}		
 	
-	else if(isset($_GET['check_items_requested'])) {
+	else if(isset($_GET['check_items_requested'])) { 
 		$_SESSION['itemN'] = 1;
 		echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 		displayTable();
@@ -157,6 +159,8 @@
 		$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
 		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['res'] = $results3['Requested'];
+		
+		$_SESSION['bool'] = true; 
 	}		
 	
 	else if(sizeof($results) > 0) { 
@@ -172,7 +176,7 @@
 
 <form action='checkout.php' method='post'>
 	<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= 3) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['Status'] == 'Out') {echo 'disabled';} ?>></input>
-	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes') {echo 'disabled';} else if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';}?>></input>	
+	<input name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes') {echo 'disabled';} ?>></input>	
 </form>
 
 <?php

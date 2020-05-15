@@ -11,7 +11,7 @@ to addUser.php so that it can be added to the library database.
 	echo '<h3>Create your account</h3>';
 	echo '<p>Join the network</p>';
 	
-	echo '<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%" action="addUser.php" method="POST" enctype="multipart/form-data" autocomplete="off">';
+	echo '<form style="border: solid 0.1px; margin: 1% 30% 1% 30%; padding: 2% 0% 2% 0%; background-color: #DCDCDC" action="addUser.php" method="POST" enctype="multipart/form-data" autocomplete="off">';
 	
 		echo '<label>Username:</label><br>';
 		echo '<input autofocus type="text" name="username" placeholder="Username" size="32" required></input><br><br>';

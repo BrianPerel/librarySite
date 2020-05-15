@@ -3,10 +3,13 @@
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
 	session_start();
+	
+	# if regular user account is logged in switch nav links 
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 	
+	# if admin user account is logged in switch admin nav links 
 	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 	}
@@ -18,7 +21,7 @@
 	} else {
 		$session_life = time() - $_SESSION['timeout'];
 	}
-
+	
 	if(isset($session_life) && $session_life > $timeInactive) { 
 		session_destroy(); session_start();     
 	}
@@ -50,7 +53,7 @@
 	At the library enjoy art history of the library, college, and McAuliffe center.
 	</p>
 	
-	<center><img src='images/fsu.jpg' id='switch' height='600px' width='900px' style='margin-top: 8%; border: solid black; display: block'></center>
+	<center><img src='images/fsu.jpg' id='switch' height='600px' width='900px' style='margin-top: 8%; border: solid black; display: block; border-radius: 5%'></center>
 	
 	<center><p id="contact"><br><b>Location:</b> 100 State Street Framingham, MA 01701. We are located just off of Route 9 and about 1.5 miles from Mass Pike exit 12.
 	<br><br><b>Phone:</b> (111) - 222 - 3344<br>
@@ -74,6 +77,6 @@
 <a style="margin-left: 0.5%" href="https://www.pinterest.com/pin/243616661067870491/" class="fa fa-pinterest" target="_blank"></a><br><br>
 
 <div><a href="#top">Back to top</a> &#x2191;</div>
-<button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px'><a href='AdminLogin.php'>Admin Login</a></button><br><br><br>
+<button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; font-size: 14px'><a href='adminLogin.php'>Admin Login</a></button><br><br><br>
 	
 <?php include("footer.htm"); ?>
