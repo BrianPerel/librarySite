@@ -11,7 +11,7 @@
 a {text-decoration: none; color: black;}
 
 body {
-  background-color: #FFFACD;
+ /* background-color: #FFFACD; */
   background-image: url("../images/b.jpg");
   background-repeat: no-repeat;
   background-size: cover; /* Resize the background image to cover the entire container */

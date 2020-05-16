@@ -26,7 +26,6 @@ Purpose of webpage: Process filled out add item page recieved from adminOperatio
 
 			# using imagebb API key 
 			curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site 
-		
 			curl_setopt($icurl, CURLOPT_HEADER, false);
 			curl_setopt($icurl, CURLOPT_POST, true);
 			curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
