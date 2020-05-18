@@ -16,7 +16,17 @@ Purpose of webpage: display results of advSearch.php form query
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['num'] = $results['items_Out']; 
+		
+		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$_SESSION['numReq'] = $results['items_Requested'];
 	}
+	
+	if($_POST['Title'] == "" && $_POST['ISBN'] == "" && $_POST['Author'] == "") {
+		$emptyMessage = '<p style="color: red">No information has been entered, please fill out a field</p>';
+		header("Location: advSearch.php?emp=" . $emptyMessage);
+	} 
+
 	
 	# if admin user is logged-in switch nav links 
 	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
@@ -76,8 +86,8 @@ Purpose of webpage: display results of advSearch.php form query
 	# display item data table 
 	if(sizeof($results) > 0) {				
 		echo '<p style="margin-right: 45%">Item #1</p>';
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px>';
-		echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
+		echo '<table align="center" width="50%" height="120%" border="solid black 1px" style="background-color: #DCDCDC">';
+		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
 		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
 		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
@@ -88,6 +98,7 @@ Purpose of webpage: display results of advSearch.php form query
 		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
 		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
 		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
+		echo'<tr><td>' . 'Requested: ' . $results['Requested'] . '</td></tr>';
 		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
 		echo '</table><br>';
 		
@@ -99,7 +110,7 @@ Purpose of webpage: display results of advSearch.php form query
 <!-- check out and request buttons --> 
 <form action='checkout.php' method='post'>
 	<input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';} ?>></input>
-	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
+	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
 </form>
 	
 <?php echo '<div style="margin-top: 2%"></div>'; 

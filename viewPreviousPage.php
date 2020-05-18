@@ -4,6 +4,10 @@
 	echo '<title>Search | HWL</title>';
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	
+	# get num of items out, I wrote these statements to prevent itemN++ from continuing to increment if page is refreshed 
+	$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+	$numOfItems = $sql -> rowCount(PDO::FETCH_ASSOC);
 
 	if(isset($_SESSION['requestViewPrevious'])) {
 		if($_SESSION['requestViewPrevious'] == 'req1') { 
@@ -84,7 +88,7 @@
 
 	if(isset($_SESSION['requestViewPrevious'])) {
 		if($_SESSION['requestViewPrevious'] == 'req1') {
-			$_SESSION['itemN']--;
+			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
 			echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 				
 			displayTable();
@@ -112,7 +116,7 @@
 		}
 
 		else {
-			$_SESSION['itemN']--;
+			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
 			echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 				
 			displayTable(); 
@@ -150,7 +154,7 @@
 			echo "</form>";
 		}
 	} else {
-		$_SESSION['itemN']--;
+		if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
 		echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
 			
 		displayTable();

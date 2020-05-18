@@ -4,6 +4,8 @@
 	echo '<title>Search | HWL</title>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
+	$_SESSION['pageSentFrom'] = null; 
+	
 	if(isset($_SESSION['requestViewNext'])) {
 		$_SESSION['requestViewNext'] = null;
 	}
@@ -17,6 +19,10 @@
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['num'] = $results['items_Out'];
+		
+		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$_SESSION['numReq'] = $results['items_Requested'];
 	}
 	
 	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
@@ -94,11 +100,11 @@
 	}
 	
 	else if(sizeof($results) > 0) {
-		$photo = $results['photo'];
+		$photo = $results['photo']; 
 	}
 
-	else if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {
-		echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
+	if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {
+		echo '<h2 align=center>' . $_POST['item_name'] . '</h2>'; 
 	}
 	
 ?>
@@ -176,7 +182,7 @@
 
 <form action='checkout.php' method='post'>
 	<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= 3) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['Status'] == 'Out') {echo 'disabled';} ?>></input>
-	<input name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes') {echo 'disabled';} ?>></input>	
+	<input name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} ?>></input>	
 </form>
 
 <?php

@@ -15,6 +15,10 @@ Purpose of webpage: recieve letter request, display result of letter chosen
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['num'] = $results['items_Out'];
+		
+		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$_SESSION['numReq'] = $results['items_Requested'];
 	}
 	
 	# if admin user is logged in switch nav links 
@@ -103,7 +107,7 @@ Purpose of webpage: recieve letter request, display result of letter chosen
 <!-- checkout and request buttons --> 
 <form action='letterCheckout.php' method='post'>
 	<center><input style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
-	<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes') {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
+	<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 
 
 <?php include("footer.htm");?>

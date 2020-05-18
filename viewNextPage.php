@@ -5,6 +5,10 @@
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
 	
+	# get num of items out, I wrote these statements to prevent itemN++ from continuing to increment if page is refreshed 
+	$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+	$numOfItems = $sql -> rowCount(PDO::FETCH_ASSOC);
+	
 	if(isset($_SESSION['requestViewNext'])) { 
 		if($_SESSION['requestViewNext'] == 'req') {
 			$_SESSION['varR']++;
@@ -88,7 +92,7 @@
 
 	if(isset($_SESSION['requestViewNext'])) {
 		if($_SESSION['requestViewNext'] == 'req') {
-			$_SESSION['itemN']++;
+			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']++;
 						
 			displayTable();
 			
@@ -114,7 +118,7 @@
 				
 			echo '</form>';
 		} else {
-			$_SESSION['itemN']++;
+			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']++;
 		
 			displayTable();
 			
@@ -134,7 +138,7 @@
 				$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]' && item_Name = '$_SESSION[checkout2]'");
 				$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 				$renewed = $item['renewed'];
-				if($renewed == "No") {
+				if($renewed == "No") { 
 					echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 				}
 				
@@ -152,7 +156,7 @@
 			echo "</form>";
 		}
 	} else {
-		$_SESSION['itemN']++;
+		if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']++;
 		
 		displayTable();
 		
@@ -169,10 +173,10 @@
 		
 		echo "<form action='check-in.php' method='post'>";
 			echo "<center><input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
-			$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+			$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 			$renewed = $item['renewed'];
-			if($renewed == "No") {
+			if($renewed == "No") { 
 				echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 			}
 			

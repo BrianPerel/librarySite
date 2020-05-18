@@ -13,7 +13,7 @@ Purpose of webpage: recieve user form from signup.php and process it; capitalize
 		
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
 	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
-	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[pNum]'");	
+	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[phone_number]'");	
 
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {

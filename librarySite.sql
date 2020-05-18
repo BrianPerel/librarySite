@@ -15,7 +15,7 @@ CREATE TABLE `adminaccount` (
 `fullName` varchar(30) NOT NULL,
 `phoneNumber` varchar(12) NOT NULL,
 `messages` int(30),
-`admin_Profile_Photo` text DEFAULT 'images/default-admin-pic.png',
+`admin_Profile_Photo` text,
 PRIMARY KEY (userID)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE `items` (
 `Location` varchar(30), 
 `Price` decimal(10, 2),
 `Requested` varchar(20), 
-`photo` text DEFAULT 'images/default-book-picture.png',
+`photo` text,
 PRIMARY KEY(itemID)
 );
 

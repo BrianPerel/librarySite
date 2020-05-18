@@ -16,7 +16,10 @@ Purpose of webpage: this page will handle 4 operations: cancelling a request, ch
 			$requests--;
 			$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'"); # update number of items requested in useraccount
 			
-			$sql = $con -> query("UPDATE items SET Requested = 'No' WHERE Item_Name = '$_SESSION[checkout2]'"); # update status to available of item of which request was cancelled 
+			$sql = $con -> query("SELECT item_Name FROM itemsreq WHERE requester = '$_SESSION[username]' AND item_Name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
+			$itemReq = $sql -> fetch(PDO::FETCH_ASSOC);
+			$item_name = $itemReq['item_Name'];
+			$sql = $con -> query("UPDATE items SET Requested = 'No' WHERE Item_Name = '$item_name'"); # update status to available of item of which request was cancelled 
 			$sql = $con -> query("DELETE FROM itemsreq WHERE requester = '$_SESSION[username]' AND Item_Name = '$_SESSION[checkout2]'"); # delete item from item request table 
 			header('Location: myAccount.php');
 		}
