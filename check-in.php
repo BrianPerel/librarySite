@@ -1,6 +1,4 @@
-<!--
-Purpose of webpage: perform button action 
--->
+<!-- Purpose of webpage: perform item check-in button action for when user is logged in and is returning an item -->
 
 <?php 
 	session_start();
@@ -15,7 +13,6 @@ Purpose of webpage: perform button action
 		$out = $items_Out1['items_Out'];
 		$out--;
 		$sql = $con -> query("UPDATE useraccounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
-		
 		$sql = $con -> query("SELECT item_Name FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND item_Name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
 		$items = $sql -> fetch(PDO::FETCH_ASSOC);
 		$item_name = $items['item_Name'];
@@ -36,14 +33,12 @@ Purpose of webpage: perform button action
 	}
 	
 	# view next page action 
-	else if(isset($_POST['next'])) {
+	else if(isset($_POST['next'])) 
 		header("Location: viewNextPage.php");
-	}
 	
 	# view previous page action 
-	else if(isset($_POST['previous'])) {
+	else if(isset($_POST['previous'])) 
 		header("Location: viewPreviousPage.php");
-	}
 	
 	echo '<div style="margin-bottom: 32%"></div>';
 	include("footer.htm");

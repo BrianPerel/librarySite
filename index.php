@@ -84,7 +84,7 @@
 	
 	<div class="row"> 
 		<div class="col-sm-12">
-			<br><br><br><br><p id="contact"><b>Location:</b> 100 State Street Framingham, MA 01701</p>
+			<br><br><br><br><p id="contact2"><b>Location:</b> 100 State Street Framingham, MA 01701</p>
 		</div>
 	</div>
 

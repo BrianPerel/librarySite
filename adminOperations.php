@@ -1,6 +1,4 @@
-<!--
-Purpose of webpage: display and perform administrative operations which are adding and deleting items from db 
--->
+<!-- Purpose of webpage: display and perform administrative operations which are adding and deleting items from db -->
 
 <?php 
 	include("body.htm");
@@ -26,9 +24,8 @@ function post() {
 // check if enter key is hit call post() above. This allows user to either hit enter or click submit   
 function memSort(e) {
 	var key=e.keyCode || e.which;
-	if(key==13) {
+	if(key==13) 
 		post();
-	}
 }
 </script>
 

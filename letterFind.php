@@ -22,9 +22,8 @@ Purpose of webpage: recieve letter request, display result of letter chosen
 	}
 	
 	# if admin user is logged in switch nav links 
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) 
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
-	}
 
 	# when user checks an item out, letterCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
 	if(isset($_GET['send1'])) {
@@ -69,9 +68,8 @@ Purpose of webpage: recieve letter request, display result of letter chosen
 <img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
 		
 <?php
-	if(sizeof($results) == 0) {
+	if(sizeof($results) == 0) 
 		echo '<center>No items match your search</center><div style="margin-bottom: 22%"></div>';
-	}
 	
 	else if(sizeof($results) > 0) {
 		echo '<center><p style="margin-right: 45%">Item #1</p></center>';
@@ -105,7 +103,7 @@ Purpose of webpage: recieve letter request, display result of letter chosen
 ?>
 
 <!-- checkout and request buttons --> 
-<form action='letterCheckout.php' method='post'>
+<form class="form" action='letterCheckout.php' method='post'>
 	<center><input style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
 	<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 

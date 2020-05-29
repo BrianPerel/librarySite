@@ -104,17 +104,16 @@ check number of days all items in user's checkout queue have been out, update fi
 		
 ?>
 		
-		<div class="row"><div class="col-sm-12"><br><p>Login successful<br> Welcome back, <?php echo $results['full_Name'] ?></div></div> 
-		<div class="row"><div class="col-sm-12">Email: <?php echo $results['email'] ?> </div></div>
-		<div class="row"><div class="col-sm-12"><br><a href="viewCheckouts.php">Checkouts: (<?php echo $results['items_Out'] ?>)</a></div></div>
-		<div class="row"><div class="col-sm-12"> <a href="viewRequests.php">Requests: (<?php echo $results['items_Requested'] ?>)</a></div></div>
+		<div class="row"><div class="col-sm-12"><br><p>Login successful<br> Welcome back, <?php echo $results['full_Name'] ?><br>Email: <?php echo $results['email'] ?></div></div> 
+		<div class="row"><div class="col-sm-12"><a href="viewCheckouts.php">Checkouts: (<?php echo $results['items_Out'] ?>)</a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="viewRequests.php">Requests: (<?php echo $results['items_Requested'] ?>)</a></div></div>
 		<div class="row"><div class="col-sm-12"><a href="#" onclick="alert1()">Fines/Fees: $<?php echo $results['fines_fees'] ?></a></div></div>
 		<div class="row"><div class="col-sm-12"><a href="logout.php">(log out)</a></p></div></div>
 			
 <?php 
-		echo "<div style='margin-bottom: 2%'></div>
+		echo "<div style='margin-bottom: 1%'></div>
 		<form action='editPersonalInfo.php' method='post'>
-			<button style='float: right; height: 35px'>Edit Personal Information</button><br><br>
+			<button style='float: right; height: 8%'>Edit Personal Information</button><br><br>
 		</form>"; 
 	}	
 	

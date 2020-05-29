@@ -7,9 +7,8 @@
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	# display error message if nothing was filled out 
-	if(isset($_GET['$changeErr'])) {
+	if(isset($_GET['$changeErr'])) 
 		echo '<br>' . $_GET['$err'];
-	}
 ?>
 
 <center><h3>Edit My Personal Information: <br> (leave field blank if you don't want to change it)</h3><br>
@@ -23,7 +22,9 @@
 	<input class="btn btn-primary" type="submit" value="Change"/><br><br>
 </form>
 
-<?php if(isset($_GET['changed'])) echo '<br><div id="logout">' . $_GET['changed'] . ' </div>';
+<?php 
+	if(isset($_GET['changed'])) echo '<br><div id="logout">' . $_GET['changed'] . ' </div>';
 	echo '<script>window.addEventListener(onload, myFunction())</script>';
 	echo '</center>';
-include("footer.htm");?>
+	include("footer.htm");
+?>

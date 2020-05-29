@@ -1,3 +1,5 @@
+<!-- Purpose of webpage: perform user logout operation - destroy the session and open page with message --> 
+
 <?php 
 	session_start();
 	session_destroy();

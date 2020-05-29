@@ -48,9 +48,7 @@
 			echo '</form>';
 		echo '</div>';
 	}
-	
-	
-	
+		
 	echo "<div style='margin-bottom: 6.5%'></div>";
 	include("footer.htm");
 ?>

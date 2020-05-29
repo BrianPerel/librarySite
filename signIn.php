@@ -7,15 +7,13 @@
 	echo '<center><h3>My Account Login:</h3><br>';
 ?>
 	
-<div class="container"><center>
-		<form class="form" action="myAccount.php" method="post" style="border: solid black 1px; padding: 3%; width: 55%; background-color: #DCDCDC" autocomplete="off">
-			<label>Username:</label><br>
-			<input class="form-control" autofocus type="text" name="username" placeholder="Username" size="30" required></input><br>
-			<label>Password:</label><br>
-			<input class="form-control" class="key" type="password" name="password" placeholder="Password" size="30" required></input>
-			<br><input type="submit" class="btn btn-primary">
-		</form>
-</center></div>
+<center><form class="form" action="myAccount.php" method="post" style="border: solid black 1px; padding: 3%; width: 55%; background-color: #DCDCDC" autocomplete="off">
+	<label>Username:</label><br>
+	<input class="form-control" autofocus type="text" name="username" placeholder="Username" size="30" required></input><br>
+	<label>Password:</label><br>
+	<input class="form-control" class="key" type="password" name="password" placeholder="Password" size="30" required></input>
+	<br><input type="submit" class="btn btn-primary">
+</form></center>
 
 <?php 
 	if(isset($_SESSION['loggedin'])) {
@@ -32,9 +30,8 @@
 		echo '<div id="logout">' . $_GET['out'] . ' </div></center>';
 	} 
 	
-	if(isset($_GET['message'])) {
+	if(isset($_GET['message'])) 
 		echo $_GET['message'];
-	}
 	
 	echo '<div style="margin-top: 13%"></div>';
 	include("footer.htm");

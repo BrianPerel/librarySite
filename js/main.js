@@ -1,19 +1,12 @@
 /* --  Function for index page image rotation -- */
 
-
-
 var images = new Array();
-var altText = new Array(); 
 var x = -1;
 
 images[0] = "images/inside.jpg";
-altText[0] = "p0";
 images[1] = "images/4.jpg";
-altText[1] = "p1";
 images[2] = "images/lib1.jfif";
-altText[2] = "p2";
 images[3] = "images/inside2.jpg";
-altText[3] = "p3";
 
 function startTimer() {
 	setInterval(displayNextImage, 4000);
@@ -21,7 +14,6 @@ function startTimer() {
 function displayNextImage() {
 	x = (x === images.length - 1) ? 0 : x + 1; // if index 'x' is equal to length of array then set index to value 0, else increment (go to next image)
 	document.getElementById("switch").src = images[x]; // get element by id 'switch' and switch the image with new one 
-	document.getElementById("switch").alt = altText[x];
 }
 
 /* -- Function for hiding successful logout after a few seconds -- */
@@ -50,9 +42,8 @@ function switchNav() {
 	document.getElementById("home").style.padding = "0% 2.5% 0% 0%";
 	document.getElementById("child3").style.padding = "0% 0% 0% 2.5%";
 	document.getElementById("about").style.padding = "0% 0% 0% 2.5%";
-	document.getElementById("contact").style.padding = "0% 0% 0% 2.5%";
+	document.getElementById("contact2").style.padding = "0% 0% 0% 2.5%";
 	document.getElementById("fsu").style.padding = "0.6% 0% 0.6% 2.5%";
-
 }
 
 /* -- Function for switching admin user navbar links -- */ 
@@ -73,7 +64,7 @@ function switchNavAdmin() {
 	document.getElementById("home").style.padding = "0% 2.5% 0% 0%";
 	document.getElementById("child3").style.padding = "0% 0% 0% 2.5%";
 	document.getElementById("about").style.padding = "0% 0% 0% 2.5%";
-	document.getElementById("contact").style.padding = "0% 0% 0% 2.5%";
+	document.getElementById("contact2").style.padding = "0% 0% 0% 2.5%";
 	document.getElementById("fsu").style.padding = "0.6% 0% 0.6% 2.5%";
 }
 

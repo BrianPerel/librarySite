@@ -13,7 +13,7 @@ Purpose of webpage: recieve user form from signup.php and process it; capitalize
 		
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
 	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
-	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[phone_number]'");	
+	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[pNum]'");	
 
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
@@ -33,7 +33,7 @@ Purpose of webpage: recieve user form from signup.php and process it; capitalize
 		}
 		
 		# if file size of file field is 0, then user didn't upload image so upload default 
-		if($_FILES['InternPhoto']['size'] == 0) {	
+		if($_FILES['photo']['size'] == 0) {	
 			$imgLink = "images/default-picture.png";
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
@@ -67,7 +67,8 @@ Purpose of webpage: recieve user form from signup.php and process it; capitalize
 		VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 	}
 	
-	echo "<center><h4 style='margin-bottom: 31%'>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
-	echo "<a href='signIn.php'><u>Login here</u></a></h4></center>";
+	echo "<center><h4>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
+	echo "<a href='signIn.php'><u>Login here</u></a></h4><br>";
+	echo "<img src='images/lib.jfif' width='60%' height='60%'></img></center>";
 	include("footer.htm");
 ?>

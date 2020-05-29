@@ -1,3 +1,5 @@
+<!-- Purpose of webpage: recieve checkout request from letterFind.php page, perform checkout item operation --> 
+
 <?php 
 	session_start();
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');

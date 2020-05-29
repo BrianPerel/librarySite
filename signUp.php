@@ -39,9 +39,8 @@
 	
 <?php 
 	# print invalid login message upon failed login
-	if(isset($_GET['signUpError'])) {
+	if(isset($_GET['signUpError'])) 
 		echo '<center>' . $_GET['signUpError'] . '</center>';
-	}
 
 	include("footer.htm");
 ?> 

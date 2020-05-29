@@ -25,9 +25,8 @@
 		$_SESSION['numReq'] = $results['items_Requested'];
 	}
 	
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) 
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
-	}
 
 	# isset() sees if get variable exists, can be used only on get and session variables  
 	if(isset($_GET['send1'])){
