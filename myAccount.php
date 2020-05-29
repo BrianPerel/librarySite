@@ -1,3 +1,6 @@
+<!-- Purpose of webpage: recieve request to login from signIn.php, if user entered information matches username and password proceed,
+check number of days all items in user's checkout queue have been out, update fines if needed, display mini menu for user -->
+
 <?php
 	session_start();
 	include('body.htm');
@@ -36,7 +39,16 @@
 <br><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/>
 
 <?php 
-	if($_SESSION['loggedin'] == true) { 
+
+	define("FINE", "4.50"); # create constant to hold fine amount 
+	
+	# re-direct back to sign in page 
+	if($_SESSION['loggedin'] == false) {
+		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
+		header("location: signIn.php?message=" . $invalidLogin);
+	}
+	
+	else if($_SESSION['loggedin'] == true) { 
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 		# enter condition if user has more than 1 item out 
@@ -73,10 +85,10 @@
 					$sql = $con -> query("SELECT fines_fees FROM useraccounts WHERE username = '$_SESSION[username]'");
 					$fees = $sql -> fetch(PDO::FETCH_ASSOC);
 					$fee = $fees['fines_fees'];
-					if($fee == 4.50) {
+					if($fee == FINE) {
 						$fee += 0;
 					} else {
-						$fee += 4.50;
+						$fee += FINE;
 					}
 					$sql = $con -> query("UPDATE useraccounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
 				}
@@ -89,26 +101,22 @@
 		
 		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		echo '<div style="text-align: center">
-			<br>Login successful<br> Welcome back, ' . $results['full_Name'] . '<br><br>
-			Email: ' . $results['email'] . 
-			'<br><a href="viewCheckouts.php">Checkouts: (' . $results['items_Out'] . ')</a><br>
-			 <a href="viewRequests.php">Requests: (' . $results['items_Requested'] . ')</a><br>
-			 <a href="#" onclick="alert1()">Fines/Fees: $' . $results['fines_fees'] . '</a>
-			<br><a href="logout.php">(log out)</a>
-		</div>';	
+		
+?>
+		
+		<div class="row"><div class="col-sm-12"><br><p>Login successful<br> Welcome back, <?php echo $results['full_Name'] ?></div></div> 
+		<div class="row"><div class="col-sm-12">Email: <?php echo $results['email'] ?> </div></div>
+		<div class="row"><div class="col-sm-12"><br><a href="viewCheckouts.php">Checkouts: (<?php echo $results['items_Out'] ?>)</a></div></div>
+		<div class="row"><div class="col-sm-12"> <a href="viewRequests.php">Requests: (<?php echo $results['items_Requested'] ?>)</a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="#" onclick="alert1()">Fines/Fees: $<?php echo $results['fines_fees'] ?></a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="logout.php">(log out)</a></p></div></div>
 			
+<?php 
 		echo "<div style='margin-bottom: 2%'></div>
 		<form action='editPersonalInfo.php' method='post'>
 			<button style='float: right; height: 35px'>Edit Personal Information</button><br><br>
 		</form>"; 
-	}
-	
-	# re-direct back to sign in page 
-	else if($_SESSION['loggedin'] == false) {
-		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
-		header("location: signIn.php?message=" . $invalidLogin);
-	}
+	}	
 	
 	include("footer.htm");
 ?>

@@ -14,8 +14,12 @@
 		<meta http-equiv="Content-Type" content="text/html">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
 		<meta charset="utf-8">
+		
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 		
 		<!-- MAIN CSS --> 
 		<link rel="stylesheet" href="css/main.css">
@@ -28,26 +32,28 @@
 		
 		<!-- SEARCH ICON = FONT AWESOME TOOLKIT --> 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	    
 	</head>
 	
 	<body> 
 		<!-- HEADER -->
 		<div class="class1">
-			<h2>Henry Whittemore Library</h2>
-			<a href="index.php"><img src="images/1.jpg" alt="Smiley face" width="100px" height="90px" style="padding-top: 1%"></a>
-			<h2>Inventory Management System</h2>
+			<div class="row">
+				<span class="align-middle"><div class="col-sm-12"><h2>Henry Whittemore Library</h2></div></span>
+				<div class="col-sm-12"><a href="index.php"><img src="images/1.jpg" alt="Smiley face" width="90px" height="80px" style="padding-top: 1%"></a></div>
+			</div>
 		</div>
 
-		<!-- MENU --> 
-		<div class="class2" id='parent'>
-			<a href="index.php">Home</a>
-			<a href="signIn.php" id='child1'>Login</a>
-			<a href="signUp.php" id='child2'>Sign-Up</a>
-			<a href="advSearch.php" id='child3'>Search</a>
-			<a href="index.php#BodyText">About</a>
-			<a href="index.php#contact">Contact Us</a>
-			<a href="https://www.framingham.edu/" target="_blank">myFramingham.edu</a>
-		</div>
+		<nav class="navbar navbar-expand-sm navbar-light bg-secondary justify-content-center" id='parent'>
+			  <a class="nav-link" href="index.php" id="home">Home</a>
+			  <a class="nav-link" href="signIn.php" id="child1">Login</a>
+			  <a class="nav-link" href="signUp.php" id="child2">Sign-up</a>
+			  <a class="nav-link" href="advSearch.php" id="child3">Search</a>
+			  <a class="nav-link" href="index.php#BodyText" id="about">About</a>
+			  <a class="nav-link" href="index.php#contact" id="contact">Contact Us</a>
+			  <a class="nav-link" href="https://www.framingham.edu/" target="_blank" id="fsu">myFramingham.edu</a>
+		</nav>
+		
 		<hr color='blue'>
 	</body>
 </html>

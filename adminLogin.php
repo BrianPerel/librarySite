@@ -13,16 +13,17 @@ Purpose of webpage: login page for administrator.
 		session_destroy();
 		session_start();
 	}
+?>
 
-	# display username/password form 
-	echo '<form action="myAdminAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%" style="background-color: #DCDCDC" autocomplete="off">';
-		echo '<label>Username:</label><br>';
-		echo '<input autofocus type="text" name="username" placeholder="Username" size="30" required></input><br><br>';
-		echo '<label>Password:</label><br>';
-		echo '<input class="key" name="password" placeholder="Password" type="text" size="30" required></input><br>';
-		echo '<br><input type="submit">';
-	echo '</form></center>';	
+<form class="form" action="myAdminAccount.php" method="post" style="border: solid black 1px; width: 50%; padding: 3%; background-color: #DCDCDC" autocomplete="off">
+	<label>Username:</label>
+	<input class="form-control" autofocus type="text" name="username" placeholder="Username" size="30" required></input><br>
+	<label>Password:</label>
+	<input class="form-control" class="key" name="password" placeholder="Password" type="password" size="30" required></input><br>
+	<br><input class="btn btn-primary" type="submit">
+</form></center>
 
+<?php 
 	# if admin is logged-in, jump to admin account page 
 	if(isset($_SESSION['adminloggedin'])) {
 		if($_SESSION['adminloggedin'] == true) {

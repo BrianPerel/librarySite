@@ -1,22 +1,23 @@
-<!--
-Purpose of program:
-Prompt user to sign into there account
--->
+<!-- Purpose of program: prompt user to sign into there account -->
 
 <?php 
 	session_start();
 	include("body.htm");
 	echo '<title>Sign in | HWL</title>';
 	echo '<center><h3>My Account Login:</h3><br>';
+?>
 	
-	echo '<form action="myAccount.php" method="post" style="border: solid black 1px; width: 20%; padding: 1%; background-color: #DCDCDC" autocomplete="off">';
-		echo '<label>Username:</label><br>';
-		echo '<input autofocus type="text" name="username" placeholder="Username" size="30" required></input><br><br>';
-		echo '<label>Password:</label><br>';
-		echo '<input class="key" type="text" name="password" placeholder="Password" size="30" required></input><br>';
-		echo '<br><input type="submit">';
-	echo '</form>';
+<div class="container"><center>
+		<form class="form" action="myAccount.php" method="post" style="border: solid black 1px; padding: 3%; width: 55%; background-color: #DCDCDC" autocomplete="off">
+			<label>Username:</label><br>
+			<input class="form-control" autofocus type="text" name="username" placeholder="Username" size="30" required></input><br>
+			<label>Password:</label><br>
+			<input class="form-control" class="key" type="password" name="password" placeholder="Password" size="30" required></input>
+			<br><input type="submit" class="btn btn-primary">
+		</form>
+</center></div>
 
+<?php 
 	if(isset($_SESSION['loggedin'])) {
 		if($_SESSION['loggedin'] == true) {
 			header('Location: myAccount.php');

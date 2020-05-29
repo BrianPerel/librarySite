@@ -83,9 +83,11 @@ CREATE TABLE `itemsout` (
 PRIMARY KEY (itemID)
 );
 
+-- Dumping data for table `itemsout` 
 INSERT INTO `itemsout` (`item_Name`, `item_Holder`, `checkout_Date`, `days_Out`, `due_Date`, `renewed`) VALUES 
 ('Calisthenics Beasts', 'user1', '05/01/20', NULL, '05/08/20', 'No');
 
+-- Table structure for `itemsreq`
 CREATE TABLE `itemsreq` (
 `itemID` int(10) NOT NULL AUTO_INCREMENT,
 `item_Name` varchar(50),

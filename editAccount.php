@@ -1,6 +1,4 @@
-<!-- 
-Purpose of webpage: edit user's account info received from form page 
--->
+<!-- Purpose of webpage: edit user's account info received from form page -->
 
 <?php 
 	session_start();

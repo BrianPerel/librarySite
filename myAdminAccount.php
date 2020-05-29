@@ -1,3 +1,5 @@
+<!-- Purpose of webpage: recieve request from adminLogin.php, update variable values, if login successful display mini menu --> 
+
 <?php 
 	session_start();
 	include("body.htm");
@@ -28,7 +30,13 @@
 <br><img src="<?php echo $adminPhoto; ?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/>
 	
 <?php 
-	if($_SESSION['adminloggedin'] == true) {
+	# re-direct back to sign in page 
+	if($_SESSION['adminloggedin'] == false) {
+		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
+		header("location: adminLogin.php?message1=" . $invalidLogin);
+	}
+
+	else if($_SESSION['adminloggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 		echo '<div style="text-align: center">';
 			echo '<br>Login successful<br> Welcome back, ' . $results['fullName'] . '<br>';
@@ -41,11 +49,7 @@
 		echo '</div>';
 	}
 	
-	# re-direct back to sign in page 
-	else if($_SESSION['adminloggedin'] == false) {
-		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
-		header("location: adminLogin.php?message1=" . $invalidLogin);
-	}
+	
 	
 	echo "<div style='margin-bottom: 6.5%'></div>";
 	include("footer.htm");

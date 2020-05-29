@@ -1,6 +1,4 @@
-<!--
-Purpose of webpage: receive checkout request and perform checkout operation. Service checkout requests from adv page, letter search page, and item search page 
--->
+<!-- Purpose of webpage: receive checkout request and perform checkout operation. Service checkout requests from adv page, letter search page, and item search page -->
 
 <?php 
 	session_start();

@@ -1,3 +1,5 @@
+<!-- Purpose of page: recieve request from viewNextPage.php and update page variable values like item number and db itemID value, then display appropriate db data --> 
+
 <?php
 	session_start(); 
 	include("body.htm");
