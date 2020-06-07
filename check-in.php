@@ -2,8 +2,8 @@
 
 <?php 
 	session_start();
-	include("body.htm");
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	include("includes/body.htm");
+	require("includes/connect_db.php");
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	# check in action 
@@ -41,5 +41,5 @@
 		header("Location: viewPreviousPage.php");
 	
 	echo '<div style="margin-bottom: 32%"></div>';
-	include("footer.htm");
+	include("includes/footer.htm");
 ?>

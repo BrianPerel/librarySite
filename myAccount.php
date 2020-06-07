@@ -3,10 +3,10 @@ check number of days all items in user's checkout queue have been out, update fi
 
 <?php
 	session_start();
-	include('body.htm');
+	include('includes/body.htm');
 	echo '<title>My Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="120; url=logout.php?expire">';
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');	
+	require("includes/connect_db.php");
 			
 	if($_SESSION['loggedin'] == true) {
 		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
@@ -119,5 +119,5 @@ check number of days all items in user's checkout queue have been out, update fi
 		echo "</form>"; 
 	}	
 	
-	include("footer2.htm");
+	include("includes/footer2.htm");
 ?>

@@ -4,9 +4,9 @@ Purpose of webpage: display results of advSearch.php form query
 
 <?php
 	session_start();
-	include("body.htm");
+	include("includes/body.htm");
 	echo '<title>Advanced Search | HWL</title>';
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	require("includes/connect_db.php");
 	
 	# if regular user is logged-in switch nav links 
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -22,7 +22,7 @@ Purpose of webpage: display results of advSearch.php form query
 		$_SESSION['numReq'] = $results['items_Requested'];
 	}
 	
-	if($_POST['Title'] == "" && $_POST['ISBN'] == "" && $_POST['Author'] == "") {
+	if(empty($_POST['Title']) && empty($_POST['ISBN']) && empty($_POST['Author'])) {
 		$emptyMessage = '<p style="color: red">No information has been entered, please fill out a field</p>';
 		header("Location: advSearch.php?emp=" . $emptyMessage);
 	} 
@@ -113,4 +113,4 @@ Purpose of webpage: display results of advSearch.php form query
 	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
 </form>
 	
-<?php echo '<div style="margin-top: 2%"></div>'; include("footer.htm")?>	
+<?php echo '<div style="margin-top: 2%"></div>'; include("includes/footer2.htm")?>	

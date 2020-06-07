@@ -2,10 +2,10 @@
 
 <?php 
 	session_start();
-	include("body.htm");
+	include("includes/body.htm");
 	echo '<title>Admin Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="90; url=logoutAdmin.php?expire">';
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	require("includes/connect_db.php");
 
 	if($_SESSION['adminloggedin'] == true) {
 		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_SESSION[username]'");
@@ -50,5 +50,5 @@
 	}
 		
 	echo "<div style='margin-bottom: 6.5%'></div>";
-	include("footer.htm");
+	include("includes/footer.htm");
 ?>

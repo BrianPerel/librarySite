@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	require("includes/connect_db.php");
 	
 	if($_SESSION['loggedin'] == true && $_POST['checkout2'] && $_SESSION['pageSentFrom'] == 'advSearch') { 
 		# update status of item we're checking out 

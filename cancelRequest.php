@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	require("includes/connect_db.php");
 	
 	# if user wants to cancel there request perform operation 
 	if(isset($_POST['cancel'])) {

@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	include("body.htm");
+	include("includes/body.htm");
 	echo '<title>Advanced Search | HWL</title>';
 	
 	# if regular user is logged in switch nav links 
@@ -49,4 +49,4 @@
 	<input class="btn btn-primary" type="submit"><br>
 </form></center>
 
-<?php include("footer2.htm")?>
+<?php include("includes/footer2.htm")?>

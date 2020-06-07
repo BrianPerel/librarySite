@@ -1,7 +1,7 @@
 <!-- Purpose of webpage: display and perform administrative operations which are adding and deleting items from db -->
 
 <?php 
-	include("body.htm");
+	include("includes/body.htm");
 	echo '<title>Admin Operation | HWL</title>';
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 ?>
@@ -134,6 +134,6 @@ function memSort(e) {
 		echo $_GET['addMessage'];
 	}
 	
-	include("footer2.htm");
+	include("includes/footer2.htm");
 ?>				
 </div>

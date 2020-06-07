@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	require("includes/connect_db.php");
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
@@ -17,15 +17,15 @@
 	}
 	
 	# if password field is not empty do this 
-	if($_POST['password'] != null) 
+	if(!empty($_POST['password'])) 
 		$sql = $con -> query("UPDATE useraccounts SET password='$_POST[password]' WHERE username = '$_SESSION[username]'");
 	
 	# if email field is not empty do this 
-	if($_POST['email'] != null) 
+	if(!empty($_POST['email'])) 
 		$sql = $con -> query("UPDATE useraccounts SET email='$_POST[email]' WHERE username = '$_SESSION[username]'");
 	
 	# if phone number field is not empty do this 
-	if($_POST['phone_number'] != null) 
+	if(!empty($_POST['phone_number'])) 
 		$sql = $con -> query("UPDATE useraccounts SET phone_Number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
 	
 	# if photo field is not empty do this 

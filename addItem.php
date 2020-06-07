@@ -2,7 +2,7 @@
 upload file given to imagebb for image storage using curl cmd if user attached image, else chose default. Insert all post data along with image into new record in items table and return message to adminOperations.php -->
 
 <?php
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	require("includes/connect_db.php");
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_REQUEST[item_name]'");
 	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 	$item = $_REQUEST['item_name'];

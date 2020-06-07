@@ -1,5 +1,5 @@
 <?php 
-	include("body.htm");
+	include("includes/body.htm");
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
 	session_start();
@@ -155,4 +155,4 @@
 		<div class="col-sm-12"><button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; margin-right: 0.1%'><a href='adminLogin.php'>Admin Login</a></button></div>
 	</div>
 		
-<?php include("footer2.htm"); ?>
+<?php include("includes/footer2.htm"); ?>

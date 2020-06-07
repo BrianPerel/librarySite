@@ -1,7 +1,7 @@
 <!-- Purpose of webpage: display edit account form -->
 
 <?php
-	include("body.htm");
+	include("includes/body.htm");
 	echo '<title>Edit Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="120; url=logout.php">';
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
@@ -26,5 +26,5 @@
 	if(isset($_GET['changed'])) echo '<br><div id="logout">' . $_GET['changed'] . ' </div>';
 	echo '<script>window.addEventListener(onload, myFunction())</script>';
 	echo '</center>';
-	include("footer.htm");
+	include("includes/footer2.htm");
 ?>

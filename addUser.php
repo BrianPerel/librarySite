@@ -2,9 +2,9 @@
 		make sure recaptcha tool was checked, trim whitespace from username, email, and password. Attach default or custom image. Finally insert all data into db and display message with link -->
 
 <?php 
-	include("body.htm");
+	include("includes/body.htm");
 	echo '<title>Registration Completed | HWL</title>';
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	require("includes/connect_db.php");
 	
 	# capitalize the first letter of every word from fname form input field
 	$fname = ucwords($_POST['fname']);
@@ -68,5 +68,5 @@
 	echo "<center><h4>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
 	echo "<a href='signIn.php'><u>Login here</u></a></h4><br>";
 	echo "<img src='images/lib.jfif' width='60%' height='60%'></img></center>";
-	include("footer.htm");
+	include("includes/footer.htm");
 ?>

@@ -6,7 +6,7 @@
 	
 	echo $name; /* DO NOT REMOVE THIS */ 
 
-	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');
+	require("includes/connect_db.php");
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$name'");
 	$results = $sql -> fetchall(PDO::FETCH_ASSOC);
 

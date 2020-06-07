@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	include("body.htm");
+	include("includes/body.htm");
 	echo '<title>Sign in | HWL</title>';
 	echo '<center><h3>My Account Login:</h3><br>';
 ?>
@@ -34,5 +34,5 @@
 		echo $_GET['message'];
 	
 	echo '<div style="margin-top: 13%"></div>';
-	include("footer.htm");
+	include("includes/footer.htm");
 ?> 
