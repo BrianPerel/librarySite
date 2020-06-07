@@ -6,6 +6,12 @@
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 ?>
 
+<style>
+.modal {
+    overflow-y: auto;
+}
+</style>
+
 <!-- Ajax Script = used to drop items from db without reloading page, dynamically --> 
 <script>
 function post() {
@@ -28,7 +34,7 @@ function memSort(e) {
 		post();
 }
 </script>
-
+<div style="overflow-y: auto;">
 <?php
 	# use Ajax to post form data to php file deleteItem, to delete an item from database. If delete option is clicked from myAdminAccount.php go here 
 	if(isset($_POST['deleteItem']) || isset($_GET['delMessage'])) { ?>
@@ -128,5 +134,6 @@ function memSort(e) {
 		echo $_GET['addMessage'];
 	}
 	
-	include("footer.htm");
+	include("footer2.htm");
 ?>				
+</div>

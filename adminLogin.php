@@ -42,9 +42,8 @@ Purpose of webpage: login page for administrator.
 	}
 	
 	# incorrect account credentials given 
-	if(isset($_GET['message1'])) {
+	if(isset($_GET['message1'])) 
 		echo '<center>' . $_GET["message1"] . '</center>';
-	}
 	
 	echo '<div style="margin-top: 14.5%"></div>';
 	include("footer.htm");

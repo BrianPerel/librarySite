@@ -66,14 +66,14 @@
 	
 ?>
 
-<br><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+<br><img src="<?=$photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
 
 <?php 
 	function displayTable() {
 		global $results;
 		
-		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
-		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
+		echo'<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
+		echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
 		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
 		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
 		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
@@ -194,5 +194,5 @@
 		}
 	
 	echo '<div style="margin-bottom: 4%"></div>';
-	include('footer.htm');
+	include('footer2.htm');
 ?>

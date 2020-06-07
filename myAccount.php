@@ -5,7 +5,7 @@ check number of days all items in user's checkout queue have been out, update fi
 	session_start();
 	include('body.htm');
 	echo '<title>My Account | HWL</title>';
-	echo '<meta http-equiv="refresh" content="90; url=logout.php?expire">';
+	echo '<meta http-equiv="refresh" content="120; url=logout.php?expire">';
 	$con = new PDO('mysql:host=localhost:3306;dbname=librarysite;charset=utf8mb4','root');	
 			
 	if($_SESSION['loggedin'] == true) {
@@ -36,7 +36,11 @@ check number of days all items in user's checkout queue have been out, update fi
 
 <h2>My Account</h2>
 
-<br><img src="<?php echo $profilePhoto; ?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/>
+<div class="row">
+	<div class="col-sm-12">
+		<br><img src="<?=$profilePhoto?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/>
+	</div>
+</div>
 
 <?php 
 
@@ -101,21 +105,19 @@ check number of days all items in user's checkout queue have been out, update fi
 		
 		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		
 ?>
 		
-		<div class="row"><div class="col-sm-12"><br><p>Login successful<br> Welcome back, <?php echo $results['full_Name'] ?><br>Email: <?php echo $results['email'] ?></div></div> 
-		<div class="row"><div class="col-sm-12"><a href="viewCheckouts.php">Checkouts: (<?php echo $results['items_Out'] ?>)</a></div></div>
-		<div class="row"><div class="col-sm-12"><a href="viewRequests.php">Requests: (<?php echo $results['items_Requested'] ?>)</a></div></div>
-		<div class="row"><div class="col-sm-12"><a href="#" onclick="alert1()">Fines/Fees: $<?php echo $results['fines_fees'] ?></a></div></div>
+		<div class="row"><div class="col-sm-12"><br><p>Login successful<br><?php echo "Welcome back, $results[full_Name] <br>Email: $results[email]"?></div></div> 
+		<div class="row"><div class="col-sm-12"><a href="viewCheckouts.php"><?php echo "Checkouts: ($results[items_Out])"?></a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="viewRequests.php"><?php echo "Requests: ($results[items_Requested])"?></a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="#" onclick="alert1()"><?php echo "Fines/Fees: $$results[fines_fees]"?></a></div></div>
 		<div class="row"><div class="col-sm-12"><a href="logout.php">(log out)</a></p></div></div>
 			
 <?php 
-		echo "<div style='margin-bottom: 1%'></div>
-		<form action='editPersonalInfo.php' method='post'>
-			<button style='float: right; height: 8%'>Edit Personal Information</button><br><br>
-		</form>"; 
+		echo "<form action='editPersonalInfo.php' method='post'>";
+		echo "<button style='float: right; height: 8%'>Edit Personal Information</button><br><br>";
+		echo "</form>"; 
 	}	
 	
-	include("footer.htm");
+	include("footer2.htm");
 ?>

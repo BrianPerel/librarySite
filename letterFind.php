@@ -1,6 +1,4 @@
-<!--
-Purpose of webpage: recieve letter request, display result of letter chosen 
--->
+<!-- Purpose of webpage: recieve letter request, display result of letter chosen -->
 
 <?php 
 	session_start(); # need session to save item_name to session in order to pass it into another file
@@ -65,7 +63,11 @@ Purpose of webpage: recieve letter request, display result of letter chosen
 	}
 ?>
 		
-<img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+<div class="row">
+	<div class="col-sm-12">
+		<img src="<?=$photo?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+	</div>
+</div>
 		
 <?php
 	if(sizeof($results) == 0) 
@@ -104,8 +106,8 @@ Purpose of webpage: recieve letter request, display result of letter chosen
 
 <!-- checkout and request buttons --> 
 <form class="form" action='letterCheckout.php' method='post'>
-	<center><input style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
-	<input type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
+	<center><input class="form" style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
+	<input class="form" type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 
 
-<?php include("footer.htm");?>
+<?php include("footer2.htm")?>

@@ -80,7 +80,7 @@ Purpose of webpage: display results of advSearch.php form query
 	}
 ?>
 	
-<img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/>
+<img src="<?=$photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/>
 			
 <?php
 	# display item data table 
@@ -113,5 +113,4 @@ Purpose of webpage: display results of advSearch.php form query
 	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
 </form>
 	
-<?php echo '<div style="margin-top: 2%"></div>'; 
-include("footer.htm");?>	
+<?php echo '<div style="margin-top: 2%"></div>'; include("footer.htm")?>	

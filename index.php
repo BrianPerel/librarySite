@@ -3,6 +3,7 @@
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
 	session_start();
+	# phpinfo();
 	
 	# if regular user account is logged in switch nav links 
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -29,6 +30,7 @@
 
 	$_SESSION['timeout'] = time();
 ?>
+
 <div class="class3">	
 	<div class="row">
 		<div class="col-sm-12">
@@ -65,8 +67,8 @@
 		</div>
 	
 		<div class="col-sm-5">
-			<img src="images/6.jpg" id="pic1" width="150px" height="150px" style='float: right'>
-			<img src="images/2.png" id="pic1" width="150px" height="150px" style='display: inline; float: right' id='picRight'><br>
+			<img src="images/6.jpg" id="pic1" width="150px" height="150px" style='float: right'></img>
+			<img src="images/2.png" id="pic1" width="150px" height="150px" style='display: inline; float: right' id='picRight'></img><br>
 		</div>
 	</div>
 	
@@ -84,7 +86,7 @@
 	
 	<div class="row"> 
 		<div class="col-sm-12">
-			<br><br><br><br><p id="contact2"><b>Location:</b> 100 State Street Framingham, MA 01701</p>
+			<br><br><br><br><p id="contact"><b>Location:</b> 100 State Street Framingham, MA 01701</p>
 		</div>
 	</div>
 
@@ -153,4 +155,4 @@
 		<div class="col-sm-12"><button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; margin-right: 0.1%'><a href='adminLogin.php'>Admin Login</a></button></div>
 	</div>
 		
-<?php include("footer.htm"); ?>
+<?php include("footer2.htm"); ?>

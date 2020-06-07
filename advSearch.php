@@ -1,6 +1,4 @@
-<!--
-Purpose of webpage: perform an advanced search of library database 
--->
+<!-- Purpose of webpage: perform an advanced search of library database -->
 
 <?php 
 	session_start();
@@ -8,18 +6,15 @@ Purpose of webpage: perform an advanced search of library database
 	echo '<title>Advanced Search | HWL</title>';
 	
 	# if regular user is logged in switch nav links 
-	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) 
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
-	}
 	
 	# if admin user is logged in switch nav links 
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true)  
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
-	}
 	
-	if(isset($_GET['emp'])) {
+	if(isset($_GET['emp'])) 
 		echo $_GET['emp']; 
-	}
 ?>
 
 <h3>Advanced Search</h3><br>
@@ -51,7 +46,7 @@ Purpose of webpage: perform an advanced search of library database
 	   <option value="n2">Newton</option>
 	   <option value="a">Ashland</option>
 	</select><br><br><br>
-	<input class="btn btn-primary" type="submit"><br><br>
+	<input class="btn btn-primary" type="submit"><br>
 </form></center>
 
-<?php include("footer.htm");?>
+<?php include("footer2.htm")?>

@@ -27,7 +27,7 @@
 	echo '<h3>Administrator</h3>';
 ?>
 		
-<br><img src="<?php echo $adminPhoto; ?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/>
+<br><img src="<?=$adminPhoto?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/>
 	
 <?php 
 	# re-direct back to sign in page 

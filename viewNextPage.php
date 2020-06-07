@@ -67,7 +67,7 @@
 	
 ?>
 
-<br><img src="<?php echo $photo; ?>" <?php if($results2 == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+<br><img src="<?= $photo; ?>" <?php if($results2 == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
 
 <?php 
 	function displayTable() {
@@ -197,8 +197,5 @@
 	}
 	
 	echo '<div style="margin-bottom: 4%"></div>';
-	include('footer.htm');
+	include('footer2.htm');
 ?>
-
-
-

@@ -24,14 +24,14 @@
 	<input class="form-control" type="tel" name="pNum" placeholder="111-222-3333" size="32" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" maxlength="12" required></input><br><br><br>
 	
 	<label>Upload Profile Picture (Optional)</label><br>
-	<input class="form-control" type="file" name="photo" autocomplete='off' style="padding-bottom: 5%" id="chose"></input><br>
+	<input class="form-control" type="file" name="photo" autocomplete='off' style="padding-bottom: 4%" class="chose"></input><br>
 	
 	<br><p>By creating an account, you agree to the terms of service</p>
 	
 	<label for="terms">Agree to terms:</label>
 	<input type="checkbox" name="terms" value="terms" required><br><br>
 	
-	<div class="g-recaptcha" data-sitekey="6LflseQUAAAAAPX0WpXXBIO-rZ_zPwkvrXenB4gr"></div><br>
+	<div class="g-recaptcha" data-sitekey="6LflseQUAAAAAPX0WpXXBIO-rZ_zPwkvrXenB4gr" style="padding: 4%"></div><br>
 	
 	<input type="submit" class="btn btn-primary">
 </form></center>
@@ -42,5 +42,5 @@
 	if(isset($_GET['signUpError'])) 
 		echo '<center>' . $_GET['signUpError'] . '</center>';
 
-	include("footer.htm");
+	include("footer2.htm");
 ?> 

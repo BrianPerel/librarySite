@@ -1,3 +1,5 @@
+<!-- Purpose of webpage: recieve request from index.php and display item information for info entered in search box on index.php --> 
+
 <?php
 	session_start(); # need session to save item_name to session in order to pass it into another file 
 	include("body.htm");
@@ -107,15 +109,18 @@
 	}
 	
 ?>
-	
-<br><img src="<?php echo $photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+
+<div class="row">
+	<div class="col-sm-12">
+		<br><img src="<?=$photo?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+	</div>
+</div>
 	
 <?php 
 	$_SESSION['res'] = 'No';
 
-	if(sizeof($results) == 0) {
+	if(sizeof($results) == 0) 
 		echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
-	}
 	
 	function displayTable() {
 		global $results;
@@ -147,7 +152,7 @@
 		echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>'; 
 		echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
 		echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';
-		echo '<tr><td>Renewed: ' . $results2['renewed'] . '</td></tr>';
+		echo "<tr><td>Renewed: $results2[renewed]</td></tr>";
 		echo '</table><br>';
 		
 		$_SESSION['checkout2'] = $results['Item_Name'];
@@ -180,8 +185,8 @@
 ?>
 
 <form action='checkout.php' method='post'>
-	<center><input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= 3) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['Status'] == 'Out') {echo 'disabled';} ?>></input>
-	<input name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} ?>></input>	
+	<center><input class="form" style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= 3) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['Status'] == 'Out') {echo 'disabled';} ?>></input>
+	<input class="form" name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} ?>></input>	
 </form>
 
 <?php
@@ -216,5 +221,5 @@
 		echo "</form>";
 	}
 	echo '</center>';
-	include("footer.htm");
+	include("footer2.htm");
 ?>
