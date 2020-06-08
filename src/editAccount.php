@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
@@ -12,7 +12,7 @@
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
 		$err = urlencode('<br><p style="color: red">Error Creating the Account! An account with that information already exists</p>');
-		header("Location: editPersonalInfo.php?changeErr=" . $err);
+		header("Location: editPersonalInfo.php?changeErr=$err");
 		die;
 	}
 	
@@ -54,10 +54,10 @@
 	# if all fields were empty send message back that no info was given 
 	if($_POST['password'] == null && $_POST['email'] == null && $_POST['phone_number'] == null && $_FILES['photo']['size'] <= 0) {
 		$message = urlencode("<p style='color: red'>No information was given to change, please enter new information</p>");
-		header("Location: editPersonalInfo.php?changed=" . $message);
+		header("Location: editPersonalInfo.php?changed=$message");
 	} else {
 		# success message return 
 		$message = urlencode("<p>Your account information has been updated</p>");
-		header("Location: editPersonalInfo.php?changed=" . $message);
+		header("Location: editPersonalInfo.php?changed=$message");
 	}
 ?>

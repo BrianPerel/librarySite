@@ -1,5 +1,5 @@
 <?php 
-	include("includes/body.htm");
+	include("../includes/body.htm");
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
 	session_start();
@@ -67,20 +67,20 @@
 		</div>
 	
 		<div class="col-sm-5">
-			<img src="images/6.jpg" id="pic1" width="150px" height="150px" style='float: right'></img>
-			<img src="images/2.png" id="pic1" width="150px" height="150px" style='display: inline; float: right' id='picRight'></img><br>
+			<img src="../images/6.jpg" id="pic1" width="150px" height="150px" style='float: right'></img>
+			<img src="../images/2.png" id="pic1" width="150px" height="150px" style='display: inline; float: right' id='picRight'></img><br>
 		</div>
 	</div>
 	
 	<!--id='switch'-->
 	<div class="row">
 		<div class="col-sm-8">
-			<img src='images/fsu.jpg' class="img-thumbnail" width='650px' height='600px'/><br><br>
+			<img src='../images/fsu.jpg' class="img-thumbnail" width='650px' height='600px'/><br><br>
 		</div>
 		
 		<div class="col-sm-3">
 			<iframe class="img-thumbnail" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2951.0640653227806!2d-71.4352319!3d42.2984984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e389a9351c81eb%3A0xe6ea3c8be37e9068!2sHenry%20Whittemore%20Library!5e0!3m2!1sen!2sus!4v1583264360102!5m2!1sen!2sus" frameborder="0" style="border:0;" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-			<img class="img-thumbnail" src="images/5.jpg" width="400" height="300"></img>
+			<img class="img-thumbnail" src="../images/5.jpg" width="400" height="300"></img>
 		</div>
 	</div>
 	
@@ -155,4 +155,4 @@
 		<div class="col-sm-12"><button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; margin-right: 0.1%'><a href='adminLogin.php'>Admin Login</a></button></div>
 	</div>
 		
-<?php include("includes/footer2.htm"); ?>
+<?php include("../includes/footer2.htm"); ?>

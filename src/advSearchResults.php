@@ -4,9 +4,9 @@ Purpose of webpage: display results of advSearch.php form query
 
 <?php
 	session_start();
-	include("includes/body.htm");
+	include("../includes/body.htm");
 	echo '<title>Advanced Search | HWL</title>';
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	
 	# if regular user is logged-in switch nav links 
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -24,7 +24,7 @@ Purpose of webpage: display results of advSearch.php form query
 	
 	if(empty($_POST['Title']) && empty($_POST['ISBN']) && empty($_POST['Author'])) {
 		$emptyMessage = '<p style="color: red">No information has been entered, please fill out a field</p>';
-		header("Location: advSearch.php?emp=" . $emptyMessage);
+		header("Location: advSearch.php?emp=$emptyMessage");
 	} 
 
 	
@@ -37,20 +37,20 @@ Purpose of webpage: display results of advSearch.php form query
 	if(isset($_GET['send1'])){
 		$post = $_GET['send1'];
 		$_POST['item_name'] = $post;
-		echo '<br><center><p style="color: green">' . $_SESSION['username'] . ' has checked out this item</p></center>';
+		echo "<br><center><p style='color: green'>$_SESSION[username] has checked out this item</p></center>";
 	}	
 	
 	# recieve message 2 from checkout.php and print the message 
 	if(isset($_GET['send2'])){
 		$post = $_GET['send2'];
 		$_POST['item_name'] = $post;
-		echo '<br><center><p style="color: green">' . $_SESSION['username'] . ' has requested this item</p></center>';
+		echo "<br><center><p style='color: green'>$_SESSION[username] has requested this item</p></center>";
 	}	
 
 	# recieve message 3 from checkout.php and print the message. Get the record info on item name matched  
 	if(isset($_GET['send3'])) {
 		$err = $_GET['send3'];
-		echo '<center>' . $err . '</center>';
+		echo "<center>$err</center>";
 		$_POST['Title'] = $_SESSION['checkout2']; 
 		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[Title]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
@@ -113,4 +113,4 @@ Purpose of webpage: display results of advSearch.php form query
 	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
 </form>
 	
-<?php echo '<div style="margin-top: 2%"></div>'; include("includes/footer2.htm")?>	
+<?php echo '<div style="margin-top: 2%"></div>'; include("../includes/footer2.htm")?>	

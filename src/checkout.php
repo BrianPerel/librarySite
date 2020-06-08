@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	
 	if($_SESSION['loggedin'] == true && $_POST['checkout2'] && $_SESSION['pageSentFrom'] == 'advSearch') { 
 		# update status of item we're checking out 
@@ -55,7 +55,7 @@
 				$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
 			}
 		}
-		header('Location: itemSearch.php?send1=' . $_SESSION['checkout2']);
+		header("Location: itemSearch.php?send1=$_SESSION[checkout2]");
 	}
 	
 	else if($_SESSION['loggedin'] == true && $_POST['request'] && $_SESSION['pageSentFrom'] == 'advSearch') {  
@@ -66,7 +66,7 @@
 		$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("UPDATE items SET Requested = 'Yes' WHERE Item_Name = '$_SESSION[checkout2]'"); # update status to available of item of which request was cancelled 
 		$sql = $con -> query("INSERT INTO itemsreq (item_Name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
-		header('Location: itemSearch.php?send2=' . $_SESSION['checkout2']);
+		header("Location: itemSearch.php?send2=$_SESSION[checkout2]");
 	}
 	
 	else if($_SESSION['loggedin'] == true && $_POST['request']) { 
@@ -76,16 +76,16 @@
 		$requests++;
 		$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("UPDATE useraccounts SET requested_itemName = '$_SESSION[checkout2]' WHERE username = '$_SESSION[username]'");
-		header('Location: itemSearch.php?send2=' . $_SESSION['checkout2']);
+		header("Location: itemSearch.php?send2=$_SESSION[checkout2]");
 	}
 	
 	else if($_SESSION['loggedin'] == false && $_SESSION['pageSentFrom'] == 'advSearch') {
 		$error = '<p style="color: red">Please sign into your account to check out and request items</p>';
-		header('Location: itemSearch.php?send3=' . $error);
+		header("Location: itemSearch.php?send3=$error");
 	}
 	
 	else {
 		$error = '<p style="color: red">Please sign into your account to check out and request items</p>';
-		header('Location: itemSearch.php?send3=' . $error);
+		header("Location: itemSearch.php?send3=$error");
 	}
 ?>

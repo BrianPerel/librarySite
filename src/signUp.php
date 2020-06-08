@@ -1,7 +1,7 @@
 <!-- Purpose of program: prompt user to fill out sign up form, once filled out send the data form to addUser.php so that it can be added to the library database -->
 
 <?php 
-	include("includes/body.htm");
+	include("../includes/body.htm");
 	echo '<title>Sign up | HWL</title>';
 	echo '<h3>Create your account</h3>';
 	echo '<p>Join the network</p>';
@@ -31,7 +31,7 @@
 	<label for="terms">Agree to terms:</label>
 	<input type="checkbox" name="terms" value="terms" required><br><br>
 
-	<?php include("includes/recaptcha_connect.htm");?>
+	<?php include("../includes/recaptcha_connect.htm");?>
 	
 	<input type="submit" class="btn btn-primary">
 </form></center>
@@ -40,7 +40,7 @@
 <?php 
 	# print invalid login message upon failed login
 	if(isset($_GET['signUpError'])) 
-		echo '<center>' . $_GET['signUpError'] . '</center>';
+		echo "<center>$_GET[signUpError]</center>";
 
-	include("includes/footer2.htm");
+	include("../includes/footer2.htm");
 ?> 

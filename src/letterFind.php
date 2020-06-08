@@ -2,9 +2,9 @@
 
 <?php 
 	session_start(); # need session to save item_name to session in order to pass it into another file
-	include("includes/body.htm");
+	include("../includes/body.htm");
 	echo '<title>Letter Search | HWL</title>';
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	
 	# if regular user is logged in switch nav links 
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
@@ -110,4 +110,4 @@
 	<input class="form" type="submit" name="request" value='Request Item' <?php if(sizeof($results) == 0 && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 
 
-<?php include("includes/footer2.htm")?>
+<?php include("../includes/footer2.htm")?>

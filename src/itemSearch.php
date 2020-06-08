@@ -2,9 +2,9 @@
 
 <?php
 	session_start(); # need session to save item_name to session in order to pass it into another file 
-	include("includes/body.htm");
+	include("../includes/body.htm");
 	echo '<title>Search | HWL</title>';
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	
 	$_SESSION['pageSentFrom'] = null; 
 	
@@ -221,5 +221,5 @@
 		echo "</form>";
 	}
 	echo '</center>';
-	include("includes/footer2.htm");
+	include("../includes/footer2.htm");
 ?>

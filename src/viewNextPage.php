@@ -2,10 +2,10 @@
 
 <?php
 	session_start(); 
-	include("includes/body.htm");
+	include("../includes/body.htm");
 	echo '<title>Search | HWL</title>';
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	
 	# get num of items out, I wrote these statements to prevent itemN++ from continuing to increment if page is refreshed 
 	$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
@@ -197,5 +197,5 @@
 	}
 	
 	echo '<div style="margin-bottom: 4%"></div>';
-	include('includes/footer2.htm');
+	include('../includes/footer2.htm');
 ?>

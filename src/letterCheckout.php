@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	
 	if($_SESSION['loggedin'] == true && $_POST['checkout2']) {
 		# update status of item we're checking out 

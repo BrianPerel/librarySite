@@ -8,6 +8,10 @@
 
 * {font-family: myFirstFont;}
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   background-image: url("../images/b.jpg");
   background-repeat: no-repeat;

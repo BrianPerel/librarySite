@@ -3,10 +3,10 @@ check number of days all items in user's checkout queue have been out, update fi
 
 <?php
 	session_start();
-	include('includes/body.htm');
+	include('../includes/body.htm');
 	echo '<title>My Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="120; url=logout.php?expire">';
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 			
 	if($_SESSION['loggedin'] == true) {
 		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
@@ -119,5 +119,5 @@ check number of days all items in user's checkout queue have been out, update fi
 		echo "</form>"; 
 	}	
 	
-	include("includes/footer2.htm");
+	include("../includes/footer2.htm");
 ?>

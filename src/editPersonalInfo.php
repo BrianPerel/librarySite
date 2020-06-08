@@ -1,14 +1,14 @@
 <!-- Purpose of webpage: display edit account form -->
 
 <?php
-	include("includes/body.htm");
+	include("../includes/body.htm");
 	echo '<title>Edit Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="120; url=logout.php">';
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	# display error message if nothing was filled out 
 	if(isset($_GET['$changeErr'])) 
-		echo '<br>' . $_GET['$err'];
+		echo "<br>$_GET[$err]";
 ?>
 
 <center><h3>Edit My Personal Information: <br> (leave field blank if you don't want to change it)</h3><br>
@@ -23,8 +23,8 @@
 </form>
 
 <?php 
-	if(isset($_GET['changed'])) echo '<br><div id="logout">' . $_GET['changed'] . ' </div>';
+	if(isset($_GET['changed'])) echo "<br><div id='logout'>$_GET[changed]</div>";
 	echo '<script>window.addEventListener(onload, myFunction())</script>';
 	echo '</center>';
-	include("includes/footer2.htm");
+	include("../includes/footer2.htm");
 ?>

@@ -2,7 +2,7 @@
 
 <?php 
 	session_start();
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	
 	# if user wants to cancel there request perform operation 
 	if(isset($_POST['cancel'])) {

@@ -2,17 +2,17 @@
 upload file given to imagebb for image storage using curl cmd if user attached image, else chose default. Insert all post data along with image into new record in items table and return message to adminOperations.php -->
 
 <?php
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_REQUEST[item_name]'");
 	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 	$item = $_REQUEST['item_name'];
 
 	if(sizeof($results) != 0) {
-		$message = '<p style="color: red">Item \'' . $item . '\' With The Same Name Already Exists In Database, Could Not Add</p>';
+		$message = "<p style='color: red'>Item with the same name already exists in database, could not add item</p>";
 	} else {
 		# if size of photo upload file is 0, then this indicates that user didn't upload anything. So upload default image 
 		if($_FILES['bookPhoto']['size'] == 0) {	
-			$imgLink = "images/default-book-picture.png";
+			$imgLink = "../images/default-book-picture.png";
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
 			$img = $_FILES['bookPhoto']; # access file uploaded to submitted form 
@@ -42,5 +42,5 @@ upload file given to imagebb for image storage using curl cmd if user attached i
 		$message = '<p>Item \'' . $item . '\' Added Successfully</p>'; # create successful db insertion message 
 	}
 	
-	header('Location: adminOperations.php?addMessage=' . $message); # return to original page with message 
+	header("Location: adminOperations.php?addMessage=$message"); # return to original page with message 
 ?>

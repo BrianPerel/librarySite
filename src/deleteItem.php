@@ -6,17 +6,17 @@
 	
 	echo $name; /* DO NOT REMOVE THIS */ 
 
-	require("includes/connect_db.php");
+	require("../includes/connect_db.php");
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$name'");
 	$results = $sql -> fetchall(PDO::FETCH_ASSOC);
 
 	if(sizeof($results) == 0) {
-		$message = '<p style="color: red">Item \'' . $name . '\' Not Found In Database, Could Not Drop</p>';
+		$message = "<p style='color: red'>Item \'$name\' Not Found In Database, Could Not Drop</p>";
 	} else {
 		$sql = $con -> query("DELETE FROM items WHERE Item_Name = '$name'");
-		$message = '<p>Item \'' . $name . '\' Dropped Successfully</p>';
+		$message = "<p>Item \'$name\' Dropped Successfully</p>";
 	}
 	
 	# jump to page with message 
-	header('Location: adminOperations.php?delMessage=' . $message);
+	header("Location: adminOperations.php?delMessage=$message");
 ?>
