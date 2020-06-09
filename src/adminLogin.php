@@ -38,12 +38,12 @@ Purpose of webpage: login page for administrator.
 	# successful logout message 
 	if(isset($_GET['out'])){
 		echo '<script>window.addEventListener(onload, myFunction())</script>';
-		echo '<center><div id="logout">' . $_GET['out']. ' </div></center>';
+		echo "<center><div id='logout'>$_GET[out]</div></center>";
 	}
 	
 	# incorrect account credentials given 
 	if(isset($_GET['message1'])) 
-		echo '<center>' . $_GET["message1"] . '</center>';
+		echo "<center>$_GET[message1]</center>";
 	
 	echo '<div style="margin-top: 14.5%"></div>';
 	include("../includes/footer.htm");

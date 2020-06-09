@@ -39,7 +39,7 @@ upload file given to imagebb for image storage using curl cmd if user attached i
 		VALUES ('$_REQUEST[item_name]', '$_REQUEST[author]', '$_REQUEST[ISBN]', '$_REQUEST[pub_info]', '$_REQUEST[year_released]', '$_REQUEST[gen_aud]', '$_REQUEST[summary]', '$_REQUEST[item_type]',
 		'$_REQUEST[col_no]', 'Available', 'Framingham State University', '$_REQUEST[price]', 'No', '$imgLink')");
 
-		$message = '<p>Item \'' . $item . '\' Added Successfully</p>'; # create successful db insertion message 
+		$message = "<p>Item '$item' Added Successfully</p>"; # create successful db insertion message 
 	}
 	
 	header("Location: adminOperations.php?addMessage=$message"); # return to original page with message 

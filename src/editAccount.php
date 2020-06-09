@@ -52,7 +52,7 @@
 	}
 	
 	# if all fields were empty send message back that no info was given 
-	if($_POST['password'] == null && $_POST['email'] == null && $_POST['phone_number'] == null && $_FILES['photo']['size'] <= 0) {
+	if(empty($_POST['password']) && empty($_POST['email']) && empty($_POST['phone_number']) && $_FILES['photo']['size'] <= 0) {
 		$message = urlencode("<p style='color: red'>No information was given to change, please enter new information</p>");
 		header("Location: editPersonalInfo.php?changed=$message");
 	} else {

@@ -19,7 +19,7 @@
 		$date = date("m/d/Y"); 
 		$due_Date = date("m/d/Y", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO itemsout (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
-		header('Location: letterFind.php?send1=' . $_SESSION['searchLetter']);
+		header("Location: letterFind.php?send1=$_SESSION[searchLetter]");
 	} else if($_SESSION['loggedin'] == true && $_POST['request']) {
 		# PDO query statement 
 		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
@@ -31,9 +31,9 @@
 		$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("INSERT INTO itemsreq (item_Name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
 		$sql = $con -> query("UPDATE items SET Requested = 'Yes' WHERE Item_Name = '$_SESSION[checkout2]'");
-		header('Location: letterFind.php?send2=' . $_SESSION['searchLetter']);
+		header("Location: letterFind.php?send2=$_SESSION[searchLetter]");
 	} else {
-		$error = '<p style="color: red">Please sign into your account to check out or request items</p>';
-		header('Location: letterFind.php?send3=' . $error);
+		$error = "<p style='color: red'>Please sign into your account to check out or request items</p>";
+		header("Location: letterFind.php?send3=$error");
 	}	
 ?>

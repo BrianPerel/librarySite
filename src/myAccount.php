@@ -38,7 +38,7 @@ check number of days all items in user's checkout queue have been out, update fi
 
 <div class="row">
 	<div class="col-sm-12">
-		<br><img src="<?=$profilePhoto?>" <?php if($profilePhoto == NULL) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/>
+		<br><img src="<?=$profilePhoto?>" <?php if(empty($profilePhoto)) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/>
 	</div>
 </div>
 
@@ -49,7 +49,7 @@ check number of days all items in user's checkout queue have been out, update fi
 	# re-direct back to sign in page 
 	if($_SESSION['loggedin'] == false) {
 		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
-		header("location: signIn.php?message=" . $invalidLogin);
+		header("location: signIn.php?message=$invalidLogin");
 	}
 	
 	else if($_SESSION['loggedin'] == true) { 
@@ -77,7 +77,18 @@ check number of days all items in user's checkout queue have been out, update fi
 				$day_out = intval($day_out);
 				$current_date = intval($current_date); 
 				$days_out = $current_date - $day_out;  
+				
+				# take into account months, so if now its the first day of the next month then days out would be set to 31 not 1 since we add 30 to 1 
+				if(($date_out[0] . $date_out[1]) < date('m')) {   # if item checkout date month num is less than current date month then item has been out for more than 1 month 
+					$num_months_out = date('m') - ($date_out[0] . $date_out[1]); # get number of months item has been out, by subtracting current month num from checkout date month num 
+					# only add months to days out variable if it hasn't been done. If months have already been added don't add months again 
+					#	if(($num_months_out * 30) <= $days_out) {
+						$days_out = ($num_months_out * 30) + $days_out;				
+					#	}
+				}
+
 				$days_Out = strval($days_out); 
+				
 				$sql = $con -> query("UPDATE itemsout SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
 				# get full due and current dates 
 				$sql = $con -> query("SELECT due_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
@@ -107,16 +118,20 @@ check number of days all items in user's checkout queue have been out, update fi
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 ?>
 		
-		<div class="row"><div class="col-sm-12"><br><p>Login successful<br><?php echo "Welcome back, $results[full_Name] <br>Email: $results[email]"?></div></div> 
-		<div class="row"><div class="col-sm-12"><a href="viewCheckouts.php"><?php echo "Checkouts: ($results[items_Out])"?></a></div></div>
-		<div class="row"><div class="col-sm-12"><a href="viewRequests.php"><?php echo "Requests: ($results[items_Requested])"?></a></div></div>
-		<div class="row"><div class="col-sm-12"><a href="#" onclick="alert1()"><?php echo "Fines/Fees: $$results[fines_fees]"?></a></div></div>
+		<div class="row"><div class="col-sm-12"><br><p>Login successful<br><?="Welcome back, $results[full_Name] <br>Email: $results[email]"?></div></div> 
+		<div class="row"><div class="col-sm-12"><a href="viewCheckouts.php"><?="Checkouts: ($results[items_Out])"?></a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="viewRequests.php"><?="Requests: ($results[items_Requested])"?></a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="#" onclick="alert1()"><?="Fines/Fees: $$results[fines_fees]"?></a></div></div>
 		<div class="row"><div class="col-sm-12"><a href="logout.php">(log out)</a></p></div></div>
 			
 <?php 
 		echo "<form action='editPersonalInfo.php' method='post'>";
-		echo "<button style='float: right; height: 8%'>Edit Personal Information</button><br><br>";
+		echo "<button style='float: right; display: inline; height: 8%; margin-right: 1%'>Edit Personal Information</button>";
 		echo "</form>"; 
+		
+		echo "<form action='donateBook.php' method='post'>";
+		echo "<button style='float: left; display: inline; height: 8%; margin-left: 1%'>Donate A Book</button>";
+		echo "</form>";
 	}	
 	
 	include("../includes/footer2.htm");

@@ -28,7 +28,7 @@
 		$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 		$due = $item['due_Date'];		
 		$due_day = date('m/d/Y', strtotime($due . ' +7 days'));	
-		echo "<center><h2>Item \'$_SESSION[checkout2]\' renewed, new due date: $due_day</h2></center>";
+		echo "<center><h2>Item '$_SESSION[checkout2]' renewed, new due date: $due_day</h2></center>";
 		$sql = $con -> query("UPDATE itemsout SET due_Date = '$due_day' WHERE item_Name = '$_SESSION[checkout2]'"); 
 	}
 	

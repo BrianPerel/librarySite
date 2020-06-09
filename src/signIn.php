@@ -27,7 +27,7 @@
 	
 	if(isset($_GET['out'])) {
 		echo '<script>window.addEventListener(onload, myFunction())</script>';
-		echo '<div id="logout">' . $_GET['out'] . ' </div></center>';
+		echo "<div id='logout'>$_GET[out]</div></center>";
 	} 
 	
 	if(isset($_GET['message'])) 

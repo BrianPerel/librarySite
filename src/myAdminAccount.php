@@ -27,23 +27,23 @@
 	echo '<h3>Administrator</h3>';
 ?>
 		
-<br><img src="<?=$adminPhoto?>" <?php if($adminPhoto == '') { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/>
+<br><img src="<?=$adminPhoto?>" <?php if(empty($adminPhoto)) { echo 'style="display: none"'; }?> width='130' height='190' alt='profile picture'/>
 	
 <?php 
 	# re-direct back to sign in page 
 	if($_SESSION['adminloggedin'] == false) {
 		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
-		header("location: adminLogin.php?message1=" . $invalidLogin);
+		header("location: adminLogin.php?message1=$invalidLogin");
 	}
 
 	else if($_SESSION['adminloggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 		echo '<div style="text-align: center">';
-			echo '<br>Login successful<br> Welcome back, ' . $results['fullName'] . '<br>';
-			echo 'Email: ' . $results['email'];
-			echo '<br><a href="logoutAdmin.php">(log out)</a><br><br>';
-			echo '<form action="adminOperations.php" method="post">';
-			echo '<button style="margin: 1%" name="deleteItem">Delete Item</button>';
+			echo "<br>Login successful<br> Welcome back, $results[fullName]<br>";
+			echo "Email: $results[email]";
+			echo "<br><a href='logoutAdmin.php'>(log out)</a><br><br>";
+			echo "<form action='adminOperations.php' method='post'>";
+			echo "<button style='margin: 1%' name='deleteItem'>Delete Item</button>";
 			echo '<button style="margin: 1%" name="addItem">Add Item</button>';
 			echo '</form>';
 		echo '</div>';

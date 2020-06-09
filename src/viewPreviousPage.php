@@ -62,7 +62,7 @@
 	}
 	
 	$photo = $results['photo'];
-	echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
+	echo "<h2 align=center>$_POST[item_name]</h2>";
 	
 ?>
 
@@ -72,26 +72,26 @@
 	function displayTable() {
 		global $results;
 		
-		echo'<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
-		echo'<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
-		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
-		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
-		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
-		echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
-		echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
-		echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
-		echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
-		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
-		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
-		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
-		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
+		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
+		echo "<tr><td>Title: $results[Item_Name]</td></tr>";
+		echo "<tr><td>Author: $results[Author]</td></tr>";
+		echo "<tr><td>ISBN: $results[ISBN]</td></tr>";
+		echo "<tr><td>Item: $results[Item_Type]</td></tr>";
+		echo "<tr><td>Publication info: $results[Publication_Info]</td></tr>";
+		echo "<tr><td>Year released: $results[Year_of_Release]</td></tr>";
+		echo "<tr><td>General Audience: $results[General_Audience]</td></tr>";
+		echo "<tr><td>Summary: $results[Summary]</td></tr>";
+		echo "<tr><td>Col No: $results[Col_No]</td></tr>";
+		echo "<tr><td>Price: $$results[Price]</td></tr>";
+		echo "<tr><td>Location: $results[Location]</td></tr>";
+		echo "<tr><td>Status: $results[Status]</td></tr>";
 		echo '</table><br><br>';
 	}
 
 	if(isset($_SESSION['requestViewPrevious'])) {
 		if($_SESSION['requestViewPrevious'] == 'req1') {
 			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
-			echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
+			echo "<p style='margin-right: 45%'>Item #$_SESSION[itemN]</p>";
 				
 			displayTable();
 			
@@ -119,17 +119,17 @@
 
 		else {
 			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
-			echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
+			echo "<p style='margin-right: 45%'>Item #$_SESSION[itemN]</p>";
 				
 			displayTable(); 
 			
 			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 			$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
 			echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
-			echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>';
-			echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
-			echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';
-			echo '<tr><td>Renewed: ' . $results2['renewed'] . '</td></tr>';
+			echo "<tr><td>Date checked-out: $results2[checkout_Date]</td></tr>";
+			echo "<tr><td>Days item has been out: $results2[days_Out]</td></tr>";
+			echo "<tr><td>Due date: $results2[due_Date]</td></tr>";
+			echo "<tr><td>Renewed: $results2[renewed]</td></tr>";
 			echo '</table><br>';
 			
 			$_SESSION['checkout2'] = $results['Item_Name'];
@@ -157,17 +157,17 @@
 		}
 	} else {
 		if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
-		echo '<p style="margin-right: 45%">Item #' . $_SESSION['itemN'] . '</p>';
+		echo "<p style='margin-right: 45%'>Item #$_SESSION[itemN]</p>";
 			
 		displayTable();
 		
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
-		echo '<tr><td>Date checked-out: ' . $results2['checkout_Date'] . '</td></tr>';
-		echo '<tr><td>Days item has been out: ' . $results2['days_Out'] . '</td></tr>';
-		echo '<tr><td>Due date: ' . $results2['due_Date'] . '</td></tr>';
-		echo '<tr><td>Renewed: ' . $results2['renewed'] . '</td></tr>';
+		echo "<tr><td>Date checked-out: $results2[checkout_Date]</td></tr>";
+		echo "<tr><td>Days item has been out: $results2[days_Out]</td></tr>";
+		echo "<tr><td>Due date: $results2[due_Date]</td></tr>";
+		echo "<tr><td>Renewed: $results2[renewed]</td></tr>";
 		echo '</table><br>';
 		
 		$_SESSION['checkout2'] = $results['Item_Name'];

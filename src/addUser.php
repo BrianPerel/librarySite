@@ -16,7 +16,7 @@
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
 		$err2 = urlencode('<br><p style="color: red">Error Creating the Account! An account with that information already exists</p>');
-		header("Location: signUp.php?signUpError=" . $err2);
+		header("Location: signUp.php?signUpError=$err2");
 		die;
 	}
 	
@@ -26,13 +26,13 @@
 
 		if(!$captcha){
 			$err2 = '<p style="color: red">Please check the the captcha form.</p>';
-			header('Location: signUp.php?signUpError=' . $err2);
+			header("Location: signUp.php?signUpError=$err2");
 			die;
 		}
 		
 		# if file size of file field is 0, then user didn't upload image so upload default 
 		if($_FILES['photo']['size'] == 0) {	
-			$imgLink = "images/default-picture.png";
+			$imgLink = "../images/default-picture.png";
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
 			$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
@@ -68,5 +68,5 @@
 	echo "<center><h4>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
 	echo "<a href='signIn.php'><u>Login here</u></a></h4><br>";
 	echo "<img src='../images/lib.jfif' width='60%' height='60%'></img></center>";
-	include("../includes/footer.htm");
+	include("../includes/footer2.htm");
 ?>

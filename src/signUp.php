@@ -14,8 +14,8 @@
 	<label>Email:</label><br>
 	<input class="form-control" type="email" name="email" placeholder="name@domain.com" size="32" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></input><br><br>
 	
-	<label>Password: (8 Characters)</label><br>
-	<input class="form-control" type="text" name="password" placeholder="Password" size="32" pattern=".{8,}" required></input><br><br>
+	<label>Password: </label><br>
+	<input class="form-control" type="text" name="password" placeholder="Password" size="32" required></input><br><br>
 	
 	<label>Full Name: (example: John Doe)</label><br>
 	<input class="form-control" type="text" name="fname" placeholder="Full Name" size="32" pattern="^(\w\w+)\s(\w+)$" required></input><br><br>

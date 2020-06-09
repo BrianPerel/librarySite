@@ -16,7 +16,7 @@
 		$date = date("m/d/Y"); 
 		$due_Date = Date("m/d/Y", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO itemsout (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
-		header('Location: itemSearch.php?send1=' . $_SESSION['checkout2']);
+		header("Location: itemSearch.php?send1=$_SESSION[checkout2]");
 	}
 	
 	else if($_SESSION['loggedin'] == true && $_POST['checkout2']) { 

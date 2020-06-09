@@ -26,7 +26,6 @@ Purpose of webpage: display results of advSearch.php form query
 		$emptyMessage = '<p style="color: red">No information has been entered, please fill out a field</p>';
 		header("Location: advSearch.php?emp=$emptyMessage");
 	} 
-
 	
 	# if admin user is logged-in switch nav links 
 	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
@@ -87,19 +86,19 @@ Purpose of webpage: display results of advSearch.php form query
 	if(sizeof($results) > 0) {				
 		echo '<p style="margin-right: 45%">Item #1</p>';
 		echo '<table align="center" width="50%" height="120%" border="solid black 1px" style="background-color: #DCDCDC">';
-		echo '<tr><td>' . 'Title: ' . $results['Item_Name'] . '</td></tr>';
-		echo'<tr><td>' . 'Author: ' . $results['Author'] . '</td></tr>';
-		echo'<tr><td>' . 'ISBN: ' . $results['ISBN'] . '</td></tr>';
-		echo'<tr><td>' . 'Item: ' . $results['Item_Type'] . '</td></tr>';
-		echo'<tr><td>' . 'Publication info: ' . $results['Publication_Info'] . '</td></tr>';
-		echo'<tr><td>' . 'Year released: ' . $results['Year_of_Release'] . '</td></tr>';
-		echo'<tr><td>' . 'General Audience: ' . $results['General_Audience'] . '</td></tr>';
-		echo'<tr><td>' . 'Summary: ' . $results['Summary'] . '</td></tr>';
-		echo'<tr><td>' . 'Col No: ' . $results['Col_No'] . '</td></tr>';
-		echo'<tr><td>' . 'Price: $' . $results['Price'] . '</td></tr>';
-		echo'<tr><td>' . 'Location: ' . $results['Location'] . '</td></tr>';
-		echo'<tr><td>' . 'Requested: ' . $results['Requested'] . '</td></tr>';
-		echo'<tr><td>' . 'Status: ' . $results['Status'] . '</td></tr>';
+		echo "<tr><td>Title: $results[Item_Name]</td></tr>";
+		echo "<tr><td>Author: $results[Author]</td></tr>";
+		echo "<tr><td>ISBN: $results[ISBN]</td></tr>";
+		echo "<tr><td>Item: $results[Item_Type]</td></tr>";
+		echo "<tr><td>Publication info: $results[Publication_Info]</td></tr>";
+		echo "<tr><td>Year released: $results[Year_of_Release]</td></tr>";
+		echo "<tr><td>General Audience: $results[General_Audience]</td></tr>";
+		echo "<tr><td>Summary: $results[Summary]</td></tr>";
+		echo "<tr><td>Col No: $results[Col_No]</td></tr>";
+		echo "<tr><td>Price: $$results[Price]</td></tr>";
+		echo "<tr><td>Location: $results[Location]</td></tr>";
+		echo "<tr><td>Requested: $results[Requested]</td></tr>";
+		echo "<tr><td>Status: $results[Status]</td></tr>";
 		echo '</table><br>';
 		
 		$_SESSION['checkout2'] = $results['Item_Name'];	
