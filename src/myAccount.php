@@ -38,7 +38,7 @@ check number of days all items in user's checkout queue have been out, update fi
 
 <div class="row">
 	<div class="col-sm-12">
-		<br><img src="<?=$profilePhoto?>" <?php if(empty($profilePhoto)) { echo 'style="display: none"'; }?> width='200' height='220' alt='profile picture'/>
+		<br><img src="<?=$profilePhoto?>" <?php if(empty($profilePhoto)) { echo 'style="display: none"'; }?> width='250' height='240' alt='profile picture'/>
 	</div>
 </div>
 
@@ -80,11 +80,11 @@ check number of days all items in user's checkout queue have been out, update fi
 				
 				# take into account months, so if now its the first day of the next month then days out would be set to 31 not 1 since we add 30 to 1 
 				if(($date_out[0] . $date_out[1]) < date('m')) {   # if item checkout date month num is less than current date month then item has been out for more than 1 month 
-					$num_months_out = date('m') - ($date_out[0] . $date_out[1]); # get number of months item has been out, by subtracting current month num from checkout date month num 
+					$d = (int) date('m'); # need to cast from string type to int 
+					$num_months_out = $d - ((int) $date_out[0] . $date_out[1]); # get number of months item has been out, by subtracting current month num from checkout date month num 
+					
 					# only add months to days out variable if it hasn't been done. If months have already been added don't add months again 
-					#	if(($num_months_out * 30) <= $days_out) {
-						$days_out = ($num_months_out * 30) + $days_out;				
-					#	}
+					$days_out = ($num_months_out * 30) + $days_out;				
 				}
 
 				$days_Out = strval($days_out); 
@@ -128,10 +128,6 @@ check number of days all items in user's checkout queue have been out, update fi
 		echo "<form action='editPersonalInfo.php' method='post'>";
 		echo "<button style='float: right; display: inline; height: 8%; margin-right: 1%'>Edit Personal Information</button>";
 		echo "</form>"; 
-		
-		echo "<form action='donateBook.php' method='post'>";
-		echo "<button style='float: left; display: inline; height: 8%; margin-left: 1%'>Donate A Book</button>";
-		echo "</form>";
 	}	
 	
 	include("../includes/footer2.htm");

@@ -2,6 +2,7 @@
 		make sure recaptcha tool was checked, trim whitespace from username, email, and password. Attach default or custom image. Finally insert all data into db and display message with link -->
 
 <?php 
+	session_start(); 
 	include("../includes/body.htm");
 	echo '<title>Registration Completed | HWL</title>';
 	require("../includes/connect_db.php");
@@ -35,7 +36,7 @@
 			$imgLink = "../images/default-picture.png";
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
-			$img = $_FILES['InternPhoto']; # access file uploaded to submitted form 
+			$img = $_FILES['photo']; # access file uploaded to submitted form 
 			$filename = $img['tmp_name']; # access $img object attribute need variable name used 
 			$openimg = fopen($filename, "r"); # open file in read mode 
 			$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
@@ -63,10 +64,36 @@
 		# insert record into table 
 		$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
 		VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
+		
+		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'"); 
+		$results = $sql -> fetch(PDO::FETCH_ASSOC);
+		$num = $results['userID'];	
 	}
+	
+	# create PHP object $user and store post data in its variables 
+	@$user->username = "$_POST[username]";
+	$user->email = "$_POST[email]";
+	$user->password = "$_POST[password]";
+	$user->fullName = "$fname";
+	$user->phoneNumber = "$_POST[pNum]";
+	
+	# function used to encode PHP object to JSON format 
+	$myJSON = json_encode($user);
+	
+	# if a folder named JSON doesn't exist in root directory then create JSON folder 
+	if(!file_exists('../JSON')) {
+		mkdir("../JSON", 0755);
+	}
+	
+	# every file name should be different to avoid overwriting, create the file and store JSON formatted object in it  
+	$name = "user#$num.json";
+	$file = fopen("../JSON/$name","w");
+	fwrite($file, $myJSON);
+	fclose($file);
 	
 	echo "<center><h4>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
 	echo "<a href='signIn.php'><u>Login here</u></a></h4><br>";
 	echo "<img src='../images/lib.jfif' width='60%' height='60%'></img></center>";
+	
 	include("../includes/footer2.htm");
 ?>

@@ -108,9 +108,11 @@ CREATE TABLE `useraccounts` (
 `messages` int(10) NOT NULL,
 `fines_fees` decimal(10, 2) NOT NULL, 
 `profile_Photo` text,
-PRIMARY KEY (userID)
+PRIMARY KEY (userID) 
 );
 
 -- Dumping data for table 'useraccounts'
 INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `fines_fees`, `profile_Photo`) VALUES
 ('user1', 'user1@yahoo.com', 'user1', 'Brad Pitt', '768-324-4564', '1', '0', '0', '0.00', '../images/Pitt.jpg');
+
+ALTER TABLE `itemsout` AUTO_INCREMENT=2;

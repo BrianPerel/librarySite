@@ -28,7 +28,7 @@
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
 			$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		} else {
-			$_SESSION['var']++;
+			$_SESSION['var']++;  
 			$sth = $con -> prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 			$sth -> execute();
 			$smallest = $sth -> fetchColumn();
@@ -45,13 +45,19 @@
 		}
 	}
 	
-	else {
+	else { 
 		$_SESSION['var']++;
 		$sth = $con -> prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 		$sth -> execute();
 		$smallest = $sth -> fetchColumn();
 		$smallest += $_SESSION['var'];
 		$_SESSION['smallest'] = $smallest; 
+		
+		# if no record of this itemID number exists in db then increment variable again to get next record. This will occur if you delete the middle item checked-out 
+		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");			
+		$results = $sql -> fetch(PDO::FETCH_ASSOC); 
+		$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
+		if(($results2) == 0) {$smallest++; $_SESSION['smallest']++;}
 
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
@@ -113,7 +119,7 @@
 						echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
 					}
 				
-					if($_SESSION['smallestReq'] != $_SESSION['largestNumReq']) {
+					if($_SESSION['smallestReq'] != $_SESSION['largestNumReq']) { 
 						echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";			
 					}
 				}
@@ -151,7 +157,7 @@
 						echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
 					}
 					
-					if($_SESSION['smallest'] != $_SESSION['largestNum']) {
+					if($_SESSION['smallest'] != $_SESSION['largestNum']) {  
 						echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";			
 					}
 				}
@@ -189,7 +195,7 @@
 					echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
 				}
 				
-				if($_SESSION['smallest'] != $_SESSION['largestNum']) {
+				if($_SESSION['smallest'] != $_SESSION['largestNum']) { 
 					echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";			
 				}
 			}
