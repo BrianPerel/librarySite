@@ -40,6 +40,7 @@
 	}
 	
 	# if checkout button is clicked go to checkout.php 
-	else if( isset($_POST['checkout2'])) 
+	else if(isset($_POST['checkout2'])) {
 		header("Location: checkout.php");
+	}
 ?>

@@ -25,25 +25,24 @@ Purpose of webpage: login page for administrator.
 
 <?php 
 	# if admin is logged-in, jump to admin account page 
-	if(isset($_SESSION['adminloggedin'])) {
-		if($_SESSION['adminloggedin'] == true) {
-			header('Location: myAdminAccount.php');
-			die;
-		}
+	if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) {
+		header('Location: myAdminAccount.php');
+		die;
 	}	
 	
 	# if this point is reached, then adminloggedin session variable hasn't been created so create it here 
 	$_SESSION['adminloggedin'] = false;
 	
 	# successful logout message 
-	if(isset($_GET['out'])){
+	if(isset($_GET['out'])) {
 		echo '<script>window.addEventListener(onload, myFunction())</script>';
 		echo "<center><div id='logout'>$_GET[out]</div></center>";
 	}
 	
 	# incorrect account credentials given 
-	if(isset($_GET['message1'])) 
+	if(isset($_GET['message1'])) {
 		echo "<center>$_GET[message1]</center>";
+	}
 	
 	echo '<div style="margin-top: 14.5%"></div>';
 	include("../includes/footer.htm");

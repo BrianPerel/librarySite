@@ -1,4 +1,4 @@
-<!-- Purpose of webpage: recieve letter request, display result of letter chosen -->
+<!-- Purpose of webpage: receive letter request, display result of letter chosen -->
 
 <?php 
 	session_start(); # need session to save item_name to session in order to pass it into another file
@@ -22,8 +22,9 @@
 	}
 	
 	# if admin user is logged in switch nav links 
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) 
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+	}
 
 	# when user checks an item out, letterCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
 	if(isset($_GET['send1'])) {
@@ -72,8 +73,9 @@
 </div>
 		
 <?php
-	if(sizeof($results) == 0) 
+	if(sizeof($results) == 0) {
 		echo '<center>No items match your search</center><div style="margin-bottom: 22%"></div>';
+	}
 	
 	else if(sizeof($results) > 0) {
 		echo '<center><p style="margin-right: 45%">Item #1</p></center>';

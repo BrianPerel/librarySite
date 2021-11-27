@@ -1,8 +1,9 @@
 <!-- Purpose of webpage: receive delete item request from adminOperations.php, select item from db and delete the item -->
 
 <?php	
-	if($_SERVER["REQUEST_METHOD"] == "POST") 
-		$name = htmlspecialchars(trim($_POST["name"]));    
+	if($_SERVER["REQUEST_METHOD"] == "POST") {
+		$name = htmlspecialchars(trim($_POST["name"]));
+	}    
 	
 	echo $name; /* DO NOT REMOVE THIS */ 
 

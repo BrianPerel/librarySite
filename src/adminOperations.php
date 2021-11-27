@@ -17,7 +17,9 @@
 function post() {
 	var request = new XMLHttpRequest(); // create XMLHttpRequest object 
 	request.open("POST", "deleteItem.php", true); // open deleteItem.php with post action and asynchronous request mode 
-	request.onreadystatechange = function() { // function to print response if readyState (4 = request finished and response is ready), status (200 = OK)
+	
+	// function to print response if readyState (4 = request finished and response is ready), status (200 = OK)
+	request.onreadystatechange = function() { 
 		if(this.readyState === 4 && this.status === 200) {
 			document.write(this.responseText);
 		}
@@ -29,9 +31,10 @@ function post() {
 
 // check if enter key is hit call post() above. This allows user to either hit enter or click submit   
 function memSort(e) {
-	var key=e.keyCode || e.which;
-	if(key==13) 
+	var key = e.keyCode || e.which;
+	if(key == 13) {
 		post();
+	}
 }
 </script>
 <div style="overflow-y: auto;">

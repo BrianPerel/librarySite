@@ -16,11 +16,9 @@
 </form></center>
 
 <?php 
-	if(isset($_SESSION['loggedin'])) {
-		if($_SESSION['loggedin'] == true) {
-			header('Location: myAccount.php');
-			die;
-		}
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+		header('Location: myAccount.php');
+		die;
 	}	
 
 	$_SESSION['loggedin'] = false;
@@ -30,8 +28,9 @@
 		echo "<div id='logout'>$_GET[out]</div></center>";
 	} 
 	
-	if(isset($_GET['message'])) 
+	if(isset($_GET['message'])) {
 		echo $_GET['message'];
+	}	
 	
 	echo '<div style="margin-top: 13%"></div>';
 	include("../includes/footer.htm");

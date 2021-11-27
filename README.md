@@ -22,8 +22,10 @@ Services: imagebb (for external image storage), Google Maps API, Google recaptch
 
 Purpose of project: to learn and exercise client and server side programming 
 
-If starting fresh (no db): 1. create new db in phpmyadmin, import sql file into phpmyadmin, need to configure xampp file to
+If starting fresh (no db): 1. create new db in phpmyadmin, import sql file into phpmyadmin
+(click on newly created db, click import tab, upload file), need to configure xampp file to
 your IP to allow google's recaptcha tool to function on site 
  
-
-
+To run php files in the browser we will use xampp apache as the server host,
+place all src files into C:/xampp/htdocs folder
+type http://localhost/(the name of folder in C:/xampp/htdocs/)/index.php

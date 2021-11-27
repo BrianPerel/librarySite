@@ -7,8 +7,9 @@
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	# display error message if nothing was filled out 
-	if(isset($_GET['$changeErr'])) 
+	if(isset($_GET['$changeErr'])) {
 		echo "<br>$_GET[$err]";
+	}
 ?>
 
 <center><h3>Edit My Personal Information: <br> (leave field blank if you don't want to change it)</h3><br>

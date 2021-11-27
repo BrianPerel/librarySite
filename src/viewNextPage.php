@@ -57,7 +57,9 @@
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");			
 		$results = $sql -> fetch(PDO::FETCH_ASSOC); 
 		$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
-		if(($results2) == 0) {$smallest++; $_SESSION['smallest']++;}
+		if(($results2) == 0) {
+			$smallest++; $_SESSION['smallest']++;
+		}
 
 		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
@@ -100,7 +102,10 @@
 
 	if(isset($_SESSION['requestViewNext'])) {
 		if($_SESSION['requestViewNext'] == 'req') {
-			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']++;
+		
+			if($_SESSION['itemN'] < $numOfItems) {
+				$_SESSION['itemN']++;
+			}
 						
 			displayTable();
 			
@@ -126,7 +131,9 @@
 				
 			echo '</form>';
 		} else {
-			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']++;
+			if($_SESSION['itemN'] < $numOfItems) {
+				$_SESSION['itemN']++;
+			}
 		
 			displayTable();
 			
@@ -164,7 +171,9 @@
 			echo "</form>";
 		}
 	} else {
-		if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']++;
+		if($_SESSION['itemN'] < $numOfItems) {
+			$_SESSION['itemN']++;
+		}
 		
 		displayTable();
 		

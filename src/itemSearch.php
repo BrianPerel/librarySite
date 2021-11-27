@@ -29,17 +29,18 @@
 		$_SESSION['numReq'] = $results['items_Requested'];
 	}
 	
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) 
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) {
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+	}
 
 	# isset() sees if get variable exists, can be used only on get and session variables  
-	if(isset($_GET['send1'])){
+	if(isset($_GET['send1'])) {
 		$post = $_GET['send1'];
 		$_POST['item_name'] = $post;
 		echo "<br><center><p style='color: green'>$_SESSION[username] has checked out this item</p></center>";
 	}	
 	
-	if(isset($_GET['send2'])){
+	if(isset($_GET['send2'])) {
 		$post = $_GET['send2'];
 		$_POST['item_name'] = $post;
 		echo "<br><center><p style='color: green'>$_SESSION[username] has requested this item</p></center>";
@@ -121,8 +122,9 @@
 <?php 
 	$_SESSION['res'] = 'No';
 
-	if(sizeof($results) == 0) 
+	if(sizeof($results) == 0) {
 		echo '<center>No items match your search</center><div style="margin-bottom: 24%"></div>';
+	}
 	
 	function displayTable() {
 		global $results;

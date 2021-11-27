@@ -17,16 +17,19 @@
 	}
 	
 	# if password field is not empty do this 
-	if(!empty($_POST['password'])) 
+	if(!empty($_POST['password'])) {
 		$sql = $con -> query("UPDATE useraccounts SET password='$_POST[password]' WHERE username = '$_SESSION[username]'");
+	}
 	
 	# if email field is not empty do this 
-	if(!empty($_POST['email'])) 
+	if(!empty($_POST['email'])) {
 		$sql = $con -> query("UPDATE useraccounts SET email='$_POST[email]' WHERE username = '$_SESSION[username]'");
+	}
 	
 	# if phone number field is not empty do this 
-	if(!empty($_POST['phone_number'])) 
+	if(!empty($_POST['phone_number'])) {
 		$sql = $con -> query("UPDATE useraccounts SET phone_Number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
+	}
 	
 	# if photo field is not empty do this 
 	if($_FILES['photo']['size'] > 0) {

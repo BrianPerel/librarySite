@@ -90,7 +90,11 @@
 
 	if(isset($_SESSION['requestViewPrevious'])) {
 		if($_SESSION['requestViewPrevious'] == 'req1') {
-			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
+		
+			if($_SESSION['itemN'] < $numOfItems) { 
+				$_SESSION['itemN']--;
+			}
+			
 			echo "<p style='margin-right: 45%'>Item #$_SESSION[itemN]</p>";
 				
 			displayTable();
@@ -118,7 +122,10 @@
 		}
 
 		else {
-			if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
+			if($_SESSION['itemN'] < $numOfItems) {
+				$_SESSION['itemN']--;
+			}
+			
 			echo "<p style='margin-right: 45%'>Item #$_SESSION[itemN]</p>";
 				
 			displayTable(); 
@@ -146,6 +153,7 @@
 				
 				$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
 				$item = $sql -> fetchAll(PDO::FETCH_ASSOC); 
+				
 				if($item > 1) {
 					if($_SESSION['smallest'] != $_SESSION['smallestNum']) {
 						echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
@@ -156,7 +164,10 @@
 			echo "</form>";
 		}
 	} else {
-		if($_SESSION['itemN'] < $numOfItems) $_SESSION['itemN']--;
+		if($_SESSION['itemN'] < $numOfItems) {
+			$_SESSION['itemN']--;
+		}
+		
 		echo "<p style='margin-right: 45%'>Item #$_SESSION[itemN]</p>";
 			
 		displayTable();

@@ -25,7 +25,7 @@
 	else {
 		if(isset($_POST['g-recaptcha-response'])) $captcha=$_POST['g-recaptcha-response'];
 
-		if(!$captcha){
+		if(!$captcha) {
 			$err2 = '<p style="color: red">Please check the the captcha form.</p>';
 			header("Location: signUp.php?signUpError=$err2");
 			die;
