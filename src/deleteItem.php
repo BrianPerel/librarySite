@@ -11,7 +11,7 @@
 	$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$name'");
 	$results = $sql -> fetchall(PDO::FETCH_ASSOC);
 
-	if(sizeof($results) == 0) {
+	if(empty($results)) {
 		$message = "<p style='color: red'>Item \'$name\' Not Found In Database, Could Not Drop</p>";
 	} else {
 		$sql = $con -> query("DELETE FROM items WHERE Item_Name = '$name'");

@@ -2,11 +2,13 @@
 -- site name: 'www.HWL.com' 
 -- database name: 'librarySite'
 
+-- Create user and grant all priviledges to this user
+CREATE USER IF NOT EXISTS 'newuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost' IDENTIFIED BY 'password';
+
 -- Create database 'librarysite' and select the database for use 
 CREATE DATABASE librarysite;
 USE librarysite;
-CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
 
 -- Table structure for table 'admin'
 CREATE TABLE `adminaccount` (

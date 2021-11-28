@@ -7,13 +7,13 @@
 	echo '<meta http-equiv="refresh" content="90; url=logoutAdmin.php?expire">';
 	require("../includes/connect_db.php");
 
-	if($_SESSION['adminloggedin'] == true) {
+	if($_SESSION['adminloggedin']) {
 		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$adminPhoto = $results['admin_Profile_Photo'];
 	}
 	
-	else if($_SESSION['adminloggedin'] == false) {
+	else if(!$_SESSION['adminloggedin']) {
 		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_POST[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$adminPhoto = $results['admin_Profile_Photo'];
@@ -31,12 +31,12 @@
 	
 <?php 
 	# re-direct back to sign in page 
-	if($_SESSION['adminloggedin'] == false) {
+	if(!$_SESSION['adminloggedin']) {
 		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
 		header("location: adminLogin.php?message1=$invalidLogin");
 	}
 
-	else if($_SESSION['adminloggedin'] == true) {
+	else if($_SESSION['adminloggedin']) {
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 		echo '<div style="text-align: center">';
 			echo "<br>Login successful<br> Welcome back, $results[fullName]<br>";

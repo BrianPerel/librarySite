@@ -16,7 +16,7 @@
 </form></center>
 
 <?php 
-	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 		header('Location: myAccount.php');
 		die;
 	}	

@@ -11,13 +11,13 @@ images[3] = "images/inside2.jpg";
 function startTimer() {
 	setInterval(displayNextImage, 4000);
 }
+
 function displayNextImage() {
 	x = (x === images.length - 1) ? 0 : x + 1; // if index 'x' is equal to length of array then set index to value 0, else increment (go to next image)
 	document.getElementById("switch").src = images[x]; // get element by id 'switch' and switch the image with new one 
 }
 
 /* -- Function for hiding successful logout after a few seconds -- */
-
 function myFunction() { 
 	setTimeout(function(){
 		document.getElementById("logout").style.display = "none"; 
@@ -25,7 +25,6 @@ function myFunction() {
 }
 
 /* -- Function for switching regular user navbar links -- */
-
 function switchNav() {
 	var parent = document.getElementById("parent"); 
 	var child1 = document.getElementById("child1"); 

@@ -9,7 +9,7 @@ Purpose of webpage: display results of advSearch.php form query
 	require("../includes/connect_db.php");
 	
 	# if regular user is logged-in switch nav links 
-	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 		
 		# get and store number of items out of current user 
@@ -28,7 +28,7 @@ Purpose of webpage: display results of advSearch.php form query
 	} 
 	
 	# if admin user is logged-in switch nav links 
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) { 
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 	}
 	
@@ -79,11 +79,11 @@ Purpose of webpage: display results of advSearch.php form query
 	}
 ?>
 	
-<img src="<?=$photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/>
+<img src="<?=$photo; ?>" <?php if(empty($results)) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/>
 			
 <?php
 	# display item data table 
-	if(sizeof($results) > 0) {				
+	if(!empty($results)) {				
 		echo '<p style="margin-right: 45%">Item #1</p>';
 		echo '<table align="center" width="50%" height="120%" border="solid black 1px" style="background-color: #DCDCDC">';
 		echo "<tr><td>Title: $results[Item_Name]</td></tr>";
@@ -108,8 +108,8 @@ Purpose of webpage: display results of advSearch.php form query
 	
 <!-- check out and request buttons --> 
 <form action='checkout.php' method='post'>
-	<input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || $results['Status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';} ?>></input>
-	<input name='request' type="submit" value="Request Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
+	<input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(empty($results) || $results['Status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';} ?>></input>
+	<input name='request' type="submit" value="Request Item" <?php if(empty($results) || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
 </form>
 	
 <?php echo '<div style="margin-top: 2%"></div>'; include("../includes/footer2.htm")?>	

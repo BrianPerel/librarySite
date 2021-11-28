@@ -72,7 +72,6 @@
 	
 	$photo = $results['photo'];
 	echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
-	
 ?>
 
 <br><img src="<?= $photo; ?>" <?php if($results2 == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>

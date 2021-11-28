@@ -23,7 +23,9 @@
 	
 	# insert data into table if no errors found and info doens't already exist in db 
 	else {
-		if(isset($_POST['g-recaptcha-response'])) $captcha=$_POST['g-recaptcha-response'];
+		if(isset($_POST['g-recaptcha-response'])) {
+			$captcha=$_POST['g-recaptcha-response'];
+		}
 
 		if(!$captcha) {
 			$err2 = '<p style="color: red">Please check the the captcha form.</p>';
@@ -91,9 +93,9 @@
 	fwrite($file, $myJSON);
 	fclose($file);
 	
-	echo "<center><h4>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
-	echo "<a href='signIn.php'><u>Login here</u></a></h4><br>";
-	echo "<img src='../images/lib.jpg' width='60%' height='60%'></img></center>";
+	echo "<center><h4>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>
+	<a href='signIn.php'><u>Login here</u></a></h4><br>
+	<img src='../images/lib.jpg' width='60%' height='60%'></img></center>";
 	
 	include("../includes/footer2.htm");
 ?>

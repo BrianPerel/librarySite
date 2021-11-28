@@ -8,7 +8,7 @@ check number of days all items in user's checkout queue have been out, update fi
 	echo '<meta http-equiv="refresh" content="120; url=logout.php?expire">';
 	require("../includes/connect_db.php");
 			
-	if($_SESSION['loggedin'] == true) {
+	if($_SESSION['loggedin']) {
 		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$profilePhoto = $results['profile_Photo'];
@@ -16,7 +16,7 @@ check number of days all items in user's checkout queue have been out, update fi
 		$_SESSION['requested'] = $results['items_Requested']; 
 	}
 	
-	else if($_SESSION['loggedin'] == false) {
+	else if(!$_SESSION['loggedin']) {
 		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'");
 		$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 		
@@ -47,12 +47,12 @@ check number of days all items in user's checkout queue have been out, update fi
 	define("FINE", "4.50"); # create constant to hold fine amount 
 	
 	# re-direct back to sign in page 
-	if($_SESSION['loggedin'] == false) {
+	if(!$_SESSION['loggedin']) {
 		$invalidLogin = urlencode('<br><p style="color: red">Sorry, the information you submitted was invalid. Please try again</p>');
 		header("location: signIn.php?message=$invalidLogin");
 	}
 	
-	else if($_SESSION['loggedin'] == true) { 
+	else if($_SESSION['loggedin']) { 
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 		# enter condition if user has more than 1 item out 
@@ -72,16 +72,11 @@ check number of days all items in user's checkout queue have been out, update fi
 				$sql = $con -> query("SELECT checkout_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
 				$date = $sql -> fetch(PDO::FETCH_ASSOC); 
 				$date_out = $date['checkout_Date']; 
-				$day_out = $date_out[3] . $date_out[4]; 
-				$current_date = date("d");				
-				$day_out = intval($day_out);
-				$current_date = intval($current_date); 
-				$days_out = $current_date - $day_out;  
+				$days_out = intval(date("d")) - intval($date_out[3] . $date_out[4]);  
 				
 				# take into account months, so if now its the first day of the next month then days out would be set to 31 not 1 since we add 30 to 1 
 				if(($date_out[0] . $date_out[1]) < date('m')) {   # if item checkout date month num is less than current date month then item has been out for more than 1 month 
-					$d = (int) date('m'); # need to cast from string type to int 
-					$num_months_out = $d - ((int) $date_out[0] . $date_out[1]); # get number of months item has been out, by subtracting current month num from checkout date month num 
+					$num_months_out = (int) date('m') - ((int) $date_out[0] . $date_out[1]); # need to cast from string type to int for date('m'), get number of months item has been out, by subtracting current month num from checkout date month num 
 					
 					# only add months to days out variable if it hasn't been done. If months have already been added don't add months again 
 					$days_out = ($num_months_out * 30) + $days_out;				
@@ -99,12 +94,8 @@ check number of days all items in user's checkout queue have been out, update fi
 				if($currentDate > $date_due) {				
 					$sql = $con -> query("SELECT fines_fees FROM useraccounts WHERE username = '$_SESSION[username]'");
 					$fees = $sql -> fetch(PDO::FETCH_ASSOC);
-					$fee = $fees['fines_fees'];
-					if($fee == FINE) {
-						$fee += 0;
-					} else {
-						$fee += FINE;
-					}
+					$fee = $fees['fines_fees'];					
+					$fee == FINE ? $fee += 0 : $fee += FINE;
 					$sql = $con -> query("UPDATE useraccounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
 				}
 				$smallest++;

@@ -4,7 +4,7 @@
 	session_start();
 	require("../includes/connect_db.php");
 	
-	if($_SESSION['loggedin'] == true && $_POST['checkout2'] && $_SESSION['pageSentFrom'] == 'advSearch') { 
+	if($_SESSION['loggedin'] && $_POST['checkout2'] && $_SESSION['pageSentFrom'] == 'advSearch') { 
 		# update status of item we're checking out 
 		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");
@@ -19,7 +19,7 @@
 		header("Location: itemSearch.php?send1=$_SESSION[checkout2]");
 	}
 	
-	else if($_SESSION['loggedin'] == true && $_POST['checkout2']) { 
+	else if($_SESSION['loggedin'] && $_POST['checkout2']) { 
 		if(isset($_SESSION['bool'])) {
 			# decrement number of requests 
 			$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'"); # select number of request in useraccount 
@@ -45,7 +45,7 @@
 		$sql = $con -> query("INSERT INTO itemsout (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
 
 		# boolean session variable to mark if we have or haven't cancelled our item request 
-		if($_SESSION['flag'] == true) {
+		if($_SESSION['flag']) {
 			$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
 			$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC);
 			$requests = $items_Out1['items_Requested'];
@@ -58,7 +58,7 @@
 		header("Location: itemSearch.php?send1=$_SESSION[checkout2]");
 	}
 	
-	else if($_SESSION['loggedin'] == true && $_POST['request'] && $_SESSION['pageSentFrom'] == 'advSearch') {  
+	else if($_SESSION['loggedin'] && $_POST['request'] && $_SESSION['pageSentFrom'] == 'advSearch') {  
 		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
 		$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
 		$requests = $items_Requested['items_Requested'];
@@ -69,7 +69,7 @@
 		header("Location: itemSearch.php?send2=$_SESSION[checkout2]");
 	}
 	
-	else if($_SESSION['loggedin'] == true && $_POST['request']) { 
+	else if($_SESSION['loggedin'] && $_POST['request']) { 
 		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
 		$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
 		$requests = $items_Requested['items_Requested'];
@@ -79,7 +79,7 @@
 		header("Location: itemSearch.php?send2=$_SESSION[checkout2]");
 	}
 	
-	else if($_SESSION['loggedin'] == false && $_SESSION['pageSentFrom'] == 'advSearch') {
+	else if(!$_SESSION['loggedin'] && $_SESSION['pageSentFrom'] == 'advSearch') {
 		$error = '<p style="color: red">Please sign into your account to check out and request items</p>';
 		header("Location: itemSearch.php?send3=$error");
 	}

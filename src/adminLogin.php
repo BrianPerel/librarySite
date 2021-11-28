@@ -9,7 +9,7 @@ Purpose of webpage: login page for administrator.
 	echo '<center><h3>Admin Account Login:</h3><br>';
 	
 	# if regular user goes to log in as an admin, logout the regular user so that they can login as an admin 
-	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 		session_destroy();
 		session_start();
 	}
@@ -25,7 +25,7 @@ Purpose of webpage: login page for administrator.
 
 <?php 
 	# if admin is logged-in, jump to admin account page 
-	if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) {
+	if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
 		header('Location: myAdminAccount.php');
 		die;
 	}	

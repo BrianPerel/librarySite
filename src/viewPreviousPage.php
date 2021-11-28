@@ -1,4 +1,4 @@
-<!-- Purpose of page: recieve request from viewNextPage.php and update page variable values like item number and db itemID value, then display appropriate db data --> 
+<!-- Purpose of page: receive request from viewNextPage.php and update page variable values like item number and db itemID value, then display appropriate db data --> 
 
 <?php
 	session_start(); 
@@ -66,7 +66,7 @@
 	
 ?>
 
-<br><img src="<?=$photo; ?>" <?php if(sizeof($results) == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+<br><img src="<?=$photo; ?>" <?php if(empty($results)) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
 
 <?php 
 	function displayTable() {
@@ -199,6 +199,7 @@
 				if($_SESSION['smallest'] != $_SESSION['smallestNum']) {
 					echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
 				}
+				
 				echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input><center>";
 			}
 		echo "</form>";

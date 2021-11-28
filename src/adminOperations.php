@@ -25,8 +25,7 @@ function post() {
 		}
 	};
 	var myForm = document.getElementById("myForm"); // create form variable which holds form data, gotten by id 
-	var formData = new FormData(myForm);  // create form data object 
-	request.send(formData); // send ajax request  
+	request.send(new FormData(myForm)); // create form data object and send ajax request  
 }
 
 // check if enter key is hit call post() above. This allows user to either hit enter or click submit   

@@ -3,15 +3,14 @@
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
 	session_start();
-	# phpinfo();
 	
 	# if regular user account is logged in switch nav links 
-	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 	
 	# if admin user account is logged in switch admin nav links 
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin'] == true) { 
+	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) { 
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 	}
 	
@@ -70,8 +69,8 @@
 			</div>
 		
 			<div class="col-sm-5">
-				<img src="../images/6.jpg" id="pic1" width="150px" height="150px" style='float: right'></img>
-				<img src="../images/2.png" id="pic1" width="150px" height="150px" style='display: inline; float: right' id='picRight'></img><br>
+				<img src="../images/6.jpg" id="pic1" width="150px" height="150px" style='float: right' alt='6.jpg'></img>
+				<img src="../images/2.png" id="pic1" width="150px" height="150px" style='display: inline; float: right' id='picRight' alt='2.png'></img><br>
 			</div>
 		</div>
 	</section> 

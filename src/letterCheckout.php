@@ -4,7 +4,7 @@
 	session_start();
 	require("../includes/connect_db.php");
 	
-	if($_SESSION['loggedin'] == true && $_POST['checkout2']) {
+	if($_SESSION['loggedin'] && $_POST['checkout2']) {
 		# update status of item we're checking out 
 		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
 		# PDO query statement 
@@ -20,7 +20,7 @@
 		$due_Date = date("m/d/Y", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO itemsout (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
 		header("Location: letterFind.php?send1=$_SESSION[searchLetter]");
-	} else if($_SESSION['loggedin'] == true && $_POST['request']) {
+	} else if($_SESSION['loggedin'] && $_POST['request']) {
 		# PDO query statement 
 		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");
 		# PDO fetch statement ($items_Requested is an object)
