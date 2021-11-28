@@ -93,7 +93,7 @@
 	
 	echo "<center><h4>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>";
 	echo "<a href='signIn.php'><u>Login here</u></a></h4><br>";
-	echo "<img src='../images/lib.jfif' width='60%' height='60%'></img></center>";
+	echo "<img src='../images/lib.jpg' width='60%' height='60%'></img></center>";
 	
 	include("../includes/footer2.htm");
 ?>
