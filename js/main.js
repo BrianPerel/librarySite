@@ -1,5 +1,4 @@
 /* --  Function for index page image rotation -- */
-
 var images = new Array();
 var x = -1;
 
@@ -27,10 +26,8 @@ function myFunction() {
 /* -- Function for switching regular user navbar links -- */
 function switchNav() {
 	var parent = document.getElementById("parent"); 
-	var child1 = document.getElementById("child1"); 
-	var child2 = document.getElementById("child2"); 
-	parent.removeChild(child2);
-	parent.removeChild(child1);
+	parent.removeChild(document.getElementById("child1"));
+	parent.removeChild(document.getElementById("child2"));
 			
 	var a = document.createElement('a');
 	a.href = 'signIn.php';
@@ -46,13 +43,10 @@ function switchNav() {
 }
 
 /* -- Function for switching admin user navbar links -- */ 
-
 function switchNavAdmin() {
 	var parent = document.getElementById("parent"); 
-	var child1 = document.getElementById("child1"); 
-	var child2 = document.getElementById("child2"); 
-	parent.removeChild(child2);
-	parent.removeChild(child1);
+	parent.removeChild(document.getElementById("child1"));
+	parent.removeChild(document.getElementById("child2"));
 			
 	var a = document.createElement('a');
 	a.href = 'adminLogin.php';
@@ -68,7 +62,6 @@ function switchNavAdmin() {
 }
 
 /* -- alert box for fines message on my account page -- */ 
-
 function alert1() {
 	alert("Please pay all fines at the library.");
 }

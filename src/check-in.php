@@ -10,8 +10,7 @@
 	if(isset($_POST['checkIn'])) {
 		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'"); # retrieve current number of items out 
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC); 
-		$out = $items_Out1['items_Out'];
-		$out--;
+		$out = $items_Out1['items_Out'] - 1;
 		$sql = $con -> query("UPDATE useraccounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("SELECT item_Name FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND item_Name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
 		$items = $sql -> fetch(PDO::FETCH_ASSOC);

@@ -12,8 +12,7 @@
 		# PDO fetch statement ($items_Requested is an object)
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC);
 		# Access $items_Out object 'items_Out' attribute and assign to a regular variable 
-		$out = $items_Out1['items_Out'];
-		$out++;
+		$out = $items_Out1['items_Out'] + 1;
 		$sql = $con -> query("UPDATE useraccounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
 		date_default_timezone_set("America/New_York");
 		$date = date("m/d/Y"); 
@@ -26,8 +25,7 @@
 		# PDO fetch statement ($items_Requested is an object)
 		$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
 		# Access $items_Requested object 'items_Requested' attribute and assign to a regular variable 
-		$requests = $items_Requested['items_Requested'];
-		$requests++;
+		$requests = $items_Requested['items_Requested'] + 1;
 		$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("INSERT INTO itemsreq (item_Name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
 		$sql = $con -> query("UPDATE items SET Requested = 'Yes' WHERE Item_Name = '$_SESSION[checkout2]'");

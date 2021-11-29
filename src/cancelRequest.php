@@ -10,8 +10,7 @@
 			# decrement number of requests 
 			$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");  # select number of request in useraccount 
 			$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
-			$requests = $items_Requested['items_Requested'];
-			$requests--;
+			$requests = $items_Requested['items_Requested'] - 1;
 			$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'"); # update number of items requested in useraccount
 			
 			$sql = $con -> query("SELECT item_Name FROM itemsreq WHERE requester = '$_SESSION[username]' AND item_Name = '$_SESSION[checkout2]'"); # retrieve current number of items out 

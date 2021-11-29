@@ -6,12 +6,6 @@
 	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 ?>
 
-<style>
-.modal {
-    overflow-y: auto;
-}
-</style>
-
 <!-- Ajax Script = used to drop items from db without reloading page, dynamically --> 
 <script>
 function post() {
@@ -24,8 +18,8 @@ function post() {
 			document.write(this.responseText);
 		}
 	};
-	var myForm = document.getElementById("myForm"); // create form variable which holds form data, gotten by id 
-	request.send(new FormData(myForm)); // create form data object and send ajax request  
+	
+	request.send(new FormData(document.getElementById("myForm"))); // create form data object and send ajax request  
 }
 
 // check if enter key is hit call post() above. This allows user to either hit enter or click submit   
