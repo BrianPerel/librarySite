@@ -1,7 +1,7 @@
 USE library;
 
 -- Dumping data for table 'items'
-INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of_Release`, `General_Audience`, `Summary`, `Item_Type`, `Col_No`, `Status`, `Location`, `Price`, `Requested`, `photo`) VALUES
+INSERT INTO `items` (`item_name`, `author`, `ISBN`, `Publication_Info`, `Year_of_Release`, `General_Audience`, `Summary`, `Item_Type`, `Col_No`, `Status`, `Location`, `Price`, `Requested`, `item_photo`) VALUES
 ('The Art of Being a Ninja', 'Brian Perel', '132-12-12478-32-5', 'Hollywood, California : Paramount Home Entertainment', '2020', 'adult', 'The Art of Being a Ninja is a documentary film about how to become a ninja', 'Blu-ray', 'J796.815 B', 'Available', 'Framingham State University', '34.50', 'No', '../images/catalog_items/Ninja.jpg'),
 ('Aikido', 'John Smith', '345-34-5346-56-8', 'Hollywood, California : Universal Studios Entertainment', '2010', 'adult', 'Aikido is a movie about the way of aikido practitioners and there lives', 'DVD', 'Z271.154 A', 'Available', 'Framingham State University', '12.80', 'No', '../images/catalog_items/Aikido.jpg'),
 ('Calisthenics Beasts', 'Jason Armstrong', '567-56-55431-23-1', '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Calisthenics Beasts is an ebook broken up into multiple sections by muscle groups', 'ebook', 'D938.121 C', 'Available', 'Framingham State University', '3.12', 'No', '../images/catalog_items/Calisthenics.jpg'),
@@ -28,15 +28,15 @@ INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of
 );
 
 -- Dumping data for table `items_out` 
-INSERT INTO `items_out` (`item_Name`, `item_Holder`, `checkout_Date`, `days_Out`, `due_Date`, `renewed`) VALUES 
+INSERT INTO `items_out` (`item_name`, `item_holder`, `checkout_date`, `days_out`, `due_date`, `renewed`) VALUES 
 ('Calisthenics Beasts', 'user1', '05/01/20', NULL, '05/08/20', 'No');
 
 -- Dumping data for table 'admin_accounts'
-INSERT INTO `admin_accounts` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `messages`, `admin_Profile_Photo`) VALUES 
+INSERT INTO `admin_accounts` (`username`, `email`, `password`, `full_name`, `phone_number`, `messages`, `admin_photo`) VALUES 
 ('Mr. X', 'mrx@yahoo.com', 'Boss11', 'Brian Perel', '456-234-7686', '0', '../images/admin.png');
 
 -- Dumping data for table 'user_accounts'
-INSERT INTO `user_accounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `fines_fees`, `profile_Photo`) VALUES
+INSERT INTO `user_accounts` (`username`, `email`, `password`, `full_name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `fines_fees`, `user_photo`) VALUES
 ('user1', 'user1@yahoo.com', 'user1', 'Brad Pitt', '768-324-4564', '1', '0', '0', '0.00', '../images/Pitt.jpg');
 
 ALTER TABLE `items_out` AUTO_INCREMENT=2;

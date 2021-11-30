@@ -46,27 +46,27 @@
 	$SearchLetter = $_GET['by'];
 
 	# select item from db that matches letter chosen
-	$sql = $con -> query("SELECT * FROM items WHERE Item_Name LIKE '" . $SearchLetter . "%'");				
+	$sql = $con -> query("SELECT * FROM items WHERE item_name LIKE '" . $SearchLetter . "%'");				
 	$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		
 	# if no items match search 
 	if($results2 == 0) {
-		$photo = null;
+		$item_photo = null;
 		echo "<h2 align=center>Search results 0 for: '$SearchLetter'</h2>";
 		$results = array();
 	}
 		
 	# if search item found in db 
 	else if(!empty($results)) {
-		$photo = $results['photo'];
+		$item_photo = $results['item_photo'];
 		echo "<h2 align=center>Search results 1 for: '$SearchLetter'</h2>";
 	}
 ?>
 		
 <div class="row">
 	<div class="col-sm-12">
-		<img src="<?=$photo?>" <?php if(empty($results)) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+		<img src="<?=$item_photo?>" <?php if(empty($results)) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
 	</div>
 </div>
 		
@@ -79,8 +79,8 @@
 		echo '<center><p style="margin-right: 45%">Item #1</p></center>';
 		
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
-		echo "<tr><td>Title: $results[Item_Name]</td></tr>";
-		echo "<tr><td>Author: $results[Author]</td></tr>";
+		echo "<tr><td>Title: $results[item_name]</td></tr>";
+		echo "<tr><td>Author: $results[author]</td></tr>";
 		echo "<tr><td>ISBN: $results[ISBN]</td></tr>";
 		echo "<tr><td>Item: $results[Item_Type]</td></tr>";
 		echo "<tr><td>Publication info: $results[Publication_Info]</td></tr>";
@@ -95,13 +95,13 @@
 		echo '</table><br>';
 			
 		# save current item being looked up into variable 
-		$_SESSION['checkout2'] = $results['Item_Name'];
+		$_SESSION['checkout2'] = $results['item_name'];
 		
 		# save first letter of current item being looked up into variable 
-		$_SESSION['searchLetter'] = substr($results['Item_Name'], 0, 1);
+		$_SESSION['searchLetter'] = substr($results['item_name'], 0, 1);
 		
 		# get requested yes or no status from current item being looked up 
-		$sql = $con -> query("SELECT Requested FROM items WHERE Item_Name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("SELECT Requested FROM items WHERE item_name = '$_SESSION[checkout2]'");
 		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
 	}
 ?>

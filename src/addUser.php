@@ -12,7 +12,7 @@
 		
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
 	$insert_check = $con -> query("SELECT * FROM user_accounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
-	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[pNum]'");	
+	OR password = '$_POST[password]' OR full_name = '$fname' OR phone_Number = '$_POST[pNum]'");	
 
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
@@ -34,11 +34,11 @@
 		}
 		
 		# if file size of file field is 0, then user didn't upload image so upload default 
-		if($_FILES['photo']['size'] == 0) {	
+		if($_FILES['user_photo']['size'] == 0) {	
 			$imgLink = "../images/default-picture.png";
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
-			$img = $_FILES['photo']; # access file uploaded to submitted form 
+			$img = $_FILES['user_photo']; # access file uploaded to submitted form 
 			$filename = $img['tmp_name']; # access $img object attribute need variable name used 
 			$openimg = fopen($filename, "r"); # open file in read mode 
 			$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
@@ -64,12 +64,12 @@
 		$_POST['password'] = trim($_POST['password']);
 		
 		# insert record into table 
-		$sql = $con -> query("INSERT INTO user_accounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
+		$sql = $con -> query("INSERT INTO user_accounts (username, email, password, full_name, phone_Number, items_Out, items_Requested, messages, user_photo) 
 		VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 		
 		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_POST[username]'"); 
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$num = $results['userID'];	
+		$num = $results['user_id'];	
 	}
 	
 	# create PHP object $user and store post data in its variables 
@@ -77,7 +77,7 @@
 	$user->email = "$_POST[email]";
 	$user->password = "$_POST[password]";
 	$user->fullName = "$fname";
-	$user->phoneNumber = "$_POST[pNum]";
+	$user->phone_number = "$_POST[pNum]";
 	
 	# function used to encode PHP object to JSON format 
 	$myJSON = json_encode($user);

@@ -22,7 +22,7 @@ Purpose of webpage: display results of advSearch.php form query
 		$_SESSION['numReq'] = $results['items_Requested'];
 	}
 	
-	if(empty($_POST['Title']) && empty($_POST['ISBN']) && empty($_POST['Author'])) {
+	if(empty($_POST['Title']) && empty($_POST['ISBN']) && empty($_POST['author'])) {
 		$emptyMessage = '<p style="color: red">No information has been entered, please fill out a field</p>';
 		header("Location: advSearch.php?emp=$emptyMessage");
 	} 
@@ -51,12 +51,12 @@ Purpose of webpage: display results of advSearch.php form query
 		$err = $_GET['send3'];
 		echo "<center>$err</center>";
 		$_POST['Title'] = $_SESSION['checkout2']; 
-		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[Title]'");
+		$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_POST[Title]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	}		
 	
 	else { 
-		$sql = $con -> query("SELECT * FROM items WHERE Item_Name = '$_POST[Title]' OR ISBN = '$_POST[ISBN]' OR Author ='$_POST[Author]'
+		$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_POST[Title]' OR ISBN = '$_POST[ISBN]' OR author ='$_POST[author]'
 		AND (Year_of_Release >= '$_POST[yearFrom]' AND Year_of_Release <= '$_POST[yearTo]') AND Item_Type = '$_POST[format]' 
 		AND Location = '$_POST[location]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
@@ -68,26 +68,26 @@ Purpose of webpage: display results of advSearch.php form query
 		echo '<h2 align=center>Advanced search results: 0</h2>';
 		echo '<center>No items match your search</center>';
 		echo '<div style="margin-bottom: 20%"></div>';
-		$photo = null; 
+		$item_photo = null; 
 		$results = array();
 	}
 	
 	# if 1 row match, then 1 result 
 	else if($results2 == 1) {
 		echo '<h2 align=center>Advanced search results: 1</h2>';
-		$photo = $results['photo']; 
+		$item_photo = $results['item_photo']; 
 	}
 ?>
 	
-<img src="<?=$photo; ?>" <?php if(empty($results)) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/>
+<img src="<?=$item_photo; ?>" <?php if(empty($results)) { echo 'style="display: none"';} ?> width='250' height='230' alt='profile picture'/>
 			
 <?php
 	# display item data table 
 	if(!empty($results)) {				
 		echo '<p style="margin-right: 45%">Item #1</p>';
 		echo '<table align="center" width="50%" height="120%" border="solid black 1px" style="background-color: #DCDCDC">';
-		echo "<tr><td>Title: $results[Item_Name]</td></tr>";
-		echo "<tr><td>Author: $results[Author]</td></tr>";
+		echo "<tr><td>Title: $results[item_name]</td></tr>";
+		echo "<tr><td>Author: $results[author]</td></tr>";
 		echo "<tr><td>ISBN: $results[ISBN]</td></tr>";
 		echo "<tr><td>Item: $results[Item_Type]</td></tr>";
 		echo "<tr><td>Publication info: $results[Publication_Info]</td></tr>";
@@ -101,7 +101,7 @@ Purpose of webpage: display results of advSearch.php form query
 		echo "<tr><td>Status: $results[Status]</td></tr>";
 		echo '</table><br>';
 		
-		$_SESSION['checkout2'] = $results['Item_Name'];	
+		$_SESSION['checkout2'] = $results['item_name'];	
 		$_SESSION['pageSentFrom'] = 'advSearch';		
 	}
 ?>

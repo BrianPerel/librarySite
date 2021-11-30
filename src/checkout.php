@@ -6,15 +6,15 @@
 	
 	if($_SESSION['loggedin'] && $_POST['checkout2'] && $_SESSION['pageSentFrom'] == 'advSearch') { 
 		# update status of item we're checking out 
-		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("UPDATE items SET Status='Out' WHERE item_name = '$_SESSION[checkout2]'");
 		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC);
 		$out = $items_Out1['items_Out'] + 1;
 		$sql = $con -> query("UPDATE user_accounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
 		date_default_timezone_set('America/New_York'); 
 		$date = date("m/d/Y"); 
-		$due_Date = Date("m/d/Y", strtotime('+7 days'));
-		$sql = $con -> query("INSERT INTO items_out (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
+		$due_date = Date("m/d/Y", strtotime('+7 days'));
+		$sql = $con -> query("INSERT INTO items_out (item_name, item_holder, checkout_date, days_out, due_date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_date', 'No')");
 		header("Location: itemSearch.php?send1=$_SESSION[checkout2]");
 	}
 	
@@ -26,20 +26,20 @@
 			$requests = $items_Requested['items_Requested'] - 1;
 			$sql = $con -> query("UPDATE user_accounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'"); # update number of items requested in useraccount
 			
-			$sql = $con -> query("UPDATE items SET Requested = 'No' WHERE Item_Name = '$_SESSION[checkout2]'"); # update status to available of item of which request was cancelled 
-			$sql = $con -> query("DELETE FROM items_requested WHERE requester = '$_SESSION[username]' AND Item_Name = '$_SESSION[checkout2]'"); # delete item from item request table 
+			$sql = $con -> query("UPDATE items SET Requested = 'No' WHERE item_name = '$_SESSION[checkout2]'"); # update status to available of item of which request was cancelled 
+			$sql = $con -> query("DELETE FROM items_requested WHERE requester = '$_SESSION[username]' AND item_name = '$_SESSION[checkout2]'"); # delete item from item request table 
 		}
 		
 		# update status of item we're checking out 
-		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("UPDATE items SET Status='Out' WHERE item_name = '$_SESSION[checkout2]'");
 		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC);
 		$out = $items_Out1['items_Out'] + 1;
 		$sql = $con -> query("UPDATE user_accounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
 		date_default_timezone_set('America/New_York'); 
 		$date = date("m/d/Y"); 
-		$due_Date = date("m/d/Y", strtotime('+7 days'));
-		$sql = $con -> query("INSERT INTO items_out (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
+		$due_date = date("m/d/Y", strtotime('+7 days'));
+		$sql = $con -> query("INSERT INTO items_out (item_name, item_holder, checkout_date, days_out, due_date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_date', 'No')");
 
 		# boolean session variable to mark if we have or haven't cancelled our item request 
 		if($_SESSION['flag']) {
@@ -59,8 +59,8 @@
 		$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
 		$requests = $items_Requested['items_Requested'] + 1;
 		$sql = $con -> query("UPDATE user_accounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
-		$sql = $con -> query("UPDATE items SET Requested = 'Yes' WHERE Item_Name = '$_SESSION[checkout2]'"); # update status to available of item of which request was cancelled 
-		$sql = $con -> query("INSERT INTO items_requested (item_Name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
+		$sql = $con -> query("UPDATE items SET Requested = 'Yes' WHERE item_name = '$_SESSION[checkout2]'"); # update status to available of item of which request was cancelled 
+		$sql = $con -> query("INSERT INTO items_requested (item_name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
 		header("Location: itemSearch.php?send2=$_SESSION[checkout2]");
 	}
 	

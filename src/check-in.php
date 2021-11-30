@@ -12,22 +12,22 @@
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC); 
 		$out = $items_Out1['items_Out'] - 1;
 		$sql = $con -> query("UPDATE user_accounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
-		$sql = $con -> query("SELECT item_Name FROM items_out WHERE item_Holder = '$_SESSION[username]' AND item_Name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
+		$sql = $con -> query("SELECT item_name FROM items_out WHERE item_holder = '$_SESSION[username]' AND item_name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
 		$items = $sql -> fetch(PDO::FETCH_ASSOC);
-		$item_name = $items['item_Name'];
-		$sql = $con -> query("UPDATE items SET Status = 'Available' WHERE Item_Name = '$item_name'"); # item becomes available 
-		$sql = $con -> query("DELETE FROM items_out WHERE Item_Name = '$item_name'"); # item becomes available 
+		$item_name = $items['item_name'];
+		$sql = $con -> query("UPDATE items SET Status = 'Available' WHERE item_name = '$item_name'"); # item becomes available 
+		$sql = $con -> query("DELETE FROM items_out WHERE item_name = '$item_name'"); # item becomes available 
 		echo '<center><h2>Return processed, thank you.</h2></center>';
 	}
 	
 	# renew action 
 	else if(isset($_POST['renew'])) {
-		$sql = $con -> query("UPDATE items_out SET renewed = 'Yes' WHERE item_Name = '$_SESSION[checkout2]'"); 
-		$sql = $con -> query("SELECT due_Date FROM items_out WHERE item_Name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("UPDATE items_out SET renewed = 'Yes' WHERE item_name = '$_SESSION[checkout2]'"); 
+		$sql = $con -> query("SELECT due_date FROM items_out WHERE item_name = '$_SESSION[checkout2]'");
 		$item = $sql -> fetch(PDO::FETCH_ASSOC); 
-		$due_day = date('m/d/Y', strtotime($item['due_Date'] . ' +7 days'));	
+		$due_day = date('m/d/Y', strtotime($item['due_date'] . ' +7 days'));	
 		echo "<center><h2>Item '$_SESSION[checkout2]' renewed, new due date: $due_day</h2></center>";
-		$sql = $con -> query("UPDATE items_out SET due_Date = '$due_day' WHERE item_Name = '$_SESSION[checkout2]'"); 
+		$sql = $con -> query("UPDATE items_out SET due_date = '$due_day' WHERE item_name = '$_SESSION[checkout2]'"); 
 	}
 	
 	# view next page action 

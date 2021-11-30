@@ -10,13 +10,13 @@
 	if($_SESSION['adminloggedin']) {
 		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$adminPhoto = $results['admin_Profile_Photo'];
+		$adminPhoto = $results['admin_photo'];
 	}
 	
 	else if(!$_SESSION['adminloggedin']) {
 		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_POST[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$adminPhoto = $results['admin_Profile_Photo'];
+		$adminPhoto = $results['admin_photo'];
 		
 		if($results['username'] == $_POST['username'] && $results['password'] == $_POST['password']) {
 			$_SESSION['adminloggedin'] = true;

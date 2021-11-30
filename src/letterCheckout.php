@@ -6,7 +6,7 @@
 	
 	if($_SESSION['loggedin'] && $_POST['checkout2']) {
 		# update status of item we're checking out 
-		$sql = $con -> query("UPDATE items SET Status='Out' WHERE Item_Name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("UPDATE items SET Status='Out' WHERE item_name = '$_SESSION[checkout2]'");
 		# PDO query statement 
 		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");
 		# PDO fetch statement ($items_Requested is an object)
@@ -16,8 +16,8 @@
 		$sql = $con -> query("UPDATE user_accounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
 		date_default_timezone_set("America/New_York");
 		$date = date("m/d/Y"); 
-		$due_Date = date("m/d/Y", strtotime('+7 days'));
-		$sql = $con -> query("INSERT INTO items_out (item_Name, item_Holder, checkout_Date, days_Out, due_Date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_Date', 'No')");
+		$due_date = date("m/d/Y", strtotime('+7 days'));
+		$sql = $con -> query("INSERT INTO items_out (item_name, item_holder, checkout_date, days_out, due_date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_date', 'No')");
 		header("Location: letterFind.php?send1=$_SESSION[searchLetter]");
 	} else if($_SESSION['loggedin'] && $_POST['request']) {
 		# PDO query statement 
@@ -27,8 +27,8 @@
 		# Access $items_Requested object 'items_Requested' attribute and assign to a regular variable 
 		$requests = $items_Requested['items_Requested'] + 1;
 		$sql = $con -> query("UPDATE user_accounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
-		$sql = $con -> query("INSERT INTO items_requested (item_Name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
-		$sql = $con -> query("UPDATE items SET Requested = 'Yes' WHERE Item_Name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("INSERT INTO items_requested (item_name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
+		$sql = $con -> query("UPDATE items SET Requested = 'Yes' WHERE item_name = '$_SESSION[checkout2]'");
 		header("Location: letterFind.php?send2=$_SESSION[searchLetter]");
 	} else {
 		$error = "<p style='color: red'>Please sign into your account to check out or request items</p>";

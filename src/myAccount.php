@@ -11,7 +11,7 @@ check number of days all items in user's checkout queue have been out, update fi
 	if($_SESSION['loggedin']) {
 		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$profilePhoto = $results['profile_Photo'];
+		$profilePhoto = $results['user_photo'];
 		$_SESSION['outCheck'] = $results['items_Out'];
 		$_SESSION['requested'] = $results['items_Requested']; 
 	}
@@ -25,7 +25,7 @@ check number of days all items in user's checkout queue have been out, update fi
 			if($results[$i]['username'] == $_POST['username'] && $results[$i]['password'] == $_POST['password']) {
 				$_SESSION['loggedin'] = true;
 				$_SESSION['username'] = $_POST['username'];
-				$profilePhoto = $results[$i]['profile_Photo'];
+				$profilePhoto = $results[$i]['user_photo'];
 				$_SESSION['outCheck'] = $results[$i]['items_Out'];
 				$_SESSION['requested'] = $results[$i]['items_Requested'];
 				break;
@@ -62,16 +62,16 @@ check number of days all items in user's checkout queue have been out, update fi
 			$res = $sql -> fetch(PDO::FETCH_ASSOC); 
 
 			// get the smallest ID num 
-			$sth = $con -> prepare("SELECT min(itemID) FROM items_out WHERE item_Holder = '$_SESSION[username]'");
+			$sth = $con -> prepare("SELECT min(item_id) FROM items_out WHERE item_holder = '$_SESSION[username]'");
 			$sth -> execute();
 			$smallest = $sth -> fetchColumn();
 			
 			for($i = 0; $i < $res['items_Out']; $i++) {		
 				# update days out on every login 
 				date_default_timezone_set('America/New_York'); 
-				$sql = $con -> query("SELECT checkout_Date FROM items_out WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
+				$sql = $con -> query("SELECT checkout_date FROM items_out WHERE item_holder = '$_SESSION[username]' && item_id = '$smallest'");
 				$date = $sql -> fetch(PDO::FETCH_ASSOC); 
-				$date_out = $date['checkout_Date']; 
+				$date_out = $date['checkout_date']; 
 				$days_out = intval(date("d")) - intval($date_out[3] . $date_out[4]);  
 				
 				# take into account months, so if now its the first day of the next month then days out would be set to 31 not 1 since we add 30 to 1 
@@ -82,13 +82,13 @@ check number of days all items in user's checkout queue have been out, update fi
 					$days_out = ($num_months_out * 30) + $days_out;				
 				}
 
-				$days_Out = strval($days_out); 
+				$days_out = strval($days_out); 
 				
-				$sql = $con -> query("UPDATE items_out SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
+				$sql = $con -> query("UPDATE items_out SET days_out = '$days_out' WHERE item_holder = '$_SESSION[username]' && item_id = '$smallest'");
 				# get full due and current dates 
-				$sql = $con -> query("SELECT due_Date FROM items_out WHERE item_Holder = '$_SESSION[username]'");
+				$sql = $con -> query("SELECT due_date FROM items_out WHERE item_holder = '$_SESSION[username]'");
 				$Due = $sql -> fetch(PDO::FETCH_ASSOC);
-				$date_due = $Due['due_Date'];
+				$date_due = $Due['due_date'];
 				$currentDate = date('m/d/Y'); 
 			
 				if($currentDate > $date_due) {				
@@ -109,7 +109,7 @@ check number of days all items in user's checkout queue have been out, update fi
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 ?>
 		
-		<div class="row"><div class="col-sm-12"><br><p>Login successful<br><?="Welcome back, $results[full_Name] <br>Email: $results[email]"?></div></div> 
+		<div class="row"><div class="col-sm-12"><br><p>Login successful<br><?="Welcome back, $results[full_name] <br>Email: $results[email]"?></div></div> 
 		<div class="row"><div class="col-sm-12"><a href="viewCheckouts.php"><?="Checkouts: ($results[items_Out])"?></a></div></div>
 		<div class="row"><div class="col-sm-12"><a href="viewRequests.php"><?="Requests: ($results[items_Requested])"?></a></div></div>
 		<div class="row"><div class="col-sm-12"><a href="#" onclick="alert1()"><?="Fines/Fees: $$results[fines_fees]"?></a></div></div>
