@@ -1,80 +1,95 @@
 -- library inventory site database
 -- site name: 'www.HWL.com' 
--- database name: 'librarySite'
+-- database name: 'library'
 
 -- Create user and grant all priviledges to this user
 CREATE USER IF NOT EXISTS 'newuser'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost' IDENTIFIED BY 'password';
 
--- Create database 'librarysite' and select the database for use 
-CREATE DATABASE librarysite;
-USE librarysite;
+-- Create database 'library' and select the database for use 
+CREATE DATABASE library;
+USE library;
 
--- Table structure for table 'admin'
+
+--
+-- Table: 'admin'
+--
 CREATE TABLE `adminaccount` (
-`userID` int(10) NOT NULL AUTO_INCREMENT COMMENT 'User ID #', 
-`username` varchar(30) NOT NULL,
-`email` varchar(30) NOT NULL,
-`password` varchar(30) NOT NULL,
-`fullName` varchar(30) NOT NULL,
-`phoneNumber` varchar(12) NOT NULL,
-`messages` int(30),
-`admin_Profile_Photo` text,
+`userID` INT(10) NOT NULL AUTO_INCREMENT COMMENT 'User ID #', 
+`username` VARCHAR(30) NOT NULL,
+`email` VARCHAR(30) NOT NULL,
+`password` VARCHAR(30) NOT NULL,
+`fullName` VARCHAR(30) NOT NULL,
+`phoneNumber` VARCHAR(12) NOT NULL,
+`messages` INT(30),
+`admin_Profile_Photo` TEXT,
 PRIMARY KEY (userID)
 );
 
--- Table structure for table 'items'
+
+--
+-- Table: 'items'
+--
 CREATE TABLE `items` (
-`itemID` int(10) NOT NULL AUTO_INCREMENT,
-`Item_Name` varchar(50) NOT NULL,
-`Author` varchar(30),
-`ISBN` varchar(20),
-`Publication_Info` varchar(120),
-`Year_of_Release` int(4),
-`General_Audience` varchar(30), 
-`Summary` varchar(255), 
-`Item_Type` varchar(30),
-`Col_No` varchar(30),
-`Status` varchar(30),
-`Location` varchar(30), 
+`itemID` INT(10) NOT NULL AUTO_INCREMENT,
+`Item_Name` VARCHAR(50) NOT NULL,
+`Author` VARCHAR(30),
+`ISBN` VARCHAR(20),
+`Publication_Info` VARCHAR(120),
+`Year_of_Release` INT(4),
+`General_Audience` VARCHAR(30), 
+`Summary` VARCHAR(255), 
+`Item_Type` VARCHAR(30),
+`Col_No` VARCHAR(30),
+`Status` VARCHAR(30),
+`Location` VARCHAR(30), 
 `Price` decimal(10, 2),
-`Requested` varchar(20), 
-`photo` text,
+`Requested` VARCHAR(20), 
+`photo` TEXT,
 PRIMARY KEY(itemID)
 );
 
--- Table structure for table 'userAccount' 
+
+--
+-- Table: 'userAccount'
+-- 
 CREATE TABLE `useraccounts` (
-`userID` int(10) NOT NULL AUTO_INCREMENT,
-`username` varchar(30) NOT NULL,
-`email` varchar(30) NOT NULL,
-`password` varchar(30) NOT NULL,
-`full_Name` varchar(30) NOT NULL,
-`phone_Number` varchar(12) NOT NULL,
-`items_Out` int(10) NOT NULL,
-`items_Requested` int(10) NOT NULL,
-`messages` int(10) NOT NULL,
+`userID` INT(10) NOT NULL AUTO_INCREMENT,
+`username` VARCHAR(30) NOT NULL,
+`email` VARCHAR(30) NOT NULL,
+`password` VARCHAR(30) NOT NULL,
+`full_Name` VARCHAR(30) NOT NULL,
+`phone_Number` VARCHAR(12) NOT NULL,
+`items_Out` INT(10) NOT NULL,
+`items_Requested` INT(10) NOT NULL,
+`messages` INT(10) NOT NULL,
 `fines_fees` decimal(10, 2) NOT NULL, 
-`profile_Photo` text,
+`profile_Photo` TEXT,
 PRIMARY KEY (userID) 
 );
 
--- Table structure for `itemsreq`
+
+--
+-- Table: `itemsreq`
+--
 CREATE TABLE `itemsreq` (
-`itemID` int(10) NOT NULL AUTO_INCREMENT,
-`item_Name` varchar(50),
-`requester` varchar(30),
+`itemID` INT(10) NOT NULL AUTO_INCREMENT,
+`item_Name` VARCHAR(50),
+`requester` VARCHAR(30),
 PRIMARY KEY (itemID)
 );
 
--- Table structure for 'itemsout'
+
+--
+-- Table: 'itemsout'
+--
 CREATE TABLE `itemsout` (
-`itemID` int(10) NOT NULL AUTO_INCREMENT,
-`item_Name` varchar(50),
-`item_Holder` varchar(30),
-`checkout_Date` varchar(10), 
-`days_Out` int(14),
-`due_Date` varchar(10), 
-`renewed` varchar(10),
+`itemID` INT(10) NOT NULL AUTO_INCREMENT,
+`item_Name` VARCHAR(50),
+`item_Holder` VARCHAR(30),
+`checkout_Date` VARCHAR(10), 
+`days_Out` INT(14),
+`due_Date` VARCHAR(10), 
+`renewed` VARCHAR(10),
 PRIMARY KEY (itemID)
 );

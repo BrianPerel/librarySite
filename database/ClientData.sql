@@ -1,4 +1,4 @@
-USE librarysite;
+USE library;
 
 -- Dumping data for table 'items'
 INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of_Release`, `General_Audience`, `Summary`, `Item_Type`, `Col_No`, `Status`, `Location`, `Price`, `Requested`, `photo`) VALUES

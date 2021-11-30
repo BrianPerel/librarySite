@@ -1,4 +1,4 @@
-# librarySite
+# library website
 A simulation of a public library website system 
 A dynamic database-driven client-server web site to maintain persistent information on the Web
 
