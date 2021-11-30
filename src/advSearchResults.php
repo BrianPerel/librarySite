@@ -13,11 +13,11 @@ Purpose of webpage: display results of advSearch.php form query
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 		
 		# get and store number of items out of current user 
-		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['num'] = $results['items_Out']; 
 		
-		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_Requested FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['numReq'] = $results['items_Requested'];
 	}

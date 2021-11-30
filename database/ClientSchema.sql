@@ -12,9 +12,9 @@ USE library;
 
 
 --
--- Table: 'admin'
+-- Table: 'admin_accounts'
 --
-CREATE TABLE `adminaccount` (
+CREATE TABLE `admin_accounts` (
 `userID` INT(10) NOT NULL AUTO_INCREMENT COMMENT 'User ID #', 
 `username` VARCHAR(30) NOT NULL,
 `email` VARCHAR(30) NOT NULL,
@@ -51,9 +51,9 @@ PRIMARY KEY(itemID)
 
 
 --
--- Table: 'userAccount'
+-- Table: 'user_accounts'
 -- 
-CREATE TABLE `useraccounts` (
+CREATE TABLE `user_accounts` (
 `userID` INT(10) NOT NULL AUTO_INCREMENT,
 `username` VARCHAR(30) NOT NULL,
 `email` VARCHAR(30) NOT NULL,
@@ -70,9 +70,9 @@ PRIMARY KEY (userID)
 
 
 --
--- Table: `itemsreq`
+-- Table: `items_requested`
 --
-CREATE TABLE `itemsreq` (
+CREATE TABLE `items_requested` (
 `itemID` INT(10) NOT NULL AUTO_INCREMENT,
 `item_Name` VARCHAR(50),
 `requester` VARCHAR(30),
@@ -81,9 +81,9 @@ PRIMARY KEY (itemID)
 
 
 --
--- Table: 'itemsout'
+-- Table: 'items_out'
 --
-CREATE TABLE `itemsout` (
+CREATE TABLE `items_out` (
 `itemID` INT(10) NOT NULL AUTO_INCREMENT,
 `item_Name` VARCHAR(50),
 `item_Holder` VARCHAR(30),

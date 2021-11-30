@@ -27,16 +27,16 @@ INSERT INTO `items` (`Item_Name`, `Author`, `ISBN`, `Publication_Info`, `Year_of
 ('Yes Man', 'Peyton Reed', '657-45-23445-21-5', 'Warner Bros. Pictures', '2008', 'all ages', 'Carl Allen (Jim Carrey) is stuck in a rut with his negative ways. Then he goes to a self-help seminar and learns to unleash the power of yes. Living in the affirmative leads him to all sorts of amazing and transforming experiences; he gets a job promotion, and even finds a new romance. But Carl finds that too much of anything, even positive thinking, is not necessarily a good thing.', 'blu-ray', 'I456.234 Z', 'Available', 'Framingham State University', '5.99', 'No', '../images/catalog_items/yes.jpg'
 );
 
--- Dumping data for table `itemsout` 
-INSERT INTO `itemsout` (`item_Name`, `item_Holder`, `checkout_Date`, `days_Out`, `due_Date`, `renewed`) VALUES 
+-- Dumping data for table `items_out` 
+INSERT INTO `items_out` (`item_Name`, `item_Holder`, `checkout_Date`, `days_Out`, `due_Date`, `renewed`) VALUES 
 ('Calisthenics Beasts', 'user1', '05/01/20', NULL, '05/08/20', 'No');
 
--- Dumping data for table 'admin'
-INSERT INTO `adminaccount` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `messages`, `admin_Profile_Photo`) VALUES 
+-- Dumping data for table 'admin_accounts'
+INSERT INTO `admin_accounts` (`username`, `email`, `password`, `fullName`, `phoneNumber`, `messages`, `admin_Profile_Photo`) VALUES 
 ('Mr. X', 'mrx@yahoo.com', 'Boss11', 'Brian Perel', '456-234-7686', '0', '../images/admin.png');
 
--- Dumping data for table 'useraccounts'
-INSERT INTO `useraccounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `fines_fees`, `profile_Photo`) VALUES
+-- Dumping data for table 'user_accounts'
+INSERT INTO `user_accounts` (`username`, `email`, `password`, `full_Name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `fines_fees`, `profile_Photo`) VALUES
 ('user1', 'user1@yahoo.com', 'user1', 'Brad Pitt', '768-324-4564', '1', '0', '0', '0.00', '../images/Pitt.jpg');
 
-ALTER TABLE `itemsout` AUTO_INCREMENT=2;
+ALTER TABLE `items_out` AUTO_INCREMENT=2;

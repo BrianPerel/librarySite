@@ -8,16 +8,16 @@
 	if(isset($_POST['cancel'])) {
 		if($_POST['cancel']) { 
 			# decrement number of requests 
-			$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");  # select number of request in useraccount 
+			$sql = $con -> query("SELECT items_Requested FROM user_accounts WHERE username = '$_SESSION[username]'");  # select number of request in useraccount 
 			$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
 			$requests = $items_Requested['items_Requested'] - 1;
-			$sql = $con -> query("UPDATE useraccounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'"); # update number of items requested in useraccount
+			$sql = $con -> query("UPDATE user_accounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'"); # update number of items requested in useraccount
 			
-			$sql = $con -> query("SELECT item_Name FROM itemsreq WHERE requester = '$_SESSION[username]' AND item_Name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
+			$sql = $con -> query("SELECT item_Name FROM items_requested WHERE requester = '$_SESSION[username]' AND item_Name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
 			$itemReq = $sql -> fetch(PDO::FETCH_ASSOC);
 			$item_name = $itemReq['item_Name'];
 			$sql = $con -> query("UPDATE items SET Requested = 'No' WHERE Item_Name = '$item_name'"); # update status to available of item of which request was cancelled 
-			$sql = $con -> query("DELETE FROM itemsreq WHERE requester = '$_SESSION[username]' AND Item_Name = '$_SESSION[checkout2]'"); # delete item from item request table 
+			$sql = $con -> query("DELETE FROM items_requested WHERE requester = '$_SESSION[username]' AND Item_Name = '$_SESSION[checkout2]'"); # delete item from item request table 
 			header('Location: myAccount.php');
 		}
 	}

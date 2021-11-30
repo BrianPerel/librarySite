@@ -9,7 +9,7 @@ check number of days all items in user's checkout queue have been out, update fi
 	require("../includes/connect_db.php");
 			
 	if($_SESSION['loggedin']) {
-		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$profilePhoto = $results['profile_Photo'];
 		$_SESSION['outCheck'] = $results['items_Out'];
@@ -17,7 +17,7 @@ check number of days all items in user's checkout queue have been out, update fi
 	}
 	
 	else if(!$_SESSION['loggedin']) {
-		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'");
+		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_POST[username]'");
 		$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 		
 		# need loop to check sign in info sent compared to every useraccount row until match is found 
@@ -58,18 +58,18 @@ check number of days all items in user's checkout queue have been out, update fi
 		# enter condition if user has more than 1 item out 
 		if($_SESSION['outCheck'] > 0) {
 			// get the number of items out 
-			$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");
+			$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");
 			$res = $sql -> fetch(PDO::FETCH_ASSOC); 
 
 			// get the smallest ID num 
-			$sth = $con -> prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+			$sth = $con -> prepare("SELECT min(itemID) FROM items_out WHERE item_Holder = '$_SESSION[username]'");
 			$sth -> execute();
 			$smallest = $sth -> fetchColumn();
 			
 			for($i = 0; $i < $res['items_Out']; $i++) {		
 				# update days out on every login 
 				date_default_timezone_set('America/New_York'); 
-				$sql = $con -> query("SELECT checkout_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
+				$sql = $con -> query("SELECT checkout_Date FROM items_out WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
 				$date = $sql -> fetch(PDO::FETCH_ASSOC); 
 				$date_out = $date['checkout_Date']; 
 				$days_out = intval(date("d")) - intval($date_out[3] . $date_out[4]);  
@@ -84,19 +84,19 @@ check number of days all items in user's checkout queue have been out, update fi
 
 				$days_Out = strval($days_out); 
 				
-				$sql = $con -> query("UPDATE itemsout SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
+				$sql = $con -> query("UPDATE items_out SET days_Out = '$days_Out' WHERE item_Holder = '$_SESSION[username]' && itemID = '$smallest'");
 				# get full due and current dates 
-				$sql = $con -> query("SELECT due_Date FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+				$sql = $con -> query("SELECT due_Date FROM items_out WHERE item_Holder = '$_SESSION[username]'");
 				$Due = $sql -> fetch(PDO::FETCH_ASSOC);
 				$date_due = $Due['due_Date'];
 				$currentDate = date('m/d/Y'); 
 			
 				if($currentDate > $date_due) {				
-					$sql = $con -> query("SELECT fines_fees FROM useraccounts WHERE username = '$_SESSION[username]'");
+					$sql = $con -> query("SELECT fines_fees FROM user_accounts WHERE username = '$_SESSION[username]'");
 					$fees = $sql -> fetch(PDO::FETCH_ASSOC);
 					$fee = $fees['fines_fees'];					
 					$fee == FINE ? $fee += 0 : $fee += FINE;
-					$sql = $con -> query("UPDATE useraccounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
+					$sql = $con -> query("UPDATE user_accounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
 				}
 				$smallest++;
 			}
@@ -105,7 +105,7 @@ check number of days all items in user's checkout queue have been out, update fi
 		$_SESSION['items_out'] = $_SESSION['outCheck'];
 		$_SESSION['items_requested'] = $_SESSION['requested'];
 		
-		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 ?>
 		

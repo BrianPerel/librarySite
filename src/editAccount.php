@@ -6,7 +6,7 @@
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
-	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE email = '$_POST[email]' 
+	$insert_check = $con -> query("SELECT * FROM user_accounts WHERE email = '$_POST[email]' 
 	OR password = '$_POST[password]' OR phone_Number = '$_POST[phone_number]'");	
 
 	# if duplicate account found, return error 
@@ -18,17 +18,17 @@
 	
 	# if password field is not empty do this 
 	if(!empty($_POST['password'])) {
-		$sql = $con -> query("UPDATE useraccounts SET password='$_POST[password]' WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("UPDATE user_accounts SET password='$_POST[password]' WHERE username = '$_SESSION[username]'");
 	}
 	
 	# if email field is not empty do this 
 	if(!empty($_POST['email'])) {
-		$sql = $con -> query("UPDATE useraccounts SET email='$_POST[email]' WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("UPDATE user_accounts SET email='$_POST[email]' WHERE username = '$_SESSION[username]'");
 	}
 	
 	# if phone number field is not empty do this 
 	if(!empty($_POST['phone_number'])) {
-		$sql = $con -> query("UPDATE useraccounts SET phone_Number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("UPDATE user_accounts SET phone_Number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
 	}
 	
 	# if photo field is not empty do this 
@@ -51,7 +51,7 @@
 		$imgJSON = json_decode($upload);
 		$imgLink = $imgJSON -> data -> display_url;	# create variable with url from imagebb upload 	
 		
-		$sql = $con -> query("UPDATE useraccounts SET profile_Photo = '$imgLink' WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("UPDATE user_accounts SET profile_Photo = '$imgLink' WHERE username = '$_SESSION[username]'");
 	}
 	
 	# if all fields were empty send message back that no info was given 

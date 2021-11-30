@@ -11,7 +11,7 @@
 	$fname = ucwords($_POST['fname']);
 		
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
-	$insert_check = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
+	$insert_check = $con -> query("SELECT * FROM user_accounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
 	OR password = '$_POST[password]' OR full_Name = '$fname' OR phone_Number = '$_POST[pNum]'");	
 
 	# if duplicate account found, return error 
@@ -64,10 +64,10 @@
 		$_POST['password'] = trim($_POST['password']);
 		
 		# insert record into table 
-		$sql = $con -> query("INSERT INTO useraccounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
+		$sql = $con -> query("INSERT INTO user_accounts (username, email, password, full_Name, phone_Number, items_Out, items_Requested, messages, profile_Photo) 
 		VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 		
-		$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_POST[username]'"); 
+		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_POST[username]'"); 
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$num = $results['userID'];	
 	}

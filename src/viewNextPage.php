@@ -8,19 +8,19 @@
 	require("../includes/connect_db.php");
 	
 	# get num of items out, I wrote these statements to prevent itemN++ from continuing to increment if page is refreshed 
-	$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+	$sql = $con -> query("SELECT * FROM items_out WHERE item_Holder = '$_SESSION[username]'");
 	$numOfItems = $sql -> rowCount(PDO::FETCH_ASSOC);
 	
 	if(isset($_SESSION['requestViewNext'])) { 
 		if($_SESSION['requestViewNext'] == 'req') {
 			$_SESSION['varR']++;
-			$sth = $con -> prepare("SELECT min(itemID) FROM itemsreq WHERE requester = '$_SESSION[username]'");
+			$sth = $con -> prepare("SELECT min(itemID) FROM items_requested WHERE requester = '$_SESSION[username]'");
 			$sth -> execute();
 			$smallest = $sth -> fetchColumn();
 			$smallest += $_SESSION['varR'];
 			$_SESSION['smallestReq'] = $smallest; 
 			
-			$sql = $con -> query("SELECT * FROM itemsreq WHERE requester = '$_SESSION[username]' AND itemID = '$smallest'");
+			$sql = $con -> query("SELECT * FROM items_requested WHERE requester = '$_SESSION[username]' AND itemID = '$smallest'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
 			$_POST['item_name'] = $results['item_Name']; 
 			
@@ -29,13 +29,13 @@
 			$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		} else {
 			$_SESSION['var']++;  
-			$sth = $con -> prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+			$sth = $con -> prepare("SELECT min(itemID) FROM items_out WHERE item_Holder = '$_SESSION[username]'");
 			$sth -> execute();
 			$smallest = $sth -> fetchColumn();
 			$smallest += $_SESSION['var'];
 			$_SESSION['smallest'] = $smallest; 
 			
-			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
+			$sql = $con -> query("SELECT * FROM items_out WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
 			$_POST['item_name'] = $results['item_Name']; 
 				
@@ -47,21 +47,21 @@
 	
 	else { 
 		$_SESSION['var']++;
-		$sth = $con -> prepare("SELECT min(itemID) FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+		$sth = $con -> prepare("SELECT min(itemID) FROM items_out WHERE item_Holder = '$_SESSION[username]'");
 		$sth -> execute();
 		$smallest = $sth -> fetchColumn();
 		$smallest += $_SESSION['var'];
 		$_SESSION['smallest'] = $smallest; 
 		
 		# if no record of this itemID number exists in db then increment variable again to get next record. This will occur if you delete the middle item checked-out 
-		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");			
+		$sql = $con -> query("SELECT * FROM items_out WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");			
 		$results = $sql -> fetch(PDO::FETCH_ASSOC); 
 		$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		if(($results2) == 0) {
 			$smallest++; $_SESSION['smallest']++;
 		}
 
-		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
+		$sql = $con -> query("SELECT * FROM items_out WHERE item_Holder = '$_SESSION[username]' AND itemID = '$smallest'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_POST['item_name'] = $results['item_Name']; 
 
@@ -116,7 +116,7 @@
 			
 				echo "<input name='cancel' type='submit' value='Cancel Request' style='display: inline; margin-left: 1%; margin-right: 1.5%'></input>";
 				
-				$sql = $con -> query("SELECT * FROM useraccounts WHERE username = '$_SESSION[username]'");
+				$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_SESSION[username]'");
 				$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 				if($item['items_Requested'] > 1) {
 					if($_SESSION['smallestReq'] != $_SESSION['smallestNumReq']) {
@@ -136,7 +136,7 @@
 		
 			displayTable();
 			
-			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
+			$sql = $con -> query("SELECT * FROM items_out WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 			$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
 			echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 			echo "<tr><td>Date checked-out: $results2[checkout_Date]</td></tr>";
@@ -149,14 +149,14 @@
 			
 			echo "<form action='check-in.php' method='post'>"; 
 				echo "<center><input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
-				$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]' && item_Name = '$_SESSION[checkout2]'");
+				$sql = $con -> query("SELECT renewed FROM items_out WHERE item_Holder = '$_SESSION[username]' && item_Name = '$_SESSION[checkout2]'");
 				$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 				$renewed = $item['renewed'];
 				if($renewed == "No") { 
 					echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 				}
 				
-				$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+				$sql = $con -> query("SELECT * FROM items_out WHERE item_Holder = '$_SESSION[username]'");
 				$item = $sql -> fetchAll(PDO::FETCH_ASSOC); 
 				if($item > 1) {
 					if($_SESSION['smallest'] != $_SESSION['smallestNum']) {
@@ -176,7 +176,7 @@
 		
 		displayTable();
 		
-		$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
+		$sql = $con -> query("SELECT * FROM items_out WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 		$results2 = $sql -> fetch(PDO::FETCH_ASSOC);
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
 		echo "<tr><td>Date checked-out: $results2[checkout_Date]</td></tr>";
@@ -189,14 +189,14 @@
 		
 		echo "<form action='check-in.php' method='post'>";
 			echo "<center><input name='checkIn' type='submit' value='Check-in Item' style='display: inline; margin-right: 1.5%'></input>";
-			$sql = $con -> query("SELECT renewed FROM itemsout WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
+			$sql = $con -> query("SELECT renewed FROM items_out WHERE item_Holder = '$_SESSION[username]' AND itemID = '$_SESSION[smallest]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 			$renewed = $item['renewed'];
 			if($renewed == "No") { 
 				echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 			}
 			
-			$sql = $con -> query("SELECT * FROM itemsout WHERE item_Holder = '$_SESSION[username]'");
+			$sql = $con -> query("SELECT * FROM items_out WHERE item_Holder = '$_SESSION[username]'");
 			$item = $sql -> fetchAll(PDO::FETCH_ASSOC); 
 			if($item > 1) {
 				if($_SESSION['smallest'] != $_SESSION['smallestNum']) {

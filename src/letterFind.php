@@ -12,11 +12,11 @@
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 		# get and store number of items checked out 
-		$sql = $con -> query("SELECT items_Out FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['num'] = $results['items_Out'];
 		
-		$sql = $con -> query("SELECT items_Requested FROM useraccounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_Requested FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$_SESSION['numReq'] = $results['items_Requested'];
 	}
