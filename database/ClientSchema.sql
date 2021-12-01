@@ -2,14 +2,15 @@
 -- site name: 'www.HWL.com' 
 -- database name: 'library'
 
--- Create user and grant all priviledges to this user
-CREATE USER IF NOT EXISTS 'newuser'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost' IDENTIFIED BY 'password';
+-- Delete existing database 'library' if it exists
+DROP DATABASE IF EXISTS library;
 
 -- Create database 'library' and select the database for use 
 CREATE DATABASE library;
 USE library;
 
+-- Grant all privileges to all localhost users
+GRANT ALL PRIVILEGES ON * . * TO ''@'localhost';
 
 --
 -- Table: 'admin_accounts'

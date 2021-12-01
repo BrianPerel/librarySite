@@ -184,8 +184,8 @@
 ?>
 
 <form action='checkout.php' method='post'>
-	<center><input class="form" style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['status'] == 'Out') {echo 'disabled';} ?>></input>
-	<input class="form" name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} ?>></input>	
+	<center><input class="form" style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(empty($results) || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['status'] == 'Out') {echo 'disabled';} ?>></input>
+	<input class="form" name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(empty($results) || $_SESSION['res'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} ?>></input>	
 </form>
 
 <?php

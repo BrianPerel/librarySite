@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE xml>
+<project name="www.HWL.com" default="build-website" basedir=".">
+	
+	<!-- dump some basic environment-related info -->
+	<tstamp>
+		<format property="TODAY_US" pattern="MM/dd/yyyy hh:mm a" locale="en, US" />
+	</tstamp>
+	<echo message="Current date and time: ${TODAY_US}${line.separator}${ant.version}" level="info" />
+	
+	<target name="build-website" description="copies src files to xampp/htdocs folder">
+		<copy todir="../../../../xampp/htdocs/project/src">
+			<fileset dir="src" />
+		</copy>
+	</target>
+</project>

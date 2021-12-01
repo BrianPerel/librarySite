@@ -79,31 +79,32 @@
 	<section>
 		<div class="row">
 			<div class="col-sm-8">
-				<img src='../images/fsu.jpg' class="img-thumbnail" width='650px' height='600px'/><br><br>
+				<img src='../images/fsu.jpg' class="img-thumbnail" width='650px' height='600px' alt='FSU-MainPicture' /><br><br>
 			</div>
 			
 			<div class="col-sm-3">
-				<iframe class="img-thumbnail" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2951.0640653227806!2d-71.4352319!3d42.2984984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e389a9351c81eb%3A0xe6ea3c8be37e9068!2sHenry%20Whittemore%20Library!5e0!3m2!1sen!2sus!4v1583264360102!5m2!1sen!2sus" frameborder="0" style="border:0;" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-				<img class="img-thumbnail" src="../images/5.jpg" width="400" height="300"></img>
+				<iframe class="img-thumbnail" title="google-maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2951.0640653227806!2d-71.4352319!3d42.2984984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e389a9351c81eb%3A0xe6ea3c8be37e9068!2sHenry%20Whittemore%20Library!5e0!3m2!1sen!2sus!4v1583264360102!5m2!1sen!2sus" style="border:0" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
+				<img class="img-thumbnail" src="../images/5.jpg" width="400" height="300" alt="FSULibrary-front></img>
 			</div>
 		</div>
 	</section>
-	
+		
 	<section>
-		<div class="row"> 
-			<div class="col-sm-12">
-				<br><br><br><br><p id="contact"><b>Location:</b> 100 State Street Framingham, MA 01701</p>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-12">
-				<p><b>Phone:</b> (111) - 222 - 3344</p>
-			</div>
-		</div>
+		<div class="container"><center>
+			<table class="table table-bordered table-secondary" description="library-hours">			
+			<tr>
+				<th>Location</th>
+				<th>Phone</th>
+			</tr>
+			<tr>
+				<th>100 State Street Framingham, MA 01701</th>
+				<th>(111) - 222 - 3344</th>
+			</tr>
+			</table>
+		</center></div>
 			
 		<div class="container"><center>
-			<table class="table table-bordered table-secondary">
+			<table class="table table-bordered table-secondary" description="library-hours">			
 				<thead>
 					<tr>
 						<th>Day</th>
