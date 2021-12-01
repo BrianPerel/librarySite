@@ -12,7 +12,7 @@
 		
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
 	$insert_check = $con -> query("SELECT * FROM user_accounts WHERE username = '$_POST[username]' OR email = '$_POST[email]' 
-	OR password = '$_POST[password]' OR full_name = '$fname' OR phone_Number = '$_POST[pNum]'");	
+	OR password = '$_POST[password]' OR full_name = '$fname' OR phone_number = '$_POST[pNum]'");	
 
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
@@ -64,7 +64,7 @@
 		$_POST['password'] = trim($_POST['password']);
 		
 		# insert record into table 
-		$sql = $con -> query("INSERT INTO user_accounts (username, email, password, full_name, phone_Number, items_Out, items_Requested, messages, user_photo) 
+		$sql = $con -> query("INSERT INTO user_accounts (username, email, password, full_name, phone_number, items_out, items_requested, messages, user_photo) 
 		VALUES ('$_POST[username]', '$_POST[email]', '$_POST[password]', '$fname', '$_POST[pNum]', '0', '0', '0', '$imgLink')");
 		
 		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_POST[username]'"); 

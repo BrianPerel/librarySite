@@ -1,7 +1,7 @@
 USE library;
 
 -- Dumping data for table 'items'
-INSERT INTO `items` (`item_name`, `author`, `ISBN`, `Publication_Info`, `Year_of_Release`, `General_Audience`, `Summary`, `Item_Type`, `Col_No`, `Status`, `Location`, `Price`, `Requested`, `item_photo`) VALUES
+INSERT INTO `items` (`item_name`, `author`, `ISBN`, `publication_info`, `year_of_release`, `general_audience`, `summary`, `item_type`, `col_no`, `status`, `location`, `price`, `requested`, `item_photo`) VALUES
 ('The Art of Being a Ninja', 'Brian Perel', '132-12-12478-32-5', 'Hollywood, California : Paramount Home Entertainment', '2020', 'adult', 'The Art of Being a Ninja is a documentary film about how to become a ninja', 'Blu-ray', 'J796.815 B', 'Available', 'Framingham State University', '34.50', 'No', '../images/catalog_items/Ninja.jpg'),
 ('Aikido', 'John Smith', '345-34-5346-56-8', 'Hollywood, California : Universal Studios Entertainment', '2010', 'adult', 'Aikido is a movie about the way of aikido practitioners and there lives', 'DVD', 'Z271.154 A', 'Available', 'Framingham State University', '12.80', 'No', '../images/catalog_items/Aikido.jpg'),
 ('Calisthenics Beasts', 'Jason Armstrong', '567-56-55431-23-1', '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Calisthenics Beasts is an ebook broken up into multiple sections by muscle groups', 'ebook', 'D938.121 C', 'Available', 'Framingham State University', '3.12', 'No', '../images/catalog_items/Calisthenics.jpg'),
@@ -36,7 +36,7 @@ INSERT INTO `admin_accounts` (`username`, `email`, `password`, `full_name`, `pho
 ('Mr. X', 'mrx@yahoo.com', 'Boss11', 'Brian Perel', '456-234-7686', '0', '../images/admin.png');
 
 -- Dumping data for table 'user_accounts'
-INSERT INTO `user_accounts` (`username`, `email`, `password`, `full_name`, `phone_Number`, `items_Out`, `items_Requested`, `messages`, `fines_fees`, `user_photo`) VALUES
+INSERT INTO `user_accounts` (`username`, `email`, `password`, `full_name`, `phone_number`, `items_out`, `items_requested`, `messages`, `fines_fees`, `user_photo`) VALUES
 ('user1', 'user1@yahoo.com', 'user1', 'Brad Pitt', '768-324-4564', '1', '0', '0', '0.00', '../images/Pitt.jpg');
 
 ALTER TABLE `items_out` AUTO_INCREMENT=2;

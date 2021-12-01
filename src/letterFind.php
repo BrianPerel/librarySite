@@ -12,13 +12,13 @@
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 		# get and store number of items checked out 
-		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_out FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_SESSION['num'] = $results['items_Out'];
+		$_SESSION['num'] = $results['items_out'];
 		
-		$sql = $con -> query("SELECT items_Requested FROM user_accounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_requested FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_SESSION['numReq'] = $results['items_Requested'];
+		$_SESSION['numReq'] = $results['items_requested'];
 	}
 	
 	# if admin user is logged in switch nav links 
@@ -82,16 +82,16 @@
 		echo "<tr><td>Title: $results[item_name]</td></tr>";
 		echo "<tr><td>Author: $results[author]</td></tr>";
 		echo "<tr><td>ISBN: $results[ISBN]</td></tr>";
-		echo "<tr><td>Item: $results[Item_Type]</td></tr>";
-		echo "<tr><td>Publication info: $results[Publication_Info]</td></tr>";
-		echo "<tr><td>Year released: $results[Year_of_Release]</td></tr>";
-		echo "<tr><td>General Audience: $results[General_Audience]</td></tr>";
-		echo "<tr><td>Summary: $results[Summary]</td></tr>";
-		echo "<tr><td>Col No: $results[Col_No]</td></tr>";
-		echo "<tr><td>Price: $$results[Price]</td></tr>";
-		echo "<tr><td>Location: $results[Location]</td></tr>";
-		echo "<tr><td>Requested: $results[Requested]</td></tr>";
-		echo "<tr><td>Status: $results[Status]</td></tr>";
+		echo "<tr><td>Item: $results[item_type]</td></tr>";
+		echo "<tr><td>Publication info: $results[publication_info]</td></tr>";
+		echo "<tr><td>Year released: $results[year_of_release]</td></tr>";
+		echo "<tr><td>General Audience: $results[general_audience]</td></tr>";
+		echo "<tr><td>Summary: $results[summary]</td></tr>";
+		echo "<tr><td>Col No: $results[col_no]</td></tr>";
+		echo "<tr><td>Price: $$results[price]</td></tr>";
+		echo "<tr><td>Location: $results[location]</td></tr>";
+		echo "<tr><td>Requested: $results[requested]</td></tr>";
+		echo "<tr><td>Status: $results[status]</td></tr>";
 		echo '</table><br>';
 			
 		# save current item being looked up into variable 
@@ -101,15 +101,15 @@
 		$_SESSION['searchLetter'] = substr($results['item_name'], 0, 1);
 		
 		# get requested yes or no status from current item being looked up 
-		$sql = $con -> query("SELECT Requested FROM items WHERE item_name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("SELECT requested FROM items WHERE item_name = '$_SESSION[checkout2]'");
 		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
 	}
 ?>
 
 <!-- checkout and request buttons --> 
 <form class="form" action='letterCheckout.php' method='post'>
-	<center><input class="form" style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(empty($results) || $results['Status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
-	<input class="form" type="submit" name="request" value='Request Item' <?php if(empty($results) && $_GET['by'] != 'A-Z' || $results3['Requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
+	<center><input class="form" style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(empty($results) || $results['status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
+	<input class="form" type="submit" name="request" value='Request Item' <?php if(empty($results) && $_GET['by'] != 'A-Z' || $results3['requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 
 
 <?php include("../includes/footer2.htm")?>

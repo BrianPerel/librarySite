@@ -13,13 +13,13 @@ Purpose of webpage: display results of advSearch.php form query
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 		
 		# get and store number of items out of current user 
-		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_out FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_SESSION['num'] = $results['items_Out']; 
+		$_SESSION['num'] = $results['items_out']; 
 		
-		$sql = $con -> query("SELECT items_Requested FROM user_accounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_requested FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_SESSION['numReq'] = $results['items_Requested'];
+		$_SESSION['numReq'] = $results['items_requested'];
 	}
 	
 	if(empty($_POST['Title']) && empty($_POST['ISBN']) && empty($_POST['author'])) {
@@ -57,7 +57,7 @@ Purpose of webpage: display results of advSearch.php form query
 	
 	else { 
 		$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_POST[Title]' OR ISBN = '$_POST[ISBN]' OR author ='$_POST[author]'
-		AND (Year_of_Release >= '$_POST[yearFrom]' AND Year_of_Release <= '$_POST[yearTo]') AND Item_Type = '$_POST[format]' 
+		AND (year_of_release >= '$_POST[yearFrom]' AND year_of_release <= '$_POST[yearTo]') AND item_type = '$_POST[format]' 
 		AND Location = '$_POST[location]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
@@ -89,16 +89,16 @@ Purpose of webpage: display results of advSearch.php form query
 		echo "<tr><td>Title: $results[item_name]</td></tr>";
 		echo "<tr><td>Author: $results[author]</td></tr>";
 		echo "<tr><td>ISBN: $results[ISBN]</td></tr>";
-		echo "<tr><td>Item: $results[Item_Type]</td></tr>";
-		echo "<tr><td>Publication info: $results[Publication_Info]</td></tr>";
-		echo "<tr><td>Year released: $results[Year_of_Release]</td></tr>";
-		echo "<tr><td>General Audience: $results[General_Audience]</td></tr>";
-		echo "<tr><td>Summary: $results[Summary]</td></tr>";
-		echo "<tr><td>Col No: $results[Col_No]</td></tr>";
-		echo "<tr><td>Price: $$results[Price]</td></tr>";
-		echo "<tr><td>Location: $results[Location]</td></tr>";
-		echo "<tr><td>Requested: $results[Requested]</td></tr>";
-		echo "<tr><td>Status: $results[Status]</td></tr>";
+		echo "<tr><td>Item: $results[item_type]</td></tr>";
+		echo "<tr><td>Publication info: $results[publication_info]</td></tr>";
+		echo "<tr><td>Year released: $results[year_of_release]</td></tr>";
+		echo "<tr><td>General Audience: $results[general_audience]</td></tr>";
+		echo "<tr><td>Summary: $results[summary]</td></tr>";
+		echo "<tr><td>Col No: $results[col_no]</td></tr>";
+		echo "<tr><td>Price: $$results[price]</td></tr>";
+		echo "<tr><td>Location: $results[location]</td></tr>";
+		echo "<tr><td>Requested: $results[requested]</td></tr>";
+		echo "<tr><td>Status: $results[status]</td></tr>";
 		echo '</table><br>';
 		
 		$_SESSION['checkout2'] = $results['item_name'];	
@@ -108,7 +108,7 @@ Purpose of webpage: display results of advSearch.php form query
 	
 <!-- check out and request buttons --> 
 <form action='checkout.php' method='post'>
-	<input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(empty($results) || $results['Status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';} ?>></input>
+	<input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(empty($results) || $results['status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';} ?>></input>
 	<input name='request' type="submit" value="Request Item" <?php if(empty($results) || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
 </form>
 	

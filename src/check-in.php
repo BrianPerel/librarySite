@@ -8,14 +8,14 @@
 	
 	# check in action 
 	if(isset($_POST['checkIn'])) {
-		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'"); # retrieve current number of items out 
+		$sql = $con -> query("SELECT items_out FROM user_accounts WHERE username = '$_SESSION[username]'"); # retrieve current number of items out 
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC); 
-		$out = $items_Out1['items_Out'] - 1;
-		$sql = $con -> query("UPDATE user_accounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
+		$out = $items_Out1['items_out'] - 1;
+		$sql = $con -> query("UPDATE user_accounts SET items_out = '$out' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("SELECT item_name FROM items_out WHERE item_holder = '$_SESSION[username]' AND item_name = '$_SESSION[checkout2]'"); # retrieve current number of items out 
 		$items = $sql -> fetch(PDO::FETCH_ASSOC);
 		$item_name = $items['item_name'];
-		$sql = $con -> query("UPDATE items SET Status = 'Available' WHERE item_name = '$item_name'"); # item becomes available 
+		$sql = $con -> query("UPDATE items SET status = 'Available' WHERE item_name = '$item_name'"); # item becomes available 
 		$sql = $con -> query("DELETE FROM items_out WHERE item_name = '$item_name'"); # item becomes available 
 		echo '<center><h2>Return processed, thank you.</h2></center>';
 	}

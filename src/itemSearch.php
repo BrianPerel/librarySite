@@ -20,13 +20,13 @@
 	
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
-		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_out FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_SESSION['num'] = $results['items_Out'];
+		$_SESSION['num'] = $results['items_out'];
 		
-		$sql = $con -> query("SELECT items_Requested FROM user_accounts WHERE username = '$_SESSION[username]'");	
+		$sql = $con -> query("SELECT items_requested FROM user_accounts WHERE username = '$_SESSION[username]'");	
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_SESSION['numReq'] = $results['items_Requested'];
+		$_SESSION['numReq'] = $results['items_requested'];
 	}
 	
 	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
@@ -129,16 +129,16 @@
 		echo "<tr><td>Title: $results[item_name]</td></tr>";
 		echo "<tr><td>Author: $results[author]</td></tr>";
 		echo "<tr><td>ISBN: $results[ISBN]</td></tr>";
-		echo "<tr><td>Item: $results[Item_Type]</td></tr>";
-		echo "<tr><td>Publication info: $results[Publication_Info]</td></tr>";
-		echo "<tr><td>Year released: $results[Year_of_Release]</td></tr>";
-		echo "<tr><td>General Audience: $results[General_Audience]</td></tr>";
-		echo "<tr><td>Summary: $results[Summary]</td></tr>";
-		echo "<tr><td>Col No: $results[Col_No]</td></tr>";
-		echo "<tr><td>Price: $$results[Price]</td></tr>";
-		echo "<tr><td>Location: $results[Location]</td></tr>";
-		echo "<tr><td>Requested: $results[Requested]</td></tr>";
-		echo "<tr><td>Status: $results[Status]</td></tr>";
+		echo "<tr><td>Item: $results[item_type]</td></tr>";
+		echo "<tr><td>Publication info: $results[publication_info]</td></tr>";
+		echo "<tr><td>Year released: $results[year_of_release]</td></tr>";
+		echo "<tr><td>General Audience: $results[general_audience]</td></tr>";
+		echo "<tr><td>Summary: $results[summary]</td></tr>";
+		echo "<tr><td>Col No: $results[col_no]</td></tr>";
+		echo "<tr><td>Price: $$results[price]</td></tr>";
+		echo "<tr><td>Location: $results[location]</td></tr>";
+		echo "<tr><td>Requested: $results[requested]</td></tr>";
+		echo "<tr><td>Status: $results[status]</td></tr>";
 		echo '</table><br><br>';
 	}
 	
@@ -156,9 +156,9 @@
 		echo '</table><br>';
 		
 		$_SESSION['checkout2'] = $results['item_name'];
-		$sql = $con -> query("SELECT Requested FROM items WHERE item_name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("SELECT requested FROM items WHERE item_name = '$_SESSION[checkout2]'");
 		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_SESSION['res'] = $results3['Requested'];
+		$_SESSION['res'] = $results3['requested'];
 	}		
 	
 	else if(isset($_GET['check_items_requested'])) { 
@@ -166,9 +166,9 @@
 		echo "<p style='margin-right: 45%'>Item #$_SESSION[itemN]</p>";
 		displayTable();
 		$_SESSION['checkout2'] = $results['item_name'];
-		$sql = $con -> query("SELECT Requested FROM items WHERE item_name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("SELECT requested FROM items WHERE item_name = '$_SESSION[checkout2]'");
 		$results3 = $sql -> fetch(PDO::FETCH_ASSOC);
-		$_SESSION['res'] = $results3['Requested'];
+		$_SESSION['res'] = $results3['requested'];
 		$_SESSION['bool'] = true; 
 	}		
 	
@@ -184,7 +184,7 @@
 ?>
 
 <form action='checkout.php' method='post'>
-	<center><input class="form" style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['Status'] == 'Out') {echo 'disabled';} ?>></input>
+	<center><input class="form" style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(sizeof($results) == 0 || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['status'] == 'Out') {echo 'disabled';} ?>></input>
 	<input class="form" name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(sizeof($results) == 0 || $_SESSION['res'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} ?>></input>	
 </form>
 
@@ -193,10 +193,10 @@
 		echo '<form action="cancelRequest.php" method="post" style="display: inline">';
 			echo "<input name='cancel' type='submit' value='Cancel Request' style='display: inline; margin-left: 1%; margin-right: 1.5%'></input>";
 			
-			$sql = $con -> query("SELECT items_Requested FROM user_accounts WHERE username = '$_SESSION[username]'");
+			$sql = $con -> query("SELECT items_requested FROM user_accounts WHERE username = '$_SESSION[username]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
 			
-			if($item['items_Requested'] > 1) {
+			if($item['items_requested'] > 1) {
 				echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input>";
 			}
 		echo '</form>';
@@ -212,9 +212,9 @@
 				echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 			}
 			
-			$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");
+			$sql = $con -> query("SELECT items_out FROM user_accounts WHERE username = '$_SESSION[username]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
-			if($item['items_Out'] > 1) {
+			if($item['items_out'] > 1) {
 				echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input>";
 			}
 		echo "</form>";

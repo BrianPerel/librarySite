@@ -6,14 +6,14 @@
 	
 	if($_SESSION['loggedin'] && $_POST['checkout2']) {
 		# update status of item we're checking out 
-		$sql = $con -> query("UPDATE items SET Status='Out' WHERE item_name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("UPDATE items SET status = 'Out' WHERE item_name = '$_SESSION[checkout2]'");
 		# PDO query statement 
-		$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");
-		# PDO fetch statement ($items_Requested is an object)
+		$sql = $con -> query("SELECT items_out FROM user_accounts WHERE username = '$_SESSION[username]'");
+		# PDO fetch statement ($items_requested is an object)
 		$items_Out1 = $sql -> fetch(PDO::FETCH_ASSOC);
-		# Access $items_Out object 'items_Out' attribute and assign to a regular variable 
-		$out = $items_Out1['items_Out'] + 1;
-		$sql = $con -> query("UPDATE user_accounts SET items_Out = '$out' WHERE username = '$_SESSION[username]'");
+		# Access $items_out object 'items_out' attribute and assign to a regular variable 
+		$out = $items_Out1['items_out'] + 1;
+		$sql = $con -> query("UPDATE user_accounts SET items_out = '$out' WHERE username = '$_SESSION[username]'");
 		date_default_timezone_set("America/New_York");
 		$date = date("m/d/Y"); 
 		$due_date = date("m/d/Y", strtotime('+7 days'));
@@ -21,14 +21,14 @@
 		header("Location: letterFind.php?send1=$_SESSION[searchLetter]");
 	} else if($_SESSION['loggedin'] && $_POST['request']) {
 		# PDO query statement 
-		$sql = $con -> query("SELECT items_Requested FROM user_accounts WHERE username = '$_SESSION[username]'");
-		# PDO fetch statement ($items_Requested is an object)
-		$items_Requested = $sql -> fetch(PDO::FETCH_ASSOC);
-		# Access $items_Requested object 'items_Requested' attribute and assign to a regular variable 
-		$requests = $items_Requested['items_Requested'] + 1;
-		$sql = $con -> query("UPDATE user_accounts SET items_Requested = '$requests' WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("SELECT items_requested FROM user_accounts WHERE username = '$_SESSION[username]'");
+		# PDO fetch statement ($items_requested is an object)
+		$items_requested = $sql -> fetch(PDO::FETCH_ASSOC);
+		# Access $items_requested object 'items_requested' attribute and assign to a regular variable 
+		$requests = $items_requested['items_requested'] + 1;
+		$sql = $con -> query("UPDATE user_accounts SET items_requested = '$requests' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("INSERT INTO items_requested (item_name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
-		$sql = $con -> query("UPDATE items SET Requested = 'Yes' WHERE item_name = '$_SESSION[checkout2]'");
+		$sql = $con -> query("UPDATE items SET requested = 'Yes' WHERE item_name = '$_SESSION[checkout2]'");
 		header("Location: letterFind.php?send2=$_SESSION[searchLetter]");
 	} else {
 		$error = "<p style='color: red'>Please sign into your account to check out or request items</p>";

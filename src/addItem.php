@@ -35,7 +35,7 @@ upload file given to imagebb for image storage using curl cmd if user attached i
 		}
 			
 		# final step, insert all post data along with image 
-		$sql = $con -> query("INSERT INTO items (item_name, author, ISBN, Publication_Info, Year_of_Release, General_Audience, Summary, Item_Type, Col_No, Status, Location, Price, Requested, item_photo) 
+		$sql = $con -> query("INSERT INTO items (item_name, author, ISBN, publication_info, year_of_release, general_audience, summary, item_type, col_no, status, location, price, requested, item_photo) 
 		VALUES ('$_REQUEST[item_name]', '$_REQUEST[author]', '$_REQUEST[ISBN]', '$_REQUEST[pub_info]', '$_REQUEST[year_released]', '$_REQUEST[gen_aud]', '$_REQUEST[summary]', '$_REQUEST[item_type]',
 		'$_REQUEST[col_no]', 'Available', 'Framingham State University', '$_REQUEST[price]', 'No', '$imgLink')");
 

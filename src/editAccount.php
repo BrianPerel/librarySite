@@ -7,7 +7,7 @@
 	
 	# do a db search to check: if any existing records match info recieved from signUp form, assign response to variable 
 	$insert_check = $con -> query("SELECT * FROM user_accounts WHERE email = '$_POST[email]' 
-	OR password = '$_POST[password]' OR phone_Number = '$_POST[phone_number]'");	
+	OR password = '$_POST[password]' OR phone_number = '$_POST[phone_number]'");	
 
 	# if duplicate account found, return error 
 	if($insert_check -> rowcount() > 0) {
@@ -28,7 +28,7 @@
 	
 	# if phone number field is not empty do this 
 	if(!empty($_POST['phone_number'])) {
-		$sql = $con -> query("UPDATE user_accounts SET phone_Number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("UPDATE user_accounts SET phone_number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
 	}
 	
 	# if photo field is not empty do this 

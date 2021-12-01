@@ -70,11 +70,11 @@
 		$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 	}
 	
-	$user_photo = $results['user_photo'];
+	$item_photo = $results['item_photo'];
 	echo '<h2 align=center>' . $_POST['item_name'] . '</h2>';
 ?>
 
-<br><img src="<?= $user_photo; ?>" <?php if($results2 == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
+<br><img src="<?= $item_photo; ?>" <?php if($results2 == 0) { echo 'style="display: none"'; }?> width='250' height='230' alt='profile picture'/>
 
 <?php 
 	function displayTable() {
@@ -85,15 +85,15 @@
 		echo "<tr><td>Title: $results[item_name]</td></tr>";
 		echo "<tr><td>Author: $results[author]</td></tr>";
 		echo "<tr><td>ISBN: $results[ISBN]</td></tr>";
-		echo "<tr><td>Item: $results[Item_Type]</td></tr>";
-		echo "<tr><td>Publication info: $results[Publication_Info]</td></tr>";
-		echo "<tr><td>Year released: $results[Year_of_Release]</td></tr>";
-		echo "<tr><td>General Audience: $results[General_Audience]</td></tr>";
-		echo "<tr><td>Summary: $results[Summary]</td></tr>";
-		echo "<tr><td>Col No: $results[Col_No]</td></tr>";
-		echo "<tr><td>Price: $$results[Price]</td></tr>";
-		echo "<tr><td>Location: $results[Location]</td></tr>";
-		echo "<tr><td>Status: $results[Status]</td></tr>";
+		echo "<tr><td>Item: $results[item_type]</td></tr>";
+		echo "<tr><td>Publication info: $results[publication_info]</td></tr>";
+		echo "<tr><td>Year released: $results[year_of_release]</td></tr>";
+		echo "<tr><td>General Audience: $results[general_audience]</td></tr>";
+		echo "<tr><td>Summary: $results[summary]</td></tr>";
+		echo "<tr><td>Col No: $results[col_no]</td></tr>";
+		echo "<tr><td>Price: $$results[price]</td></tr>";
+		echo "<tr><td>Location: $results[location]</td></tr>";
+		echo "<tr><td>Status: $results[status]</td></tr>";
 		echo '</table><br><br>';
 		
 		$_SESSION['checkout2'] = $results['item_name'];
@@ -110,7 +110,7 @@
 			
 			echo '<form action="cancelRequest.php" method="post" style="display: inline"><center>';
 			
-				if($results['Status'] == 'Available' && !(isset($_GET['check_items_out'])) && (isset($_SESSION['num']) && $_SESSION['num'] < 3)) {
+				if($results['status'] == 'Available' && !(isset($_GET['check_items_out'])) && (isset($_SESSION['num']) && $_SESSION['num'] < 3)) {
 					echo "<input style='margin-right: 0.5%'; display: inline' name='checkout2' type='submit' value='Checkout Item'></input>";
 				}
 			
@@ -118,7 +118,7 @@
 				
 				$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_SESSION[username]'");
 				$item = $sql -> fetch(PDO::FETCH_ASSOC); 
-				if($item['items_Requested'] > 1) {
+				if($item['items_requested'] > 1) {
 					if($_SESSION['smallestReq'] != $_SESSION['smallestNumReq']) {
 						echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
 					}

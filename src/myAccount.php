@@ -12,8 +12,8 @@ check number of days all items in user's checkout queue have been out, update fi
 		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$profilePhoto = $results['user_photo'];
-		$_SESSION['outCheck'] = $results['items_Out'];
-		$_SESSION['requested'] = $results['items_Requested']; 
+		$_SESSION['outCheck'] = $results['items_out'];
+		$_SESSION['requested'] = $results['items_requested']; 
 	}
 	
 	else if(!$_SESSION['loggedin']) {
@@ -26,8 +26,8 @@ check number of days all items in user's checkout queue have been out, update fi
 				$_SESSION['loggedin'] = true;
 				$_SESSION['username'] = $_POST['username'];
 				$profilePhoto = $results[$i]['user_photo'];
-				$_SESSION['outCheck'] = $results[$i]['items_Out'];
-				$_SESSION['requested'] = $results[$i]['items_Requested'];
+				$_SESSION['outCheck'] = $results[$i]['items_out'];
+				$_SESSION['requested'] = $results[$i]['items_requested'];
 				break;
 			}
 		}
@@ -58,7 +58,7 @@ check number of days all items in user's checkout queue have been out, update fi
 		# enter condition if user has more than 1 item out 
 		if($_SESSION['outCheck'] > 0) {
 			// get the number of items out 
-			$sql = $con -> query("SELECT items_Out FROM user_accounts WHERE username = '$_SESSION[username]'");
+			$sql = $con -> query("SELECT items_out FROM user_accounts WHERE username = '$_SESSION[username]'");
 			$res = $sql -> fetch(PDO::FETCH_ASSOC); 
 
 			// get the smallest ID num 
@@ -66,7 +66,7 @@ check number of days all items in user's checkout queue have been out, update fi
 			$sth -> execute();
 			$smallest = $sth -> fetchColumn();
 			
-			for($i = 0; $i < $res['items_Out']; $i++) {		
+			for($i = 0; $i < $res['items_out']; $i++) {		
 				# update days out on every login 
 				date_default_timezone_set('America/New_York'); 
 				$sql = $con -> query("SELECT checkout_date FROM items_out WHERE item_holder = '$_SESSION[username]' && item_id = '$smallest'");
@@ -110,8 +110,8 @@ check number of days all items in user's checkout queue have been out, update fi
 ?>
 		
 		<div class="row"><div class="col-sm-12"><br><p>Login successful<br><?="Welcome back, $results[full_name] <br>Email: $results[email]"?></div></div> 
-		<div class="row"><div class="col-sm-12"><a href="viewCheckouts.php"><?="Checkouts: ($results[items_Out])"?></a></div></div>
-		<div class="row"><div class="col-sm-12"><a href="viewRequests.php"><?="Requests: ($results[items_Requested])"?></a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="viewCheckouts.php"><?="Checkouts: ($results[items_out])"?></a></div></div>
+		<div class="row"><div class="col-sm-12"><a href="viewRequests.php"><?="Requests: ($results[items_requested])"?></a></div></div>
 		<div class="row"><div class="col-sm-12"><a href="#" onclick="alert1()"><?="Fines/Fees: $$results[fines_fees]"?></a></div></div>
 		<div class="row"><div class="col-sm-12"><a href="logout.php">(log out)</a></p></div></div>
 			
