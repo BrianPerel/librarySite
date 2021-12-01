@@ -1,4 +1,7 @@
-<!-- Purpose of webpage: this page will handle 4 operations: cancelling a request, checking out item, moving to next view page, and moving to previous view page -->
+<!-- 
+Purpose of webpage: this page will handle 4 operations: cancelling a request, checking out item, moving to next view page,
+and moving to previous view page
+-->
 
 <?php 
 	session_start();

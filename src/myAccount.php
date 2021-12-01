@@ -1,5 +1,7 @@
-<!-- Purpose of webpage: recieve request to login from signIn.php, if user entered information matches username and password proceed,
-check number of days all items in user's checkout queue have been out, update fines if needed, display mini menu for user -->
+<!-- 
+Purpose of webpage: receive request to login from signIn.php, if user entered information matches username and password proceed,
+check number of days all items in user's checkout queue have been out, update fines if needed, display mini menu for user 
+-->
 
 <?php
 	session_start();

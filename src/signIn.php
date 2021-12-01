@@ -1,4 +1,6 @@
-<!-- Purpose of program: prompt user to sign into there account -->
+<!-- 
+Purpose of program: prompt user to sign into there account 
+-->
 
 <?php 
 	session_start();

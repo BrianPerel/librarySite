@@ -1,4 +1,7 @@
-<!-- Purpose of webpage: recieve request from itemSearch.php, update variable values, display db table data according to what next record of data contains --> 
+<!-- 
+Purpose of webpage: receive request from itemSearch.php, update variable values, display db table data according to what
+next record of data contains 
+--> 
 
 <?php
 	session_start(); 

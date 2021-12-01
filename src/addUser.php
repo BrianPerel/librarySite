@@ -1,5 +1,8 @@
-<!-- Purpose of webpage: recieve user form from signup.php and process it; capitalize first letters of first and last name. Perform duplicate query check, 
-		make sure recaptcha tool was checked, trim whitespace from username, email, and password. Attach default or custom image. Finally insert all data into db and display message with link -->
+<!-- 
+Purpose of webpage: receive user form from signup.php and process it; capitalize first letters of first and last name. 
+Perform duplicate query check, make sure recaptcha tool was checked, trim whitespace from username, email, and password.
+Attach default or custom image. Finally insert all data into db and display message with link 
+-->
 
 <?php 
 	session_start(); 

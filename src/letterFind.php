@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: receive letter request, display result of letter chosen -->
+<!-- 
+Purpose of webpage: receive letter request, display result of letter chosen 
+-->
 
 <?php 
 	session_start(); # need session to save item_name to session in order to pass it into another file

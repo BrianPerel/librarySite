@@ -1,25 +1,23 @@
-<!-- Purpose of program: prompt user to fill out sign up form, once filled out send the data form to addUser.php so that it can be added to the library database -->
+<!-- 
+Purpose of program: prompt user to fill out sign up form, once filled out send the data form to addUser.php so that it can be added to the library database 
+-->
 
 <?php 
 	session_start(); 
 	include("../includes/body.htm");
-	echo '<title>Sign up | HWL</title>';
-	echo '<h3>Create your account</h3>';
-	echo '<p>Join the network</p>';
 ?>
 
 <script>
 /* -- show password visiblity function -- */
 function showPassword() {
-  var x = document.getElementById("pass");
-
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
+	var x = document.getElementById("pass");
+	x.type === "password" ? x.type = "text" : x.type = "password";
 }
 </script>
+	
+<title>Sign up | HWL</title>
+<h3>Create your account</h3>
+<p>Join the network</p>
 	
 <center><form class="form justify-content-center" style="border: solid 0.1px; width: 70%; margin: 1% 0% 1% 0%; padding: 2% 3% 2% 3%; background-color: #DCDCDC" action="addUser.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 	<label>Username:</label><br>
@@ -51,7 +49,6 @@ function showPassword() {
 		
 	<input type="submit" class="btn btn-primary">
 </form></center>
-	
 	
 <?php 
 	# print invalid login message upon failed login

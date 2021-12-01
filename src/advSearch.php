@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: perform an advanced search of library database -->
+<!-- 
+Purpose of webpage: to perform an advanced search of the library database
+-->
 
 <?php 
 	session_start();

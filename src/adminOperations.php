@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: display and perform administrative operations which are adding and deleting items from db -->
+<!-- 
+Purpose of webpage: display and perform administrative operations which are adding and deleting items from db 
+-->
 
 <?php 
 	include("../includes/body.htm");

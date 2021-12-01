@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: display edit account form -->
+<!-- 
+Purpose of webpage: display edit account form 
+-->
 
 <?php
 	include("../includes/body.htm");

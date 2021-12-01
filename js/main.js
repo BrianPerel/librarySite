@@ -69,10 +69,5 @@ function alert1() {
 /* -- show password visiblity function -- */
 function showPassword() {
   var x = document.getElementById("pass");
-
-  if (x.type === "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
+  x.type === "password" ? x.type = "text" : x.type = "password";
 }

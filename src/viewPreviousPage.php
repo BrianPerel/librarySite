@@ -1,4 +1,7 @@
-<!-- Purpose of page: receive request from viewNextPage.php and update page variable values like item number and db item_id value, then display appropriate db data --> 
+<!-- 
+Purpose of page: receive request from viewNextPage.php and update page variable values like item number and db item_id value, 
+then display appropriate db data 
+--> 
 
 <?php
 	session_start(); 

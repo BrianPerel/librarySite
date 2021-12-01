@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: recieve request from adminLogin.php, update variable values, if login successful display mini menu --> 
+<!-- 
+Purpose of webpage: receive request from adminLogin.php, update variable values, if login successful display mini menu 
+--> 
 
 <?php 
 	session_start();

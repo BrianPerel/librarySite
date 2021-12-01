@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: receive request from myAccount.php and navigate user to appropriate page --> 
+<!-- 
+Purpose of webpage: receive request from myAccount.php and navigate user to appropriate page 
+--> 
 
 <?php 
 	session_start();

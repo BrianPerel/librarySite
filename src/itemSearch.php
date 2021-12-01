@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: recieve request from index.php and display item information for info entered in search box on index.php --> 
+<!-- 
+Purpose of webpage: recieve request from index.php and display item information for info entered in search box on index.php 
+--> 
 
 <?php
 	session_start(); # need session to save item_name to session in order to pass it into another file 

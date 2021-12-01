@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: recieve checkout request from letterFind.php page, perform checkout item operation --> 
+<!-- 
+Purpose of webpage: receive checkout request from letterFind.php page, perform checkout item operation 
+--> 
 
 <?php 
 	session_start();

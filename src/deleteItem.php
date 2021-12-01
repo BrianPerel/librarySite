@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: receive delete item request from adminOperations.php, select item from db and delete the item -->
+<!-- 
+Purpose of webpage: receive delete item request from adminOperations.php, select item from db and delete the item
+-->
 
 <?php	
 	if($_SERVER["REQUEST_METHOD"] == "POST") {

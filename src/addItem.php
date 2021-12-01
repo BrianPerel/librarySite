@@ -1,5 +1,9 @@
-<!-- Purpose of webpage: Process filled out add item page recieved from adminOperations.php; check if account with that information already exists (prevent duplicate account creation),
-upload file given to imagebb for image storage using curl cmd if user attached image, else chose default. Insert all post data along with image into new record in items table and return message to adminOperations.php -->
+<!-- 
+Purpose of webpage: Process filled out add item page received from adminOperations.php; check if account with that information
+already exists (prevent duplicate account creation), upload file given to imagebb for image storage using curl cmd 
+if user attached image, else chose default. Insert all post data along with image into new record in 
+items table and return message to adminOperations.php
+-->
 
 <?php
 	require("../includes/connect_db.php");

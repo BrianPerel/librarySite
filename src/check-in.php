@@ -1,4 +1,6 @@
-<!-- Purpose of webpage: perform item check-in button action for when user is logged in and is returning an item -->
+<!-- 
+Purpose of webpage: perform item check-in button action for when user is logged in and is returning an item 
+-->
 
 <?php 
 	session_start();
