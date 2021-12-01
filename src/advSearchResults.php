@@ -32,21 +32,21 @@ Purpose of webpage: display results of advSearch.php form query
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 	}
 	
-	# recieve message 1 from checkout.php and print the message 
+	# receive message 1 from checkout.php and print the message 
 	if(isset($_GET['send1'])) {
 		$post = $_GET['send1'];
 		$_POST['item_name'] = $post;
 		echo "<br><center><p style='color: green'>$_SESSION[username] has checked out this item</p></center>";
 	}	
 	
-	# recieve message 2 from checkout.php and print the message 
+	# receive message 2 from checkout.php and print the message 
 	if(isset($_GET['send2'])) {
 		$post = $_GET['send2'];
 		$_POST['item_name'] = $post;
 		echo "<br><center><p style='color: green'>$_SESSION[username] has requested this item</p></center>";
 	}	
 
-	# recieve message 3 from checkout.php and print the message. Get the record info on item name matched  
+	# receive message 3 from checkout.php and print the message. Get the record info on item name matched  
 	if(isset($_GET['send3'])) {
 		$err = $_GET['send3'];
 		echo "<center>$err</center>";

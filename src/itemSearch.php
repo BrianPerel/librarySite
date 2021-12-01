@@ -84,7 +84,7 @@
 		$_POST['item_name'] = $results['item_name']; 
 	}
 	
-	$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_POST[item_name]'");
+	$sql = $con -> query("SELECT * FROM items WHERE item_name LIKE '%$_POST[item_name]%'");
 	$results = $sql -> fetch(PDO::FETCH_ASSOC);
 	$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 	

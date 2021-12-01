@@ -27,10 +27,9 @@
 			$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_POST[item_name]'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		}
-		
 		else {
 			$_SESSION['var']--;
-			$sth = $con->prepare("SELECT min(item_id) FROM items_out WHERE item_holder = '$_SESSION[username]'");
+			$sth = $con -> prepare("SELECT min(item_id) FROM items_out WHERE item_holder = '$_SESSION[username]'");
 			$sth -> execute();
 			$smallest = $sth -> fetchColumn();
 			$smallest += $_SESSION['var'];
@@ -146,8 +145,7 @@
 				
 				$sql = $con -> query("SELECT renewed FROM items_out WHERE item_holder = '$_SESSION[username]'");
 				$item = $sql -> fetch(PDO::FETCH_ASSOC); 
-				$renewed = $item['renewed'];
-				if($renewed == "No") {
+				if($item['renewed'] == "No") {
 					echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 				}
 				
@@ -188,13 +186,14 @@
 			
 			$sql = $con -> query("SELECT renewed FROM items_out WHERE item_holder = '$_SESSION[username]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
-			$renewed = $item['renewed'];
-			if($renewed == "No") {
+			
+			if($item['renewed'] == "No") {
 				echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 			}
 			
 			$sql = $con -> query("SELECT * FROM items_out WHERE item_holder = '$_SESSION[username]'");
 			$item = $sql -> fetchAll(PDO::FETCH_ASSOC); 
+			
 			if($item > 1) {
 				if($_SESSION['smallest'] != $_SESSION['smallestNum']) {
 					echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
