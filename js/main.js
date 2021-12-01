@@ -65,3 +65,14 @@ function switchNavAdmin() {
 function alert1() {
 	alert("Please pay all fines at the library.");
 }
+
+/* -- show password visiblity function -- */
+function showPassword() {
+  var x = document.getElementById("pass");
+
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}

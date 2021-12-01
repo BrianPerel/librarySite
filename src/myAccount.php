@@ -79,7 +79,7 @@ check number of days all items in user's checkout queue have been out, update fi
 					$num_months_out = (int) date('m') - ((int) $date_out[0] . $date_out[1]); # need to cast from string type to int for date('m'), get number of months item has been out, by subtracting current month num from checkout date month num 
 					
 					# only add months to days out variable if it hasn't been done. If months have already been added don't add months again 
-					$days_out = ($num_months_out * 30) + $days_out;				
+					$days_out += ($num_months_out * 30);				
 				}
 
 				$days_out = strval($days_out); 
@@ -98,6 +98,7 @@ check number of days all items in user's checkout queue have been out, update fi
 					$fee == FINE ? $fee += 0 : $fee += FINE;
 					$sql = $con -> query("UPDATE user_accounts SET fines_fees = '$fee' WHERE username = '$_SESSION[username]'");
 				}
+				
 				$smallest++;
 			}
 		}

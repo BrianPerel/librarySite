@@ -7,6 +7,19 @@
 	echo '<h3>Create your account</h3>';
 	echo '<p>Join the network</p>';
 ?>
+
+<script>
+/* -- show password visiblity function -- */
+function showPassword() {
+  var x = document.getElementById("pass");
+
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 	
 <center><form class="form justify-content-center" style="border: solid 0.1px; width: 70%; margin: 1% 0% 1% 0%; padding: 2% 3% 2% 3%; background-color: #DCDCDC" action="addUser.php" method="POST" enctype="multipart/form-data" autocomplete="off">
 	<label>Username:</label><br>
@@ -16,7 +29,9 @@
 	<input class="form-control" type="email" name="email" placeholder="name@domain.com" size="32" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></input><br><br>
 	
 	<label>Password: </label><br>
-	<input class="form-control" type="text" name="password" placeholder="Password" size="32" required></input><br><br>
+	<input class="form-control" type="password" id="pass" name="password" placeholder="Password" size="32" required></input><br/>
+	<!-- An element (checkbox) to toggle between password visibility -->
+	<input type="checkbox" onclick="showPassword()">&nbsp;Show Password<br><br>
 	
 	<label>Full Name: (example: John Doe)</label><br>
 	<input class="form-control" type="text" name="fname" placeholder="Full Name" size="32" pattern="^(\w\w+)\s(\w+)$" required></input><br><br>

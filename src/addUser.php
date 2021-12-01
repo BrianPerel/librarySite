@@ -45,9 +45,8 @@
 			$pvars = array("image" => base64_encode($data)); #this array is the POST data for the curl / base64 encoding lets you read data like image pixels correctly across the server without corruption of data
 			$icurl = curl_init(); # begin curl cmd 
 
-			# using imagebb API key 
-			curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site 
-		
+			# using imagebb API key to store image on the imagebb site 
+			curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); 
 			curl_setopt($icurl, CURLOPT_HEADER, false);
 			curl_setopt($icurl, CURLOPT_POST, true);
 			curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
@@ -73,14 +72,13 @@
 	}
 	
 	# create PHP object $user and store post data in its variables 
-	@$user->username = "$_POST[username]";
-	$user->email = "$_POST[email]";
-	$user->password = "$_POST[password]";
-	$user->fullName = "$fname";
-	$user->phone_number = "$_POST[pNum]";
+	@$user -> username = "$_POST[username]";
+	$user -> email = "$_POST[email]";
+	$user -> password = "$_POST[password]";
+	$user -> fullName = "$fname";
+	$user -> phone_number = "$_POST[pNum]";
 	
 	# function used to encode PHP object to JSON format 
-	$myJSON = json_encode($user);
 	
 	# if a folder named JSON doesn't exist in root directory then create JSON folder 
 	if(!file_exists('../JSON')) {
@@ -90,7 +88,7 @@
 	# every file name should be different to avoid overwriting, create the file and store JSON formatted object in it  
 	$name = "user#$num.json";
 	$file = fopen("../JSON/$name","w");
-	fwrite($file, $myJSON);
+	fwrite($file, json_encode($user));
 	fclose($file);
 	
 	echo "<center><h4>Thank you for joining our online library community. Enjoy access to thousands of movies, books, cd's, and ebook's.<br><br>
