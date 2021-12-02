@@ -6,14 +6,6 @@ Purpose of program: prompt user to fill out sign up form, once filled out send t
 	session_start(); 
 	include("../includes/body.htm");
 ?>
-
-<script>
-/* -- show password visiblity function -- */
-function showPassword() {
-	var x = document.getElementById("pass");
-	x.type === "password" ? x.type = "text" : x.type = "password";
-}
-</script>
 	
 <title>Sign up | HWL</title>
 <h3>Create your account</h3>
@@ -29,7 +21,7 @@ function showPassword() {
 	<label>Password: </label><br>
 	<input class="form-control" type="password" id="pass" name="password" placeholder="Password" size="32" required></input><br/>
 	<!-- An element (checkbox) to toggle between password visibility -->
-	<input type="checkbox" onclick="showPassword()">&nbsp;Show Password<br><br>
+	<input type="checkbox" onclick="showPassword()">&nbsp;Show Password</input><br><br>
 	
 	<label>Full Name: (example: John Doe)</label><br>
 	<input class="form-control" type="text" name="fname" placeholder="Full Name" size="32" pattern="^(\w\w+)\s(\w+)$" required></input><br><br>
