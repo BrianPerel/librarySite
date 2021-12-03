@@ -27,7 +27,7 @@ Purpose of webpage: perform item check-in button action for when user is logged 
 		$sql = $con -> query("UPDATE items_out SET renewed = 'Yes' WHERE item_name = '$_SESSION[checkout2]'"); 
 		$sql = $con -> query("SELECT due_date FROM items_out WHERE item_name = '$_SESSION[checkout2]'");
 		$item = $sql -> fetch(PDO::FETCH_ASSOC); 
-		$due_day = date('m/d/Y', strtotime($item['due_date'] . ' +7 days'));	
+		$due_day = date('m/d/YY', strtotime($item['due_date'] . ' +7 days'));	
 		echo "<center><h2>Item '$_SESSION[checkout2]' renewed, new due date: $due_day</h2></center>";
 		$sql = $con -> query("UPDATE items_out SET due_date = '$due_day' WHERE item_name = '$_SESSION[checkout2]'"); 
 	}

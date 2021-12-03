@@ -4,7 +4,7 @@ USE library;
 INSERT INTO `items` (`item_name`, `author`, `ISBN`, `publication_info`, `year_of_release`, `general_audience`, `summary`, `item_type`, `col_no`, `status`, `location`, `price`, `requested`, `item_photo`) VALUES
 ('The Art of Being a Ninja', 'Brian Perel', '132-12-12478-32-5', 'Hollywood, California : Paramount Home Entertainment', '2020', 'adult', 'The Art of Being a Ninja is a documentary film about how to become a ninja', 'Blu-ray', 'J796.815 B', 'Available', 'Framingham State University', '34.50', 'No', '../images/catalog_items/Ninja.jpg'),
 ('Aikido', 'John Smith', '345-34-5346-56-8', 'Hollywood, California : Universal Studios Entertainment', '2010', 'adult', 'Aikido is a movie about the way of aikido practitioners and there lives', 'DVD', 'Z271.154 A', 'Available', 'Framingham State University', '12.80', 'No', '../images/catalog_items/Aikido.jpg'),
-('Calisthenics Beasts', 'Jason Armstrong', '567-56-55431-23-1', '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Calisthenics Beasts is an ebook broken up into multiple sections by muscle groups', 'ebook', 'D938.121 C', 'Available', 'Framingham State University', '3.12', 'No', '../images/catalog_items/Calisthenics.jpg'),
+('Complete Calisthenics', 'Jason Armstrong', '567-56-55431-23-1', '[Old Saybrook, Ct.] : Tantor Media, Inc.', '2008', 'young-adult', 'Complete Calisthenics is an ebook broken up into multiple sections by muscle groups', 'ebook', 'D938.121 C', 'Available', 'Framingham State University', '3.12', 'No', '../images/catalog_items/Calisthenics.jpg'),
 ('Wild Hunt', 'Jeff Taylor', '234-23-42310-02-4', 'The Illustrated Publishers : Stonehill', '2004', 'adult', 'Hear the time-honored stories of a man on the hunt', 'Audio-book', 'R459.232 U', 'Available', 'Framingham State University', '14.50', 'No', '../images/catalog_items/Wild_Hunt.jpg'),
 ('No Excuses - The Power of self discipline', 'Brian Perel', '789-84-95671-23-6', 'Classic Publishers : Ace', '2018', 'young-adult', 'Learn how to be self disciplined in life', 'book', 'A789.567 C', 'Available', 'Framingham State University', '18.75', 'No', '../images/catalog_items/No_Excuses.jpg'),
 ('Business Data Networks & Security', 'Julia Smith', '234-45-64544-77-3', 'Prentice Hall', '2016', 'adult', 'Book on networking security covering packets, sockets, ip, protocols, network classes, and ftp', 'ebook', 'E657.435 T', 'Available', 'Framingham State University', '120.00', 'No', '../images/catalog_items/Business.jpg'),
@@ -29,7 +29,7 @@ INSERT INTO `items` (`item_name`, `author`, `ISBN`, `publication_info`, `year_of
 
 -- Dumping data for table `items_out` 
 INSERT INTO `items_out` (`item_name`, `item_holder`, `checkout_date`, `days_out`, `due_date`, `renewed`) VALUES 
-('Calisthenics Beasts', 'user1', '05/01/20', NULL, '05/08/20', 'No');
+('Complete Calisthenics', 'user1', '05/01/2021', NULL, '05/08/2021', 'No');
 
 -- Dumping data for table 'admin_accounts'
 INSERT INTO `admin_accounts` (`username`, `email`, `password`, `full_name`, `phone_number`, `messages`, `admin_photo`) VALUES 

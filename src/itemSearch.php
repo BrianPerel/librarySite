@@ -210,12 +210,14 @@ Purpose of webpage: recieve request from index.php and display item information 
 			
 			$sql = $con -> query("SELECT renewed FROM items_out WHERE item_holder = '$_SESSION[username]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
+			
 			if($item['renewed'] == "No") {
 				echo "<input name='renew' type='submit' value='Renew Item' style='display: inline; margin-right: 1.5%'></input>";
 			}
 			
 			$sql = $con -> query("SELECT items_out FROM user_accounts WHERE username = '$_SESSION[username]'");
 			$item = $sql -> fetch(PDO::FETCH_ASSOC); 
+			
 			if($item['items_out'] > 1) {
 				echo "<input name='next' type='submit' value='Next Page' style='display: inline'></input>";
 			}

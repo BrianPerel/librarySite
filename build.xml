@@ -9,7 +9,7 @@
 	<echo message="Current date and time: ${TODAY_US}${line.separator}${ant.version}" level="info" />
 	
 	<target name="build-website" description="copies src files to xampp/htdocs folder">
-		<copy todir="../../../../xampp/htdocs/project/src">
+		<copy todir="C:/xampp/htdocs/project/src">
 			<fileset dir="src" />
 		</copy>
 	</target>

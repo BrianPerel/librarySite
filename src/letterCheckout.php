@@ -17,8 +17,8 @@ Purpose of webpage: receive checkout request from letterFind.php page, perform c
 		$out = $items_Out1['items_out'] + 1;
 		$sql = $con -> query("UPDATE user_accounts SET items_out = '$out' WHERE username = '$_SESSION[username]'");
 		date_default_timezone_set("America/New_York");
-		$date = date("m/d/Y"); 
-		$due_date = date("m/d/Y", strtotime('+7 days'));
+		$date = date("m/d/YY"); 
+		$due_date = date("m/d/YY", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO items_out (item_name, item_holder, checkout_date, days_out, due_date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_date', 'No')");
 		header("Location: letterFind.php?send1=$_SESSION[searchLetter]");
 	} else if($_SESSION['loggedin'] && $_POST['request']) {

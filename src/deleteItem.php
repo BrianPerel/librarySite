@@ -17,7 +17,7 @@ Purpose of webpage: receive delete item request from adminOperations.php, select
 		$message = "<p style='color: red'>Item \'$name\' Not Found In Database, Could Not Drop</p>";
 	} else {
 		$sql = $con -> query("DELETE FROM items WHERE item_name = '$name'");
-		$message = "<p>Item \'$name\' dropped successfully</p>";
+		$message = "<p>Item '$name' dropped successfully</p>";
 	}
 	
 	# jump to page with message 

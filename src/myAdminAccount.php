@@ -1,5 +1,5 @@
 <!-- 
-Purpose of webpage: receive request from adminLogin.php, update variable values, if login successful display mini menu 
+Purpose of webpage: receive request from adminLogin.php, update variable values, if login successful display mini-menu 
 --> 
 
 <?php 
@@ -10,13 +10,13 @@ Purpose of webpage: receive request from adminLogin.php, update variable values,
 	require("../includes/connect_db.php");
 
 	if($_SESSION['adminloggedin']) {
-		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_SESSION[username]'");
+		$sql = $con -> query("SELECT * FROM admin_accounts WHERE username = '$_SESSION[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$adminPhoto = $results['admin_photo'];
 	}
 	
 	else if(!$_SESSION['adminloggedin']) {
-		$sql = $con -> query("SELECT * FROM adminaccount WHERE username = '$_POST[username]'");
+		$sql = $con -> query("SELECT * FROM admin_accounts WHERE username = '$_POST[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$adminPhoto = $results['admin_photo'];
 		
@@ -41,7 +41,7 @@ Purpose of webpage: receive request from adminLogin.php, update variable values,
 	else if($_SESSION['adminloggedin']) {
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 		echo '<div style="text-align: center">';
-			echo "<br>Login successful<br> Welcome back, $results[fullName]<br>";
+			echo "<br>Login successful<br> Welcome back, $results[full_name]<br>";
 			echo "Email: $results[email]";
 			echo "<br><a href='logoutAdmin.php'>(log out)</a><br><br>";
 			echo "<form action='adminOperations.php' method='post'>";

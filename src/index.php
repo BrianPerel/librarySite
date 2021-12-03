@@ -91,7 +91,7 @@
 		
 	<section>
 		<div class="container"><center>
-			<table class="table table-bordered table-secondary" description="library-hours">			
+			<table class="table table-bordered table-secondary" description="library-hours" id="contact">			
 			<tr>
 				<th>Location</th>
 				<th>Phone</th>
@@ -160,8 +160,8 @@
 		<a class="fa fa-pinterest" style="padding-left: 1%" href="https://www.pinterest.com/pin/243616661067870491/" target="_blank"></a>
 
 		<div class="row">
-			<div class="col-sm-12"><br><a href="#top">Back to top</a> &#x2191;</div>
-			<div class="col-sm-12"><button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; margin-right: 0.1%'><a href='adminLogin.php'>Admin Login</a></button></div>
+			<div class="col-sm-12"><br><a href="#top">Back to top &#x2191;</a></div>
+			<div class="col-sm-12"><a href='adminLogin.php'><button type="button" style='float: right; padding: 0.5% 0.5% 0.5% 0.5%; margin-right: 0.1%'>Admin Login</button></a></div>
 		</div>
 	</section>
 		

@@ -56,7 +56,7 @@ Purpose of webpage: display results of advSearch.php form query
 	}		
 	
 	else { 
-		$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_POST[Title]' OR ISBN = '$_POST[ISBN]' OR author ='$_POST[author]'
+		$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_POST[Title]' OR ISBN = '$_POST[ISBN]' OR author ='$_POST[Author]'
 		AND (year_of_release >= '$_POST[yearFrom]' AND year_of_release <= '$_POST[yearTo]') AND item_type = '$_POST[format]' 
 		AND Location = '$_POST[location]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);

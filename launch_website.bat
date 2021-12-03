@@ -1,7 +1,7 @@
 @echo off
 
 ::
-:: launches xampp, opens phpmyadmin db page, and website homepage
+:: launches xampp, opens phpmyadmin db page and website homepage
 ::
 
 echo launching www.HWL.com ...

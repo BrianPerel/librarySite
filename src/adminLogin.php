@@ -19,9 +19,13 @@ Purpose of webpage: login page for administrator.
 	<label>Username:</label>
 	<input class="form-control" autofocus type="text" name="username" placeholder="Username" size="30" required></input><br>
 	<label>Password:</label>
-	<input class="form-control" class="key" name="password" placeholder="Password" type="password" size="30" required></input><br>
+	<input class="form-control" class="key" name="password" placeholder="Password" id="pass" type="password" size="30" required></input><br>
+	<!-- An element (checkbox) to toggle between password visibility -->
+	<input type="checkbox" onclick="showPassword()">&nbsp;Show Password</input><br><br>
 	<br><input class="btn btn-primary" type="submit">
 </form></center>
+
+
 
 <?php 
 	# if admin is logged-in, jump to admin account page 

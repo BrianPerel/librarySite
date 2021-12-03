@@ -46,7 +46,7 @@ check number of days all items in user's checkout queue have been out, update fi
 
 <?php 
 
-	define("FINE", "4.50"); # create constant to hold fine amount 
+	define("FINE", "4.50"); # create constant to hold fines amount 
 	
 	# re-direct back to sign in page 
 	if(!$_SESSION['loggedin']) {
@@ -91,7 +91,7 @@ check number of days all items in user's checkout queue have been out, update fi
 				$sql = $con -> query("SELECT due_date FROM items_out WHERE item_holder = '$_SESSION[username]'");
 				$Due = $sql -> fetch(PDO::FETCH_ASSOC);
 				$date_due = $Due['due_date'];
-				$currentDate = date('m/d/Y'); 
+				$currentDate = date('m/d/YY'); 
 			
 				if($currentDate > $date_due) {				
 					$sql = $con -> query("SELECT fines_fees FROM user_accounts WHERE username = '$_SESSION[username]'");

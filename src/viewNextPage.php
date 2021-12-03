@@ -161,6 +161,7 @@ next record of data contains
 				
 				$sql = $con -> query("SELECT * FROM items_out WHERE item_holder = '$_SESSION[username]'");
 				$item = $sql -> fetchAll(PDO::FETCH_ASSOC); 
+				
 				if($item > 1) {
 					if($_SESSION['smallest'] != $_SESSION['smallestNum']) {
 						echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";
@@ -201,6 +202,7 @@ next record of data contains
 			
 			$sql = $con -> query("SELECT * FROM items_out WHERE item_holder = '$_SESSION[username]'");
 			$item = $sql -> fetchAll(PDO::FETCH_ASSOC); 
+			
 			if($item > 1) {
 				if($_SESSION['smallest'] != $_SESSION['smallestNum']) {
 					echo "<input name='previous' type='submit' value='Previous Page' style='display: inline; margin-right: 1.5%'></input>";

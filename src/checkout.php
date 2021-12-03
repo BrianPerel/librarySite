@@ -14,8 +14,7 @@ Purpose of webpage: receive checkout request and perform checkout operation. Ser
 		$out = $items_Out1['items_out'] + 1;
 		$sql = $con -> query("UPDATE user_accounts SET items_out = '$out' WHERE username = '$_SESSION[username]'");
 		date_default_timezone_set('America/New_York'); 
-		$date = date("m/d/Y"); 
-		$due_date = Date("m/d/Y", strtotime('+7 days'));
+		$date = date("m/d/YY", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO items_out (item_name, item_holder, checkout_date, days_out, due_date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_date', 'No')");
 		header("Location: itemSearch.php?send1=$_SESSION[checkout2]");
 	}
@@ -39,8 +38,8 @@ Purpose of webpage: receive checkout request and perform checkout operation. Ser
 		$out = $items_Out1['items_out'] + 1;
 		$sql = $con -> query("UPDATE user_accounts SET items_out = '$out' WHERE username = '$_SESSION[username]'");
 		date_default_timezone_set('America/New_York'); 
-		$date = date("m/d/Y"); 
-		$due_date = date("m/d/Y", strtotime('+7 days'));
+		$date = date("m/d/YY"); 
+		$due_date = date("m/d/YY", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO items_out (item_name, item_holder, checkout_date, days_out, due_date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_date', 'No')");
 
 		# boolean session variable to mark if we have or haven't cancelled our item request 

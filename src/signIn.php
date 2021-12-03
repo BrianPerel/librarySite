@@ -9,13 +9,15 @@ Purpose of program: prompt user to sign into there account
 	echo '<center><h3>My Account Login:</h3><br>';
 ?>
 	
-<center><form class="form" action="myAccount.php" method="post" style="border: solid black 1px; padding: 3%; width: 55%; background-color: #DCDCDC" autocomplete="off">
+<form class="form" action="myAccount.php" method="post" style="border: solid black 1px; padding: 3%; width: 55%; background-color: #DCDCDC" autocomplete="off">
 	<label>Username:</label><br>
-	<input class="form-control" autofocus type="text" name="username" placeholder="Username" size="30" required></input><br>
+	<input class="form-control" autofocus type="text" name="username" placeholder="Username" autocomplete="off" size="30" required></input><br>
 	<label>Password:</label><br>
-	<input class="form-control" class="key" type="password" name="password" placeholder="Password" size="30" required></input>
+	<input class="form-control" class="key" type="password" id="pass" name="password" placeholder="Password" autocomplete="off" size="30" required></input><br>
+	<!-- An element (checkbox) to toggle between password visibility -->
+	<input type="checkbox" onclick="showPassword()">&nbsp;Show Password</input><br><br>
 	<br><input type="submit" class="btn btn-primary">
-</form></center>
+</form>
 
 <?php 
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
