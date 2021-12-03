@@ -37,11 +37,11 @@ Attach default or custom image. Finally insert all data into db and display mess
 		}
 		
 		# if file size of file field is 0, then user didn't upload image so upload default 
-		if($_FILES['user_photo']['size'] == 0) {	
+		if($_FILES['photo']['size'] == 0) {	
 			$imgLink = "../images/default-picture.png";
 		} else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
-			$img = $_FILES['user_photo']; # access file uploaded to submitted form 
+			$img = $_FILES['photo']; # access file uploaded to submitted form 
 			$filename = $img['tmp_name']; # access $img object attribute need variable name used 
 			$openimg = fopen($filename, "r"); # open file in read mode 
 			$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 

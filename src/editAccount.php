@@ -32,10 +32,10 @@ Purpose of webpage: edit user's account info received from form page
 	if(!empty($_POST['phone_number'])) {
 		$sql = $con -> query("UPDATE user_accounts SET phone_number='$_POST[phone_number]' WHERE username = '$_SESSION[username]'");
 	}
-	
+		
 	# if photo field is not empty do this 
-	if($_FILES['user_photo']['size'] > 0) {
-		$img = $_FILES['user_photo']; # access file uploaded to submitted form 
+	if($_FILES['photo']['size'] > 0) {
+		$img = $_FILES['photo']; # access file uploaded to submitted form 
 		$filename = $img['tmp_name']; # access $img object attribute need variable name used 
 		$openimg = fopen($filename, "r"); # open file in read mode 
 		$data = fread($openimg, filesize($filename)); # read content of file and its size to variable data 
@@ -57,7 +57,7 @@ Purpose of webpage: edit user's account info received from form page
 	}
 	
 	# if all fields were empty send message back that no info was given 
-	if(empty($_POST['password']) && empty($_POST['email']) && empty($_POST['phone_number']) && $_FILES['user_photo']['size'] <= 0) {
+	if(empty($_POST['password']) && empty($_POST['email']) && empty($_POST['phone_number']) && $_FILES['photo']['size'] <= 0) {
 		$message = urlencode("<p style='color: red'>No information was given to change, please enter new information</p>");
 		header("Location: editPersonalInfo.php?changed=$message");
 	} else {

@@ -90,8 +90,8 @@
 	</section>
 		
 	<section>
-		<div class="container"><center>
-			<table class="table table-bordered table-secondary" description="library-hours" id="contact">			
+		<div class="container" id="contact"><center>
+			<table class="table table-bordered table-secondary" description="library-hours">			
 			<tr>
 				<th>Location</th>
 				<th>Phone</th>
