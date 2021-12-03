@@ -122,7 +122,6 @@ then display appropriate db data
 			}
 			echo '</form>';
 		}
-
 		else {
 			if($_SESSION['itemN'] < $numOfItems) {
 				$_SESSION['itemN']--;
@@ -164,8 +163,9 @@ then display appropriate db data
 				}
 			echo "</form>";
 		}
-	} else {
-		if($_SESSION['itemN'] < $numOfItems) {
+	} 
+	else {
+		if($_SESSION['itemN'] <= $numOfItems) {
 			$_SESSION['itemN']--;
 		}
 		

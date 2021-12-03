@@ -60,7 +60,8 @@ Purpose of webpage: edit user's account info received from form page
 	if(empty($_POST['password']) && empty($_POST['email']) && empty($_POST['phone_number']) && $_FILES['photo']['size'] <= 0) {
 		$message = urlencode("<p style='color: red'>No information was given to change, please enter new information</p>");
 		header("Location: editPersonalInfo.php?changed=$message");
-	} else {
+	} 
+	else {
 		# success message return 
 		$message = urlencode("<p>Your account information has been updated</p>");
 		header("Location: editPersonalInfo.php?changed=$message");

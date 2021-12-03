@@ -13,11 +13,13 @@ items table and return message to adminOperations.php
 
 	if(sizeof($results) != 0) {
 		$message = "<p style='color: red'>Item with the same name already exists in database, could not add item</p>";
-	} else {
+	} 
+	else {
 		# if size of photo upload file is 0, then this indicates that user didn't upload anything. So upload default image 
 		if($_FILES['bookPhoto']['size'] == 0) {	
 			$imgLink = "../images/default-book-picture.png";
-		} else { 
+		} 
+		else { 
 			# upload photo to db user account. Curl allows us to send requests to a server 
 			$img = $_FILES['bookPhoto']; # access file uploaded to submitted form 
 			$filename = $img['tmp_name']; # access $img object attribute need variable name used 

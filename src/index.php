@@ -18,7 +18,8 @@
 	define("TIME_INACTIVE", 1800); // 30 mins = 1800 secs. Created a constant variable 
 	if(!isset($_SESSION['timeout'])) {
 		$_SESSION['timeout'] = time() + TIME_INACTIVE; 
-	} else {
+	}
+	else {
 		$session_life = time() - $_SESSION['timeout'];
 	}
 	

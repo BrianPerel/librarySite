@@ -30,7 +30,8 @@ next record of data contains
 			$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_POST[item_name]'");
 			$results = $sql -> fetch(PDO::FETCH_ASSOC);
 			$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
-		} else {
+		} 
+		else {
 			$_SESSION['var']++;  
 			$sth = $con -> prepare("SELECT min(item_id) FROM items_out WHERE item_holder = '$_SESSION[username]'");
 			$sth -> execute();
@@ -47,7 +48,6 @@ next record of data contains
 			$results2 = $sql -> rowCount(PDO::FETCH_ASSOC);
 		}
 	}
-	
 	else { 
 		$_SESSION['var']++;
 		$sth = $con -> prepare("SELECT min(item_id) FROM items_out WHERE item_holder = '$_SESSION[username]'");
@@ -132,7 +132,8 @@ next record of data contains
 				}
 				
 			echo '</form>';
-		} else {
+		} 
+		else {
 			if($_SESSION['itemN'] < $numOfItems) {
 				$_SESSION['itemN']++;
 			}
@@ -173,7 +174,8 @@ next record of data contains
 				}
 			echo "</form>";
 		}
-	} else {
+	} 
+	else {
 		if($_SESSION['itemN'] < $numOfItems) {
 			$_SESSION['itemN']++;
 		}
