@@ -11,7 +11,7 @@ items table and return message to adminOperations.php
 	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 	$item = $_REQUEST['item_name'];
 
-	if(sizeof($results) != 0) {
+	if(!empty($results)) {
 		$message = "<p style='color: red'>Item with the same name already exists in database, could not add item</p>";
 	} 
 	else {

@@ -45,15 +45,15 @@
 		<div class="row">
 			<div class="col-sm-12 justify-content-center">
 				<div style="margin: 0% 3% 0% 3%">
-				<br><br>Search by letter: <a href='letterFind.php?by=A'>A</a> | <a href='letterFind.php?by=B'>B</a> | <a href='letterFind.php?by=C'>C</a> | <a href='letterFind.php?by=D'>D</a>
-				| <a href='letterFind.php?by=E'>E</a> | <a href='letterFind.php?by=F'>F</a> | <a href='letterFind.php?by=G'>G</a>
-				| <a href='letterFind.php?by=H'>H</a> | <a href='letterFind.php?by=I'>I</a> | <a href='letterFind.php?by=J'>J</a> 
-				| <a href='letterFind.php?by=K'>K</a> | <a href='letterFind.php?by=L'>L</a> | <a href='letterFind.php?by=M'>M</a> 
-				| <a href='letterFind.php?by=N'>N</a> | <a href='letterFind.php?by=O'>O</a> | <a href='letterFind.php?by=P'>P</a> 
-				| <a href='letterFind.php?by=Q'>Q</a> | <a href='letterFind.php?by=R'>R</a> | <a href='letterFind.php?by=S'>S</a>
-				| <a href='letterFind.php?by=T'>T</a> | <a href='letterFind.php?by=U'>U</a> | <a href='letterFind.php?by=V'>V</a>
-				| <a href='letterFind.php?by=W'>W</a> | <a href='letterFind.php?by=X'>X</a> | <a href='letterFind.php?by=Y'>Y</a>
-				| <a href='letterFind.php?by=Z'>Z</a>
+				<br><br>Search by letter: <a href='letterSearch.php?by=A'>A</a> | <a href='letterSearch.php?by=B'>B</a> | <a href='letterSearch.php?by=C'>C</a> | <a href='letterSearch.php?by=D'>D</a>
+				| <a href='letterSearch.php?by=E'>E</a> | <a href='letterSearch.php?by=F'>F</a> | <a href='letterSearch.php?by=G'>G</a>
+				| <a href='letterSearch.php?by=H'>H</a> | <a href='letterSearch.php?by=I'>I</a> | <a href='letterSearch.php?by=J'>J</a> 
+				| <a href='letterSearch.php?by=K'>K</a> | <a href='letterSearch.php?by=L'>L</a> | <a href='letterSearch.php?by=M'>M</a> 
+				| <a href='letterSearch.php?by=N'>N</a> | <a href='letterSearch.php?by=O'>O</a> | <a href='letterSearch.php?by=P'>P</a> 
+				| <a href='letterSearch.php?by=Q'>Q</a> | <a href='letterSearch.php?by=R'>R</a> | <a href='letterSearch.php?by=S'>S</a>
+				| <a href='letterSearch.php?by=T'>T</a> | <a href='letterSearch.php?by=U'>U</a> | <a href='letterSearch.php?by=V'>V</a>
+				| <a href='letterSearch.php?by=W'>W</a> | <a href='letterSearch.php?by=X'>X</a> | <a href='letterSearch.php?by=Y'>Y</a>
+				| <a href='letterSearch.php?by=Z'>Z</a>
 				</div>
 			</div>
 		</div>

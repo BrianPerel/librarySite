@@ -28,7 +28,7 @@ Purpose of webpage: receive letter request, display result of letter chosen
 		echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
 	}
 
-	# when user checks an item out, letterCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
+	# when user checks an item out, letterSearchCheckout.php calls the file again and places item with appropriate letter into $SearchLetter 
 	if(isset($_GET['send1'])) {
 		$_GET['by'] = $SearchLetter = $_GET['send1']; 
 		echo "<br><center><p style='color: green'>$_SESSION[username] has checked out this item</p></center>";
@@ -109,7 +109,7 @@ Purpose of webpage: receive letter request, display result of letter chosen
 ?>
 
 <!-- checkout and request buttons --> 
-<form class="form" action='letterCheckout.php' method='post'>
+<form class="form" action='letterSearchCheckout.php' method='post'>
 	<center><input class="form" style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(empty($results) || $results['status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
 	<input class="form" type="submit" name="request" value='Request Item' <?php if(empty($results) && $_GET['by'] != 'A-Z' || $results3['requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form> 

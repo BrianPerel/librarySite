@@ -1,5 +1,5 @@
 <!-- 
-Purpose of webpage: receive checkout request from letterFind.php page, perform checkout item operation 
+Purpose of webpage: receive checkout request from letterSearch.php page, perform checkout item operation 
 --> 
 
 <?php 
@@ -20,7 +20,7 @@ Purpose of webpage: receive checkout request from letterFind.php page, perform c
 		$date = date("m/d/YY"); 
 		$due_date = date("m/d/YY", strtotime('+7 days'));
 		$sql = $con -> query("INSERT INTO items_out (item_name, item_holder, checkout_date, days_out, due_date, renewed) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]', '$date', '0', '$due_date', 'No')");
-		header("Location: letterFind.php?send1=$_SESSION[searchLetter]");
+		header("Location: letterSearch.php?send1=$_SESSION[searchLetter]");
 	} 
 	else if($_SESSION['loggedin'] && $_POST['request']) {
 		# PDO query statement 
@@ -32,10 +32,10 @@ Purpose of webpage: receive checkout request from letterFind.php page, perform c
 		$sql = $con -> query("UPDATE user_accounts SET items_requested = '$requests' WHERE username = '$_SESSION[username]'");
 		$sql = $con -> query("INSERT INTO items_requested (item_name, requester) VALUES ('$_SESSION[checkout2]', '$_SESSION[username]')");
 		$sql = $con -> query("UPDATE items SET requested = 'Yes' WHERE item_name = '$_SESSION[checkout2]'");
-		header("Location: letterFind.php?send2=$_SESSION[searchLetter]");
+		header("Location: letterSearch.php?send2=$_SESSION[searchLetter]");
 	} 
 	else {
 		$error = "<p style='color: red'>Please sign into your account to check out or request items</p>";
-		header("Location: letterFind.php?send3=$error");
+		header("Location: letterSearch.php?send3=$error");
 	}	
 ?>
