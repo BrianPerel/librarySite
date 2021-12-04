@@ -37,7 +37,7 @@ Purpose of program: prompt user to fill out sign up form, once filled out send t
 	<label for="terms">Agree to terms of service:</label>
 	<input type="checkbox" name="terms" value="terms" required>
 	
-	&nbsp;&nbsp;<u><a href="terms.htm" target="_blank">View terms of service</a></u><br><br>
+	&nbsp;&nbsp;<u><a href="../includes/terms.htm" target="_blank">View terms of service</a></u><br><br>
 
 	<?php include("../includes/recaptcha_connect.htm"); ?>
 		

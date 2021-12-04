@@ -12,7 +12,7 @@ items table and return message to adminOperations.php
 	$item = $_REQUEST['item_name'];
 
 	if(!empty($results)) {
-		$message = "<p style='color: red'>Item with the same name already exists in database, could not add item</p>";
+		$message = "<p style='color: red'>Could not add the item as it already exists in our database</p>";
 	} 
 	else {
 		# if size of photo upload file is 0, then this indicates that user didn't upload anything. So upload default image 

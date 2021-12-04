@@ -2,12 +2,6 @@
 Purpose of webpage: display and perform administrative operations which are adding and deleting items from db 
 -->
 
-<?php 
-	include("../includes/body.htm");
-	echo '<title>Admin Operation | HWL</title>';
-	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
-?>
-
 <!-- Ajax Script = used to drop items from db without reloading page, dynamically --> 
 <script>
 function post() {
@@ -26,16 +20,18 @@ function post() {
 
 // check if enter key is hit call post() above. This allows user to either hit enter or click submit   
 function memSort(e) {
-	var key = e.keyCode || e.which;
-	if(key == 13) {
+	if(e.keyCode == 13 || e.which == 13) {
 		post();
 	}
 }
-
 </script>
 
-<div style="overflow-y: auto;">
-<?php
+<?php 
+	include("../includes/body.htm");
+	echo '<title>Admin Operations | HWL</title>';
+	echo '<script>window.addEventListener(onload, switchNavAdmin())</script>';
+	echo '<div style="overflow-y: auto">';
+
 	# use Ajax to post form data to php file deleteItem, to delete an item from database. If delete option is clicked from myAdminAccount.php go here 
 	if(isset($_POST['deleteItem']) || isset($_GET['delMessage'])) { ?>
 		<h3>Delete item from library database</h3>
@@ -136,5 +132,5 @@ function memSort(e) {
 	}
 	
 	include("../includes/footer2.htm");
+	echo '</div>';
 ?>				
-</div>

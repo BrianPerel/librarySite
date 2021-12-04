@@ -18,7 +18,7 @@ Purpose of webpage: receive delete item request from adminOperations.php, select
 	} 
 	else {
 		$sql = $con -> query("DELETE FROM items WHERE item_name = '$name'");
-		$message = "<p>Item '$name' dropped successfully</p>";
+		$message = "<p>Item '$name' has been successfully deleted from our library database</p>";
 	}
 	
 	# jump to page with message 

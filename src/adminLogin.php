@@ -25,8 +25,6 @@ Purpose of webpage: login page for administrator.
 	<br><input class="btn btn-primary" type="submit">
 </form></center>
 
-
-
 <?php 
 	# if admin is logged-in, jump to admin account page 
 	if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
