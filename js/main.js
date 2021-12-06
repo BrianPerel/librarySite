@@ -2,10 +2,10 @@
 var images = new Array();
 var x = -1;
 
-images[0] = "images/inside.jpg";
-images[1] = "images/4.jpg";
-images[2] = "images/lib1.jpg";
-images[3] = "images/inside2.jpg";
+images[0] = "../images/inside.jpg";
+images[1] = "../images/4.jpg";
+images[2] = "../images/lib1.jpg";
+images[3] = "../images/inside2.jpg";
 
 function startTimer() {
 	setInterval(displayNextImage, 4000);

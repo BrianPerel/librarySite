@@ -76,15 +76,14 @@
 		</div>
 	</section> 
 	
-	<!--id='switch'-->
-	<section>
+	<section >
 		<div class="row">
 			<div class="col-sm-8">
-				<img src='../images/fsu.jpg' class="img-thumbnail" width='650px' height='600px' alt='FSU-MainPicture' /><br><br>
+				<img id='switch' src='../images/fsu.jpg' class="img-thumbnail" width='650px' height='600px' alt='FSU-MainPicture' /><br><br>
 			</div>
 			
 			<div class="col-sm-3">
-				<iframe class="img-thumbnail" title="google-maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2951.0640653227806!2d-71.4352319!3d42.2984984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e389a9351c81eb%3A0xe6ea3c8be37e9068!2sHenry%20Whittemore%20Library!5e0!3m2!1sen!2sus!4v1583264360102!5m2!1sen!2sus" style="border:0" width="100%" height="100%" style="border:0;" allowfullscreen=""></iframe>
+				<iframe class="img-thumbnail" title="google-maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2951.0640653227806!2d-71.4352319!3d42.2984984!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e389a9351c81eb%3A0xe6ea3c8be37e9068!2sHenry%20Whittemore%20Library!5e0!3m2!1sen!2sus!4v1583264360102!5m2!1sen!2sus" style="border:0" width="100%" height="100%"></iframe>
 				<img class="img-thumbnail" src="../images/5.jpg" width="400" height="300" alt="FSULibrary-front></img>
 			</div>
 		</div>

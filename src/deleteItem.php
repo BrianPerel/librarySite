@@ -12,9 +12,12 @@ Purpose of webpage: receive delete item request from adminOperations.php, select
 	require("../includes/connect_db.php");
 	$sql = $con -> query("SELECT * FROM items WHERE item_name = '$name'");
 	$results = $sql -> fetchall(PDO::FETCH_ASSOC);
-
-	if(empty($results)) {
-		$message = "<p style='color: red'>Item '$name' Not Found In Database, Could Not Drop</p>";
+	
+	if(empty($name)) {
+		$message = "<p style='color: red'>Please enter an item name</p>";
+	}
+	else if(empty($results)) {
+		$message = "<p style='color: red'>Item '$name' Not Found In Database, Could Not Delete</p>";
 	} 
 	else {
 		$sql = $con -> query("DELETE FROM items WHERE item_name = '$name'");
