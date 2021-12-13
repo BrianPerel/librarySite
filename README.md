@@ -13,7 +13,7 @@ with Apache HTTP server and mysql dbms service
 - Languages/tools used:<br>
 (-- client side --)<br>
 HTML, CSS, Javascript, Ajax, Curl, JSON    
-(-- server side --) 
+(-- server side --)<br> 
 MySQL database (sql), PHP 
 
 - Services: imagebb (for external image storage), Google Maps API, Google recaptcha API 
