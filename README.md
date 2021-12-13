@@ -12,7 +12,7 @@ Using xampp local web server solution stack package<br>
 
 Languages/tools used:<br>
 (-- client side --)<br>
-HTML5, CSS3, Javascript, Ajax, Curl, JSON    
+HTML, CSS, Javascript, Ajax, Curl, JSON    
 
 (-- server side --) 
 MySQL database (sql), PHP 
