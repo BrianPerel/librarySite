@@ -2,7 +2,7 @@
 A simulation of a public library website system 
 A dynamic database-driven client-server web site to maintain persistent information on the Web
 
--Sign up / sign in, Search for an item (book, dvd, blue-ray, ebook, video game, cd), Request it, if not available, Check out or return item, 
+- Sign up / sign in, Search for an item (book, dvd, blue-ray, ebook, video game, cd), Request it, if not available, Check out or return item, 
 Option to check item return dates and extend it, edit personal account information
 -Admin has rights to add, update, or remove items from db in case an item is bought or sold  
 
