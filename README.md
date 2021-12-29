@@ -28,4 +28,4 @@ your IP to allow google's recaptcha tool to function on site
 place all src files into C:/xampp/htdocs folder
 type http://localhost/(the name of folder in C:/xampp/htdocs/)/index.php - to access the main project page in your web browser 
 
-- NOTE: If you use an adblocker extension in your browser it may cause error for when rendering the google maps piece of the page
+- NOTE: If you use an adblocker extension in your web browser it may cause errors when rendering the google maps piece of the page
