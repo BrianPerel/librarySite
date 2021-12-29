@@ -24,8 +24,8 @@ MySQL database (sql), PHP
 (click on newly created db, click import tab, upload file), need to configure xampp file to
 your IP to allow google's recaptcha tool to function on site 
  
-- To run php files in the browser we will use xampp apache as the server host,
+- To run php files in the browser we will use xampp apache as the web server host,
 place all src files into C:/xampp/htdocs folder
-type http://localhost/(the name of folder in C:/xampp/htdocs/)/index.php
+type http://localhost/(the name of folder in C:/xampp/htdocs/)/index.php - to access the main project page in your web browser 
 
 - NOTE: If you use an adblocker extension in your browser it may cause error for when rendering the google maps piece of the page
