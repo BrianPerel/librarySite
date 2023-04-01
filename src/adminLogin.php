@@ -1,14 +1,14 @@
 <!--
-Purpose of webpage: login page for administrator. 
+Purpose of webpage: login page for administrator.
 -->
 
-<?php 
+<?php
 	session_start();
 	include("../includes/body.htm");
 	echo '<title>Admin Login | HWL</title>';
 	echo '<center><h3>Admin Account Login:</h3><br>';
-	
-	# if regular user goes to log in as an admin, logout the regular user so that they can login as an admin 
+
+	# if regular user goes to log in as an admin, logout the regular user so that they can login as an admin
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
 		session_destroy();
 		session_start();
@@ -21,31 +21,31 @@ Purpose of webpage: login page for administrator.
 	<label>Password:</label>
 	<input class="form-control" class="key" name="password" placeholder="Password" id="pass" type="password" size="30" required></input><br>
 	<!-- An element (checkbox) to toggle between password visibility -->
-	<input type="checkbox" onclick="showPassword()">&nbsp;Show Password</input><br><br>
+	<input type="checkbox" onclick="togglePasswordVisibility()">&nbsp;Show Password</input><br><br>
 	<br><input class="btn btn-primary" type="submit">
 </form></center>
 
-<?php 
-	# if admin is logged-in, jump to admin account page 
+<?php
+	# if admin is logged-in, jump to admin account page
 	if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
 		header('Location: myAdminAccount.php');
 		die;
-	}	
-	
-	# if this point is reached, then adminloggedin session variable hasn't been created so create it here 
+	}
+
+	# if this point is reached, then adminloggedin session variable hasn't been created so create it here
 	$_SESSION['adminloggedin'] = false;
-	
-	# successful logout message 
+
+	# successful logout message
 	if(isset($_GET['out'])) {
-		echo '<script>window.addEventListener(onload, myFunction())</script>';
+		echo '<script>window.addEventListener(onload, hideLogoutMessage())</script>';
 		echo "<center><div id='logout'>$_GET[out]</div></center>";
 	}
-	
-	# incorrect account credentials given 
+
+	# incorrect account credentials given
 	if(isset($_GET['message1'])) {
 		echo "<center>$_GET[message1]</center>";
 	}
-	
+
 	echo '<div style="margin-top: 14.5%"></div>';
 	include("../includes/footer.htm");
-?> 
+?>

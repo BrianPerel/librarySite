@@ -1,37 +1,38 @@
 /* need this for password field styling  */
 @font-face {
-  font-family: 'password';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
+	font-family: 'password';
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://jsbin-user-assets.s3.amazonaws.com/rafaelcastrocouto/password.ttf);
 }
 
 html {
-  overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 body {
-  background-image: url("../images/b.jpg");
-  background-repeat: no-repeat;
-  background-size: cover; /* Resize the background image to cover the entire container */
-  background-position: center; /* Center the image */
-  font-family: Arial;
-  text-align: center; 
+	background: url("../images/b.jpg") no-repeat center/cover;
+	font-family: Arial;
+	text-align: center;
 }
 
 .modal {
-    overflow-y: auto;
+	overflow-y: auto;
 }
 
-a {text-decoration: none; color: black;}
+a {
+	text-decoration: none;
+	color: black;
+}
 
 .div1 tr, td {
-	text-align: left; 
+	text-align: left;
 }
 
 input.key {
-  font-family: 'password';
-  width: 96%; height: 100%;  
+	font-family: 'password';
+	width: 96%;
+	height: 100%;
 }
 
 div.move {
@@ -64,52 +65,49 @@ div.letterSearch * {
 }
 
 .fa:hover {
-    opacity: 0.7;
+	opacity: 0.7;
 }
 
 .fa-facebook {
-    background: #3B5998;
-    color: white;
+	background: #3B5998;
+	color: white;
 }
 
 .fa-twitter {
-    background: #55ACEE;
-    color: white;
+	background: #55ACEE;
+	color: white;
 }
 
 .fa {
-  padding: 2%;
-  font-size: 2%;
-  width: 3%;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
-  border-radius: 50%;
-  height: 3%; 
+	padding: 2%;
+	font-size: 2%;
+	width: 3%;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px 2px;
+	border-radius: 50%;
+	height: 3%;
 }
 
 .fa-instagram {
-  background: #125688;
-  color: white;
+	background: #125688;
+	color: white;
 }
 
 .fa-pinterest {
-  background: #cb2027;
-  color: white;
+	background: #cb2027;
+	color: white;
 }
 
 
 table.table-bordered {
-    border: 1px solid black;
-    margin-top: 20px;
+	border: 1px solid black;
+	margin-top: 20px;
 }
 
-table.table-bordered > thead > tr > th {
-    border: 1px solid black;
-}
-
+table.table-bordered > thead > tr > th,
 table.table-bordered > tbody > tr > td {
-    border: 1px solid black;
+	border: 1px solid black;
 }
 
 div.class2 {
@@ -145,7 +143,7 @@ ul:hover {
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #pic1 {
@@ -159,24 +157,24 @@ ul:hover {
 }
 
 div.class2 a:hover {
-    background-color: #ddd;
+	background-color: #ddd;
 	padding: 1%;
 	color: #696969;
 	border: solid .1px black;
 }
 
 div.class2 a.active {
-    color: white;
-    background-color: #4CAF50;
+	color: white;
+	background-color: #4CAF50;
 }
 
 div.class3 {
 	margin-top: 5%;
-	
+
 }
 
 div.class3 input {
-	width: 300px; 
+	width: 300px;
 	height: 38.2px;
 }
 
@@ -187,96 +185,98 @@ div.create {
 
 div.footer {
 	width: 100%;
-	background-color: #e7a56a ;
+	background-color: #e7a56a;
 	text-align: center;
-    flex-shrink: 0;
+	flex-shrink: 0;
 	margin-top: 3%;
 }
+
 #footer {
-   position:absolute;
-   bottom:0;
-   width:100%;
-   height:60px;   /* Height of the footer */
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	/* Height of the footer */
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
+	padding: 20px;
+	font-size: 30px;
+	width: 50px;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px 2px;
 }
 
 .fa:hover {
-    opacity: 0.7;
+	opacity: 0.7;
 }
 
 .fa-facebook {
-  background: #3B5998;
-  color: white;
+	background: #3B5998;
+	color: white;
 }
 
 .fa-pinterest {
-  background: #cb2027;
-  color: white;
+	background: #cb2027;
+	color: white;
 }
 
 .fa-twitter {
-  background: #55ACEE;
-  color: white;
+	background: #55ACEE;
+	color: white;
 }
 
 .fa-instagram {
-  background: #125688;
-  color: white;
+	background: #125688;
+	color: white;
 }
 
 .fa-linkedin {
-  background: #007bb5;
-  color: white;
+	background: #007bb5;
+	color: white;
 }
 
 .fa-github {
-  background: #6a0dad;
-  color: white;
+	background: #6a0dad;
+	color: white;
 }
 
 
 form.example input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
+	padding: 10px;
+	font-size: 17px;
+	border: 1px solid grey;
+	float: left;
+	width: 80%;
+	background: #f1f1f1;
 }
 
 form.example button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
+	float: left;
+	width: 20%;
+	padding: 10px;
+	background: #2196F3;
+	color: white;
+	font-size: 17px;
+	border: 1px solid grey;
+	border-left: none;
+	cursor: pointer;
 }
 
 form.example button:hover {
-  background: #0b7dda;
+	background: #0b7dda;
 }
 
 form.example::after {
-  content: "";
-  clear: both;
-  display: table;
+	content: "";
+	clear: both;
+	display: table;
 }
 
 @media screen and (max-width: 800px) {
@@ -284,24 +284,24 @@ form.example::after {
 		padding-right: 10%;
 		padding-left: 3%;
 	}
-	
+
 	.fa-twitter {
 		padding-right: 0%;
 		padding-left: 20%;
 	}
-	
+
 	.fa-pinterest {
 		padding-right: 0%;
 		padding-left: 10%;
-	}	
+	}
 }
 
 @media screen and (max-width: 500px) {
 	.chose input {
 		padding: 20%;
 	}
-	
+
 	#picRight {
-		float: none; 
+		float: none;
 	}
 }

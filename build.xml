@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE xml>
 <project name="www.HWL.com" default="build-website" basedir=".">
-	
+	<property name="htdocs.dir" value="C:/xampp/htdocs/project" />
+
 	<!-- dump some basic environment-related info -->
 	<tstamp>
 		<format property="TODAY_US" pattern="MM/dd/yyyy hh:mm a" locale="en, US" />
 	</tstamp>
+
 	<echo message="Current date and time: ${TODAY_US}${line.separator}${ant.version}" level="info" />
-	
-	<target name="build-website" description="copies src files to xampp/htdocs folder">
-		<copy todir="C:/xampp/htdocs/project/src">
+
+	<target name="build-website" description="copies all project files to xampp/htdocs folder">
+		<copy todir="${htdocs.dir}/src">
 			<fileset dir="src" />
 		</copy>
+		<copy todir="${htdocs.dir}/css">
+			<fileset dir="css" />
+		</copy>
+		<copy todir="${htdocs.dir}/js">
+			<fileset dir="js" />
+		</copy>
+		<copy todir="${htdocs.dir}/includes">
+			<fileset dir="includes" />
+		</copy>
+		<copy todir="${htdocs.dir}/images">
+			<fileset dir="images" />
+		</copy>
+	</target>
+
+	<target name="open-website" description="Opens the webapp's main page (from XAMPP folder) using localhost and your default web browser">
+		<exec executable="cmd">
+			<!--  exec task to run the command in command prompt -->
+			<arg value="/c" />
+			<!-- '/c' argument tells cmd to run the following command and then exit -->
+			<arg value="start" />
+			<!-- The start command is used to open the URL in the default web browser -->
+			<arg value="http://localhost/project/src/index.php" />
+		</exec>
+	</target>
+
+	<target name="clean" description="deletes all files in the xampp htdocs directory">
+		<delete dir="${htdocs.dir}" />
 	</target>
 </project>

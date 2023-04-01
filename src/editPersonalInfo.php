@@ -1,5 +1,5 @@
-<!-- 
-Purpose of webpage: display edit account form 
+<!--
+Purpose of webpage: display edit account form
 -->
 
 <?php
@@ -7,8 +7,8 @@ Purpose of webpage: display edit account form
 	echo '<title>Edit Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="120; url=logout.php">';
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
-	
-	# display error message if nothing was filled out 
+
+	# display error message if nothing was filled out
 	if(isset($_GET['$changeErr'])) {
 		echo "<br>$_GET[$err]";
 	}
@@ -28,11 +28,11 @@ Purpose of webpage: display edit account form
 	<input class="btn btn-primary" type="submit" value="Change"/><br><br>
 </form>
 
-<?php 
-	if(isset($_GET['changed'])) { 
+<?php
+	if(isset($_GET['changed'])) {
 		echo "<br><div id='logout'>$_GET[changed]</div>";
 	}
-	
-	echo '<script>window.addEventListener(onload, myFunction())</script></center>';
+
+	echo '<script>window.addEventListener(onload, hideLogoutMessage())</script></center>';
 	include("../includes/footer2.htm");
 ?>
