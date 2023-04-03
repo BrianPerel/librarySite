@@ -4,7 +4,7 @@ Purpose of program: prompt user to sign into there account
 
 <?php
 	session_start();
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Sign in | HWL</title>';
 	echo '<center><h3>My Account Login:</h3><br>';
 ?>
@@ -37,5 +37,5 @@ Purpose of program: prompt user to sign into there account
 	}
 
 	echo '<div style="margin-top: 13%"></div>';
-	include("../includes/footer.htm");
+	include_once("../includes/footer.htm");
 ?>

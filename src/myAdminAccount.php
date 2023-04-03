@@ -4,10 +4,10 @@ Purpose of webpage: receive request from adminLogin.php, update variable values,
 
 <?php
 	session_start();
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Admin Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="90; url=logoutAdmin.php?expire">';
-	require("../includes/connect_db.php");
+	require_once("connect_db.php");
 
 	if($_SESSION['adminloggedin']) {
 		$sql = $con -> query("SELECT * FROM admin_accounts WHERE username = '$_SESSION[username]'");
@@ -15,7 +15,7 @@ Purpose of webpage: receive request from adminLogin.php, update variable values,
 		$adminPhoto = $results['admin_photo'];
 	}
 
-	else if(!$_SESSION['adminloggedin']) {
+	elseif(!$_SESSION['adminloggedin']) {
 		$sql = $con -> query("SELECT * FROM admin_accounts WHERE username = '$_POST[username]'");
 		$results = $sql -> fetch(PDO::FETCH_ASSOC);
 		$adminPhoto = $results['admin_photo'];
@@ -38,7 +38,7 @@ Purpose of webpage: receive request from adminLogin.php, update variable values,
 		header("location: adminLogin.php?message1=$invalidLogin");
 	}
 
-	else if($_SESSION['adminloggedin']) {
+	elseif($_SESSION['adminloggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 		echo '<div style="text-align: center">';
 			echo "<br>Login successful<br> Welcome back, $results[full_name]<br>";
@@ -52,5 +52,5 @@ Purpose of webpage: receive request from adminLogin.php, update variable values,
 	}
 
 	echo "<div style='margin-bottom: 6.5%'></div>";
-	include("../includes/footer.htm");
+	include_once("../includes/footer.htm");
 ?>

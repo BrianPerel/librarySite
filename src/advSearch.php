@@ -4,7 +4,7 @@ Purpose of webpage: to perform an advanced search of the library database
 
 <?php
 	session_start();
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Advanced Search | HWL</title>';
 
 	# if regular user is logged in switch nav links
@@ -13,7 +13,7 @@ Purpose of webpage: to perform an advanced search of the library database
 	}
 
 	# if admin user is logged in switch nav links
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
+	elseif(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 
@@ -54,4 +54,4 @@ Purpose of webpage: to perform an advanced search of the library database
 	<input class="btn btn-primary" type="submit"><br>
 </form></center>
 
-<?php include("../includes/footer2.htm")?>
+<?php include_once("../includes/footer2.htm")?>

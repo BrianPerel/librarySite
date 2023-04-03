@@ -4,9 +4,9 @@ Purpose of webpage: recieve request from index.php and display item information 
 
 <?php
 	session_start(); # need session to save item_name to session in order to pass it into another file
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Search | HWL</title>';
-	require("../includes/connect_db.php");
+	require_once("connect_db.php");
 
 	define("ITEMS_CAP", "4.50"); # create constant to hold max number of items a single user can checkout or request (3 items)
 
@@ -16,7 +16,7 @@ Purpose of webpage: recieve request from index.php and display item information 
 		$_SESSION['requestViewNext'] = null;
 	}
 
-	else if(isset($_SESSION['requestViewPrevious'])) {
+	elseif(isset($_SESSION['requestViewPrevious'])) {
 		$_SESSION['requestViewPrevious'] = null;
 	}
 
@@ -31,7 +31,7 @@ Purpose of webpage: recieve request from index.php and display item information 
 		$_SESSION['numReq'] = $results['items_requested'];
 	}
 
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
+	elseif(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 
@@ -101,7 +101,7 @@ Purpose of webpage: recieve request from index.php and display item information 
 		$item_photo = $results['item_photo'];
 	}
 
-	else if(!empty($results)) {
+	elseif(!empty($results)) {
 		$item_photo = $results['item_photo'];
 	}
 
@@ -163,7 +163,7 @@ Purpose of webpage: recieve request from index.php and display item information 
 		$_SESSION['res'] = $results3['requested'];
 	}
 
-	else if(isset($_GET['check_items_requested'])) {
+	elseif(isset($_GET['check_items_requested'])) {
 		$_SESSION['itemN'] = 1;
 		echo "<p style='margin-right: 45%'>Item #$_SESSION[itemN]</p>";
 		displayTable();
@@ -174,7 +174,7 @@ Purpose of webpage: recieve request from index.php and display item information 
 		$_SESSION['bool'] = true;
 	}
 
-	else if(!empty($results)) {
+	elseif(!empty($results)) {
 		echo '<p style="margin-right: 45%">Item #1</p>';
 		displayTable();
 		$_SESSION['checkout2'] = $results['item_name'];
@@ -186,8 +186,8 @@ Purpose of webpage: recieve request from index.php and display item information 
 ?>
 
 <form action='checkout.php' method='post'>
-	<center><input class="form" style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(empty($results) || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP) && !(isset($_GET['check_items_out']))) {echo 'disabled';} else if(isset($_GET['check_items_out'])) {echo 'hidden';} else if($results['status'] == 'Out') {echo 'disabled';} ?>></input>
-	<input class="form" name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} else if(empty($results) || $_SESSION['res'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} ?>></input>
+	<center><input class="form" style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(empty($results) || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP) && !(isset($_GET['check_items_out']))) {echo 'disabled';} elseif (isset($_GET['check_items_out'])) {echo 'hidden';} elseif($results['status'] == 'Out') {echo 'disabled';} ?>></input>
+	<input class="form" name='request' type="submit" value="Request Item" <?php if(isset($_GET['check_items_out']) || isset($_GET['check_items_requested'])) {echo 'hidden';} elseif (empty($results) || $_SESSION['res'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} ?>></input>
 </form>
 
 <?php
@@ -224,5 +224,5 @@ Purpose of webpage: recieve request from index.php and display item information 
 		echo "</form>";
 	}
 	echo '</center>';
-	include("../includes/footer2.htm");
+	include_once("../includes/footer2.htm");
 ?>

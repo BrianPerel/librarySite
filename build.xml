@@ -28,7 +28,7 @@
 		</copy>
 	</target>
 
-	<target name="open-website" description="Opens the webapp's main page (from XAMPP folder) using localhost and your default web browser">
+	<target name="open-website" description="Opens the webapp's main page (from the XAMPP/htdocs/ folder) using localhost and your default web browser">
 		<exec executable="cmd">
 			<!--  exec task to run the command in command prompt -->
 			<arg value="/c" />
@@ -39,7 +39,13 @@
 		</exec>
 	</target>
 
-	<target name="clean" description="deletes all files in the xampp htdocs directory">
+	<target name="open-xampp-control-panel" description="Opens XAMMPP">
+		<!-- spawn=true is used to launch the command asynchronously in a new process,
+		 allowing the build to continue running while the command is running in the background -->
+		<exec executable="C:\xampp\xampp-control.exe" spawn="true" />
+	</target>
+
+	<target name="clean" description="deletes all files in the XAMPP/htdocs directory">
 		<delete dir="${htdocs.dir}" />
 	</target>
 </project>

@@ -4,7 +4,7 @@ Purpose of program: prompt user to fill out sign up form, once filled out send t
 
 <?php
 	session_start();
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 ?>
 
 <title>Sign up | HWL</title>
@@ -39,7 +39,7 @@ Purpose of program: prompt user to fill out sign up form, once filled out send t
 
 	&nbsp;&nbsp;<u><a href="../includes/terms.htm" target="_blank">View terms of service</a></u><br><br>
 
-	<?php include("../includes/recaptcha_connect.htm"); ?>
+	<?php include_once("../includes/recaptcha_connect.htm"); ?>
 
 	<input type="submit" class="btn btn-primary">
 </form></center>
@@ -50,5 +50,5 @@ Purpose of program: prompt user to fill out sign up form, once filled out send t
 		echo "<center>$_GET[signUpError]</center>";
 	}
 
-	include("../includes/footer2.htm");
+	include_once("../includes/footer2.htm");
 ?>

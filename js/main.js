@@ -5,7 +5,7 @@ const images = [
 	"../images/lib1.jpg",
 	"../images/inside2.jpg"];
 
-var currentIndex = -1;
+let currentIndex = -1;
 
 // Function to start the image rotation timer
 function startTimer() {
@@ -44,36 +44,18 @@ function switchNav() {
 	document.getElementById("fsu").style.padding = "0.6% 0% 0.6% 2.5%";
 }
 
-// Function to switch navbar links for regular and admin users
-function switchNav() {
-	const parent = document.getElementById("parent");
-	parent.removeChild(document.getElementById("child1"));
-	parent.removeChild(document.getElementById("child2"));
-
-	const a = document.createElement('a');
-	a.href = 'adminLogin.php';
-	a.title = "My Account";
-	a.appendChild(document.createTextNode("My Account"));
-	parent.insertBefore(a, child3);
-
-	document.getElementById("home").style.padding = "0% 2.5% 0% 0%";
-	document.getElementById("child3").style.padding = "0% 0% 0% 2.5%";
-	document.getElementById("about").style.padding = "0% 0% 0% 2.5%";
-	document.getElementById("contact2").style.padding = "0% 0% 0% 2.5%";
-	document.getElementById("fsu").style.padding = "0.6% 0% 0.6% 2.5%";
-}
-
 // Alert box for fines message on my account page
 function alertFinesMessage() {
 	alert("Please pay all fines at the library.");
 }
 
-// Show password visiblity function
+// Show password visibility function
 function togglePasswordVisibility() {
 	const passwordInput = document.getElementById("pass");
 	passwordInput.type === "password" ? passwordInput.type = "text" : passwordInput.type = "password";
 }
 
+// Gets the current year
 function getYear() {
-	new Date().getFullYear();
+	return new Date().getFullYear();
 }

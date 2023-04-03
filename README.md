@@ -7,7 +7,7 @@
 check out or return items, and check item return dates and extend it, edit personal account information
 * The admin has special privileges to add, update, or remove items from the database in case an item is bought or sold. This feature ensures that the database is always up-to-date and accurate
 
-- We are giong to use XAMPP local web server solution stack package with Apache HTTP server and MySQL DBMS service
+- We are going to use XAMPP local web server solution stack package with Apache HTTP server and MySQL DBMS service
 
 ## Technologies used:
 
@@ -36,7 +36,9 @@ If starting fresh without a database, follow these steps:
 
 1. create a new database in phpmyadmin (http://localhost/phpmyadmin/) by importing the database/ClientSchema.sql file
 2. import database/ClientData.sql file into phpmyadmin (click on the newly created db, click import tab, upload file)
-3. configure the XAMPP config file to your IP to allow google's recaptcha tool to function on the site
+3. configure the XAMPP Apache config (httpd.conf) file to set the replace the ServerName localhost value with your computer's IP address
+to allow google's recaptcha tool to function on the site. You will also have to open the website using your
+computer's IP address with the project and main page file name in the URL
 
 To run the webapp in the browser, follow these steps:
 
@@ -48,4 +50,4 @@ For example:
 
 	http://localhost/test/index.php
 
-NOTE: If you use an adblocker extension in your web browser it may cause errors when rendering the google maps portion of the page
+NOTE: If you use an adblocker extension in your web browser it may cause errors when rendering the Google Maps portion of the page

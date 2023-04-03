@@ -4,9 +4,9 @@ Purpose of webpage: receive letter request, display result of letter chosen
 
 <?php
 	session_start(); # need session to save item_name to session in order to pass it into another file
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Letter Search | HWL</title>';
-	require("../includes/connect_db.php");
+	require_once("connect_db.php");
 
 	define("ITEMS_CAP", "4.50"); # create constant to hold max number of items a single user can checkout or request (3 items)
 
@@ -24,7 +24,7 @@ Purpose of webpage: receive letter request, display result of letter chosen
 	}
 
 	# if admin user is logged in switch nav links
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
+	elseif(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 
@@ -60,7 +60,7 @@ Purpose of webpage: receive letter request, display result of letter chosen
 	}
 
 	# if search item found in db
-	else if(!empty($results)) {
+	elseif(!empty($results)) {
 		$item_photo = $results['item_photo'];
 		echo "<h2 align=center>Search results 1 for: '$SearchLetter'</h2>";
 	}
@@ -77,7 +77,7 @@ Purpose of webpage: receive letter request, display result of letter chosen
 		echo '<center>No items match your search</center><div style="margin-bottom: 22%"></div>';
 	}
 
-	else if(!empty($results)) {
+	elseif(!empty($results)) {
 		echo '<center><p style="margin-right: 45%">Item #1</p></center>';
 
 		echo '<table align="center" width="50%" height="120%" border=solid black 1px style="background-color: #DCDCDC">';
@@ -110,8 +110,8 @@ Purpose of webpage: receive letter request, display result of letter chosen
 
 <!-- checkout and request buttons -->
 <form class="form" action='letterSearchCheckout.php' method='post'>
-	<center><input class="form" style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(empty($results) || $results['status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
-	<input class="form" type="submit" name="request" value='Request Item' <?php if(empty($results) && $_GET['by'] != 'A-Z' || $results3['requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} else if($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
+	<center><input class="form" style='margin-right: 1%' name="checkout2" type="submit" value='Checkout item' <?php if(empty($results) || $results['status'] == 'Out' && $_GET['by'] != 'A-Z' || (isset($_SESSION['num']) && $_SESSION['num'] >= ITEMS_CAP)) {echo 'disabled';} elseif($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input>
+	<input class="form" type="submit" name="request" value='Request Item' <?php if(empty($results) && $_GET['by'] != 'A-Z' || $results3['requested'] == 'Yes' || (isset($_SESSION['num']) && $_SESSION['numReq'] >= ITEMS_CAP)) {echo 'disabled';} elseif($_GET['by'] == 'A-Z') { echo 'hidden';}?>></input></center>
 </form>
 
-<?php include("../includes/footer2.htm")?>
+<?php include_once("../includes/footer2.htm")?>

@@ -4,9 +4,9 @@ Purpose of webpage: display results of advSearch.php form query
 
 <?php
 	session_start();
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Advanced Search | HWL</title>';
-	require("../includes/connect_db.php");
+	require_once("connect_db.php");
 
 	# if regular user is logged-in switch nav links
 	if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
@@ -28,7 +28,7 @@ Purpose of webpage: display results of advSearch.php form query
 	}
 
 	# if admin user is logged-in switch nav links
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
+	elseif(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 
@@ -72,7 +72,7 @@ Purpose of webpage: display results of advSearch.php form query
 	}
 
 	# if 1 row match, then 1 result
-	else if($results2 == 1) {
+	elseif($results2 == 1) {
 		echo '<h2 align=center>Advanced search results: 1</h2>';
 		$item_photo = $results['item_photo'];
 	}
@@ -107,8 +107,8 @@ Purpose of webpage: display results of advSearch.php form query
 
 <!-- check out and request buttons -->
 <form action='checkout.php' method='post'>
-	<input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(empty($results) || $results['status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';} ?>></input>
-	<input name='request' type="submit" value="Request Item" <?php if(empty($results) || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} else if(($results2) > 1) {echo 'hidden';}?>></input>
+	<input style='margin-right: 1%' name='checkout2' type="submit" value="Checkout Item" <?php if(empty($results) || $results['status'] == 'Out' || (isset($_SESSION['num']) && $_SESSION['num'] >= 3)) {echo 'disabled';} elseif(($results2) > 1) {echo 'hidden';} ?>></input>
+	<input name='request' type="submit" value="Request Item" <?php if(empty($results) || (isset($_SESSION['num']) && $_SESSION['numReq'] >= 3)) {echo 'disabled';} elseif(($results2) > 1) {echo 'hidden';}?>></input>
 </form>
 
-<?php echo '<div style="margin-top: 2%"></div>'; include("../includes/footer2.htm")?>
+<?php echo '<div style="margin-top: 2%"></div>'; include_once("../includes/footer2.htm")?>

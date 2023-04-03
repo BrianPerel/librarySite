@@ -1,5 +1,5 @@
 <?php
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Home | HWL</title>';
 	echo '<body onload="startTimer()">';
 	session_start();
@@ -10,7 +10,7 @@
 	}
 
 	# if admin user account is logged in switch admin nav links
-	else if(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
+	elseif(isset($_SESSION['adminloggedin']) && $_SESSION['adminloggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 	}
 
@@ -165,4 +165,4 @@
 		</div>
 	</section>
 
-<?php include("../includes/footer2.htm"); ?>
+<?php include_once("../includes/footer2.htm"); ?>

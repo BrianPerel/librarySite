@@ -27,7 +27,7 @@ function memSort(e) {
 </script>
 
 <?php
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Admin Operations | HWL</title>';
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
 	echo '<div style="overflow-y: auto">';
@@ -131,6 +131,6 @@ function memSort(e) {
 		echo $_GET['addMessage'];
 	}
 
-	include("../includes/footer2.htm");
+	include_once("../includes/footer2.htm");
 	echo '</div>';
 ?>

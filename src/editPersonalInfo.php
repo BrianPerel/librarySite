@@ -3,7 +3,7 @@ Purpose of webpage: display edit account form
 -->
 
 <?php
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Edit Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="120; url=logout.php">';
 	echo '<script>window.addEventListener(onload, switchNav())</script>';
@@ -34,5 +34,5 @@ Purpose of webpage: display edit account form
 	}
 
 	echo '<script>window.addEventListener(onload, hideLogoutMessage())</script></center>';
-	include("../includes/footer2.htm");
+	include_once("../includes/footer2.htm");
 ?>

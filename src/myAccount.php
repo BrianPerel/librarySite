@@ -5,10 +5,10 @@ check number of days all items in user's checkout queue have been out, update fi
 
 <?php
 	session_start();
-	include('../includes/body.htm');
+	include_once('../includes/body.htm');
 	echo '<title>My Account | HWL</title>';
 	echo '<meta http-equiv="refresh" content="120; url=logout.php?expire">';
-	require("../includes/connect_db.php");
+	require_once("connect_db.php");
 
 	if($_SESSION['loggedin']) {
 		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_SESSION[username]'");
@@ -18,7 +18,7 @@ check number of days all items in user's checkout queue have been out, update fi
 		$_SESSION['requested'] = $results['items_requested'];
 	}
 
-	else if(!$_SESSION['loggedin']) {
+	elseif(!$_SESSION['loggedin']) {
 		$sql = $con -> query("SELECT * FROM user_accounts WHERE username = '$_POST[username]'");
 		$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
 
@@ -40,7 +40,8 @@ check number of days all items in user's checkout queue have been out, update fi
 
 <div class="row">
 	<div class="col-sm-12">
-		<br><img src="<?=$profilePhoto?>" <?php if(empty($profilePhoto)) { echo 'style="display: none"'; }?> width='250' height='240' alt='profile picture'/>
+		<br><img src="<?=$profilePhoto?>" <?php if(empty($profilePhoto)) { echo 'style="display: none"'; }?>
+		width='250' height='240' alt='profile picture'/>
 	</div>
 </div>
 
@@ -54,7 +55,7 @@ check number of days all items in user's checkout queue have been out, update fi
 		header("location: signIn.php?message=$invalidLogin");
 	}
 
-	else if($_SESSION['loggedin']) {
+	elseif($_SESSION['loggedin']) {
 		echo '<script>window.addEventListener(onload, switchNav())</script>';
 
 		# enter condition if user has more than 1 item out
@@ -124,5 +125,5 @@ check number of days all items in user's checkout queue have been out, update fi
 		echo "</form>";
 	}
 
-	include("../includes/footer2.htm");
+	include_once("../includes/footer2.htm");
 ?>

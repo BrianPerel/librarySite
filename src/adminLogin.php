@@ -4,7 +4,7 @@ Purpose of webpage: login page for administrator.
 
 <?php
 	session_start();
-	include("../includes/body.htm");
+	include_once("../includes/body.htm");
 	echo '<title>Admin Login | HWL</title>';
 	echo '<center><h3>Admin Account Login:</h3><br>';
 
@@ -47,5 +47,5 @@ Purpose of webpage: login page for administrator.
 	}
 
 	echo '<div style="margin-top: 14.5%"></div>';
-	include("../includes/footer.htm");
+	include_once("../includes/footer.htm");
 ?>

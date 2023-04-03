@@ -6,7 +6,7 @@ along with image into new record in items table and return message to adminOpera
 -->
 
 <?php
-	require_once("../includes/connect_db.php");
+	require_once("connect_db.php");
 
 	$sql = $con -> query("SELECT * FROM items WHERE item_name = '$_REQUEST[item_name]'");
 	$results = $sql -> fetchAll(PDO::FETCH_ASSOC);
@@ -29,8 +29,8 @@ along with image into new record in items table and return message to adminOpera
 			$pvars = array("image" => base64_encode($data)); #this array is the POST data for the curl / base64 encoding lets you read data like image pixels correctly across the server without corruption of data
 			$icurl = curl_init(); # begin curl cmd
 
-			# using imagebb API key
-			curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09'); # use api to store image on imagebb site
+			# using imagebb API key. Use api to store image on imagebb site
+			curl_setopt($icurl, CURLOPT_URL, 'https://api.imgbb.com/1/upload?key=94d704f859c00d48f65cb46a87875a09');
 			curl_setopt($icurl, CURLOPT_HEADER, false);
 			curl_setopt($icurl, CURLOPT_POST, true);
 			curl_setopt($icurl, CURLOPT_RETURNTRANSFER, true);
